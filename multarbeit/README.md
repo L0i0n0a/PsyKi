@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Anleitung Projekt öffnen
+
+1. Auf GitHub gehen: https://github.com/L0i0n0a/PsyKi# 
+2. Auf Code (grün) klicken und Art des Clones wählen (z.B. HTTPS)
+3. VSCode oder andere IDE öffnen
+4. Neues Terminal öffnen und in den gewünschten Ordner navigieren, wo das Projekt liegen soll oder gewünschten Ordner direkt in VSCode öffnen. 
+5. Im Terminal in VSCode eingeben: `git clone https://github.com/L0i0n0a/PsyKi.git`
+6. Der Ordner mit den Inhalten sollte in der Hierachie sichtbar sein.
+7. In den Ordner `multarbeit` navigieren im Terminal
+8. `npm install` im Terminal eingeben
+9. Dann `npm run dev` im Terminal eingeben, das startet die Anwendung
+
+
 
 ## Getting Started
 
@@ -20,17 +32,3 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
