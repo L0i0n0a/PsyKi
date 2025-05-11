@@ -1,6 +1,7 @@
 "use client"
 import React from "react";
 import { useState } from "react";
+import Image from "next/image";
 
 
 const Carousel = ({ images }: {images: string[]}) => {
@@ -21,27 +22,29 @@ const Carousel = ({ images }: {images: string[]}) => {
 
   return (
     <div className="relative w-full max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg">
-      <img
+      <Image
         src={images[current]}
         alt={`Slide ${current}`}
+        width={64}
+        height={64}
         className="w-full h-64 transition-all duration-500"
       />
       <button
         onClick={prevSlide}
         className="hover:cursor-pointer absolute top-1/2 left-4 transform -translate-y-1/2 bg-sky-400 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100"
       >
-        
+
         <span>{"<"}</span>
-       
-    
+
+
       </button>
       <button
         onClick={nextSlide}
         className="hover:cursor-pointer absolute top-1/2 right-4 transform -translate-y-1/2 bg-sky-400 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100"
       >
-       
+
             <span>{">"}</span>
-       
+
       </button>
     </div>
   );
