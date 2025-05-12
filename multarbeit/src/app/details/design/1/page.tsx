@@ -48,9 +48,10 @@ const DesignDecisionsPage = () => {
 
             <section className="sectionBorder">
                 <h2 className="text-2xl font-semibold">Strategische Überlegungen</h2>
+                <h2 className="text-2xl mb-4">Welche Überlegungen wurden zu Beginn gemacht?</h2>
                 <ul className="list-disc list-inside space-y-1">
                     <li>Bayesianisches Entscheidungsmodell mit Typ-2-Komponenten: Menschen überlegen lassen, wie sicher sie sich mit Entscheidung sind (Wahrscheinlichkeit)</li>
-                    <li>Kombination aus objektiver Sensitivität und subjektiver Sicherheit</li>
+                    <li>Ziel: Wenig False Alarms, aber trotzdem möglichst viele Hits → Balance zwischen Sensitivität und Spezifität</li>
                     <li>Minimierung von Fehlentscheidungen durch adaptives Gewichtungssystem</li>
                     <li>Dynamische Anpassung der menschlichen Zuverlässigkeit</li>
                     <li>Transparente, erklärbare Vorschläge der KI</li>
@@ -61,6 +62,7 @@ const DesignDecisionsPage = () => {
 
             <section className="sectionBorder">
                 <h2 className="text-2xl font-semibold">Nutzerführung & Ablauf (UX)</h2>
+                <h2 className="text-2xl">Wie ist der Ablauf innerhalb der Anwendung geplant?</h2>
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">1. Vorbereitungsphase (Baseline-Test)</h3>
                     <p className="p-4 textColourGreen">
@@ -91,9 +93,19 @@ const DesignDecisionsPage = () => {
 
             <section className="sectionBorder">
                 <h2 className="text-2xl font-semibold">Scribbles und MockUp-Ideen</h2>
-                <ul className="list-disc list-inside space-y-1">
-                    <li>Mockups: Entscheidungsbild, Confidence-Slider, KI-Hinweis</li>
-                </ul>
+                <h2 className="text-2xl mb-4">Wie werden Nutzende durch die Anwendung geführt?</h2>
+                <div className="flex">
+                    <Image width={400} height={400} src={"/IMG_0086.png"} alt=""/>
+                    <Image width={400} height={400} src={"/IMG_0087.png"} alt=""/>
+                </div>
+
+                <p></p>
+            </section>
+
+            <section className="sectionBorder">
+                <h2 className="text-2xl font-semibold">Reflexion</h2>
+                <h2 className="text-2xl mb-4">Welches Ziel und welche Ideen verfolgen wir?</h2>
+                
             </section>
 
             <div className="flex justify-center"><Button text="Zurück" onClick={() => router.push("/")} /></div>
