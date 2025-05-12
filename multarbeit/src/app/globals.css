@@ -48,6 +48,16 @@ button {
   padding: 0.25rem;
 }
 
+.sectionBorder{
+  border: 2px solid var(--color-blue-munsell);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.textColourGreen {
+  color: var(--color-midnight-green);
+}
+
 /* $carolina-blue: #74b3ce;
 $blue-munsell: #508991;
 $prussian-blue: #172a3a;

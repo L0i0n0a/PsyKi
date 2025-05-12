@@ -8,23 +8,27 @@ const DesignDecisionsPage = () => {
     const router = useRouter();
     return (
         <div className="max-w-4xl mx-auto p-6 space-y-8">
-            <h1 className="text-3xl font-bold">📌 Erste Designentscheidungen</h1>
+            <div className="header">
+                <h1 className="text-4xl font-bold m-4 text-center">Erste Designentscheidungen</h1>
+            </div>
 
-            <section>
-                <h2 className="text-2xl font-semibold">🎯 Zielgruppe</h2>
-                <p>
+            <section className="sectionBorder">
+                <h2 className="text-2xl font-semibold">Zielgruppe</h2>
+                <h2 className="text-2xl">Welche Menschen profitieren von unserer Strategie?</h2>
+                <p className="text-lg p-4 textColourGreen">
                     Unsere Anwendung richtet sich an Berufsgruppen, die in hochverantwortlichen
                     Entscheidungssituationen arbeiten, in denen <strong>Signal Detection</strong> eine zentrale Rolle spielt. Dazu zählen:
                 </p>
-                <ul className="list-disc list-inside mt-2 space-y-1">
+                <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
                     <li><strong>Medizinische Diagnostik</strong> (z. B. Radiologie)</li>
                     <li><strong>Qualitätsprüfung</strong> (z. B. Schweißerprüfung)</li>
-                    <li><strong>Defekterkennung</strong> (z. B. Produktion, Instandhaltung)</li>
+                    <li><strong>Defekterkennung</strong> (z. B. Produktion)</li>
+                    <li><strong>Capture-Bilder</strong></li>
                     <li><strong>Bildauswertung in sicherheitsrelevanten Kontexten</strong> (z. B. Meteorologie)</li>
                     <li><strong>Überwachung und Sicherheit</strong> (z. B. Videostreamanalyse)</li>
                 </ul>
-                <p className="mt-4">Zentrale Anforderungen:</p>
-                <ul className="list-disc list-inside mt-2 space-y-1">
+                <p className="mt-4 p-4 text-lg">Zentrale Anforderungen:</p>
+                <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
                     <li>Hohe Genauigkeit und Verlässlichkeit</li>
                     <li>Minimierung von Fehlern (v. a. False Alarms)</li>
                     <li>Berücksichtigung subjektiver Sicherheit</li>
@@ -33,8 +37,8 @@ const DesignDecisionsPage = () => {
                 </ul>
             </section>
 
-            <section>
-                <h2 className="text-2xl font-semibold">🧠 Strategische Überlegungen</h2>
+            <section className="sectionBorder">
+                <h2 className="text-2xl font-semibold">Strategische Überlegungen</h2>
                 <ul className="list-disc list-inside space-y-1">
                     <li>Bayesianisches Entscheidungsmodell mit Typ-2-Komponenten</li>
                     <li>Kombination aus objektiver Sensitivität und subjektiver Sicherheit</li>
@@ -46,8 +50,8 @@ const DesignDecisionsPage = () => {
                 </ul>
             </section>
 
-            <section>
-                <h2 className="text-2xl font-semibold">🧭 Nutzerführung & Ablauf (UX)</h2>
+            <section className="sectionBorder">
+                <h2 className="text-2xl font-semibold">Nutzerführung & Ablauf (UX)</h2>
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">1. Vorbereitungsphase (Baseline-Test)</h3>
                     <ul className="list-disc list-inside space-y-1 mt-2">
@@ -68,8 +72,8 @@ const DesignDecisionsPage = () => {
                 </div>
             </section>
 
-            <section>
-                <h2 className="text-2xl font-semibold">📝 Zusätzliche Hinweise & Ideen</h2>
+            <section className="sectionBorder">
+                <h2 className="text-2xl font-semibold">Zusätzliche Hinweise & Ideen</h2>
                 <ul className="list-disc list-inside space-y-1">
                     <li>KI-Sicherheit sensibel visualisieren, um unkritische Übernahme zu vermeiden</li>
                     <li>Vorschläge als Hilfestellung, nicht als endgültige Entscheidung</li>
@@ -78,7 +82,7 @@ const DesignDecisionsPage = () => {
                 </ul>
             </section>
 
-            <Button text="Zuruck" onClick={() => router.push("/")} />
+            <div className="flex justify-center"><Button text="Zurück" onClick={() => router.push("/")} /></div>
         </div>
     );
 };

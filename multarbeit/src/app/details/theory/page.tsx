@@ -82,7 +82,7 @@ const OWModelTheory = () => {
                 <p>Das Kriterium für Entscheidungen wird ebenfalls gewichtet.</p>
             </section>
 
-            <Button text="Zuruck" onClick={() => router.push("/")} />
+            <div className="flex justify-center"><Button text="Zurück" onClick={() => router.push("/")} /></div>
         </div>
     );
 };
