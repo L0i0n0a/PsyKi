@@ -8,8 +8,8 @@ const DesignDecisionsPage = () => {
 
     const router = useRouter();
     return (
-        <div className="max-w-4xl mx-auto p-6 space-y-8">
-            <div className="header">
+        <div className="max-w-6xl mx-auto p-6 space-y-8">
+            <div className="header border10">
                 <h1 className="text-4xl font-bold m-4 text-center">Erste Designentscheidungen</h1>
             </div>
 
@@ -28,9 +28,9 @@ const DesignDecisionsPage = () => {
                     <li><strong>Bildauswertung in sicherheitsrelevanten Kontexten</strong> (z. B. Meteorologie)</li>
                     <li><strong>Überwachung und Sicherheit</strong> (z. B. Videostreamanalyse)</li>
                 </ul>
-                <div className="flex flex-col md:flex-row items-center gap-8 p-6 max-w-6xl mx-auto ">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 max-w-6xl mx-auto ">
                     <div>
-                        <p className="mt-4 p-4 text-lg">Zentrale Anforderungen:</p>
+                        <p className="mt-6 text-lg">Zentrale Anforderungen:</p>
                         <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
                             <li>Hohe Genauigkeit und Verlässlichkeit</li>
                             <li>Minimierung von Fehlern (v. a. False Alarms)</li>
@@ -40,7 +40,7 @@ const DesignDecisionsPage = () => {
                         </ul></div>
                     <div>
                         <Image src={"/zielgruppe.png"} height={400} width={400} alt=""></Image>
-                        <p className="imageSourceText">ChatGPT</p>
+                        <p className="imageSourceText text-right">ChatGPT</p>
                     </div>
                 </div>
 
@@ -50,13 +50,11 @@ const DesignDecisionsPage = () => {
                 <h2 className="text-2xl font-semibold">Strategische Überlegungen</h2>
                 <h2 className="text-2xl mb-4">Welche Überlegungen wurden zu Beginn gemacht?</h2>
                 <ul className="list-disc list-inside space-y-1">
-                    <li>Bayesianisches Entscheidungsmodell mit Typ-2-Komponenten: Menschen überlegen lassen, wie sicher sie sich mit Entscheidung sind (Wahrscheinlichkeit)</li>
                     <li>Ziel: Wenig False Alarms, aber trotzdem möglichst viele Hits → Balance zwischen Sensitivität und Spezifität</li>
+                    <li>Direktes Feedback (richtig/falsch) im Vor-Test</li>
                     <li>Minimierung von Fehlentscheidungen durch adaptives Gewichtungssystem</li>
                     <li>Dynamische Anpassung der menschlichen Zuverlässigkeit</li>
-                    <li>Transparente, erklärbare Vorschläge der KI</li>
-                    <li>Direktes Feedback (richtig/falsch) im Vor-Test</li>
-                    <li>Explainable AI: verständliche Begründungen für KI-Vorschläge</li>
+                    <li>Transparente Vorschläge der KI im Anschluss an menschliche Entscheidung</li>
                 </ul>
             </section>
 
@@ -66,7 +64,7 @@ const DesignDecisionsPage = () => {
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">1. Vorbereitungsphase (Baseline-Test)</h3>
                     <p className="p-4 textColourGreen">
-                       In der ersten Phase soll es darum gehen, die Zuverlässigkeit des Menschen zu berechnen. Dabei werden 10 bis 20 Bilder verwendet bei denen der Mensch dann entscheiden muss, ob mehr orange oder mehr blau in dem Bild zu sehen ist. Anschließend gibt es Feedback zu der Bewertung und im Hintergrund wird die Sensitivität berechnet.
+                        In der ersten Phase soll es darum gehen, die Zuverlässigkeit des Menschen zu berechnen. Dabei werden 10 bis 20 Bilder verwendet bei denen der Mensch entscheiden muss, ob mehr orange oder mehr blau in dem Bild zu sehen ist. Anschließend gibt es Feedback zu der Bewertung und im Hintergrund wird die Sensitivität berechnet.
                     </p>
                     <h4 className="ml-2 font-bold">Ablauf</h4>
                     <ul className="ml-6 list-decimal list-inside space-y-1 mt-2">
@@ -78,7 +76,7 @@ const DesignDecisionsPage = () => {
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">2. Haupt-Testphase</h3>
                     <p className="p-4 textColourGreen">
-                        In der zweiten Phase findet dann der richtige Test statt, hier wird die vorherig ausgerechnete Zuverlässigkeit genutzt. Prinzipiell läuft der Test auch gleich ab, allerdings wird hier nach der Angabe von Sicherheit und getroffener Entscheidung ein Vorschlag aus der Kombination von Mensch und KI erzeugt. Der Mensch kann dann entscheiden, ob der Vorschlag angenommen wird oder nicht. Die Anzahl der Testbilder ist in dieser Phase 50.
+                        In der zweiten Phase findet dann der richtige Test statt, hier wird die vorherig ausgerechnete Zuverlässigkeit genutzt. Prinzipiell läuft der Test wie in der Vorbereitungsphase ab, allerdings wird hier nach der Angabe von Sicherheit und getroffener Entscheidung ein Vorschlag aus der Kombination von Mensch und KI erzeugt. Der Mensch kann dann entscheiden, ob der Vorschlag angenommen wird oder nicht. Dieser Vorgang wird insgesamt 50 mal wiederholt.
                     </p>
                     <h4 className="ml-2 font-bold">Ablauf</h4>
                     <ul className="ml-6 list-decimal list-inside space-y-1 mt-2">
@@ -88,25 +86,43 @@ const DesignDecisionsPage = () => {
                         <li>Begründeter Vorschlag aus der Kombination Mensch und KI mit Zuverlässigkeitsinformation</li>
                         <li>Mensch entscheidet, ob Vorschlag angenommen wird</li>
                     </ul>
+                    <p className="m-4">Die zugrundeliegende Annahme statistischer Unabhängigkeit wird im Ablauf durch eine zeitlich getrennte Abfrage der menschlichen Einschätzung vor dem KI-Vorschlag gestützt. Dadurch lässt sich eine Beeinflussung der menschlichen Evidenzverarbeitung minimieren und die Gültigkeit des OW-Ansatzes wahren.</p>
                 </div>
             </section>
 
             <section className="sectionBorder">
                 <h2 className="text-2xl font-semibold">Scribbles und MockUp-Ideen</h2>
                 <h2 className="text-2xl mb-4">Wie werden Nutzende durch die Anwendung geführt?</h2>
-                <div className="flex">
-                    <Image width={400} height={400} src={"/IMG_0086.png"} alt=""/>
-                    <Image width={400} height={400} src={"/IMG_0087.png"} alt=""/>
+
+                <div className="flex gap-8 items-start">
+                    {/* Erstes Element */}
+                    <div className="flex flex-col items-start w-2/4">
+                        <Image height={200} width={400} src={"/IMG_0086.png"} alt="" className="h-[200px] w-auto" />
+                        <div className="mt-4">
+                            <h3 className="font-bold">Menschliche Einschätzung:</h3>
+                            <ul className="ml-6 list-disc list-inside space-y-1 mt-2">
+                                <li>menschliche Entscheidung vor KI-Anzeige → vermeidet Bias</li>
+                                <li>Mindestbetrachtungszeit für genaue Bildanalyse</li>
+                                <li>Confidence-Slider für schnelle, intuitive Sicherheitseinschätzung</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* Zweites Element */}
+                    <div className="flex flex-col items-start w-2/4">
+                        <Image height={200} width={400} src={"/IMG_0087.png"} alt="" className="h-[200px] w-auto" />
+                        <div className="mt-4">
+                            <h3 className="font-bold">Finale Entscheidung:</h3>
+                            <ul className="ml-6 list-disc list-inside space-y-1 mt-2">
+                                <li>Parallele Darstellung von Mensch und KI-Entscheidung zur direkten Vergleichbarkeit</li>
+                                <li>KI-Vorschlag mit Sicherheit visuell hervorgehoben</li>
+                                <li>Finalauswahl mit Prozenten fördert bewusste/ eigenständige Entscheidung</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <p></p>
             </section>
 
-            <section className="sectionBorder">
-                <h2 className="text-2xl font-semibold">Reflexion</h2>
-                <h2 className="text-2xl mb-4">Welches Ziel und welche Ideen verfolgen wir?</h2>
-                
-            </section>
 
             <div className="flex justify-center"><Button text="Zurück" onClick={() => router.push("/")} /></div>
         </div>

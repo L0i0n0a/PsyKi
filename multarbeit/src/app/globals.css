@@ -62,6 +62,10 @@ button {
   color: var(--color-blue-munsell);
 }
 
+.border10 {
+    border-radius: 10px;
+}
+
 /* $carolina-blue: #74b3ce;
 $blue-munsell: #508991;
 $prussian-blue: #172a3a;
