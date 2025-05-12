@@ -1,6 +1,7 @@
 "use client"
 import React from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Button from "@/components/ui/Button/Button";
 
 const DesignDecisionsPage = () => {
@@ -27,14 +28,22 @@ const DesignDecisionsPage = () => {
                     <li><strong>Bildauswertung in sicherheitsrelevanten Kontexten</strong> (z. B. Meteorologie)</li>
                     <li><strong>Überwachung und Sicherheit</strong> (z. B. Videostreamanalyse)</li>
                 </ul>
-                <p className="mt-4 p-4 text-lg">Zentrale Anforderungen:</p>
-                <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
-                    <li>Hohe Genauigkeit und Verlässlichkeit</li>
-                    <li>Minimierung von Fehlern (v. a. False Alarms)</li>
-                    <li>Berücksichtigung subjektiver Sicherheit</li>
-                    <li>Entscheidungsunterstützung ohne Überforderung</li>
-                    <li>Vermeidung voreiliger Urteile</li>
-                </ul>
+                <div className="flex flex-col md:flex-row items-center gap-8 p-6 max-w-6xl mx-auto ">
+                    <div>
+                        <p className="mt-4 p-4 text-lg">Zentrale Anforderungen:</p>
+                        <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
+                            <li>Hohe Genauigkeit und Verlässlichkeit</li>
+                            <li>Minimierung von Fehlern (v. a. False Alarms)</li>
+                            <li>Berücksichtigung subjektiver Sicherheit</li>
+                            <li>Entscheidungsunterstützung ohne Überforderung</li>
+                            <li>Vermeidung voreiliger Urteile</li>
+                        </ul></div>
+                    <div>
+                        <Image src={"/zielgruppe.png"} height={400} width={400} alt=""></Image>
+                        <p className="imageSourceText">ChatGPT</p>
+                    </div>
+                </div>
+
             </section>
 
             <section className="sectionBorder">
