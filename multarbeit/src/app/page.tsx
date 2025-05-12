@@ -1,5 +1,5 @@
 "use client"
-import Carousel from "@/components/layout/Carousel";
+// import Carousel from "@/components/layout/Carousel";
 import SectionLeft from "@/components/layout/SectionLeft";
 import SectionRight from "@/components/layout/SectionRight";
 import { useRouter } from 'next/navigation'
