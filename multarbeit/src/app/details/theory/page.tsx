@@ -26,15 +26,15 @@ const OWModelTheory = () => {
                 <h2 className="text-2xl font-semibold">Gewichtung der Hinweise</h2>
                 <p>Die Hinweise werden gewichtet, um maximale Teamleistung zu erzielen:</p>
                 <pre className="bg-gray-100 p-4 rounded">Z = a_human × X_human + a_aid × X_aid</pre>
-                <p>Gewichte ai sind proportional zu den d'-Werten: <code>a_i ∝ d'_i</code></p>
+                <p>Gewichte ai sind proportional zu den d&apos;-Werten: <code>a_i ∝ d&apos;_i</code></p>
             </section>
 
             <section>
                 <h2 className="text-2xl font-semibold">Gesamtsensitivität berechnen</h2>
                 <p>
-                    Die kombinierte Sensitivität (d'OW) ergibt sich durch:
+                    Die kombinierte Sensitivität (d&apos;OW) ergibt sich durch:
                 </p>
-                <pre className="bg-gray-100 p-4 rounded">d'_OW = sqrt(d'^2_operator + d'^2_aid)</pre>
+                <pre className="bg-gray-100 p-4 rounded">d&apos;_OW = sqrt(d&apos;^2_operator + d&apos;^2_aid)</pre>
             </section>
 
             <section>
@@ -43,25 +43,25 @@ const OWModelTheory = () => {
                     Aufgabe: Entscheiden ob ein Bild orange (Signal) oder blau (Rauschen) dominiert.
                 </p>
                 <ul className="list-disc pl-6">
-                    <li>Operator: d' = 1.0</li>
-                    <li>Hilfe: d' = 3.0</li>
+                    <li>Operator: d&apos; = 1.0</li>
+                    <li>Hilfe: d&apos; = 3.0</li>
                 </ul>
                 <p>Beispielwerte:</p>
                 <pre className="bg-gray-100 p-4 rounded">
                     X_operator = +0.8
                     X_aid = +2.5
-                    Z = 2.075 (Ergebnis &gt; 0: Entscheidung "Orange")
+                    Z = 2.075 (Ergebnis &gt; 0: Entscheidung &quot;Orange&quot;)
                 </pre>
             </section>
 
             <section>
                 <h2 className="text-2xl font-semibold">Sensitivität berechnen</h2>
-                <p>d' = z(Hit Rate) - z(False Alarm Rate)</p>
+                <p>d&apos; = z(Hit Rate) - z(False Alarm Rate)</p>
                 <p>Beispiel:</p>
                 <pre className="bg-gray-100 p-4 rounded">
                     HR = 0.82, FAR = 0.14
                     z(0.82) ≈ 0.92, z(0.14) ≈ -1.08
-                    =={">"} d' = 2.0
+                    =={">"} d&apos; = 2.0
                 </pre>
             </section>
 
@@ -77,7 +77,7 @@ const OWModelTheory = () => {
             <section>
                 <h2 className="text-2xl font-semibold">Team-Kriterium</h2>
                 <pre className="bg-gray-100 p-4 rounded">
-                    c_OW = (d'_op × c_op + d'_aid × c_aid) / (d'_op + d'_aid)
+                    c_OW = (d&apos;_op × c_op + d&apos;_aid × c_aid) / (d&apos;_op + d&apos;_aid)
                 </pre>
                 <p>Das Kriterium für Entscheidungen wird ebenfalls gewichtet.</p>
             </section>
