@@ -49,7 +49,7 @@ const DesignDecisionsPage = () => {
             <section className="sectionBorder">
                 <h2 className="text-2xl font-semibold">Strategische Überlegungen</h2>
                 <ul className="list-disc list-inside space-y-1">
-                    <li>Bayesianisches Entscheidungsmodell mit Typ-2-Komponenten</li>
+                    <li>Bayesianisches Entscheidungsmodell mit Typ-2-Komponenten: Menschen überlegen lassen, wie sicher sie sich mit Entscheidung sind (Wahrscheinlichkeit)</li>
                     <li>Kombination aus objektiver Sensitivität und subjektiver Sicherheit</li>
                     <li>Minimierung von Fehlentscheidungen durch adaptives Gewichtungssystem</li>
                     <li>Dynamische Anpassung der menschlichen Zuverlässigkeit</li>
@@ -63,30 +63,35 @@ const DesignDecisionsPage = () => {
                 <h2 className="text-2xl font-semibold">Nutzerführung & Ablauf (UX)</h2>
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">1. Vorbereitungsphase (Baseline-Test)</h3>
-                    <ul className="list-disc list-inside space-y-1 mt-2">
-                        <li>10–20 Beispielbilder mit Entscheidungs- und Sicherheitsabfrage</li>
-                        <li>Direktes Feedback pro Antwort</li>
-                        <li>Berechnung der Sensitivität (d′) des Nutzers</li>
+                    <p className="p-4 textColourGreen">
+                       In der ersten Phase soll es darum gehen, die Zuverlässigkeit des Menschen zu berechnen. Dabei werden 10 bis 20 Bilder verwendet bei denen der Mensch dann entscheiden muss, ob mehr orange oder mehr blau in dem Bild zu sehen ist. Anschließend gibt es Feedback zu der Bewertung und im Hintergrund wird die Sensitivität berechnet.
+                    </p>
+                    <h4 className="ml-2 font-bold">Ablauf</h4>
+                    <ul className="ml-6 list-decimal list-inside space-y-1 mt-2">
+                        <li>Bild wird angezeigt</li>
+                        <li>Entscheidung treffen und Sicherheit angeben</li>
+                        <li>Rückmeldung zur Einschätzung (richtig/falsch)</li>
                     </ul>
                 </div>
                 <div className="mt-4">
                     <h3 className="text-xl font-medium">2. Haupt-Testphase</h3>
-                    <ul className="list-disc list-inside space-y-1 mt-2">
-                        <li>50 Testbilder im Durchlauf</li>
-                        <li>Pro Bild: Entscheidung, Sicherheit angeben, KI-Vorschlag erhalten</li>
+                    <p className="p-4 textColourGreen">
+                        In der zweiten Phase findet dann der richtige Test statt, hier wird die vorherig ausgerechnete Zuverlässigkeit genutzt. Prinzipiell läuft der Test auch gleich ab, allerdings wird hier nach der Angabe von Sicherheit und getroffener Entscheidung ein Vorschlag aus der Kombination von Mensch und KI erzeugt. Der Mensch kann dann entscheiden, ob der Vorschlag angenommen wird oder nicht. Die Anzahl der Testbilder ist in dieser Phase 50.
+                    </p>
+                    <h4 className="ml-2 font-bold">Ablauf</h4>
+                    <ul className="ml-6 list-decimal list-inside space-y-1 mt-2">
+                        <li>Bild wird angezeigt</li>
+                        <li>Pro Bild: Entscheidung treffen und Sicherheit angeben</li>
                         <li>Z-Wert-Berechnung basierend auf Mensch+KI</li>
-                        <li>Begründeter Vorschlag („KI 93 % sicher für Orange“)</li>
-                        <li>Nutzer entscheidet, ob er Vorschlag annimmt</li>
+                        <li>Begründeter Vorschlag aus der Kombination Mensch und KI mit Zuverlässigkeitsinformation</li>
+                        <li>Mensch entscheidet, ob Vorschlag angenommen wird</li>
                     </ul>
                 </div>
             </section>
 
             <section className="sectionBorder">
-                <h2 className="text-2xl font-semibold">Zusätzliche Hinweise & Ideen</h2>
+                <h2 className="text-2xl font-semibold">Scribbles und MockUp-Ideen</h2>
                 <ul className="list-disc list-inside space-y-1">
-                    <li>KI-Sicherheit sensibel visualisieren, um unkritische Übernahme zu vermeiden</li>
-                    <li>Vorschläge als Hilfestellung, nicht als endgültige Entscheidung</li>
-                    <li>Lernprozesse und Ermüdung durch dynamische Gewichtung berücksichtigen</li>
                     <li>Mockups: Entscheidungsbild, Confidence-Slider, KI-Hinweis</li>
                 </ul>
             </section>

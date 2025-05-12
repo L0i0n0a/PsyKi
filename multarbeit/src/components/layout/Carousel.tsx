@@ -21,7 +21,7 @@ const Carousel = ({ images, imageDescriptions }: {images: string[], imageDescrip
   }
 
   return (
-    <div className="relative h-96 w-full max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg">
+    <div className="relative h-96 w-full max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg mb-8">
       <div className="flex flex-col justify-between h-full p-4">
       <Image
         src={images[current]}
