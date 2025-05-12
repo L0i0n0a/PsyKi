@@ -9,13 +9,22 @@ export default function Home() {
 
     return (
         <div>
-            <div>
-                <h1>Multimediale Ausarbeitung</h1>
-                <h2>Strategie: Optimale Gewichtung</h2>
+            <div className="header">
+                <h1 className="text-4xl font-bold m-4 text-center">Multimediale Ausarbeitung</h1>
+                <h2 className="text-3xl m-4 text-center">Strategie: Optimale Gewichtung</h2>
             </div>
-            <Carousel images={["file.svg", "globe.svg"]} />
-            <SectionRight onClick={() => router.push("/details/theory")} imageUrl="window.avg" title="Optimale Gewichtung: Theorie " description="Das Optimal Weighting (OW) Modell ist ein theoretisches Modell, das beschreibt, wie ein Mensch oder ein System die Hinweise von einem menschlichen Entscheider und eines automatisierten Hilfsmittels optimal kombiniert, um die beste mögliche Entscheidung zu treffen." />
-            <SectionLeft onClick={() => router.push("/details/design/1")} imageUrl="vercel.svg" title="Erste Designentscheidungen" description="Unsere Anwendung richtet sich an Berufsgruppen mit hoher Verantwortung in der visuellen Entscheidungsfindung (z. B. Radiologie, Qualitätssicherung, Meteorologie), bei denen Genauigkeit und Verlässlichkeit entscheidend sind. Basierend auf dem Optimal Weighting Modell kombinieren wir objektive Leistungsdaten (z. B. Sensitivität aus einem Vor-Test) mit subjektiver Sicherheit, um menschliche und KI-basierte Hinweise optimal zu gewichten. Ziel ist eine adaptive Entscheidungsunterstützung, die Fehler reduziert, Transparenz schafft und dem Nutzer trotz KI-Empfehlung die Kontrolle lässt. Die Nutzerführung umfasst einen kurzen Baseline-Test und einen Hauptdurchgang mit erklärter Entscheidungsunterstützung." />
+            {/*  <Carousel images={["file.svg", "globe.svg"]} /> */}
+            <SectionRight imageSource="Benchmarking Aided Decision Making in a Signal Detection Task
+Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900" onClick={() => router.push("/details/theory")} imageUrl="graph.png" title="Optimale Gewichtung: Theorie " description={
+                    <>
+                        Das Optimal Weighting (OW) Modell ist ein <strong>theoretisches Modell</strong>, das beschreibt, wie ein Mensch oder ein System die Hinweise von einem <strong>menschlichen Entscheider</strong> und eines <strong>automatisierten Hilfsmittels</strong> optimal kombiniert, um die <strong>beste mögliche Entscheidung</strong> zu treffen.
+                    </>
+                } />
+            <SectionLeft imageSource="Med Badr Chemmaoui (Unsplash)" onClick={() => router.push("/details/design/1")} imageUrl="unsplash_med.jpg" title="Erste Designentscheidungen" description={
+                <>
+                    Unsere Anwendung richtet sich an <strong>Berufsgruppen mit hoher Verantwortung</strong> in der <strong>visuellen Entscheidungsfindung</strong> (z. B. Radiologie, Qualitätssicherung, Meteorologie), bei denen <strong>Genauigkeit</strong> und <strong>Verlässlichkeit</strong> entscheidend sind. Basierend auf dem Optimal Weighting Modell kombinieren wir objektive Leistungsdaten (z. B. Sensitivität aus einem Vor-Test) mit subjektiver Sicherheit, um menschliche und KI-basierte Hinweise <strong>optimal zu gewichten</strong>. Ziel ist eine <strong>adaptive Entscheidungsunterstützung</strong>, die Fehler reduziert, Transparenz schafft und dem Nutzer trotz KI-Empfehlung die <strong>Kontrolle</strong> lässt. Die <strong>Nutzerführung</strong> umfasst einen kurzen <strong>Baseline-Test</strong> und einen Hauptdurchgang mit erklärter Entscheidungsunterstützung.
+                </>
+            } />
         </div>
     );
 }

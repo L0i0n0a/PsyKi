@@ -3,7 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --color-carolina-blue: #74b3ce;
+  --color-blue-munsell: #508991;
+  --color-prussian-blue: #172a3a;
+  --color-midnight-green: #004346;
+  --color-mint: #09bc8a;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,15 +26,41 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+button {
+  background-color: var(--color-blue-munsell);
+  margin-top: 1rem;
+}
+
+.header {
+  background-color: var(--color-blue-munsell);
+  padding: 1rem;
+  color: white;
+}
+
+.imageSourceText{
+  font-size: small;
+  padding: 0.25rem;
+}
+
+/* $carolina-blue: #74b3ce;
+$blue-munsell: #508991;
+$prussian-blue: #172a3a;
+$midnight-green: #004346;
+$mint: #09bc8a;
+
+// Gradients
+$gradient-top: linear-gradient(0deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-right: linear-gradient(90deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-bottom: linear-gradient(180deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-left: linear-gradient(270deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-top-right: linear-gradient(45deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-bottom-right: linear-gradient(135deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-top-left: linear-gradient(225deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-bottom-left: linear-gradient(315deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
+$gradient-radial: radial-gradient(circle, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint); */
