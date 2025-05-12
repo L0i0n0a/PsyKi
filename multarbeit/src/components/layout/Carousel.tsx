@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 
-const Carousel = ({ images }: {images: string[]}) => {
+const Carousel = ({ images, imageDescriptions }: {images: string[], imageDescriptions: string[]}) => {
   const [current, setCurrent] = useState(0);
   const length = images.length;
 
@@ -21,20 +21,24 @@ const Carousel = ({ images }: {images: string[]}) => {
   }
 
   return (
-    <div className="relative w-full max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg">
+    <div className="relative h-96 w-full max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg">
+      <div className="flex flex-col justify-between h-full p-4">
       <Image
         src={images[current]}
         alt={`Slide ${current}`}
-        width={64}
-        height={64}
-        className="w-full h-64 transition-all duration-500"
+        width={400}
+        height={400}
+        className="w-full transition-all duration-500"
       />
+      <p className="imageSourceText">{imageDescriptions[current]}</p>
+      </div>
+      
       <button
         onClick={prevSlide}
         className="hover:cursor-pointer absolute top-1/2 left-4 transform -translate-y-1/2 bg-sky-400 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100"
       >
 
-        <span>{"<"}</span>
+        <span className="text-white">{"<"}</span>
 
 
       </button>
@@ -43,7 +47,7 @@ const Carousel = ({ images }: {images: string[]}) => {
         className="hover:cursor-pointer absolute top-1/2 right-4 transform -translate-y-1/2 bg-sky-400 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100"
       >
 
-            <span>{">"}</span>
+            <span className="text-white">{">"}</span>
 
       </button>
     </div>

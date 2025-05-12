@@ -1,5 +1,5 @@
 "use client"
-// import Carousel from "@/components/layout/Carousel";
+import Carousel from "@/components/layout/Carousel";
 import SectionLeft from "@/components/layout/SectionLeft";
 import SectionRight from "@/components/layout/SectionRight";
 import { useRouter } from 'next/navigation'
@@ -13,7 +13,7 @@ export default function Home() {
                 <h1 className="text-4xl font-bold m-4 text-center">Multimediale Ausarbeitung</h1>
                 <h2 className="text-3xl m-4 text-center">Strategie: Optimale Gewichtung</h2>
             </div>
-            {/*  <Carousel images={["../../file.svg", "../../globe.svg"]} /> */}
+            <Carousel images={["/IMG_0086.png", "/IMG_0087.png"]} imageDescriptions={["Scribble 1: Menschliche Einschätzung", "Scribble 2: Vergleich Mensch und KI"]}/> 
             <SectionRight imageSource="Benchmarking Aided Decision Making in a Signal Detection Task
 Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900" onClick={() => router.push("/details/theory")} imageUrl="/graph.png" title="Optimale Gewichtung: Theorie " description={
                     <>
