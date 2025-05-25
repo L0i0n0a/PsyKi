@@ -26,7 +26,12 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900" onCli
                 </>
             } />
             <h2 className="text-3xl font-bold m-4 text-center">Erste Scribbles</h2>
-            <Carousel images={["/IMG_0086.png", "/IMG_0087.png"]} imageDescriptions={["Scribble 1: Menschliche Einschätzung", "Scribble 2: Vergleich Mensch und KI"]} /> 
+            <Carousel images={["/IMG_0086.png", "/IMG_0087.png"]} imageDescriptions={["Scribble 1: Menschliche Einschätzung", "Scribble 2: Vergleich Mensch und KI"]} />
+            <SectionRight imageSource="Anima - Nick Meyer" onClick={() => router.push("/details/design/2")} imageUrl="/cover-image-2.jpg" title="Prototyp-Entwurf & Userflows" description={
+                    <>
+                       Der User Flow beginnt mit einem kurzen <strong>Baseline-Test</strong>, gefolgt vom <strong>Hauptdurchgang</strong> mit adaptiver Entscheidungsunterstützung. Ein interaktiver Prototyp zeigt, wie Hinweise von Mensch und KI kombiniert und visualisiert werden. Ziel ist eine intuitive, transparente und kontrollierbare Nutzererfahrung zu schaffen, die den Nutzenden bei der Anwendung der <strong>Optimal Weighting Strategie</strong> unterstützt.
+                    </>
+                } />
         </div>
     );
 }
