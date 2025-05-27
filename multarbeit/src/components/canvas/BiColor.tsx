@@ -11,7 +11,22 @@ const codeString = `const BiColor = () => {
   const colorArray = useRef<number[]>([]);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const imgDataRef = useRef<ImageData | null>(null);
-  const canvasSize = 512;
+
+  const [canvasSize, setCanvasSize] = useState(512);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setCanvasSize(256);
+      } else {
+        setCanvasSize(512);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const pixelAmount = canvasSize * canvasSize;
 
   const color1 = [255, 128, 0, 255];
@@ -27,7 +42,7 @@ const codeString = `const BiColor = () => {
     colorArray.current = new Array(pixelAmount).fill(0);
     recalculate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [canvasSize]);
 
   function setPixelColor(pixel: number, color: number[]) {
     if (!imgDataRef.current) return;
@@ -78,7 +93,10 @@ const codeString = `const BiColor = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-4">
-      <canvas ref={canvasRef} className=""></canvas>
+      <canvas
+        ref={canvasRef}
+        style={{ width: canvasSize, height: canvasSize }}
+      ></canvas>
       <div className="flex items-center justify-around gap-4">
         <input
           ref={inputRef}
@@ -95,11 +113,11 @@ const codeString = `const BiColor = () => {
         />
       </div>
       <div className="mt-2 text-center font-mono">
-        <div>Pixel gesamt: {pixelAmount}</div>
-        <div>Farbe 1: {stats.color1}</div>
-        <div>Farbe 2: {stats.color2}</div>
-        <div>Prozentsatz Farbe 1: {stats.percentage}%</div>
-        <div>Prozentsatz Farbe 2: {100 - stats.percentage}%</div>
+        <div>Pixel Gesamt: {pixelAmount}</div>
+        <div>Pixel Orange: {stats.color1}</div>
+        <div>Pixel Blau: {stats.color2}</div>
+        <div>Prozentsatz Orange: {stats.percentage}%</div>
+        <div>Prozentsatz Blau: {100 - stats.percentage}%</div>
       </div>
       <div className="w-full mt-6">
         <h2 className="text-lg font-bold mb-2">Code:</h2>
@@ -121,7 +139,21 @@ const BiColor = () => {
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const imgDataRef = useRef<ImageData | null>(null);
 
-  const canvasSize = 512;
+  const [canvasSize, setCanvasSize] = useState(512);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setCanvasSize(256);
+      } else {
+        setCanvasSize(512);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const pixelAmount = canvasSize * canvasSize;
 
   const color1 = [255, 128, 0, 255];
@@ -137,7 +169,7 @@ const BiColor = () => {
     colorArray.current = new Array(pixelAmount).fill(0);
     recalculate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [canvasSize]);
 
   function setPixelColor(pixel: number, color: number[]) {
     if (!imgDataRef.current) return;
@@ -188,7 +220,10 @@ const BiColor = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-4">
-      <canvas ref={canvasRef} className=""></canvas>
+      <canvas
+        ref={canvasRef}
+        style={{ width: canvasSize, height: canvasSize }}
+      ></canvas>
       <div className="flex items-center justify-around gap-4">
         <input
           ref={inputRef}
@@ -205,11 +240,11 @@ const BiColor = () => {
         />
       </div>
       <div className="mt-2 text-center font-mono">
-        <div>Pixel gesamt: {pixelAmount}</div>
-        <div>Pixel Farbe 1: {stats.color1}</div>
-        <div>Pixel Farbe 2: {stats.color2}</div>
-        <div>Prozentsatz Farbe 1: {stats.percentage}%</div>
-        <div>Prozentsatz Farbe 2: {100 - stats.percentage}%</div>
+        <div>Pixel Gesamt: {pixelAmount}</div>
+        <div>Pixel Orange: {stats.color1}</div>
+        <div>Pixel Blau: {stats.color2}</div>
+        <div>Prozentsatz Orange: {stats.percentage}%</div>
+        <div>Prozentsatz Blau: {100 - stats.percentage}%</div>
       </div>
       <div className="w-full mt-6">
         <h2 className="text-lg font-bold mb-2">Code:</h2>
