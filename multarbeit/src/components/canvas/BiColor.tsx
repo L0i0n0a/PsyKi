@@ -9,9 +9,8 @@ const codeString = `const BiColor = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const colorArray = useRef<number[]>([]);
-  const ctxRef = useRef<CanvasRenderingContext2D | null>(null); // <-- add this
-  const imgDataRef = useRef<ImageData | null>(null); // <-- add this
-
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const imgDataRef = useRef<ImageData | null>(null);
   const canvasSize = 512;
   const pixelAmount = canvasSize * canvasSize;
 
@@ -104,7 +103,7 @@ const codeString = `const BiColor = () => {
       </div>
       <div className="w-full mt-6">
         <h2 className="text-lg font-bold mb-2">Code:</h2>
-        <SyntaxHighlighter language="javascript" className="rounded-xl" style={vscDarkPlus} wrapLines={true}>
+        <SyntaxHighlighter language="typescript" className="rounded-xl" style={vscDarkPlus} wrapLines={true}>
           {codeString}
         </SyntaxHighlighter>
       </div>
@@ -119,8 +118,8 @@ const BiColor = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const colorArray = useRef<number[]>([]);
-  const ctxRef = useRef<CanvasRenderingContext2D | null>(null); // <-- add this
-  const imgDataRef = useRef<ImageData | null>(null); // <-- add this
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const imgDataRef = useRef<ImageData | null>(null);
 
   const canvasSize = 512;
   const pixelAmount = canvasSize * canvasSize;
@@ -207,14 +206,14 @@ const BiColor = () => {
       </div>
       <div className="mt-2 text-center font-mono">
         <div>Pixel gesamt: {pixelAmount}</div>
-        <div>Farbe 1: {stats.color1}</div>
-        <div>Farbe 2: {stats.color2}</div>
+        <div>Pixel Farbe 1: {stats.color1}</div>
+        <div>Pixel Farbe 2: {stats.color2}</div>
         <div>Prozentsatz Farbe 1: {stats.percentage}%</div>
         <div>Prozentsatz Farbe 2: {100 - stats.percentage}%</div>
       </div>
       <div className="w-full mt-6">
         <h2 className="text-lg font-bold mb-2">Code:</h2>
-        <SyntaxHighlighter language="javascript" className="rounded-xl" style={vscDarkPlus} wrapLines={true}>
+        <SyntaxHighlighter language="typescript" className="rounded-xl" style={vscDarkPlus} wrapLines={true}>
           {codeString}
         </SyntaxHighlighter>
       </div>
