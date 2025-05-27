@@ -1,8 +1,8 @@
 "use client"
 import React from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Button from "@/components/ui/Button/Button";
+import BiColor from "@/components/canvas/BiColor";
 
 const DesignDecisionsPage2 = () => {
 
@@ -13,7 +13,7 @@ const DesignDecisionsPage2 = () => {
                 <h1 className="text-4xl font-bold m-4 text-center">Prototyp-Entwurf & Userflows</h1>
             </div>
 
-            
+            <BiColor/>
 
 
             <div className="flex justify-center"><Button text="Zurück" onClick={() => router.push("/")} /></div>
