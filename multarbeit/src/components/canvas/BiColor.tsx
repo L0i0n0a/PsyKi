@@ -95,8 +95,12 @@ const codeString = `const BiColor = () => {
     <div className="flex flex-col items-center gap-4 p-4">
       <canvas
         ref={canvasRef}
-        style={{ width: canvasSize, height: canvasSize }}
-      ></canvas>
+        style={{
+          width: canvasSize,
+          height: canvasSize,
+          imageRendering: 'pixelated'
+        }}
+      />
       <div className="flex items-center justify-around gap-4">
         <input
           ref={inputRef}
@@ -222,8 +226,12 @@ const BiColor = () => {
     <div className="flex flex-col items-center gap-4 p-4">
       <canvas
         ref={canvasRef}
-        style={{ width: canvasSize, height: canvasSize }}
-      ></canvas>
+        style={{
+          width: canvasSize,
+          height: canvasSize,
+          imageRendering: 'pixelated'
+        }}
+      />
       <div className="flex items-center justify-around gap-4">
         <input
           ref={inputRef}
