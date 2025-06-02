@@ -168,9 +168,12 @@ const DesignDecisionsPage2 = () => {
                 <div>
                     <p className="mt-6 text-lg">Zentrale Anforderungen:</p>
                     <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
-                        <li>ATI-Score: </li>
-                        <li></li>
-                        <li></li>
+                        <li><strong>Sprache:</strong> Gute Deutschkenntnisse (Verständnis der Anweisungen & Feedbacktexte)</li>
+                        <li><strong>ATI-Score:</strong> zwischen 3.5 und 5.0</li>
+                        <li>Vertraut mit interaktiven Anwendungen, Web-UIs, Slidern</li>
+                        <li>Normales oder korrigiertes Sehvermögen (Farbunterscheidung Blau–Orange muss gewährleistet sein)</li>
+                        <li>Bereitschaft, sich auf strukturierte Entscheidungsaufgaben einzulassen</li>
+                        <li>Geübter im Umgang mit Entscheidungen unter Unsicherheit</li>
                     </ul>
                 </div>
             </section>
