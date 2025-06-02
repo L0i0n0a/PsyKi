@@ -9,6 +9,8 @@
   --color-prussian-blue: #172a3a;
   --color-midnight-green: #004346;
   --color-mint: #09bc8a;
+  --color-blue:  #ff8000;
+  --color-orange: #0000ff;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -30,6 +32,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
 button {
@@ -66,19 +69,29 @@ button {
     border-radius: 10px;
 }
 
-/* $carolina-blue: #74b3ce;
-$blue-munsell: #508991;
-$prussian-blue: #172a3a;
-$midnight-green: #004346;
-$mint: #09bc8a;
+/* CSS for prototyp*/
+.fullContainer {
+  display: flex;
+  width: 100%;
+  height: 80vh;
+}
 
-// Gradients
-$gradient-top: linear-gradient(0deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-right: linear-gradient(90deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-bottom: linear-gradient(180deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-left: linear-gradient(270deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-top-right: linear-gradient(45deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-bottom-right: linear-gradient(135deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-top-left: linear-gradient(225deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-bottom-left: linear-gradient(315deg, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint);
-$gradient-radial: radial-gradient(circle, $carolina-blue, $blue-munsell, $prussian-blue, $midnight-green, $mint); */
+.prototypContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 4rem;
+  box-shadow: 0px 0px 5px 5px #b9b9b9;
+}
+
+.imageContainer {
+  margin: 2rem;
+  border-right: 2px solid #b9b9b9;
+  width: 50%;
+}
+
+.intractionContainer {
+
+}

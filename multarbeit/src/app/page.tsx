@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Carousel from "@/components/layout/Carousel";
 import SectionLeft from "@/components/layout/SectionLeft";
 import SectionRight from "@/components/layout/SectionRight";
