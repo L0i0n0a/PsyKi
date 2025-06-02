@@ -254,12 +254,12 @@ const BiColor = () => {
         <div>Prozentsatz Orange: {stats.percentage}%</div>
         <div>Prozentsatz Blau: {100 - stats.percentage}%</div>
       </div>
-      <div className="w-full mt-6">
+      {/* <div className="w-full mt-6">
         <h2 className="text-lg font-bold mb-2">Code:</h2>
         <SyntaxHighlighter language="typescript" className="rounded-xl" style={vscDarkPlus} wrapLines={true}>
           {codeString}
         </SyntaxHighlighter>
-      </div>
+      </div> */}
     </div>
   );
 };

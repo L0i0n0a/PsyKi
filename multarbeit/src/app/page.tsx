@@ -32,6 +32,11 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900" onCli
                        Der User Flow beginnt mit einem kurzen <strong>Baseline-Test</strong>, gefolgt vom <strong>Hauptdurchgang</strong> mit adaptiver Entscheidungsunterstützung. Ein interaktiver Prototyp zeigt, wie Hinweise von Mensch und KI kombiniert und visualisiert werden. Ziel ist eine intuitive, transparente und kontrollierbare Nutzererfahrung zu schaffen, die den Nutzenden bei der Anwendung der <strong>Optimal Weighting Strategie</strong> unterstützt.
                     </>
                 } />
+            <SectionLeft imageSource="Med Badr Chemmaoui (Unsplash)" onClick={() => router.push("/prototyp")} imageUrl="/unsplash_med.jpg" title="Prototyp für Optimal Weighting Strategie" description={
+                <>
+                   Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden. 
+                </>
+            } />
         </div>
     );
 }

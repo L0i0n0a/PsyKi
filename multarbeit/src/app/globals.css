@@ -57,6 +57,11 @@ button {
   padding: 1rem;
 }
 
+.sectionBased {
+  display: flex;
+  
+}
+
 .textColourGreen {
   color: var(--color-midnight-green);
 }
