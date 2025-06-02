@@ -1,4 +1,6 @@
 "use client";
+import ColorSlider from "@/components/ui/Button/ColorSlider";
+
 const Prototyp = ({}) => { {/* JSOn inputs */}
     // state management mit useEffect (als effekt anderung einer variable) dann automatisches aktualisieren der states
 
@@ -13,7 +15,7 @@ const Prototyp = ({}) => { {/* JSOn inputs */}
                    {/*  Image Component */}
                 </div>
                 <div className="intractionContainer">
-                    {/*  Slider Component */}
+                    <ColorSlider initial={30} onChange={(val) => console.log("Sliderwert:", val)}/>
                     {/*  AI empfehlung Component */}
                     {/*  Buttons entscheidung Component */}
                     {/*  Feedback Component */}
