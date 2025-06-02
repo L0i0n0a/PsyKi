@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -9,7 +9,7 @@
   --color-prussian-blue: #172a3a;
   --color-midnight-green: #004346;
   --color-mint: #09bc8a;
-  --color-blue:  #ff8000;
+  --color-blue: #ff8000;
   --color-orange: #0000ff;
 }
 
@@ -19,7 +19,6 @@
     --foreground: #ededed;
   }
 } */
-
 
 @theme inline {
   --color-background: var(--background);
@@ -46,12 +45,12 @@ button {
   color: white;
 }
 
-.imageSourceText{
+.imageSourceText {
   font-size: small;
   padding: 0.25rem;
 }
 
-.sectionBorder{
+.sectionBorder {
   border: 2px solid var(--color-blue-munsell);
   border-radius: 10px;
   padding: 1rem;
@@ -66,32 +65,35 @@ button {
 }
 
 .border10 {
-    border-radius: 10px;
-}
-
-/* CSS for prototyp*/
-.fullContainer {
-  display: flex;
-  width: 100%;
-  height: 80vh;
-}
-
-.prototypContainer {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  border: 2px solid white;
   border-radius: 10px;
-  margin: 4rem;
-  box-shadow: 0px 0px 5px 5px #b9b9b9;
 }
 
-.imageContainer {
-  margin: 2rem;
-  border-right: 2px solid #b9b9b9;
-  width: 50%;
+.color-slider {
+  height: 20px;
+  border-radius: 9999px;
+  /* TODO: Change Color Variables to Orange/ Blue if not Done in Merge  */
+  background: linear-gradient(to right, var(--color-blue), var(--color-orange));
 }
 
-.intractionContainer {
+/* WebKit: Chrome, Safari */
+.color-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background-color: white;
+  border: 2px solid #b9b9b9;
+  cursor: pointer;
+  margin-top: 0;
+}
 
+/* Firefox */
+.color-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background-color: white;
+  border: 2px solid #333;
+  cursor: pointer;
 }
