@@ -256,22 +256,22 @@ const DesignDecisionsPage2 = () => {
                 <h2 className="text-2xl mb-4">Welchen Umfang soll der Prototyp haben?</h2>
                 <div className="flex lg:flex-row gap-6">
                     <div className="w-3/6">
-                    <p className="mt-6 text-lg">Anzahl der Tests</p>
-                    <ul className="ml-6 list-disc list-inside mt-2 mb-6 space-y-1">
-                        <li>Teilnehmende sollen keine Überforderung, zu hohen Workload oder Langeweile empfinden</li>
-                        <li>Die OW-Strategie soll bestmöglich unterstützt und umgesetzt werden</li>
-                        <li className="textColourGreen font-bold">Testphase: 20 Bilder</li>
-                        <li className="textColourGreen font-bold">Hauptphase: 50 Bilder</li>
-                    </ul>
+                        <p className="mt-6 text-lg">Anzahl der Tests</p>
+                        <ul className="ml-6 list-disc list-inside mt-2 mb-6 space-y-1">
+                            <li>Teilnehmende sollen keine Überforderung, zu hohen Workload oder Langeweile empfinden</li>
+                            <li>Die OW-Strategie soll bestmöglich unterstützt und umgesetzt werden</li>
+                            <li className="textColourGreen font-bold">Testphase: 20 Bilder</li>
+                            <li className="textColourGreen font-bold">Hauptphase: 50 Bilder</li>
+                        </ul>
                     </div>
                     <div className="w-3/6">
-                    <p className="mt-6 text-lg">Anzahl der Erklärungen</p>
-                    <ul className="ml-6 list-disc list-inside mt-2 mb-6 space-y-1">
-                        <li>Teilnehmende sollen sich keine endlosen Texte durchlesen müssen</li>
-                        <li>Erklärungen und Hilfestellungen sollen präzise verfasst sein</li>
-                        <li>Hilfestellungen können eigens bei Bedarf hinzugerufen werden</li>
-                        <li>Einleitungen zu den einzelnen Phasen</li>
-                    </ul>
+                        <p className="mt-6 text-lg">Anzahl der Erklärungen</p>
+                        <ul className="ml-6 list-disc list-inside mt-2 mb-6 space-y-1">
+                            <li>Teilnehmende sollen sich keine endlosen Texte durchlesen müssen</li>
+                            <li>Erklärungen und Hilfestellungen sollen präzise verfasst sein</li>
+                            <li>Hilfestellungen können eigens bei Bedarf hinzugerufen werden</li>
+                            <li>Einleitungen zu den einzelnen Phasen</li>
+                        </ul>
                     </div>
                 </div>
                 <h2 className="text-2xl mb-4">Welche Komponenten sollen enthalten sein?</h2>
@@ -396,6 +396,47 @@ const DesignDecisionsPage2 = () => {
                 <h2 className="text-2xl mb-4">Wie können die Bilder erstellt werden?</h2>
                 <BiColor />
                 <h2 className="text-2xl mb-4">Welche Formeln des OW-Modell sind wo einzusetzen?</h2>
+                <div className="space-y-8 mt-6">
+                    {/* Sensitivität Mensch */}
+                    <section className="p-6 bg-[#74b3ce] rounded-xl shadow-md text-white">
+                        <h2 className="text-xl font-bold mb-2">Sensitivität des Menschen</h2>
+                        <p className="mb-2">
+                            Wird während der <strong>Testdurchgänge</strong> berechnet und in der
+                            <strong> Hauptphase</strong> weiter fortlaufend angepasst.
+                        </p>
+                        <code className="bg-white/10 px-2 py-1 rounded-md">Formel: d’ = z(Hit rate) - z (False - Alarm Rate)</code>
+                    </section>
+
+                    {/* Sensitivität Maschine */}
+                    <section className="p-6 bg-[#508991] rounded-xl shadow-md text-white">
+                        <h2 className="text-xl font-bold mb-2">Sensitivität der KI</h2>
+                        <p className="mb-2">
+                            Ist anfangs festgelegt und für jedes Bild gilt: 
+                        </p>
+                        <code className="bg-white/10 px-2 py-1 rounded-md">
+                                Trefferrate = 0.93 → Falschalarmrate = 1 – 0.93 = 0.07
+                            </code>
+                    </section>
+
+                    {/* Entscheidungskriterium */}
+                    <section className="p-6 bg-[#004346] rounded-xl shadow-md text-white">
+                        <h2 className="text-xl font-bold mb-4">Entscheidungskriterium</h2>
+                        <p className="mb-2">Gewichtung zwischen menschlicher und künstlicher Einschätzung:</p>
+                        <div className="bg-white/10 p-4 rounded-lg text-sm font-mono">
+                            Entscheidung = α<sub>mensch</sub> · X<sub>mensch</sub> + α<sub>maschine</sub> · X<sub>maschine</sub>
+                        </div>
+                        <p className="mt-2 italic text-sm">→ Liefert Tendenz: Orange oder Blau für jeden Durchgang</p>
+                    </section>
+
+                    {/* Gesamtsensitivität */}
+                    <section className="p-6 bg-[#172a3a] rounded-xl shadow-md text-white">
+                        <h2 className="text-xl font-bold mb-4">Gesamtsensitivität (aus Mensch und KI)</h2>
+                        <p className="mb-2">Am Ende der Hauptphase berechnet:</p>
+                        <div className="bg-white/10 p-4 rounded-lg text-sm font-mono">
+                            d'<sub>OW</sub> = √(d'<sub>operator²</sub> + d'<sub>aid²</sub>)
+                        </div>
+                    </section>
+                </div>
             </section>
 
 
