@@ -70,6 +70,15 @@ button {
   color: var(--color-blue-munsell);
 }
 
+.bgLightGreen {
+  background-color: #508a914d;
+}
+
+
+.bgTextLightGreen {
+  color: #508b91;
+}
+
 .border10 {
     border-radius: 10px;
 }
