@@ -101,7 +101,7 @@ const DesignDecisionsPage2 = () => {
             title: "Z-Kriterium als Skala anzeigen",
             content: (
                 <>
-                    <img src="/Skala.png" alt="Beispielhafte Skala-Auswertung" className="my-6 mx-auto max-w-sm rounded shadow" />
+                    <Image src="/Skala.png" alt="Beispielhafte Skala-Auswertung" className="my-6 mx-auto max-w-sm rounded shadow" />
                     <p className="mb-4">
                         Für die Eingabe der Entscheidung und für die Ausgabe als Entscheidungshilfe.
                     </p>
@@ -131,7 +131,7 @@ const DesignDecisionsPage2 = () => {
                     <p className="mb-4">
                         <strong>Visuell:</strong>
                     </p>
-                    <img src="/Kombination.png" alt="Beispielhafte Kombinations-Darstellung" className="my-6 mx-auto max-w-sm rounded shadow" />
+                    <Image src="/Kombination.png" alt="Beispielhafte Kombinations-Darstellung" className="my-6 mx-auto max-w-sm rounded shadow" />
                     <p className="mb-4">2 Ströme von Mensch und KI, die unterschiedlich dick sind und zu Z-Wert konvergieren</p>
                 </>
             ),
@@ -414,7 +414,7 @@ const DesignDecisionsPage2 = () => {
                     <section className="p-6 bg-[#508991] rounded-xl shadow-md text-white">
                         <h2 className="text-xl font-bold mb-2">Sensitivität der KI</h2>
                         <p className="mb-2">
-                            Ist anfangs festgelegt und für jedes Bild gilt: 
+                            Ist anfangs festgelegt und für jedes Bild gilt:
                         </p>
                         <code className="bg-white/10 px-2 py-1 rounded-md">
                                 Trefferrate = 0.93 → Falschalarmrate = 1 – 0.93 = 0.07
@@ -436,7 +436,7 @@ const DesignDecisionsPage2 = () => {
                         <h2 className="text-xl font-bold mb-4">Gesamtsensitivität (aus Mensch und KI)</h2>
                         <p className="mb-2">Am Ende der Hauptphase berechnet:</p>
                         <div className="bg-white/10 p-4 rounded-lg text-sm font-mono">
-                            d'<sub>OW</sub> = √(d'<sub>operator²</sub> + d'<sub>aid²</sub>)
+                            d&apos;<sub>OW</sub> = √(d&apos;<sub>operator²</sub> + d&apos;<sub>aid²</sub>)
                         </div>
                     </section>
                 </div>
