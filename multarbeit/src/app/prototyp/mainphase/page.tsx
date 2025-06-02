@@ -54,14 +54,14 @@ const Mainphase = () => {
       <div className='text-2xl flex justify-center'>Entscheiden Sie ob mehr orange oder mehr blaue Punkte im Bild zu sehen sind.</div>
       <div className='min-h-[60vh] max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold text-2xl pb-4'>Hauptphase: {current.header}/20</h2>
-        <div className='items-center h-full w-full sectionBorder justify-around flex drop-shadow-xl rounded-2xl bg-white p-6'>
+        <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
           <div className='flex h-[256px] m-4 flex-col items-center justify-center space-y-4'>
             {!showRecom ? (
               <div>
-                <div className='text-lg min-w-xs font-semibold mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
-                  <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
-                </div>
+            <div className='text-lg mt-auto md:min-w-xs text-center mb-4 flex flex-col items-center justify-center w-full'>
+              <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
+            </div>
                 <div className='flex justify-center mt-auto'>
                   <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={handleClick}>
                     Bestätigen & Weiter
@@ -92,7 +92,7 @@ const Mainphase = () => {
             }}></div>
         </div>
         {index > 0 && (index + 1) % 5 === 0 ? (
-          <div className='pt-8 h-4 text-center text-lg text-[#004346]'>
+          <div className='pt-8 md:pb-0 pb-20 h-4 text-center text-lg text-[#004346]'>
             <div className='flex items-center justify-center space-x-1'>
               <div className='font-bold'>Hinweis: </div>
               <div> Bisher lagen Sie zu 80% richtig.</div>
@@ -100,7 +100,7 @@ const Mainphase = () => {
             <div className='text-sm text-gray-500'>Platzhalter Prozentzahl im Prototyp V1 noch nicht integriert</div>
           </div>
         ) : (
-          <div className='pt-8 h-4'></div>
+          <div className='pt-8 md:pb-0 pb-20 h-4'></div>
         )}
       </div>
     </div>
