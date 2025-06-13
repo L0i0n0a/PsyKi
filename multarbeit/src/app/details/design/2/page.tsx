@@ -101,7 +101,7 @@ const DesignDecisionsPage2 = () => {
             title: "Z-Kriterium als Skala anzeigen",
             content: (
                 <>
-                    <Image src="/Skala.png" alt="Beispielhafte Skala-Auswertung" className="my-6 mx-auto max-w-sm rounded shadow" />
+                    <Image src="/Skala.png" width={400} height={400} alt="Beispielhafte Skala-Auswertung" className="my-6 mx-auto max-w-sm rounded shadow" />
                     <p className="mb-4">
                         Für die Eingabe der Entscheidung und für die Ausgabe als Entscheidungshilfe.
                     </p>
