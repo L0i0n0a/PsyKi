@@ -131,7 +131,7 @@ const DesignDecisionsPage2 = () => {
                     <p className="mb-4">
                         <strong>Visuell:</strong>
                     </p>
-                    <Image src="/Kombination.png" alt="Beispielhafte Kombinations-Darstellung" className="my-6 mx-auto max-w-sm rounded shadow" />
+                    <Image src="/Kombination.png" alt="Beispielhafte Kombinations-Darstellung" className="my-6 mx-auto max-w-sm rounded shadow" width={400} height={400} />
                     <p className="mb-4">2 Ströme von Mensch und KI, die unterschiedlich dick sind und zu Z-Wert konvergieren</p>
                 </>
             ),
@@ -168,8 +168,8 @@ const DesignDecisionsPage2 = () => {
                 <div>
                     <p className="mt-6 text-lg">Zentrale Anforderungen:</p>
                     <ul className="ml-6 list-disc list-inside mt-2 space-y-1">
-                        <li><strong>Sprache:</strong> Gute Deutschkenntnisse (Verständnis der Anweisungen & Feedbacktexte)</li>
-                        <li><strong>ATI-Score:</strong> zwischen 3.5 und 5.0</li>
+                        <li><strong>Sprache:</strong> Gute Deutschkenntnisse oder Englisch-Kenntnisse (Verständnis der Anweisungen & Feedbacktexte)</li>
+                        <li><strong>ATI-Score:</strong> {'>= 3'} </li>
                         <li>Vertraut mit interaktiven Anwendungen, Web-UIs, Slidern</li>
                         <li>Normales oder korrigiertes Sehvermögen (Farbunterscheidung Blau–Orange muss gewährleistet sein)</li>
                         <li>Bereitschaft, sich auf strukturierte Entscheidungsaufgaben einzulassen</li>
