@@ -1,0 +1,23 @@
+{
+  "title": "Prototyp V1",
+  "welcome": "Willkommen zum Prototyp V1",
+  "instructions": "In dieser Studie sehen Sie in jedem Durchgang ein Bild mit Farbpunkten.\nIhre Aufgabe ist es zu entscheiden, ob mehr orange oder mehr blaue Punkte enthalten sind.\nIn dieser ersten Phase (20 Bilder) machen Sie sich mit der Aufgabe vertraut.\nGleichzeitig ermitteln wir anhand Ihrer Entscheidungen, wie gut Sie Muster erkennen können – also Ihre individuelle Sensitivität.\nEntscheiden Sie einfach so, wie Sie es für richtig halten.",
+  "start": "Start",
+  "instructionTitle": "Entscheiden Sie ob mehr orange oder mehr blaue Punkte im Bild zu sehen sind.",
+  "testPhaseHeader": "Testphase: ",
+  "buttonNext": "Bestätigen & Weiter",
+  "finalPhaseTitle": "Start der Hauptphase\nUnterstützung durch ein Assistenzsystem",
+  "finalPhaseDescription": "Ab jetzt erhalten Sie zusätzlich zu Ihrer eigenen Einschätzung eine Entscheidungshilfe durch ein automatisiertes System. Dieses analysiert dieselben Bilder wie Sie und gibt seine Einschätzung ab. Um beide Informationen zu nutzen, können Sie das sogenannte Entscheidungskriterium 𝑍 verwenden. Dieses kombiniert Ihre Einschätzung und die der Hilfe – gewichtet nach ihrer Zuverlässigkeit. Ihre Einschätzung und die des Systems gehen also anteilig in die Entscheidung ein. Je nachdem, wie zuverlässig jede Quelle ist, wird sie stärker oder schwächer gewichtet.\n\n💡 Hinweis: Die automatisierte Hilfe hat eine durchschnittliche Genauigkeit von 93%, und Ihre eigene Gewichtung wurde auf Basis Ihrer Leistung in der Testphase berechnet. Sie können frei entscheiden, ob und wie stark Sie das System nutzen möchten – unser Ziel ist es nur, transparent zu machen, wie man aus beiden Einschätzungen eine fundierte Entscheidung ableiten könnte.",
+  "buttonContinue": "Weiter",
+  "feedbackNoteTitle": "Hinweis: ",
+  "feedbackNoteText": "Bisher lagen Sie zu 80% richtig.",
+  "feedbackNotePlaceholder": "Platzhalter Prozentzahl im Prototyp V1 noch nicht integriert",
+  "completionTitle": "Fertig!",
+  "completionMessage": "Vielen Dank für Ihre Teilnahme! Sie haben die Hauptphase des Prototyps erfolgreich abgeschlossen.",
+  "buttonHome": "Zurück zur Hauptseite",
+  "mainPhaseHeader": "Hauptphase: ",
+  "buttonConfirmNext": "Bestätigen & Weiter",
+  "assistantRecommendationTitle": "Das Assistenzsystem empfiehlt:",
+  "buttonOrange": "Orange",
+  "buttonBlue": "Blau"
+}

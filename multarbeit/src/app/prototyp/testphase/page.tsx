@@ -4,12 +4,19 @@ import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import data from '@/lib/dataTest.json';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from '@/utils/translation';
 
 const Testphase = () => {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [sliderValue, setSliderValue] = useState(50);
   const [finished, setFinished] = useState(false);
+  const [locale, setLocale] = useState<'de' | 'en'>('de');
+  const { t } = useTranslation(locale);
+
+  const toggleLanguage = () => {
+    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
+  };
 
   const handleClick = () => {
     if (finished) return;
@@ -27,24 +34,25 @@ const Testphase = () => {
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
-          <h1 className='text-4xl font-bold m-4 text-center'>Prototyp V1</h1>
+          <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
+           <button
+          onClick={toggleLanguage}
+          className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm rounded-full transition'
+        >
+          {locale === 'de' ? 'EN' : 'DE'}
+        </button>
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
           <h1 className='text-4xl font-bold mb-6 text-center'>
-            Start der Hauptphase <br /> Unterstützung durch ein Assistenzsystem
+            {t('finalPhaseTitle')}
           </h1>
           <p className='mb-8 text-lg text-center'>
-            Ab jetzt erhalten Sie zusätzlich zu Ihrer eigenen Einschätzung eine Entscheidungshilfe durch ein automatisiertes System. Dieses analysiert dieselben Bilder wie Sie und gibt seine
-            Einschätzung ab. Um beide Informationen zu nutzen, können Sie das sogenannte Entscheidungskriterium 𝑍 verwenden. Dieses kombiniert Ihre Einschätzung und die der Hilfe – gewichtet nach
-            ihrer Zuverlässigkeit. Ihre Einschätzung und die des Systems gehen also anteilig in die Entscheidung ein. Je nachdem, wie zuverlässig jede Quelle ist, wird sie stärker oder schwächer
-            gewichtet. <br />
-            💡 Hinweis: Die automatisierte Hilfe hat eine durchschnittliche Genauigkeit von 93%, und Ihre eigene Gewichtung wurde auf Basis Ihrer Leistung in der Testphase berechnet. Sie können frei
-            entscheiden, ob und wie stark Sie das System nutzen möchten – unser Ziel ist es nur, transparent zu machen, wie man aus beiden Einschätzungen eine fundierte Entscheidung ableiten könnte.
+           {t('finalPhaseDescription')}
           </p>
           <button
             className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer'
             onClick={() => router.push('/prototyp/mainphase')}>
-            Weiter
+            {t('buttonContinue')}
           </button>
         </div>
       </div>
@@ -54,11 +62,17 @@ const Testphase = () => {
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
-        <h1 className='text-4xl font-bold m-4 text-center'>Prototyp V1</h1>
+        <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
+        <button
+          onClick={toggleLanguage}
+          className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm rounded-full transition'
+        >
+          {locale === 'de' ? 'EN' : 'DE'}
+        </button>
       </div>
-      <div className='text-2xl flex justify-center'>Entscheiden Sie ob mehr orange oder mehr blaue Punkte im Bild zu sehen sind.</div>
+      <div className='text-2xl flex justify-center'>{t('instructionTitle')}</div>
       <div className='min-h-[60vh] max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
-        <h2 className='self-start font-bold text-2xl pb-4'>Testphase: {current.header}/20</h2>
+        <h2 className='self-start font-bold text-2xl pb-4'>{t('testPhaseHeader')} {current.header}/20</h2>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
           <div className='flex h-[256px] m-4 flex-col items-center justify-center space-y-4'>
@@ -67,7 +81,7 @@ const Testphase = () => {
             </div>
             <div className='flex justify-center mt-auto'>
               <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={handleClick}>
-                Bestätigen & Weiter
+                {t('buttonNext')}
               </button>
             </div>
           </div>
@@ -82,10 +96,10 @@ const Testphase = () => {
         {index > 0 && (index + 1) % 5 === 0 ? (
           <div className='pt-8 md:pb-0 pb-20 h-4 text-center md:text-lg text-md text-[#004346]'>
             <div className='flex items-center justify-center space-x-1'>
-              <div className='font-bold'>Hinweis: </div>
-              <div> Bisher lagen Sie zu 80% richtig.</div>
+              <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+              <div>{t('feedbackNoteText')}</div>
             </div>
-            <div className='text-sm text-gray-500'>Platzhalter Prozentzahl im Prototyp V1 noch nicht integriert</div>
+            <div className='text-sm text-gray-500'>{t('feedbackNotePlaceholder')}</div>
           </div>
         ) : (
           <div className='pt-8 md:pb-0 pb-20 h-4'></div>

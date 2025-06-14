@@ -1,0 +1,23 @@
+{
+  "title": "Prototype V1",
+  "welcome": "Welcome to Prototype V1",
+  "instructions": "In this study, you will see an image with colored dots in each round.\nYour task is to decide whether there are more orange or more blue dots.\nIn this first phase (20 images), you will become familiar with the task.\nAt the same time, we will determine how well you can recognize patterns – your individual sensitivity – based on your decisions.\nSimply decide according to your own judgment.",
+  "start": "Start",
+  "instructionTitle": "Decide whether there are more orange or more blue dots in the image.",
+  "testPhaseHeader": "Test Phase: ",
+  "buttonNext": "Confirm & Next",
+  "finalPhaseTitle": "Start of the Main Phase\nSupport from an Assistance System",
+  "finalPhaseDescription": "From now on, in addition to your own assessment, you will receive decision support from an automated system. This system analyzes the same images as you and provides its own assessment. To utilize both sources of information, you can use the so-called decision criterion 𝑍. This combines your assessment with the system's – weighted according to their reliability. Thus, both your assessment and the system's are incorporated into the decision proportionally. Depending on how reliable each source is, it will be weighted more or less strongly.\n\n💡 Note: The automated system has an average accuracy of 93%, and your own weighting has been calculated based on your performance in the test phase. You are free to decide whether and to what extent you want to use the system – our goal is simply to show transparently how both assessments can be used to make an informed decision.",
+  "buttonContinue": "Continue",
+  "feedbackNoteTitle": "Note:",
+  "feedbackNoteText": "So far, you have been correct 80% of the time.",
+  "feedbackNotePlaceholder": "Placeholder percentage not yet integrated in Prototype V1",
+  "completionTitle": "Finished!",
+  "completionMessage": "Thank you for your participation! You have successfully completed the main phase of the prototype.",
+  "buttonHome": "Back to Home Page",
+  "mainPhaseHeader": "Main Phase: ",
+  "buttonConfirmNext": "Confirm & Next",
+  "assistantRecommendationTitle": "The assistance system recommends:",
+  "buttonOrange": "Orange",
+  "buttonBlue": "Blue"
+}
