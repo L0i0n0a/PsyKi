@@ -10,7 +10,6 @@ export default function Home() {
 
     return (
         <div>
-          <AccuracyComparison></AccuracyComparison>
             <div className="header">
                 <h1 className="text-4xl font-bold m-4 text-center">Multimediale Ausarbeitung</h1>
                 <h2 className="text-3xl m-4 text-center">Strategie: Optimale Gewichtung</h2>

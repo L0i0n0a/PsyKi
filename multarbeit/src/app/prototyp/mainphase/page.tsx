@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { AnimatePresence, motion } from 'framer-motion';
+import AccuracyComparison from '@/components/AccuracyComparison';
 
 const Mainphase = () => {
   const router = useRouter();
@@ -103,7 +104,7 @@ const Mainphase = () => {
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
-          <div className='flex h-[256px] m-4 flex-col items-center justify-center space-y-4'>
+          <div className='flex  m-4 flex-col justify-center space-y-4'>
             {!showRecom ? (
               <div>
                 <div className='text-lg mt-auto md:min-w-xs text-center mb-4 flex flex-col items-center justify-center w-full'>
@@ -122,7 +123,9 @@ const Mainphase = () => {
                 </div>
               </div>
             ) : (
-              <div className='flex flex-col min-w-xs items-center w-full space-y-4'>
+              <div className='flex flex-col w-full space-y-1'>
+              <AccuracyComparison menschPercent={60} kiPercent={93}/>
+              <div className='flex flex-col min-w-xs  w-full space-y-1'>   
                 <div> {t('assistantRecommendationTitle')}</div>
                 <div className='text-lg font-semibold max-w-3xs text-center'>{current.recom}</div>
                 <div className='flex w-full justify-center space-x-4'>
@@ -133,6 +136,7 @@ const Mainphase = () => {
                     {t('buttonBlue')}
                   </button>
                 </div>
+              </div>
               </div>
             )}
           </div>

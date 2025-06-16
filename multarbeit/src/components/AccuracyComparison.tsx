@@ -1,52 +1,103 @@
-import React from 'react';
+import React from "react";
+import { useState } from "react";
+import { useTranslation } from '@/utils/translation';
+import dataDe from '@/lib/dataMainDe.json';
+import dataEn from '@/lib/dataMainEn.json';
 
-export default function AccuracyComparison() {
-  const menschPercent = 30;
-  const kiPercent = 100;
+type AccuracyComparisonProps = {
+  menschPercent: number; // 0–100
+  kiPercent: number;     // 0–100
+};
+
+export default function AccuracyComparison({
+  menschPercent,
+  kiPercent,
+}: AccuracyComparisonProps) {
+
+    const [locale, setLocale] = useState<'de' | 'en'>('de');
+  const { t } = useTranslation(locale);
+
+  const data = locale === 'de' ? dataDe : dataEn;
+  //const current = data[index];
+
+  const toggleLanguage = () => {
+    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
+  };
+
 
   const minThickness = 0.5;
-  const maxThickness = 16;
+  const maxThickness = 14;
 
   const scaleThickness = (percent: number) => minThickness + (percent / 100) * (maxThickness - minThickness);
 
   const menschThickness = scaleThickness(menschPercent);
   const kiThickness = scaleThickness(kiPercent);
+const decisionPercent = 60;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function generateGrowingThicknessLines(p0: [number, number], p1: [number, number], p2: [number, number], color: string, thicknessStart: number, thicknessEnd: number, segments = 40) {
-    const lines = [];
 
-    // Quadratic Bézier helper
-    function quadBezier(t: number, p0: [number, number], p1: [number, number], p2: [number, number]) {
-      const x = (1 - t) * (1 - t) * p0[0] + 2 * (1 - t) * t * p1[0] + t * t * p2[0];
-      const y = (1 - t) * (1 - t) * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1];
-      return [x, y];
-    }
+  const menschX = (100 - menschPercent) / 2;
+  const kiX = 50 + (kiPercent / 2);
 
-    for (let i = 0; i < segments; i++) {
-      const t1 = i / segments;
-      const t2 = (i + 1) / segments;
+  // Todo correct calculation for decision aid
+  const decisionX = decisionPercent <= 50
+  ? 50 - decisionPercent
+  : decisionPercent;
 
-      const [x1, y1] = quadBezier(t1, p0, p1, p2);
-      const [x2, y2] = quadBezier(t2, p0, p1, p2);
 
-      const strokeWidth = thicknessStart + (thicknessEnd - thicknessStart) * t2;
+  const bubbleX = 50; // stays centered
 
-      lines.push(<line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={strokeWidth} strokeLinecap='round' />);
-    }
+  const curveYStart = 64;
+  const curveYEnd = 10;
+  const controlY = 10;
 
-    return lines;
+  function hexToRgb(hex: string) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b };
   }
 
+  function rgbToHex({ r, g, b }: { r: number; g: number; b: number }) {
+    const toHex = (n: number) => n.toString(16).padStart(2, "0");
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  }
+
+  function interpolateColor(color1: string, color2: string, t: number) {
+    const c1 = hexToRgb(color1);
+    const c2 = hexToRgb(color2);
+    const r = Math.round(c1.r + (c2.r - c1.r) * t);
+    const g = Math.round(c1.g + (c2.g - c1.g) * t);
+    const b = Math.round(c1.b + (c2.b - c1.b) * t);
+    return rgbToHex({ r, g, b });
+  }
+
+  const menschColor = interpolateColor(
+    "#FFE0B2", // light orange (0%)
+    "#FB8C00", // dark orange (100%)
+    menschPercent / 100
+  );
+
+  const kiColor = interpolateColor(
+    "#90CAF9", // light blue (0%)
+    "#0D47A1", // dark blue (100%)
+    kiPercent / 100
+  );
+
+  const decisionColor = interpolateColor(
+    "#90CAF9", // light blue (0%)
+    "#0D47A1", // dark blue (100%)
+    decisionPercent / 100
+  );
+
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-white p-6'>
-      <h1 className='text-2xl mb-24 text-center'>Kumulierter Z-Score</h1>
-      <div className='flex flex-col w-full max-w-xl'>
-        <div className='flex items-center justify-between relative'>
+    <div className="flex flex-col items-center justify-center p-6">
+      <h1 className="text-2xl mb-36 text-center"> {t('zScore')}</h1>
+      <div className="flex flex-col w-full max-w-3xl">
+        <div className="flex items-center justify-between relative  w-full">
           {/* Mensch */}
-          <div className='text-center'>
-            <p className='text-lg font-semibold'>Mensch</p>
-            <p className='text-xl font-bold'>78%</p>
+          <div className="text-center">
+            <p className="text-lg font-semibold">{t('human')}</p>
+            <p className="text-xl font-bold">{menschPercent}%</p>
           </div>
 
           {/* Z-Score Visualisierung */}
@@ -57,69 +108,103 @@ export default function AccuracyComparison() {
                 background: 'linear-gradient(to right, #FB8C00 , #FFE0B2 50%,  #90CAF9 50%, #0D47A1)',
               }}>
               {/* Z-Score Bubble */}
-              <div className='absolute left-[50%] transform -translate-x-1/2 -top-16 flex items-center justify-center w-24 h-12 bg-gray-500 text-white text-lg font-bold rounded-full shadow-lg z-20'>
+              <div className="absolute left-[50%] transform -translate-x-1/2 -top-28 flex items-center justify-center w-24 h-12 bg-gray-500 text-white text-lg font-bold rounded-full shadow-lg z-20">
+                {/* Placeholder value */}
                 0,6
               </div>
+
+              
 
               {/* Vertical Divider */}
               <div className='absolute left-[50%] top-0 h-full w-0.5 bg-white opacity-70 z-10' />
 
               {/* Mensch Marker */}
-              <div className='absolute left-[22%] transform -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-orange-500 rounded-full border-2 border-white shadow z-10' />
+              <div
+                className="absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10"
+                style={{
+                  left: `${menschX}%`,
+                  transform: "translateX(-50%) translateY(-50%)",
+                  backgroundColor: menschColor,
+                }}
+              />
 
               {/* KI Marker */}
-              <div className='absolute left-[88%] transform -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-800 rounded-full border-2 border-white shadow z-10' />
+              <div
+                className="absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10"
+                style={{
+                  left: `${kiX}%`,
+                  transform: "translateX(-50%) translateY(-50%)",
+                  backgroundColor: kiColor,
+                }}
+              />
 
-              {/* SVG Lines */}
-              <svg className='absolute top-[-64px] left-0 w-full h-[84px] pointer-events-none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 84' preserveAspectRatio='none'>
-                <path d='M 21 88 Q 23 10, 50 24' stroke='#FB8C00' strokeWidth={menschThickness} strokeLinecap='round' fill='none' />
-                <path d='M 88 84 Q 80 10, 50 24' stroke='#0D47A1' strokeWidth={kiThickness} strokeLinecap='round' fill='none' />
+              {/* Decision Marker */}
+              <div>
+                <p className="absolute top-[-10] -translate-y-1/2 z-10" style={{
+                  left: `${decisionX}%`,
+                  transform: "translateX(-50%) translateY(-50%)",
+                  color: decisionColor,
+                }}>{t('result')}</p>
+              </div>
+              <div
+                className="absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10"
+                style={{
+                  left: `${decisionX}%`,
+                  transform: "translateX(-50%) translateY(-50%)",
+                  backgroundColor: decisionColor,
+                }}
+              />
 
-                {/*    {generateGrowingThicknessLines(
-    [21, 88],  // start point (slider)
-    [23, 10],  // control point
-    [50, 24],  // end point (bubble)
-    "#FB8C00", // color
-    1,         // thickness start (thin at slider)
-    12         // thickness end (thick at bubble)
-  )}
-  {generateGrowingThicknessLines(
-    [88, 84],
-    [80, 10],
-    [50, 24],
-    "#0D47A1",
-    1,
-    40
-  )} */}
-              </svg>
-
-              {/* <svg
-  className="absolute top-[-64px] left-0 w-full h-[84px] pointer-events-none"
+              {/* SVG Curves */}
+<svg
+  className="absolute top-[-130px] left-0 w-full h-[200px] pointer-events-none"
   xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 -10 100 100"
+  preserveAspectRatio="none"
 >
-  <line
-    x1="22%"
-    y1="84"
-    x2="50%"
-    y2="24"
-    stroke="#FB8C00"
-    strokeWidth={menschThickness}
+  {/* Mensch thinner curve */}
+  <path
+    d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${bubbleX} ${curveYEnd}`}
+    stroke={menschColor}
+    strokeWidth={menschThickness * 0.6} // thin start
     strokeLinecap="round"
+    fill="none"
   />
-  <line
-    x1="88%"
-    y1="84"
-    x2="50%"
-    y2="24"
-    stroke="#0D47A1"
+  {/* Mensch thicker overlay */}
+{/*   <path
+    d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${bubbleX} ${curveYEnd}`}
+    stroke={menschColor}
+    strokeWidth={menschThickness} // max thickness
+    strokeLinecap="round"
+    fill="none"
+    strokeOpacity={0.3} // lighter overlay for smoothness
+  /> */}
+ 
+
+  {/* KI thinner curve */}
+  <path
+    d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${bubbleX} ${curveYEnd}`}
+    stroke={kiColor}
+    strokeWidth={kiThickness * 0.6}
+    strokeLinecap="round"
+    fill="none"
+  />
+  {/* KI thicker overlay */}
+{/*   <path
+    d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${bubbleX} ${curveYEnd}`}
+    stroke={kiColor}
     strokeWidth={kiThickness}
     strokeLinecap="round"
-  />
-</svg> */}
+    fill="none"
+    strokeOpacity={0.3}
+  /> */}
+
+</svg>
+
             </div>
 
-            {/* Labels below the slider */}
-            <div className='flex justify-between text-sm text-gray-600 mt-2 px-1'>
+            {/* Labels */}
+            <div className="flex justify-between text-sm text-gray-600 mt-2 px-1">
               <span>100%</span>
               <span>0%</span>
               <span>100%</span>
@@ -127,9 +212,9 @@ export default function AccuracyComparison() {
           </div>
 
           {/* KI */}
-          <div className='text-center'>
-            <p className='text-lg font-semibold'>KI</p>
-            <p className='text-xl font-bold'>93%</p>
+          <div className="text-center">
+            <p className="text-lg font-semibold">{t('ki')}</p>
+            <p className="text-xl font-bold">{kiPercent}%</p>
           </div>
         </div>
       </div>

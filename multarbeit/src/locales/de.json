@@ -19,5 +19,9 @@
   "buttonConfirmNext": "Bestätigen & Weiter",
   "assistantRecommendationTitle": "Das Assistenzsystem empfiehlt:",
   "buttonOrange": "Orange",
-  "buttonBlue": "Blau"
+  "buttonBlue": "Blau",
+  "zScore": "Kumulierter Z-Score",
+  "human": "Mensch",
+  "ki": "KI",
+  "result": "Ergebnis"
 }

@@ -19,5 +19,9 @@
   "buttonConfirmNext": "Confirm & Next",
   "assistantRecommendationTitle": "The assistance system recommends:",
   "buttonOrange": "Orange",
-  "buttonBlue": "Blue"
+  "buttonBlue": "Blue",
+  "zScore": "Cumulative Z-score",
+  "human": "Human",
+  "ki": "AI",
+  "result": "Result"
 }
