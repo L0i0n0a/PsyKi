@@ -96,7 +96,7 @@ const Mainphase = () => {
         </h2>
         <div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden'>
           <div
-            className='h-full bg-green-400 transition-all duration-300'
+            className='h-full bg-[#39ab52] transition-all duration-300'
             style={{
               width: `${((index + 1) / data.length) * 100}%`,
             }}></div>
