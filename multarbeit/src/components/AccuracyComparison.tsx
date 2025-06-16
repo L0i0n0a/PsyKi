@@ -18,8 +18,6 @@ export default function AccuracyComparison({
 
   const { t } = useTranslation(locale);
 
-
-
   const minThickness = 0.5;
   const maxThickness = 14;
 
@@ -42,9 +40,10 @@ const decisionPercent = 60;
   const bubbleX = 50; // stays centered
 
   const curveYStart = 64;
-  const curveYEnd = 10;
-  const controlY = 10;
+  const curveYEnd = 64;
+  const controlY = 0;
 
+  const decisionXPx = (decisionX / 100) * 100;
   function hexToRgb(hex: string) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -101,14 +100,7 @@ const decisionPercent = 60;
               className='h-8 w-full rounded-full relative overflow-visible'
               style={{
                 background: 'linear-gradient(to right, #FB8C00 , #FFE0B2 50%,  #90CAF9 50%, #0D47A1)',
-              }}>
-              {/* Z-Score Bubble */}
-              <div className="absolute left-[50%] transform -translate-x-1/2 -top-28 flex items-center justify-center w-24 h-12 bg-gray-500 text-white text-lg font-bold rounded-full shadow-lg z-20">
-                {/* Placeholder value */}
-                0,6
-              </div>
-
-              
+              }}> 
 
               {/* Vertical Divider */}
               <div className='absolute left-[50%] top-0 h-full w-0.5 bg-white opacity-70 z-10' />
@@ -135,7 +127,7 @@ const decisionPercent = 60;
 
               {/* Decision Marker */}
               <div>
-                <p className="absolute top-[-10] -translate-y-1/2 z-10" style={{
+                <p className="absolute top-[-60] -translate-y-1/2 z-10" style={{
                   left: `${decisionX}%`,
                   transform: "translateX(-50%) translateY(-50%)",
                   color: decisionColor,
@@ -159,12 +151,12 @@ const decisionPercent = 60;
 >
   {/* Mensch thinner curve */}
   <path
-    d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${bubbleX} ${curveYEnd}`}
-    stroke={menschColor}
-    strokeWidth={menschThickness * 0.6} // thin start
-    strokeLinecap="round"
-    fill="none"
-  />
+  d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${decisionXPx} ${curveYEnd}`}
+  stroke={menschColor}
+  strokeWidth={menschThickness * 0.6}
+  strokeLinecap="round"
+  fill="none"
+/>
   {/* Mensch thicker overlay */}
 {/*   <path
     d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${bubbleX} ${curveYEnd}`}
@@ -177,13 +169,13 @@ const decisionPercent = 60;
  
 
   {/* KI thinner curve */}
-  <path
-    d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${bubbleX} ${curveYEnd}`}
-    stroke={kiColor}
-    strokeWidth={kiThickness * 0.6}
-    strokeLinecap="round"
-    fill="none"
-  />
+ <path
+  d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${decisionXPx} ${curveYEnd}`}
+  stroke={kiColor}
+  strokeWidth={kiThickness * 0.6}
+  strokeLinecap="round"
+  fill="none"
+/>
   {/* KI thicker overlay */}
 {/*   <path
     d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${bubbleX} ${curveYEnd}`}
