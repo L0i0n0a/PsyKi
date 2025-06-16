@@ -57,6 +57,63 @@ export default function AccuracyComparison() {
   return lines;
 }
 
+function createVariableStrokePath({
+  start,
+  control,
+  end,
+  color,
+  strokeStart,
+  strokeEnd,
+  segments = 50,
+}: {
+  start: [number, number];
+  control: [number, number];
+  end: [number, number];
+  color: string;
+  strokeStart: number;
+  strokeEnd: number;
+  segments?: number;
+}) {
+  const paths = [];
+
+  const bezier = (t: number) => {
+    const x =
+      (1 - t) * (1 - t) * start[0] +
+      2 * (1 - t) * t * control[0] +
+      t * t * end[0];
+    const y =
+      (1 - t) * (1 - t) * start[1] +
+      2 * (1 - t) * t * control[1] +
+      t * t * end[1];
+    return [x, y] as [number, number];
+  };
+
+  for (let i = 0; i < segments; i++) {
+    const t1 = i / segments;
+    const t2 = (i + 1) / segments;
+
+    const [x1, y1] = bezier(t1);
+    const [x2, y2] = bezier(t2);
+
+    const thickness =
+      strokeStart + (strokeEnd - strokeStart) * t2;
+
+    const d = `M ${x1},${y1} L ${x2},${y2}`;
+    paths.push(
+      <path
+        key={i}
+        d={d}
+        stroke={color}
+        strokeWidth={thickness}
+        strokeLinecap="round"
+        fill="none"
+      />
+    );
+  }
+
+  return paths;
+}
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
@@ -93,7 +150,7 @@ export default function AccuracyComparison() {
               <div className="absolute left-[88%] transform -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-800 rounded-full border-2 border-white shadow z-10" />
 
               {/* SVG Lines */}
-               <svg
+             <svg
                 className="absolute top-[-64px] left-0 w-full h-[84px] pointer-events-none"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 100 84"
@@ -130,7 +187,31 @@ export default function AccuracyComparison() {
     1,
     40
   )} */}
-</svg>
+ </svg> 
+{/* <svg
+  className="absolute top-[-64px] left-0 w-full h-[84px] pointer-events-none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 84"
+  preserveAspectRatio="none"
+>
+  {createVariableStrokePath({
+    start: [21, 84],
+    control: [23, -10],
+    end: [50, 8],
+    color: "#FB8C00",
+    strokeStart: 1,
+    strokeEnd: 12,
+  })}
+  {createVariableStrokePath({
+    start: [88, 84],
+    control: [80, -10],
+    end: [50, 8],
+    color: "#0D47A1",
+    strokeStart: 1,
+    strokeEnd: 12,
+  })}
+</svg> */}
+
 
             
               
