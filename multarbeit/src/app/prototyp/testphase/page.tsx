@@ -63,40 +63,41 @@ const Testphase = () => {
         </div>
       </div>
       <div className='text-2xl flex justify-center'>{t('instructionTitle')}</div>
-      <div>
-        <AnimatePresence>
-          {index > 0 && (index + 1) % 5 === 0 ? (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              style={{
-                background: 'linear-gradient(90deg, #ff8000 -100%, #0000ff 200%)',
-                color: '#222',
-                padding: '2rem',
-                borderRadius: '1rem',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                margin: '2rem auto',
-                maxWidth: '600px',
-                textAlign: 'center',
-                zIndex: 10,
-                position: 'relative',
-              }}>
-              <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
-                <div className='flex items-center justify-center space-x-1'>
-                  <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                  <div>{t('feedbackNoteText')}</div>
-                </div>
-                <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
-              </mark>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </div>
+      <AnimatePresence>
+        {index > 0 && (index + 1) % 5 === 0 ? (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            style={{
+              background: 'linear-gradient(90deg, #ff8000 -100%, #0000ff 200%)',
+              color: '#222',
+              padding: '1rem',
+              borderRadius: '100px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              margin: '2rem auto',
+              maxWidth: '57rem',
+              textAlign: 'center',
+              zIndex: 10,
+              position: 'absolute',
+              top: '12%',
+              right: '0%',
+              left: '0%',
+            }}>
+            <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
+              <div className='flex items-center justify-center space-x-1'>
+                <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                <div>{t('feedbackNoteText')}</div>
+              </div>
+              <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
+            </mark>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
       <div className=' max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold text-2xl pb-4'>
           {t('testPhaseHeader')} {current.header}/20
