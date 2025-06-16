@@ -23,5 +23,8 @@
   "zScore": "Kumulierter Z-Score",
   "human": "Mensch",
   "ki": "KI",
-  "result": "Ergebnis"
+  "result": "Ergebnis",
+  "sliderOrange": "Orange",
+  "sliderBlue": "Blau",
+  "decisionScale": "Entscheidungsskala"
 }

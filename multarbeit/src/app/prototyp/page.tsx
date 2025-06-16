@@ -16,7 +16,7 @@ const Prototyp = () => {
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
       <div className='header border10'>
         <div className='relative flex justify-center items-center'>
-          <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
+          <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
           <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>

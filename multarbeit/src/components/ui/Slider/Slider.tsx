@@ -1,26 +1,24 @@
+import { useTranslation } from '@/utils/translation';
 import React, { useState, useEffect } from 'react';
 
 type ColorSliderProps = {
   initial?: number;
   value?: number;
   onChange?: (value: number) => void;
+  locale: 'de' | 'en';
 };
 
 const getThumbStyle = (value: number) => {
-  // value: 0 (left, orange), 50 (middle, transparent), 100 (right, blue)
   let color = 'rgba(255,255,255,0)';
   const border = '2px solid white';
 
   if (value < 50) {
-    // Orange side
-    const opacity = value / 50; // 1 at 0, 0 at 50
-    color = `rgba(251, 140, 0, ${1 - opacity})`; // #FB8C00
+    const opacity = value / 50;
+    color = `rgba(251, 140, 0, ${1 - opacity})`;
   } else if (value > 50) {
-    // Blue side
-    const opacity = (value - 50) / 50; // 0 at 50, 1 at 100
-    color = `rgba(13, 71, 161, ${opacity})`; // #0D47A1
+    const opacity = (value - 50) / 50;
+    color = `rgba(13, 71, 161, ${opacity})`;
   }
-  // At 50, color stays transparent
 
   return `
     background: ${color};
@@ -34,20 +32,21 @@ const getThumbStyle = (value: number) => {
   `;
 };
 
-const getLabelText = (value: number) => {
+const getLabelText = (value: number, t: (key: 'sliderOrange' | 'sliderBlue') => string) => {
   if (value === 50) {
     return '0%';
   } else if (value < 50) {
     const percent = Math.round(((50 - value) / 50) * 100);
-    return `${percent}% Orange`;
+    return `${percent}% ${t('sliderOrange')}`;
   } else {
     const percent = Math.round(((value - 50) / 50) * 100);
-    return `${percent}% Blau`;
+    return `${percent}% ${t('sliderBlue')}`;
   }
 };
 
-const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange }) => {
+const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange, locale }) => {
   const [internalValue, setInternalValue] = useState<number>(initial);
+  const { t } = useTranslation(locale);
 
   useEffect(() => {
     if (typeof value === 'number') {
@@ -68,8 +67,8 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange
   return (
     <div className='relative flex-col items-center gap-4 w-full max-w-lg'>
       <div className='flex gap-2 justify-center mt-8 items-center w-full mb-2'>
-        <div>Entscheidungsskala:</div>
-        <div>{getLabelText(sliderValue)}</div>
+        <div>{t('decisionScale')}:</div>
+        <div>{getLabelText(sliderValue, t)}</div>
         {/* <div className='w-12 text-gray-800 text-right'>{sliderValue}%</div> */}
       </div>
       <input
@@ -118,4 +117,3 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange
 };
 
 export default ColorSlider;
-// ...existing code...

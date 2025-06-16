@@ -37,7 +37,7 @@ const Testphase = () => {
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
           <div className='relative flex justify-center items-center'>
-            <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
+            <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
             <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
@@ -58,7 +58,7 @@ const Testphase = () => {
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
         <div className='relative flex justify-center items-center'>
-          <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
+          <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
           <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
@@ -99,7 +99,7 @@ const Testphase = () => {
           <BiColorV2 percentage={current.color} />
           <div className='flex h-[256px] w-full max-w-xs m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
-              <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
+              <ColorSlider initial={50} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
             </div>
             <div className='flex justify-center mt-16!'>
               <button

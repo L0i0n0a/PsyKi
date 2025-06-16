@@ -46,7 +46,7 @@ const Mainphase = () => {
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
           <div className='relative flex justify-center items-center'>
-            <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
+            <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
             <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
@@ -65,7 +65,7 @@ const Mainphase = () => {
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
         <div className='relative flex justify-center items-center'>
-          <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
+          <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
           <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
@@ -104,11 +104,11 @@ const Mainphase = () => {
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
-          <div className='flex  m-4 flex-col justify-center space-y-4'>
+          <div className='flex m-4 w-full flex-col justify-center space-y-4'>
             {!showRecom ? (
               <div>
-                <div className='text-lg mt-auto md:min-w-xs text-center mb-4 flex flex-col items-center justify-center w-full'>
-                  <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
+                <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
+                  <ColorSlider initial={50} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
                 </div>
                 <div className='flex justify-center mt-16!'>
                   <button
@@ -124,19 +124,21 @@ const Mainphase = () => {
               </div>
             ) : (
               <div className='flex flex-col w-full space-y-1'>
-              <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale}/>
-              <div className='flex flex-col min-w-xs  w-full space-y-1'>   
-                <div> {t('assistantRecommendationTitle')}</div>
-                <div className='text-lg font-semibold max-w-3xs text-center'>{current.recom}</div>
-                <div className='flex w-full justify-center space-x-4'>
-                  <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={handleChoice}>
-                    {t('buttonOrange')}
-                  </button>
-                  <button className='px-6 py-2 bg-blue-600! text-white rounded-full text-lg font-semibold transition hover:bg-blue-800! cursor-pointer' onClick={handleChoice}>
-                    {t('buttonBlue')}
-                  </button>
+                <div className='w-full'>
+                  <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale} />
                 </div>
-              </div>
+                <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-1'>
+                  <div> {t('assistantRecommendationTitle')}</div>
+                  <div className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</div>
+                  <div className='flex w-full justify-center space-x-4'>
+                    <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={handleChoice}>
+                      {t('buttonOrange')}
+                    </button>
+                    <button className='px-6 py-2 bg-blue-600! text-white rounded-full text-lg font-semibold transition hover:bg-blue-800! cursor-pointer' onClick={handleChoice}>
+                      {t('buttonBlue')}
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
