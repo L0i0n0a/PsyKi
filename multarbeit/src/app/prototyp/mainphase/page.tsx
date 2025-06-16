@@ -124,7 +124,7 @@ const Mainphase = () => {
               </div>
             ) : (
               <div className='flex flex-col w-full space-y-1'>
-              <AccuracyComparison menschPercent={60} kiPercent={93}/>
+              <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale}/>
               <div className='flex flex-col min-w-xs  w-full space-y-1'>   
                 <div> {t('assistantRecommendationTitle')}</div>
                 <div className='text-lg font-semibold max-w-3xs text-center'>{current.recom}</div>

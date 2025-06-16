@@ -6,23 +6,18 @@ import dataEn from '@/lib/dataMainEn.json';
 
 type AccuracyComparisonProps = {
   menschPercent: number; // 0–100
-  kiPercent: number;     // 0–100
+  kiPercent: number;  
+  locale: any   // 0–100
 };
 
 export default function AccuracyComparison({
   menschPercent,
   kiPercent,
+  locale
 }: AccuracyComparisonProps) {
 
-    const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
 
-  const data = locale === 'de' ? dataDe : dataEn;
-  //const current = data[index];
-
-  const toggleLanguage = () => {
-    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
-  };
 
 
   const minThickness = 0.5;
