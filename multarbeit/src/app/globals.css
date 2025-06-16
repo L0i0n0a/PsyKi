@@ -58,7 +58,6 @@ button {
 
 .sectionBased {
   display: flex;
-  
 }
 
 .textColourGreen {
@@ -72,7 +71,6 @@ button {
 .bgLightGreen {
   background-color: #508a914d;
 }
-
 
 .bgTextLightGreen {
   color: #508b91;
