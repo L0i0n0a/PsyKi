@@ -37,7 +37,7 @@ const Testphase = () => {
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
           <div className='relative flex justify-center items-center'>
-            <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
+            <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
             <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
@@ -58,48 +58,34 @@ const Testphase = () => {
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
         <div className='relative flex justify-center items-center'>
-          <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
+          <h1 className='md:text-4xl text-3xl font-bold m-4 text-center'>{t('title')}</h1>
           <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
-      <div className='text-2xl flex justify-center'>{t('instructionTitle')}</div>
-      <AnimatePresence>
-        {index > 0 && (index + 1) % 5 === 0 ? (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            style={{
-              background: 'linear-gradient(90deg, #ff8000 -100%, #0000ff 200%)',
-              color: '#222',
-              padding: '1rem',
-              borderRadius: '100px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              margin: '2rem auto',
-              maxWidth: '57rem',
-              textAlign: 'center',
-              zIndex: 10,
-              position: 'absolute',
-              top: '12%',
-              right: '0%',
-              left: '0%',
-            }}>
-            <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
-              <div className='flex items-center justify-center space-x-1'>
-                <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                <div>{t('feedbackNoteText')}</div>
-              </div>
-              <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
-            </mark>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
+      <div className='relative max-w-6xl px-8'>
+        <AnimatePresence>
+          {index > 0 && (index + 1) % 5 === 0 ? (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#A95556] to-[#552BAA] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'>
+              <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
+                <div className='flex items-center justify-center space-x-1'>
+                  <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                  <div>{t('feedbackNoteText')}</div>
+                </div>
+                <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
+              </mark>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
       <div className=' max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
-        <h2 className='self-start font-bold text-2xl pb-4'>
+        <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
           {t('testPhaseHeader')} {current.header}/20
         </h2>
         <div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden'>
