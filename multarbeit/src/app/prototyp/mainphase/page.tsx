@@ -6,6 +6,7 @@ import dataDe from '@/lib/dataMainDe.json';
 import dataEn from '@/lib/dataMainEn.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
+import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 
 const Mainphase = () => {
   const router = useRouter();
@@ -42,11 +43,9 @@ const Mainphase = () => {
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
-          <div className='flex justify-between items-center'>
+          <div className='relative flex justify-center items-center'>
             <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
-            <button onClick={toggleLanguage} className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm font-bold text-center rounded-full transition'>
-              {locale === 'de' ? 'EN' : 'DE'}
-            </button>
+            <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
@@ -63,11 +62,9 @@ const Mainphase = () => {
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
-        <div className='flex justify-between items-center'>
+        <div className='relative flex justify-center items-center'>
           <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
-          <button onClick={toggleLanguage} className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm font-bold text-center rounded-full transition'>
-            {locale === 'de' ? 'EN' : 'DE'}
-          </button>
+          <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
       <div className='text-2xl flex justify-center'>{t('instructionTitle')}</div>

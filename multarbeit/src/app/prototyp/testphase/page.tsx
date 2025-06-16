@@ -5,6 +5,8 @@ import ColorSlider from '@/components/ui/Slider/Slider';
 import data from '@/lib/dataTest.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
+import { AnimatePresence, motion } from 'framer-motion';
+import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 
 const Testphase = () => {
   const router = useRouter();
@@ -34,11 +36,9 @@ const Testphase = () => {
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
-          <div className='flex justify-between items-center'>
+          <div className='relative flex justify-center items-center'>
             <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
-            <button onClick={toggleLanguage} className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm font-bold text-center rounded-full transition'>
-              {locale === 'de' ? 'EN' : 'DE'}
-            </button>
+            <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
@@ -57,15 +57,47 @@ const Testphase = () => {
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
-        <div className='flex justify-between items-center'>
+        <div className='relative flex justify-center items-center'>
           <h1 className='text-4xl font-bold m-4 text-center'>{t('title')}</h1>
-          <button onClick={toggleLanguage} className='px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm font-bold text-center rounded-full transition'>
-            {locale === 'de' ? 'EN' : 'DE'}
-          </button>
+          <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
       <div className='text-2xl flex justify-center'>{t('instructionTitle')}</div>
-      <div className='min-h-[60vh] max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
+      <div>
+        <AnimatePresence>
+          {index > 0 && (index + 1) % 5 === 0 ? (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              style={{
+                background: 'linear-gradient(90deg, #ff8000 -100%, #0000ff 200%)',
+                color: '#222',
+                padding: '2rem',
+                borderRadius: '1rem',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                margin: '2rem auto',
+                maxWidth: '600px',
+                textAlign: 'center',
+                zIndex: 10,
+                position: 'relative',
+              }}>
+              <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
+                <div className='flex items-center justify-center space-x-1'>
+                  <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                  <div>{t('feedbackNoteText')}</div>
+                </div>
+                <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
+              </mark>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
+      <div className=' max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold text-2xl pb-4'>
           {t('testPhaseHeader')} {current.header}/20
         </h2>
@@ -89,17 +121,6 @@ const Testphase = () => {
             </div>
           </div>
         </div>
-        {index > 0 && (index + 1) % 5 === 0 ? (
-          <div className='pt-8 md:pb-0 pb-20 h-4 text-center md:text-lg text-md text-[#004346]'>
-            <div className='flex items-center justify-center space-x-1'>
-              <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-              <div>{t('feedbackNoteText')}</div>
-            </div>
-            <div className='text-sm text-gray-500'>{t('feedbackNotePlaceholder')}</div>
-          </div>
-        ) : (
-          <div className='pt-8 md:pb-0 pb-20 h-4'></div>
-        )}
       </div>
       <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
         <button
