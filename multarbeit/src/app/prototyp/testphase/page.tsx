@@ -97,12 +97,18 @@ const Testphase = () => {
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
-          <div className='flex h-[256px] m-4 flex-col items-center justify-center space-y-4'>
+          <div className='flex h-[256px] w-full max-w-xs m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
               <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
             </div>
-            <div className='flex justify-center mt-auto'>
-              <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={handleClick}>
+            <div className='flex justify-center mt-16!'>
+              <button
+                id='buttonNext'
+                disabled={sliderValue === 50}
+                className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+                  sliderValue === 50 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                }`}
+                onClick={handleClick}>
                 {t('buttonNext')}
               </button>
             </div>

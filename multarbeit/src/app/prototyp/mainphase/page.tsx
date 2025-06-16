@@ -109,8 +109,14 @@ const Mainphase = () => {
                 <div className='text-lg mt-auto md:min-w-xs text-center mb-4 flex flex-col items-center justify-center w-full'>
                   <ColorSlider initial={50} value={sliderValue} onChange={(val) => setSliderValue(val)} />
                 </div>
-                <div className='flex justify-center mt-auto'>
-                  <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={handleClick}>
+                <div className='flex justify-center mt-16!'>
+                  <button
+                    id='buttonNext'
+                    disabled={sliderValue === 50}
+                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+                      sliderValue === 50 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                    }`}
+                    onClick={handleClick}>
                     {t('buttonNext')}
                   </button>
                 </div>
