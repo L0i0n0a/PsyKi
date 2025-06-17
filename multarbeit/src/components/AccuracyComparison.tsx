@@ -8,9 +8,10 @@ type AccuracyComparisonProps = {
   menschPercent: number; // 0–100
   kiPercent: number;
   locale: 'de' | 'en';
+  decision: number;
 };
 
-export default function AccuracyComparison({ menschPercent, kiPercent, locale }: AccuracyComparisonProps) {
+export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
 
   const minThickness = 0.5;
@@ -20,10 +21,12 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale }:
 
   const menschThickness = scaleThickness(menschPercent);
   const kiThickness = scaleThickness(kiPercent);
-  const decisionPercent = 60;
+  const decisionPercent = decision;
 
   const menschX = (100 - menschPercent) / 2;
   const kiX = 50 + kiPercent / 2;
+
+  console.log(decision);
 
   // Todo correct calculation for decision aid
   const decisionX = decisionPercent <= 50 ? 50 - decisionPercent : decisionPercent;
@@ -68,11 +71,20 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale }:
     kiPercent / 100
   );
 
-  const decisionColor = interpolateColor(
-    '#90CAF9', // light blue (0%)
-    '#0D47A1', // dark blue (100%)
-    decisionPercent / 100
-  );
+const decisionColor =
+  decisionPercent >= 50
+    ? interpolateColor(
+        '#90CAF9', // light orange
+        '#0D47A1', // dark orange
+        (decisionPercent - 50) / 50 // maps 50–100 to 0–1
+      )
+    : interpolateColor(
+        '#FFE0B2', // light blue
+        '#FB8C00', // dark blue
+        (50 - decisionPercent) / 50 // maps 50–0 to 0–1
+      );
+
+
 
   return (
     <div className='flex flex-col items-center justify-center p-6'>
