@@ -55,7 +55,7 @@ const Testphase = () => {
               !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
             }`}
             onClick={() => router.push('/prototyp/mainphase')}>
-            {t('buttonContinue')}
+            Start
           </button>
         </div>
       </div>
