@@ -26,5 +26,22 @@
   "result": "Ergebnis",
   "sliderOrange": "Orange",
   "sliderBlue": "Blau",
-  "decisionScale": "Entscheidungsskala"
+  "decisionScale": "Entscheidungsskala",
+
+  "carouselSlide1Title": "Einführung",
+  "carouselSlide1Text": "Ab jetzt erhalten Sie zusätzlich zu Ihrer eigenen Einschätzung eine Entscheidungshilfe durch ein automatisiertes System. Dieses analysiert dieselben Bilder wie Sie und gibt seine Einschätzung ab.",
+  "carouselSlide2Title": "Zwei Einschätzungen",
+  "carouselSlide2Text": "Sie haben also zwei Einschätzungen zur Verfügung: Ihre eigene und die der automatisierten Hilfe",
+  "carouselSlide3Title": "Entscheidungskriterium 𝑍",
+  "carouselSlide3Text": "Um beide Informationen zu nutzen, können Sie das sogenannte Entscheidungskriterium 𝑍 verwenden. Es kombiniert beide Einschätzungen – gewichtet nach ihrer Zuverlässigkeit.",
+  "carouselSlide4Title": "Gewichtung der Einschätzungen",
+  "carouselSlide4Text": "Ihre Einschätzung und die des Systems gehen anteilig in die Entscheidung ein. Je nachdem, wie zuverlässig jede Quelle ist, wird sie stärker oder schwächer gewichtet.",
+  "carouselSlide5Title": "Hinweis zur Genauigkeit",
+  "carouselSlide5Text": "💡 Die automatisierte Hilfe hat eine durchschnittliche Genauigkeit von 93 %. Ihre eigene Gewichtung wurde auf Basis Ihrer Leistung in der Testphase berechnet.",
+  "carouselSlide6Title": "Ihre Entscheidung",
+  "carouselSlide6Text": "Sie können frei entscheiden, ob und wie stark Sie das System nutzen möchten. Unser Ziel: Transparenz, damit Sie aus beiden Einschätzungen eine fundierte Entscheidung ableiten können.",
+  "back": "Zurück",
+  "next": "Weiter",
+  "step": "Schritt",
+  "of": " von "
 }

@@ -26,5 +26,22 @@
   "result": "Result",
   "sliderOrange": "Orange",
   "sliderBlue": "Blue",
-  "decisionScale": "Decision Scale"
+  "decisionScale": "Decision Scale",
+
+  "carouselSlide1Title": "Introduction",
+  "carouselSlide1Text": "From now on, you’ll receive a decision aid alongside your own judgment. This system analyzes the same images as you and provides its own assessment.",
+  "carouselSlide2Title": "Two Assessments",
+  "carouselSlide2Text": "You now have two assessments available: Your own and the automated system's",
+  "carouselSlide3Title": "Decision Criterion 𝑍",
+  "carouselSlide3Text": "To combine both sources of information, you can use the so-called decision criterion 𝑍. It merges your assessment and the system’s – weighted by their reliability.",
+  "carouselSlide4Title": "Weighting the Assessments",
+  "carouselSlide4Text": "Your judgment and the system's each contribute to the decision. Depending on how reliable each source is, it will be weighted more or less heavily.",
+  "carouselSlide5Title": "Accuracy Note",
+  "carouselSlide5Text": "💡 The automated system has an average accuracy of 93%. Your own weighting was calculated based on your performance during the test phase.",
+  "carouselSlide6Title": "Your Choice",
+  "carouselSlide6Text": "You are free to decide whether and how much to rely on the system. Our goal is transparency – to help you make well-informed decisions using both assessments.",
+  "back": "Back",
+  "next": "Next",
+  "step": "Step",
+  "of": " of "
 }

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
+import MainText from '@/components/MainText';
 
 const Testphase = () => {
   const router = useRouter();
@@ -15,6 +16,9 @@ const Testphase = () => {
   const [finished, setFinished] = useState(false);
   const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
+  const [step, setStep] = useState(0);
+  const instructionStepsLength = 6;
+  const isLastStep = step === instructionStepsLength - 1;
 
   const toggleLanguage = () => {
     setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
@@ -41,11 +45,15 @@ const Testphase = () => {
             <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
-        <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
-          <h1 className='text-4xl font-bold mb-6 text-center'>{t('finalPhaseTitle')}</h1>
-          <p className='mb-8 text-lg text-center'>{t('finalPhaseDescription')}</p>
+        <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center '>
+          {/* <h1 className='text-4xl font-bold mb-6 text-center'>{t('finalPhaseTitle')}</h1>
+          <p className='mb-8 text-lg text-center'>{t('finalPhaseDescription')}</p> */}
+          <MainText locale={locale} step={step} setStep={setStep} instructionStepsLength={instructionStepsLength} />
           <button
-            className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer'
+            disabled={!isLastStep}
+            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+              !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
+            }`}
             onClick={() => router.push('/prototyp/mainphase')}>
             {t('buttonContinue')}
           </button>
