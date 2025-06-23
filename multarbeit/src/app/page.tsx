@@ -58,12 +58,25 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
       <SectionLeft
-        imageSource='Med Badr Chemmaoui (Unsplash)'
+        imageSource='Kateryna Mayka von Eleken'
         onClick={() => router.push('/prototyp')}
-        imageUrl='/unsplash_med.jpg'
+        imageUrl='/prototyp.png'
         title='Prototyp für Optimal Weighting Strategie'
         description={<>Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden.</>}
       />
+
+      <SectionRight
+        imageSource='CONEDU/Schnepfleitner, auf erwachsenenbildung.at'
+        onClick={() => router.push('/details/design/3')}
+        imageUrl='/sec3.webp'
+        title='Wissenschaftskommunikation & Feedback'
+        description={
+          <>
+            In diesem Abschnitt werden theoretische Erklärungen für die Kommunikation innerhalb der Anwendung genannt und begründet. Es wird erklärt welche Terminologie verwendet und wie Vertrauen bei den Nutzenden geschaffen wird.
+          </>
+        }
+      />
     </div>
+    
   );
 }
