@@ -80,6 +80,10 @@ button {
   border-radius: 10px;
 }
 
+.imageCenter {
+  margin: auto;
+}
+
 .color-slider {
   height: 20px;
   border-radius: 9999px;
