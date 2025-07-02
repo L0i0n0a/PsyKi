@@ -43,5 +43,12 @@
   "back": "Back",
   "next": "Next",
   "step": "Step",
-  "of": " of "
+  "of": " of ",
+  "consentTitle": "Consent and Participation Requirements",
+  "consentText1": "Before starting the prototype, please read the participation requirements.",
+  "consentText2": "Participation is voluntary, anonymous, and can be stopped at any time. No personal data is stored.",
+  "consentText3": "Participation is only allowed if you are 18 years or older.",
+  "confirmAge": "I am at least 18 years old.",
+  "agreeToParticipate": "I have read the information and consent to participate.",
+  "continue": "Continue"
 }

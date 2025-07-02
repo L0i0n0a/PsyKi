@@ -43,5 +43,12 @@
   "back": "Zurück",
   "next": "Weiter",
   "step": "Schritt",
-  "of": " von "
+  "of": " von ",
+  "consentTitle": "Einwilligung und Teilnahmevoraussetzungen",
+  "consentText1": "Bevor Sie mit dem Prototyp starten, möchten wir Sie über die Teilnahmebedingungen informieren.",
+  "consentText2": "Die Teilnahme ist freiwillig, anonym und kann jederzeit abgebrochen werden. Es werden keine personenbezogenen Daten gespeichert.",
+  "consentText3": "Teilnahme nur ab 18 Jahren.",
+  "confirmAge": "Ich bin mindestens 18 Jahre alt.",
+  "agreeToParticipate": "Ich habe die Informationen gelesen und willige in die Teilnahme ein.",
+  "continue": "Weiter"
 }
