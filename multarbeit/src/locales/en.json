@@ -44,6 +44,8 @@
   "next": "Next",
   "step": "Step",
   "of": " of ",
+  "codeTitle": "Please enter your participant code",
+  "codePlaceholder": "Enter code",
   "consentTitle": "Consent and Participation Requirements",
   "consentText1": "Before starting the prototype, please read the participation requirements.",
   "consentText2": "Participation is voluntary, anonymous, and can be stopped at any time. No personal data is stored.",
