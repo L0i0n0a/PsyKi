@@ -192,7 +192,7 @@ const DesignDecisionsPage3 = () => {
         <h2 className='text-2xl font-semibold'>Entscheidungskala</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende Entscheidungen innerhalb der Anwendung treffen?</h3>
         <div>
-          <Image src='/decisionskala.png' alt='Entscheidungskala' width={300} height={300} />
+          <Image className="imageCenter" src='/decisionskala.png' alt='Entscheidungskala' width={400} height={400} />
           <p className='mt-6 text-lg'>
             <strong>Z-Skala als Schieberegler: </strong>
             Die Antwortskala basiert auf der Z-Skala und ist als intuitiver Schieberegler umgesetzt. Nutzende müssen eine klare Antwort geben, die zumindest eher orange oder blau ist. So werden
@@ -211,7 +211,7 @@ const DesignDecisionsPage3 = () => {
         <h2 className='text-2xl font-semibold'>Entscheidungshilfe</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
-          <Image src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+            <Image className="imageCenter" src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
           <p className='mt-6 text-lg'>
             <strong>Zielgerichtete Visualisierung:</strong>
             Durch grafische Darstellung wird nachvollziehbar, wie die Entscheidungen von Mensch und KI gemeinsam zum finalen Z-Wert führen. Diese Darstellung verbessert die Verständlichkeit und
