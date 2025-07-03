@@ -36,11 +36,11 @@ const getLabelText = (value: number, t: (key: 'sliderOrange' | 'sliderBlue') => 
   if (value === 50) {
     return 'neutral';
   } else if (value < 50) {
-    const percent = Math.round(((50 - value) / 50) * 100);
+    // const percent = Math.round(((50 - value) / 50) * 100);
     //return `${percent}% ${t('sliderOrange')}`;
     return ` ${t('sliderOrange')}`;
   } else {
-    const percent = Math.round(((value - 50) / 50) * 100);
+    // const percent = Math.round(((value - 50) / 50) * 100);
     //return `${percent}% ${t('sliderBlue')}`;
     return `${t('sliderBlue')}`;
   }
@@ -94,13 +94,13 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange
           `,
         }}
       />
-           <div className="grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center">
-  <span>{t('labelStrongOrange')}</span>
-  <span>{t('labelOrange')}</span>
-  <span>{t('labelNeutral')}</span>
-  <span>{t('labelBlue')}</span>
-  <span>{t('labelStrongBlue')}</span>
-</div>
+      <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>
+        <span>{t('labelStrongOrange')}</span>
+        <span>{t('labelOrange')}</span>
+        <span>{t('labelNeutral')}</span>
+        <span>{t('labelBlue')}</span>
+        <span>{t('labelStrongBlue')}</span>
+      </div>
 
       <style>{`
         .color-slider::-webkit-slider-thumb {

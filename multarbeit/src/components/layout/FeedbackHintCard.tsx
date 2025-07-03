@@ -1,4 +1,12 @@
-const colorMap:any = {
+type ColorScheme = {
+  bg: string;
+  hoverBg: string;
+  border: string;
+  title: string;
+  text: string;
+};
+
+const colorMap: Record<string, ColorScheme> = {
   green: {
     bg: "bg-green-50",
     hoverBg: "hover:bg-green-100",
