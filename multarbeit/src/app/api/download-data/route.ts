@@ -27,21 +27,22 @@ export async function GET(req: Request) {
 
   try {
     const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
-    const latest = files.sort().pop();
 
-    let fileContent: string;
-    let filename: string;
-
-    if (latest) {
-      const filePath = path.join(dir, latest);
-      fileContent = fs.readFileSync(filePath, 'utf-8');
-      filename = latest;
-    } else {
-      fileContent = JSON.stringify({ message: 'No data file found. This is a fallback.' }, null, 2);
-      filename = 'no-data-fallback.json';
+    if (files.length === 0) {
+      return NextResponse.json({ message: 'No data found' }, { status: 404 });
     }
 
-    return new NextResponse(fileContent, {
+    const mergedData: Record<string, unknown> = {};
+
+    for (const file of files) {
+      const content = fs.readFileSync(path.join(dir, file), 'utf-8');
+      mergedData[file] = JSON.parse(content);
+    }
+
+    const output = JSON.stringify(mergedData, null, 2);
+    const filename = `all_participants_${Date.now()}.json`;
+
+    return new NextResponse(output, {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ export async function GET(req: Request) {
       },
     });
   } catch (err) {
-    console.error('❌ Error reading file:', err);
+    console.error('❌ Error reading files:', err);
     return NextResponse.json({ message: 'Read failed' }, { status: 500 });
   }
 }
