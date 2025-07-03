@@ -20,12 +20,12 @@
   "assistantRecommendationTitle": "Das Assistenzsystem empfiehlt:",
   "buttonOrange": "Orange",
   "buttonBlue": "Blau",
-  "zScore": "Kumulierter Z-Score",
+  "zScore": "Referenzwert",
   "human": "Mensch",
   "ki": "KI",
   "result": "Ergebnis",
-  "sliderOrange": "Orange",
-  "sliderBlue": "Blau",
+  "sliderOrange": "eher Orange",
+  "sliderBlue": "eher Blau",
   "decisionScale": "Entscheidungsskala",
 
   "carouselSlide1Title": "Einführung",
@@ -43,5 +43,11 @@
   "back": "Zurück",
   "next": "Weiter",
   "step": "Schritt",
-  "of": " von "
+  "of": " von ",
+
+  "labelStrongOrange": "stark orange",
+    "labelOrange": "eher orange",
+    "labelNeutral": "neutral",
+    "labelBlue": "eher blau",
+    "labelStrongBlue": "stark blau"
 }

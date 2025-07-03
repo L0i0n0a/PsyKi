@@ -24,8 +24,8 @@
   "human": "Human",
   "ki": "AI",
   "result": "Result",
-  "sliderOrange": "Orange",
-  "sliderBlue": "Blue",
+  "sliderOrange": "rather Orange",
+  "sliderBlue": "rather Blue",
   "decisionScale": "Decision Scale",
 
   "carouselSlide1Title": "Introduction",
@@ -43,5 +43,11 @@
   "back": "Back",
   "next": "Next",
   "step": "Step",
-  "of": " of "
+  "of": " of ",
+
+  "labelStrongOrange": "strong orange",
+    "labelOrange": "more orange",
+    "labelNeutral": "neutral",
+    "labelBlue": "more blue",
+    "labelStrongBlue": "strong blue"
 }
