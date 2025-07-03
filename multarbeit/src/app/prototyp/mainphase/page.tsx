@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import dataDe from '@/lib/dataMainDe.json';
@@ -9,6 +9,7 @@ import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { AnimatePresence, motion } from 'framer-motion';
 import AccuracyComparison from '@/components/AccuracyComparison';
+import { v4 as uuidv4 } from 'uuid';
 
 const Mainphase = () => {
   const router = useRouter();
@@ -18,6 +19,37 @@ const Mainphase = () => {
   const [showRecom, setShowRecom] = useState(false);
   const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
+
+  const getSessionId = () => {
+    if (typeof window === 'undefined') return '';
+    let sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) {
+      sessionId = uuidv4();
+      localStorage.setItem('sessionId', sessionId);
+    }
+    return sessionId;
+  };
+
+  const [responses, setResponses] = useState<unknown[]>([]);
+
+  useEffect(() => {
+    if (finished && responses.length > 0) {
+      const saveData = async () => {
+        const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
+        const sessionId = getSessionId();
+        await fetch('/api/save-data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-secret-token': TOKEN,
+          },
+          body: JSON.stringify({ sessionId, responses }),
+        });
+        console.log('All responses sent:', responses);
+      };
+      saveData();
+    }
+  }, [finished, responses]);
 
   const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
@@ -31,7 +63,18 @@ const Mainphase = () => {
     setShowRecom(true);
   };
 
-  const handleChoice = () => {
+  const handleChoice = (button: 'orange' | 'blue') => {
+    setResponses((prev) => [
+      ...prev,
+      {
+        index,
+        color: current.color,
+        sliderValue,
+        timestamp: new Date().toISOString(),
+        buttonPressed: button,
+      },
+    ]);
+
     if (index < data.length - 1) {
       setIndex(index + 1);
       setSliderValue(50);
@@ -131,10 +174,10 @@ const Mainphase = () => {
                   <div> {t('assistantRecommendationTitle')}</div>
                   <div className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</div>
                   <div className='flex w-full justify-center space-x-4'>
-                    <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={handleChoice}>
+                    <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={() => handleChoice('orange')}>
                       {t('buttonOrange')}
                     </button>
-                    <button className='px-6 py-2 bg-blue-600! text-white rounded-full text-lg font-semibold transition hover:bg-blue-800! cursor-pointer' onClick={handleChoice}>
+                    <button className='px-6 py-2 bg-blue-600! text-white rounded-full text-lg font-semibold transition hover:bg-blue-800! cursor-pointer' onClick={() => handleChoice('blue')}>
                       {t('buttonBlue')}
                     </button>
                   </div>

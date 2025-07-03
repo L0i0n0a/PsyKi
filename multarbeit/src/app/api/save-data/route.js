@@ -15,15 +15,25 @@ export async function POST(req) {
 
   try {
     const data = await req.json();
+    const { sessionId, responses } = data;
 
-    const dir = '/app/data';
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `participant_${timestamp}.json`;
+    if (!sessionId) {
+      return NextResponse.json({ message: 'Missing sessionId' }, { status: 400 });
+    }
+
+    const dir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
+    const filename = `participant_${sessionId}.json`;
     const filePath = path.join(dir, filename);
 
     fs.mkdirSync(dir, { recursive: true });
 
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    let existing = [];
+    if (fs.existsSync(filePath)) {
+      existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    }
+    // Merge or append as needed
+    const merged = [...existing, ...(responses || [])];
+    fs.writeFileSync(filePath, JSON.stringify(merged, null, 2));
     console.log(`✅ Data written to ${filePath}`);
 
     return NextResponse.json({ message: 'Data saved', file: filename }, { status: 200 });

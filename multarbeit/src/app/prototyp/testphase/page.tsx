@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import data from '@/lib/dataTest.json';
@@ -8,6 +8,7 @@ import { useTranslation } from '@/utils/translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import MainText from '@/components/MainText';
+import { v4 as uuidv4 } from 'uuid';
 
 const Testphase = () => {
   const router = useRouter();
@@ -19,6 +20,17 @@ const Testphase = () => {
   const [step, setStep] = useState(0);
   const instructionStepsLength = 6;
   const isLastStep = step === instructionStepsLength - 1;
+  const [responses, setResponses] = useState<unknown[]>([]);
+
+  const getSessionId = () => {
+    if (typeof window === 'undefined') return '';
+    let sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) {
+      sessionId = uuidv4();
+      localStorage.setItem('sessionId', sessionId);
+    }
+    return sessionId;
+  };
 
   const toggleLanguage = () => {
     setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
@@ -26,6 +38,15 @@ const Testphase = () => {
 
   const handleClick = () => {
     if (finished) return;
+    const response = {
+      index,
+      color: current.color,
+      sliderValue,
+      timestamp: new Date().toISOString(),
+    };
+    setResponses((prev) => [...prev, response]);
+    console.log('Collected response:', response);
+
     if (index < data.length - 1) {
       setIndex(index + 1);
       setSliderValue(50);
@@ -33,6 +54,25 @@ const Testphase = () => {
       setFinished(true);
     }
   };
+
+  useEffect(() => {
+    if (finished && responses.length > 0) {
+      const saveData = async () => {
+        const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
+        const sessionId = getSessionId();
+        await fetch('/api/save-data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-secret-token': TOKEN,
+          },
+          body: JSON.stringify({ sessionId, responses }),
+        });
+        console.log('All responses sent:', responses);
+      };
+      saveData();
+    }
+  }, [finished, responses]);
 
   const current = data[index];
 
