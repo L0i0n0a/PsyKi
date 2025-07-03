@@ -6,19 +6,17 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    // Test-Datei schreiben (um File Browser auszulösen)
-    fs.writeFileSync('/app/data/test.txt', 'Coolify File Browser Test');
+    const dir = '/app/data';
+    const filename = `participant_${Date.now()}.json`;
+    const filepath = path.join(dir, filename);
 
-    // JSON-Datei schreiben
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const fileName = `participant_${timestamp}.json`;
-    const filePath = path.join('/app/data', fileName);
+    fs.mkdirSync(dir, { recursive: true });
 
-    fs.writeFileSync(filePath, JSON.stringify(body, null, 2));
+    fs.writeFileSync(filepath, JSON.stringify(body, null, 2));
 
-    return NextResponse.json({ message: 'Data saved', file: fileName }, { status: 200 });
+    return NextResponse.json({ message: 'Data saved', file: filename }, { status: 200 });
   } catch (err) {
-    console.error('Fehler beim Speichern:', err);
-    return NextResponse.json({ message: 'Fehler beim Speichern' }, { status: 500 });
+    console.error('Failed to save data:', err);
+    return NextResponse.json({ message: 'Save failed' }, { status: 500 });
   }
 }
