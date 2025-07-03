@@ -1,66 +1,35 @@
 'use client';
 
-import { useEffect } from 'react';
-import { initJsPsych } from 'jspsych';
-import htmlSliderPlugin from '@jspsych/plugin-html-slider-response';
-import htmlButtonPlugin from '@jspsych/plugin-html-button-response';
+import { useState } from 'react';
 
 export default function TestPage() {
+  const [status, setStatus] = useState('');
   const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
 
-  useEffect(() => {
-    const runJsPsych = async () => {
-      const jsPsych = initJsPsych({
-        on_finish: async () => {
-          const jsonData = jsPsych.data.get().json();
+  const handleSave = async () => {
+    const res = await fetch('/api/save-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-secret-token': TOKEN,
+      },
+      body: JSON.stringify({ message: 'PsyKi Test' }),
+    });
 
-          const res = await fetch('/api/save-data', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-secret-token': TOKEN,
-            },
-            body: jsonData,
-          });
-
-          if (res.ok) {
-            alert('✅ Data saved successfully!');
-          } else {
-            alert('❌ Failed to save data.');
-          }
-        },
-      });
-
-      const timeline = [];
-
-      timeline.push({
-        type: htmlSliderPlugin,
-        stimulus: '<p>Move the slider to indicate your color preference.</p>',
-        labels: ['Red', 'Blue'],
-        min: 0,
-        max: 100,
-        step: 1,
-        slider_start: 50,
-        data: { trial_type: 'slider' },
-      });
-
-      timeline.push({
-        type: htmlButtonPlugin,
-        stimulus: '<p>Now choose a color:</p>',
-        choices: ['Red', 'Blue'],
-        data: { trial_type: 'button' },
-      });
-
-      jsPsych.run(timeline);
-    };
-
-    runJsPsych();
-  }, []);
+    if (res.ok) {
+      setStatus('✅ Data saved successfully!');
+    } else {
+      setStatus('❌ Failed to save data.');
+    }
+  };
 
   return (
     <div className='p-10'>
-      <h1 className='text-2xl font-bold mb-4'>jsPsych Test</h1>
-      <div id='jspsych-experiment'></div>
+      <h1 className='text-2xl font-bold mb-4'>Save Test</h1>
+      <button className='px-4 py-2 bg-blue-500 text-white rounded' onClick={handleSave}>
+        PsyKi Test
+      </button>
+      <div className='mt-4'>{status}</div>
     </div>
   );
 }
