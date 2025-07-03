@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@jspsych/plugin-html-button-response": "^2.1.0",
+    "@jspsych/plugin-html-slider-response": "^2.1.0",
     "framer-motion": "^12.18.1",
+    "jspsych": "^8.2.1",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
