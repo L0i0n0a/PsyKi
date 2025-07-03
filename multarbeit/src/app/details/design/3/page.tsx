@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button/Button";
 import BiColor from "@/components/canvas/BiColor";
 import Image from "next/image";
 import FeedbackHintCard from "@/components/layout/FeedbackHintCard";
+import FeedbackSlider from "@/components/ui/Slider/FeedbackSlider";
 
 
 const DesignDecisionsPage3 = () => {
@@ -17,26 +18,26 @@ const DesignDecisionsPage3 = () => {
         <h1 className='text-4xl font-bold m-4 text-center'>Wissenschaftskommunikation & Feedback</h1>
       </div>
 
-            <section className="sectionBorder">
-                <h2 className="text-2xl font-semibold">Rückblick OW-Modell</h2>
-                <h2 className="text-2xl mb-4">Wie funktioniert das Modell?</h2>
-                <div>
-                    <p className="mt-6 text-lg">Es beschreibt, wie ein Mensch oder ein System die Hinweise eines menschlichen Entscheiders und eines automatisierten Hilfsmittels optimal kombiniert, um die bestmögliche Entscheidung zu treffen.</p>
-                    <div className="flex flex-row justify-between items-center">
-                        <div>
-                            <Image src="/ow1.png" alt="" width={500} height={300} />
-                            <p className="imageSourcetext text-center"> Erklärung der Entscheidungsfindung</p>
-                        </div>
-                        
-                        <div>
-                            <Image src="/ow3.png" alt="" width={500} height={300} />
-                            <p className="imageSourcetext text-center">Beispiel der Referenzwert-Darstellung</p>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-            </section>
+      <section className="sectionBorder">
+        <h2 className="text-2xl font-semibold">Rückblick OW-Modell</h2>
+        <h2 className="text-2xl mb-4">Wie funktioniert das Modell?</h2>
+        <div>
+          <p className="mt-6 text-lg">Es beschreibt, wie ein Mensch oder ein System die Hinweise eines menschlichen Entscheiders und eines automatisierten Hilfsmittels optimal kombiniert, um die bestmögliche Entscheidung zu treffen.</p>
+          <div className="flex flex-row justify-between items-center">
+            <div>
+              <Image src="/ow1.png" alt="" width={500} height={300} />
+              <p className="imageSourcetext text-center"> Erklärung der Entscheidungsfindung</p>
+            </div>
+
+            <div>
+              <Image src="/ow3.png" alt="" width={500} height={300} />
+              <p className="imageSourcetext text-center">Beispiel der Referenzwert-Darstellung</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ablauf in der Anwendung</h2>
@@ -127,37 +128,37 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
-            <section className="sectionBorder">
-                <h2 className="text-2xl font-semibold">Integrated Information Processing Modell</h2>
-                <h2 className="text-2xl mb-4">Welche theoretische Grundlage beinhaltet die Anwendung, um die Strategie verständlich zu machen?</h2>
-                <div>
-                    <Image className="imageCenter" src="/iip.png" alt="IIP-Modell" width={500} height={400} ></Image>
-                    <p className="imageSourcetext text-center">Schrills, 2025</p>
-                    <p className="text-xl p-4 ">
-                        Das Integrated Information Processing (IIP) Modell beschreibt, wie Mensch und KI sinnvoll zusammenwirken können, indem es drei zentrale Schnittstellen identifiziert, die wir systematisch berücksichtigen:
-                    </p>
-                    <div className="grid grid-rows-3 md:grid-rows-2 gap-4">
-                       
-                            <FeedbackHintCard title={"1. Input Function:"} color={"orange"}> Mensch und KI nehmen das Bild parallel wahr – visuell bzw. algorithmisch.
-                                Nutzer:innen geben ihre Einschätzung direkt mittels Schieberegler ein. Gleichzeitig analysiert die KI das Bild und liefert
-                                eine eigene Einschätzung. Im Onboarding wird erklärt, welche Bildmerkmale die KI nutzt und wie zuverlässig sie dabei ist.
-                                <p className="font-bold">→ Ziel: Erklärbarkeit des Systems schaffen.</p>
-                            </FeedbackHintCard>
-                      
-                            <FeedbackHintCard title={"2. Goal / Reference:"} color={"yellow"}> Beide Einschätzungen werden an einem Ziel- oder Referenzwert gespiegelt. Die Nutzer:innen erfahren,
-                                was das Ziel der Entscheidungshilfe ist und wie die KI zu ihrem Vorschlag kommt. Zusätzlich werden Genauigkeit und Sicherheit
-                                der KI sowie Sensitivität und Sicherheit des Menschen pro Trial dargestellt.
-                                <p className="font-bold">→ Ziel: Aufbau eines mentalen Modells zur Verlässlichkeit beider Quellen und Verständnis gegenüber verschiedenen Einschätzungen.</p>
-                            </FeedbackHintCard>
-                        
-                            <FeedbackHintCard title={"3. Output Function:"} color={"violet"}> Basierend auf beiden Einschätzungen wird eine kombinierte Empfehlung visualisiert
-                                (mittels gewichteter Kombination). Die finale Entscheidung liegt jedoch bei den Nutzer:innen. Die Visualisierung des kombinierten Entscheidungspunkt (kumulierte Empfehlung) wird klar auf der Skala als Ergebnis der OW-Rechnung angegeben, das hilft den Workload möglichst gering halten. Feedback zu ihrer Entscheidung
-                                unterstützen die Nutzer:innen eine realistische Vertrauenskalibrierung zu erfahren und stärkt zudem die Motivation.
-                                <p className="font-bold">→ Ziel: Transparente Unterstützung statt Vorgabe – Overtrust und Undertrust vermeiden.</p>
-                            </FeedbackHintCard>
-                       </div>
-                </div>
-            </section>
+      <section className="sectionBorder">
+        <h2 className="text-2xl font-semibold">Integrated Information Processing Modell</h2>
+        <h2 className="text-2xl mb-4">Welche theoretische Grundlage beinhaltet die Anwendung, um die Strategie verständlich zu machen?</h2>
+        <div>
+          <Image className="imageCenter" src="/iip.png" alt="IIP-Modell" width={500} height={400} ></Image>
+          <p className="imageSourcetext text-center">Schrills, 2025</p>
+          <p className="text-xl p-4 ">
+            Das Integrated Information Processing (IIP) Modell beschreibt, wie Mensch und KI sinnvoll zusammenwirken können, indem es drei zentrale Schnittstellen identifiziert, die wir systematisch berücksichtigen:
+          </p>
+          <div className="grid grid-rows-3 md:grid-rows-2 gap-4">
+
+            <FeedbackHintCard title={"1. Input Function:"} color={"orange"}> Mensch und KI nehmen das Bild parallel wahr – visuell bzw. algorithmisch.
+              Nutzer:innen geben ihre Einschätzung direkt mittels Schieberegler ein. Gleichzeitig analysiert die KI das Bild und liefert
+              eine eigene Einschätzung. Im Onboarding wird erklärt, welche Bildmerkmale die KI nutzt und wie zuverlässig sie dabei ist.
+              <p className="font-bold">→ Ziel: Erklärbarkeit des Systems schaffen.</p>
+            </FeedbackHintCard>
+
+            <FeedbackHintCard title={"2. Goal / Reference:"} color={"yellow"}> Beide Einschätzungen werden an einem Ziel- oder Referenzwert gespiegelt. Die Nutzer:innen erfahren,
+              was das Ziel der Entscheidungshilfe ist und wie die KI zu ihrem Vorschlag kommt. Zusätzlich werden Genauigkeit und Sicherheit
+              der KI sowie Sensitivität und Sicherheit des Menschen pro Trial dargestellt.
+              <p className="font-bold">→ Ziel: Aufbau eines mentalen Modells zur Verlässlichkeit beider Quellen und Verständnis gegenüber verschiedenen Einschätzungen.</p>
+            </FeedbackHintCard>
+
+            <FeedbackHintCard title={"3. Output Function:"} color={"violet"}> Basierend auf beiden Einschätzungen wird eine kombinierte Empfehlung visualisiert
+              (mittels gewichteter Kombination). Die finale Entscheidung liegt jedoch bei den Nutzer:innen. Die Visualisierung des kombinierten Entscheidungspunkt (kumulierte Empfehlung) wird klar auf der Skala als Ergebnis der OW-Rechnung angegeben, das hilft den Workload möglichst gering halten. Feedback zu ihrer Entscheidung
+              unterstützen die Nutzer:innen eine realistische Vertrauenskalibrierung zu erfahren und stärkt zudem die Motivation.
+              <p className="font-bold">→ Ziel: Transparente Unterstützung statt Vorgabe – Overtrust und Undertrust vermeiden.</p>
+            </FeedbackHintCard>
+          </div>
+        </div>
+      </section>
 
       {/* Hinweise zur Skala */}
       <section className='sectionBorder'>
@@ -211,7 +212,7 @@ const DesignDecisionsPage3 = () => {
         <h2 className='text-2xl font-semibold'>Entscheidungshilfe</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
-            <Image className="imageCenter" src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+          <Image className="imageCenter" src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
           <p className='mt-6 text-lg'>
             <strong>Zielgerichtete Visualisierung:</strong>
             Durch grafische Darstellung wird nachvollziehbar, wie die Entscheidungen von Mensch und KI gemeinsam zum finalen Z-Wert führen. Diese Darstellung verbessert die Verständlichkeit und
@@ -265,29 +266,97 @@ const DesignDecisionsPage3 = () => {
             Nutzung der Entscheidungshilfe stärken und zugleich das Bewusstsein für die eigene Entscheidungsqualität schärfen, um so insgesamt fundiertere und sicherere Entscheidungen zu ermöglichen.
           </p>
 
-                    <h3 className="text-xl font-semibold mb-4">Feedback-Beispiele</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FeedbackHintCard title="Letzte 10 Entscheidungen" color={"green"}>
-                            Du hast der Entscheidungshilfe in <strong>7</strong> Fällen vertraut – <strong>6</strong> davon waren korrekt.
-                        </FeedbackHintCard>
-                        <FeedbackHintCard title="Genauigkeit" color={"green"}>
-                            Die Entscheidungshilfe lag bisher in <strong>… %</strong> der Fälle richtig.<br />
-                            Deine eigene Genauigkeit liegt derzeit bei <strong>72 %</strong>.
-                        </FeedbackHintCard>
-                        <FeedbackHintCard title="Hinweis" color={"green"}>
-                            Auch die KI kann Fehler machen. Sie basiert auf einer festen Genauigkeit von <strong>93 %</strong>.
-                            Dein Urteil kann in manchen Fällen mehr Gewicht haben – <em>vor allem, wenn du sehr sicher bist</em>.
-                        </FeedbackHintCard>
-                        <FeedbackHintCard title="Abschluss-Feedback" color={"green"}>
-                            In der Testphase <em>(ohne Entscheidungshilfe)</em> lagst du bei <strong>70 %</strong>. Mit Hilfe waren es <strong>82 %</strong>.
-                        </FeedbackHintCard>
-                        <FeedbackHintCard title="Nutzungsverhalten" color={"green"}>
-                            Du hast die Empfehlung in <strong>35 von 50</strong> Fällen übernommen – <strong>30</strong> davon waren korrekt.
-                        </FeedbackHintCard>
-                    </div>
+          <h3 className="text-xl font-semibold mb-4">Feedback-Beispiele</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FeedbackHintCard title="Letzte 10 Entscheidungen" color={"green"}>
+              Du hast der Entscheidungshilfe in <strong>7</strong> Fällen vertraut – <strong>6</strong> davon waren korrekt.
+            </FeedbackHintCard>
+            <FeedbackHintCard title="Genauigkeit" color={"green"}>
+              Die Entscheidungshilfe lag bisher in <strong>… %</strong> der Fälle richtig.<br />
+              Deine eigene Genauigkeit liegt derzeit bei <strong>72 %</strong>.
+            </FeedbackHintCard>
+            <FeedbackHintCard title="Hinweis" color={"green"}>
+              Auch die KI kann Fehler machen. Sie basiert auf einer festen Genauigkeit von <strong>93 %</strong>.
+              Dein Urteil kann in manchen Fällen mehr Gewicht haben – <em>vor allem, wenn du sehr sicher bist</em>.
+            </FeedbackHintCard>
+            <FeedbackHintCard title="Abschluss-Feedback" color={"green"}>
+              In der Testphase <em>(ohne Entscheidungshilfe)</em> lagst du bei <strong>70 %</strong>. Mit Hilfe waren es <strong>82 %</strong>.
+            </FeedbackHintCard>
+            <FeedbackHintCard title="Nutzungsverhalten" color={"green"}>
+              Du hast die Empfehlung in <strong>35 von 50</strong> Fällen übernommen – <strong>30</strong> davon waren korrekt.
+            </FeedbackHintCard>
+          </div>
 
-                </div>
-            </section>
+        </div>
+      </section>
+
+      <section className='sectionBorder'>
+        <h2 className='text-2xl font-semibold'>Feedback</h2>
+        <p className='text-2xl mb-4'>Hier befinden sich die Mentimenter-Ergebnisse aus der Vorstellung des Prototypen innerhalb des Moduls.</p>
+        <h3 className="text-xl font-semibold mt-10 mb-4">Subjektives Feedback zur Gestaltung von dem Kurs (N = 10)</h3>
+        <div className="space-y-4 mb-8">
+          <h4 className="text-lg">Wie bewerten Sie die generelle Gestaltung?</h4>
+          <FeedbackSlider title="Verständlich" value={3.8} />
+          <FeedbackSlider title="Gebrauchstauglich" value={4.2} />
+          <FeedbackSlider title="Workload reduzierend" value={4.2} />
+        </div>
+
+        <h4 className="text-lg mb-4">Was kann kritisiert/verbessert werden?</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {[
+            'Entscheidungskriterium Z ist sehr "on the nose".',
+            'Z-Wert eventuell zu technisch, simplere Formulierung möglich?',
+            'Farben in der Skala und im Bild könnten besser / verständlicher aufeinander abgestimmt sein',
+            '"Kumulierter Z-Score" könnte etwas zu kompliziert wirken',
+            'Ich kann mir vorstellen das mit dem Z Score ist zu kompliziert als komplex für die meisten Anwender:innen. Könnt ihr das leichter erklären?',
+            'Wie sieht die Übersicht aus, wenn sich KI und Mensch einig sind? Die Sliderpunkte sind sehr groß, so dass 93 Prozent bei der KI aussehen als wär es 100 Prozent – ist das extra oder aus Versehen?',
+            'Irgendwie weird dass ein gewichteter Mittelwert gebildet wird, der prototypisch fürs Optimal Weighting stehen soll, man hinterher aber trotzdem noch eine definitive Entscheidung treffen muss',
+          ].map((text, index) => (
+            <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800">
+              {text}
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-4 mb-8">
+          <h4 className="text-lg">Wie bewerten Sie die Entscheidungsskala?</h4>
+          <FeedbackSlider title="Verständlich" value={3.4} />
+          <FeedbackSlider title="Gebrauchstauglich" value={3.8} />
+          <FeedbackSlider title="Workload reduzierend" value={3.8} />
+        </div>
+
+        <h4 className="text-lg mb-4">Was kann kritisiert/verbessert werden?</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {[
+            'Slider Sensitivität beachten- könnte zu Frustration führen, wenn ein Nutzer genau 70 Prozent angeben will, aber immer daneben liegt beim Verschieben des Sliders.".',
+          ].map((text, index) => (
+            <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800">
+              {text}
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-4 mb-8">
+          <h4 className="text-lg">Wie bewerten Sie die Visualisierung der Entscheidungshilfe?</h4>
+          <FeedbackSlider title="Verständlich" value={3.6} />
+          <FeedbackSlider title="Gebrauchstauglich" value={3.9} />
+          <FeedbackSlider title="Workload reduzierend" value={3.1} />
+        </div>
+
+        <h4 className="text-lg mb-4">Was kann kritisiert/verbessert werden?</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            'visualisierung etwas ungenau. Könnte auch Mensch vs Ki symbolisieren und nicht blau vs rot. Eine bessere Beschriftung würde das beheben! Sonst eine sehr schöne Idee',
+            'Kumuluerter z wert komplex für durchschnittliche Bevölkerung. Andere Formulierung in einfachen Worten',
+            'Finde es sehr gut, dass es auf dem Slider ist.'
+          ].map((text, index) => (
+            <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800">
+              {text}
+            </div>
+          ))}
+        </div>
+
+      </section>
 
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />

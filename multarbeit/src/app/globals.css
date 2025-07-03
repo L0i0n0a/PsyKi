@@ -68,6 +68,10 @@ button {
   color: var(--color-blue-munsell);
 }
 
+.munsellColourBG {
+  background-color: var(--color-blue-munsell);
+}
+
 .bgLightGreen {
   background-color: #508a914d;
 }
