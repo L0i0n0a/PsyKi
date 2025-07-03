@@ -5,19 +5,17 @@ import path from 'path';
 const AUTH_USER = process.env.DOWNLOAD_USER;
 const AUTH_PASS = process.env.DOWNLOAD_PASS;
 
-// 🔐 Basic Auth parser
-function parseBasicAuth(authHeader) {
+function parseBasicAuth(authHeader: string | null) {
   if (!authHeader?.startsWith('Basic ')) return null;
   const base64 = authHeader.split(' ')[1];
   const [user, pass] = Buffer.from(base64, 'base64').toString().split(':');
   return { user, pass };
 }
 
-export async function GET(req) {
+export async function GET(req: Request) {
   const authHeader = req.headers.get('authorization');
   const creds = parseBasicAuth(authHeader);
 
-  // 🔒 Auth check
   if (!creds || creds.user !== AUTH_USER || creds.pass !== AUTH_PASS) {
     return new NextResponse('Unauthorized', {
       status: 401,
@@ -25,24 +23,29 @@ export async function GET(req) {
     });
   }
 
-  const dir = '/app/data'; // must match your Coolify volume mount
+  const dir = '/app/data';
 
   try {
     const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
-    const latest = files.sort().pop(); // get newest file
+    const latest = files.sort().pop();
 
-    if (!latest) {
-      return NextResponse.json({ message: 'No data found' }, { status: 404 });
+    let fileContent: string;
+    let filename: string;
+
+    if (latest) {
+      const filePath = path.join(dir, latest);
+      fileContent = fs.readFileSync(filePath, 'utf-8');
+      filename = latest;
+    } else {
+      fileContent = JSON.stringify({ message: 'No data file found. This is a fallback.' }, null, 2);
+      filename = 'no-data-fallback.json';
     }
 
-    const filePath = path.join(dir, latest);
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    return new NextResponse(content, {
+    return new NextResponse(fileContent, {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Content-Disposition': `attachment; filename="${latest}"`,
+        'Content-Disposition': `attachment; filename="${filename}"`,
       },
     });
   } catch (err) {
