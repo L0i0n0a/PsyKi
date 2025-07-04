@@ -15,14 +15,14 @@ export async function POST(req: Request) {
 
   try {
     const data = await req.json();
-    const { sessionId, responses } = data;
+    const { code, responses } = data;
 
-    if (!sessionId) {
-      return NextResponse.json({ message: 'Missing sessionId' }, { status: 400 });
+    if (!code) {
+      return NextResponse.json({ message: 'Missing code' }, { status: 400 });
     }
 
     const dir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
-    const filename = `participant_${sessionId}.json`;
+    const filename = `participant_${code}.json`;
     const filePath = path.join(dir, filename);
 
     fs.mkdirSync(dir, { recursive: true });

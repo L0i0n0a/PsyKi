@@ -9,7 +9,8 @@ import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { AnimatePresence, motion } from 'framer-motion';
 import AccuracyComparison from '@/components/AccuracyComparison';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
+import { useParticipantStore } from '@/store';
 
 const Mainphase = () => {
   const router = useRouter();
@@ -20,36 +21,37 @@ const Mainphase = () => {
   const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
 
-  const getSessionId = () => {
-    if (typeof window === 'undefined') return '';
-    let sessionId = localStorage.getItem('sessionId');
-    if (!sessionId) {
-      sessionId = uuidv4();
-      localStorage.setItem('sessionId', sessionId);
-    }
-    return sessionId;
-  };
+  // const getSessionId = () => {
+  //   if (typeof window === 'undefined') return '';
+  //   let sessionId = localStorage.getItem('sessionId');
+  //   if (!sessionId) {
+  //     sessionId = uuidv4();
+  //     localStorage.setItem('sessionId', sessionId);
+  //   }
+  //   return sessionId;
+  // };
 
   const [responses, setResponses] = useState<unknown[]>([]);
+
+  const code = useParticipantStore((state) => state.code);
 
   useEffect(() => {
     if (finished && responses.length > 0) {
       const saveData = async () => {
         const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
-        const sessionId = getSessionId();
         await fetch('/api/save-data', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'x-secret-token': TOKEN,
           },
-          body: JSON.stringify({ sessionId, responses }),
+          body: JSON.stringify({ code, responses }),
         });
         console.log('All responses sent:', responses);
       };
       saveData();
     }
-  }, [finished, responses]);
+  }, [finished, responses, code]);
 
   const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
@@ -95,7 +97,9 @@ const Mainphase = () => {
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
           <h1 className='text-4xl font-bold mb-6 text-center'>{t('completionTitle')}</h1>
-          <p className='mb-8 text-lg text-center'style={{ whiteSpace: 'pre-line' }} >{t('completionMessage')}</p>
+          <p className='mb-8 text-lg text-center' style={{ whiteSpace: 'pre-line' }}>
+            {t('completionMessage')}
+          </p>
           <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={() => router.push('/')}>
             {t('buttonHome')}
           </button>

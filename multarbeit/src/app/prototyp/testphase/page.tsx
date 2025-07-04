@@ -8,7 +8,8 @@ import { useTranslation } from '@/utils/translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import MainText from '@/components/MainText';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
+import { useParticipantStore } from '@/store';
 
 const Testphase = () => {
   const router = useRouter();
@@ -21,16 +22,23 @@ const Testphase = () => {
   const instructionStepsLength = 6;
   const isLastStep = step === instructionStepsLength - 1;
   const [responses, setResponses] = useState<unknown[]>([]);
+  const code = useParticipantStore((state) => state.code);
 
-  const getSessionId = () => {
-    if (typeof window === 'undefined') return '';
-    let sessionId = localStorage.getItem('sessionId');
-    if (!sessionId) {
-      sessionId = uuidv4();
-      localStorage.setItem('sessionId', sessionId);
+  useEffect(() => {
+    if (!code) {
+      router.replace('/prototyp');
     }
-    return sessionId;
-  };
+  }, [code, router]);
+
+  // const getSessionId = () => {
+  //   if (typeof window === 'undefined') return '';
+  //   let sessionId = localStorage.getItem('sessionId');
+  //   if (!sessionId) {
+  //     sessionId = uuidv4();
+  //     localStorage.setItem('sessionId', sessionId);
+  //   }
+  //   return sessionId;
+  // };
 
   const toggleLanguage = () => {
     setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
@@ -59,20 +67,19 @@ const Testphase = () => {
     if (finished && responses.length > 0) {
       const saveData = async () => {
         const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
-        const sessionId = getSessionId();
         await fetch('/api/save-data', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'x-secret-token': TOKEN,
           },
-          body: JSON.stringify({ sessionId, responses }),
+          body: JSON.stringify({ code, responses }),
         });
         console.log('All responses sent:', responses);
       };
       saveData();
     }
-  }, [finished, responses]);
+  }, [finished, responses, code]);
 
   const current = data[index];
 
