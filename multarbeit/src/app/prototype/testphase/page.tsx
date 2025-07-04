@@ -24,12 +24,6 @@ const Testphase = () => {
   const [responses, setResponses] = useState<unknown[]>([]);
   const code = useParticipantStore((state) => state.code);
 
-  useEffect(() => {
-    if (!code) {
-      router.replace('/prototype');
-    }
-  }, [code, router]);
-
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
   //   let sessionId = localStorage.getItem('sessionId');
@@ -53,7 +47,7 @@ const Testphase = () => {
       timestamp: new Date().toISOString(),
     };
     setResponses((prev) => [...prev, response]);
-    console.log('Collected response:', response);
+    //console.log('Collected response:', response);
 
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
     fetch('/api/save-data', {
@@ -90,16 +84,18 @@ const Testphase = () => {
     }
   }, []);
 
+  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
+
   useEffect(() => {
+    if (!hasHydrated) return;
     if (!code) {
       router.replace('/prototype');
-      return;
     }
     const finishedFlag = localStorage.getItem(`testphaseFinished_${code}`);
     if (finishedFlag === 'true') {
       setFinished(true);
     }
-  }, [code, router]);
+  }, [code, router, hasHydrated]);
 
   const current = data[index];
 

@@ -43,9 +43,9 @@ const BiColorV2 = ({ percentage }: BiColorV2Props) => {
 
   const color2 = [0, 0, 255, 255];
 
-  const [stats, setStats] = useState({ color1: 0, color2: 0, percentage: 0 });
+  //const [stats, setStats] = useState({ color1: 0, color2: 0, percentage: 0 });
 
-  console.log('stats', stats);
+  //console.log('stats', stats);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -68,23 +68,23 @@ const BiColorV2 = ({ percentage }: BiColorV2Props) => {
   function colorize() {
     if (!ctxRef.current) return;
     imgDataRef.current = ctxRef.current.getImageData(0, 0, canvasSize, canvasSize);
-    let testColor1 = 0;
+    // let testColor1 = 0;
     for (let i = 0; i < imgDataRef.current.data.length; i += 4) {
       if (colorArray.current[i / 4]) {
         setPixelColor(i, color1);
-        testColor1++;
+        // testColor1++;
       } else {
         setPixelColor(i, color2);
       }
     }
     ctxRef.current.putImageData(imgDataRef.current, 0, 0);
 
-    const percentage = Math.round((testColor1 / pixelAmount) * 100);
-    setStats({
-      color1: testColor1,
-      color2: pixelAmount - testColor1,
-      percentage,
-    });
+    // const percentage = Math.round((testColor1 / pixelAmount) * 100);
+    // setStats({
+    //   color1: testColor1,
+    //   color2: pixelAmount - testColor1,
+    //   percentage,
+    // });
   }
 
   function fisherYates(array: number[]) {

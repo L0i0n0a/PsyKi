@@ -26,7 +26,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   const menschX = (100 - menschPercent) / 2;
   const kiX = 50 + kiPercent / 2;
 
-  console.log(decision);
+  //console.log(decision);
 
   // Todo correct calculation for decision aid
   const decisionX = decisionPercent <= 50 ? 50 - decisionPercent : decisionPercent;
@@ -71,20 +71,18 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
     kiPercent / 100
   );
 
-const decisionColor =
-  decisionPercent >= 50
-    ? interpolateColor(
-        '#90CAF9', // light orange
-        '#0D47A1', // dark orange
-        (decisionPercent - 50) / 50 // maps 50–100 to 0–1
-      )
-    : interpolateColor(
-        '#FFE0B2', // light blue
-        '#FB8C00', // dark blue
-        (50 - decisionPercent) / 50 // maps 50–0 to 0–1
-      );
-
-
+  const decisionColor =
+    decisionPercent >= 50
+      ? interpolateColor(
+          '#90CAF9', // light orange
+          '#0D47A1', // dark orange
+          (decisionPercent - 50) / 50 // maps 50–100 to 0–1
+        )
+      : interpolateColor(
+          '#FFE0B2', // light blue
+          '#FB8C00', // dark blue
+          (50 - decisionPercent) / 50 // maps 50–0 to 0–1
+        );
 
   return (
     <div className='flex flex-col items-center justify-center p-6'>

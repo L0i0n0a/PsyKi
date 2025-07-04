@@ -47,16 +47,18 @@ const Mainphase = () => {
     }
   }, []);
 
+  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
+
   useEffect(() => {
+    if (!hasHydrated) return;
     if (!code) {
-      router.replace('/prototype/testphase');
-      return;
+      router.replace('/prototype');
     }
     const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
     if (finishedFlag === 'true') {
       setFinished(true);
     }
-  }, [code, router]);
+  }, [code, router, hasHydrated]);
 
   const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
@@ -79,7 +81,7 @@ const Mainphase = () => {
       buttonPressed: button,
     };
     setResponses((prev) => [...prev, response]);
-    console.log('Collected response:', response);
+    //console.log('Collected response:', response);
 
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
     fetch('/api/save-data', {
