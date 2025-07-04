@@ -6,7 +6,7 @@ import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { useParticipantStore } from '@/store';
 
-const Prototyp = () => {
+const Prototype = () => {
   const router = useRouter();
   const [locale, setLocale] = useState<'de' | 'en'>('de');
 
@@ -30,12 +30,13 @@ const Prototyp = () => {
     }
   }, [codeFromStore]);
 
+  const isDisabled = !!(codeFromStore && codeFromStore.trim() !== '');
   const isFormValid = code.trim() !== '' && agreed && ageConfirmed;
 
   const handleContinue = () => {
     if (isFormValid) {
       setCodeStore(code.trim());
-      router.push('/prototyp/onboarding');
+      router.push('/prototype/onboarding');
     }
   };
 
@@ -58,6 +59,7 @@ const Prototyp = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             className='w-full px-4 py-2 border border-gray-300 rounded-lg text-lg'
+            disabled={isDisabled}
           />
         </div>
 
@@ -66,12 +68,12 @@ const Prototyp = () => {
         <p className='font-bold'>{t('consentText3')}</p>
 
         <div className='flex items-start space-x-2 mt-4'>
-          <input type='checkbox' id='age' checked={ageConfirmed} onChange={() => setAgeConfirmed(!ageConfirmed)} className='mt-1' />
+          <input type='checkbox' id='age' checked={ageConfirmed} onChange={() => setAgeConfirmed(!ageConfirmed)} className='mt-1' disabled={isDisabled} />
           <label htmlFor='age'>{t('confirmAge')}</label>
         </div>
 
         <div className='flex items-start space-x-2'>
-          <input type='checkbox' id='consent' checked={agreed} onChange={() => setAgreed(!agreed)} className='mt-1' />
+          <input type='checkbox' id='consent' checked={agreed} onChange={() => setAgreed(!agreed)} className='mt-1' disabled={isDisabled} />
           <label htmlFor='consent'>{t('agreeToParticipate')}</label>
         </div>
 
@@ -79,7 +81,7 @@ const Prototyp = () => {
           onClick={handleContinue}
           disabled={!isFormValid}
           className={`mt-6 px-6 py-2 rounded-full text-lg font-semibold transition-all duration-200 ease-in-out ${
-            !isFormValid ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346] cursor-pointer'
+            !isFormValid ? 'bg-gray-300! text-gray-500 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346] cursor-pointer'
           }`}>
           {t('continue')}
         </button>
@@ -88,4 +90,4 @@ const Prototyp = () => {
   );
 };
 
-export default Prototyp;
+export default Prototype;

@@ -26,7 +26,7 @@ const Testphase = () => {
 
   useEffect(() => {
     if (!code) {
-      router.replace('/prototyp');
+      router.replace('/prototype');
     }
   }, [code, router]);
 
@@ -55,8 +55,21 @@ const Testphase = () => {
     setResponses((prev) => [...prev, response]);
     console.log('Collected response:', response);
 
+    const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
+    fetch('/api/save-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-secret-token': TOKEN,
+      },
+      body: JSON.stringify({ code, responses: [response] }),
+    });
+
+    const nextIndex = index < data.length - 1 ? index + 1 : index;
+    localStorage.setItem('testphaseIndex', String(nextIndex));
+
     if (index < data.length - 1) {
-      setIndex(index + 1);
+      setIndex(nextIndex);
       setSliderValue(50);
     } else {
       setFinished(true);
@@ -65,21 +78,33 @@ const Testphase = () => {
 
   useEffect(() => {
     if (finished && responses.length > 0) {
-      const saveData = async () => {
-        const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
-        await fetch('/api/save-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-secret-token': TOKEN,
-          },
-          body: JSON.stringify({ code, responses }),
-        });
-        console.log('All responses sent:', responses);
-      };
-      saveData();
     }
   }, [finished, responses, code]);
+
+  useEffect(() => {
+    const savedIndex = localStorage.getItem('testphaseIndex');
+    if (savedIndex !== null) {
+      setIndex(Number(savedIndex));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!code) {
+      router.replace('/prototype');
+      return;
+    }
+    const finishedFlag = localStorage.getItem(`testphaseFinished_${code}`);
+    if (finishedFlag === 'true') {
+      setFinished(true);
+    }
+  }, [code, router]);
+
+  useEffect(() => {
+    if (!code) {
+      router.replace('/prototype');
+      return;
+    }
+  }, [code, router]);
 
   const current = data[index];
 
@@ -101,7 +126,7 @@ const Testphase = () => {
             className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
               !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
             }`}
-            onClick={() => router.push('/prototyp/mainphase')}>
+            onClick={() => router.push('/prototype/mainphase')}>
             Start
           </button>
         </div>

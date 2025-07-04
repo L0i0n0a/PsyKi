@@ -59,7 +59,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
       />
       <SectionLeft
         imageSource='Kateryna Mayka von Eleken'
-        onClick={() => router.push('/prototyp')}
+        onClick={() => router.push('/prototype')}
         imageUrl='/prototyp.png'
         title='Prototyp für Optimal Weighting Strategie'
         description={<>Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden.</>}

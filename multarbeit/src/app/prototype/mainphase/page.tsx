@@ -37,21 +37,26 @@ const Mainphase = () => {
 
   useEffect(() => {
     if (finished && responses.length > 0) {
-      const saveData = async () => {
-        const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
-        await fetch('/api/save-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-secret-token': TOKEN,
-          },
-          body: JSON.stringify({ code, responses }),
-        });
-        console.log('All responses sent:', responses);
-      };
-      saveData();
     }
   }, [finished, responses, code]);
+
+  useEffect(() => {
+    const savedIndex = localStorage.getItem('mainphaseIndex');
+    if (savedIndex !== null) {
+      setIndex(Number(savedIndex));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!code) {
+      router.replace('/prototype');
+      return;
+    }
+    const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
+    if (finishedFlag === 'true') {
+      setFinished(true);
+    }
+  }, [code, router]);
 
   const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
@@ -66,23 +71,39 @@ const Mainphase = () => {
   };
 
   const handleChoice = (button: 'orange' | 'blue') => {
-    setResponses((prev) => [
-      ...prev,
-      {
-        index,
-        color: current.color,
-        sliderValue,
-        timestamp: new Date().toISOString(),
-        buttonPressed: button,
+    const response = {
+      index,
+      color: current.color,
+      sliderValue,
+      timestamp: new Date().toISOString(),
+      buttonPressed: button,
+    };
+    setResponses((prev) => [...prev, response]);
+    console.log('Collected response:', response);
+
+    // Save this response immediately
+    const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
+    fetch('/api/save-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-secret-token': TOKEN,
       },
-    ]);
+      body: JSON.stringify({ code, responses: [response] }),
+    });
+
+    // Progress logic
+    const nextIndex = index < data.length - 1 ? index + 1 : index;
+    localStorage.setItem('mainphaseIndex', String(nextIndex));
 
     if (index < data.length - 1) {
-      setIndex(index + 1);
+      setIndex(nextIndex);
       setSliderValue(50);
       setShowRecom(false);
     } else {
       setFinished(true);
+      localStorage.removeItem('mainphaseIndex');
+      localStorage.setItem(`mainphaseFinished_${code}`, 'true');
     }
   };
 
