@@ -4,6 +4,19 @@ import path from 'path';
 
 const SECRET = process.env.SAVE_DATA_TOKEN;
 
+function getUniqueFilename(dir: string, code: string) {
+  let trial = 1;
+  let filename = `participant_${code}.json`;
+  let filePath = path.join(dir, filename);
+
+  while (fs.existsSync(filePath)) {
+    trial += 1;
+    filename = `participant_${code}_trial_${trial}.json`;
+    filePath = path.join(dir, filename);
+  }
+  return { filename, filePath };
+}
+
 export async function POST(req: Request) {
   console.log('📥 POST /api/save-data called');
 
@@ -22,10 +35,10 @@ export async function POST(req: Request) {
     }
 
     const dir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
-    const filename = `participant_${code}.json`;
-    const filePath = path.join(dir, filename);
-
     fs.mkdirSync(dir, { recursive: true });
+
+    // Find a unique filename for this code
+    const { filename, filePath } = getUniqueFilename(dir, code);
 
     let existing = [];
     if (fs.existsSync(filePath)) {
