@@ -81,7 +81,6 @@ const Mainphase = () => {
     setResponses((prev) => [...prev, response]);
     console.log('Collected response:', response);
 
-    // Save this response immediately
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
     fetch('/api/save-data', {
       method: 'POST',
@@ -92,7 +91,6 @@ const Mainphase = () => {
       body: JSON.stringify({ code, responses: [response] }),
     });
 
-    // Progress logic
     const nextIndex = index < data.length - 1 ? index + 1 : index;
     localStorage.setItem('mainphaseIndex', String(nextIndex));
 
