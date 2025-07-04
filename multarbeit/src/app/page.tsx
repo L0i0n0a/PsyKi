@@ -72,11 +72,11 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         title='Wissenschaftskommunikation & Feedback'
         description={
           <>
-            In diesem Abschnitt werden theoretische Erklärungen für die Kommunikation innerhalb der Anwendung genannt und begründet. Es wird erklärt welche Terminologie verwendet und wie Vertrauen bei den Nutzenden geschaffen wird.
+            In diesem Abschnitt werden theoretische Erklärungen für die Kommunikation innerhalb der Anwendung genannt und begründet. Es wird erklärt welche Terminologie verwendet und wie Vertrauen bei
+            den Nutzenden geschaffen wird.
           </>
         }
       />
     </div>
-    
   );
 }

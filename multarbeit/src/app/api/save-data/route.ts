@@ -4,7 +4,7 @@ import path from 'path';
 
 const SECRET = process.env.SAVE_DATA_TOKEN;
 
-export async function POST(req) {
+export async function POST(req: Request) {
   console.log('📥 POST /api/save-data called');
 
   const clientToken = req.headers.get('x-secret-token');
@@ -31,7 +31,7 @@ export async function POST(req) {
     if (fs.existsSync(filePath)) {
       existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     }
-    // Merge or append as needed
+
     const merged = [...existing, ...(responses || [])];
     fs.writeFileSync(filePath, JSON.stringify(merged, null, 2));
     console.log(`✅ Data written to ${filePath}`);
