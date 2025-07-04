@@ -36,6 +36,12 @@ const Prototype = () => {
   const handleContinue = async () => {
     if (!isFormValid) return;
 
+    // If code is already in the store, just continue with it
+    if (codeFromStore && codeFromStore.trim() !== '') {
+      router.push('/prototype/onboarding');
+      return;
+    }
+
     const baseCode = code.trim();
     let trial = 1;
     let finalCode = baseCode;

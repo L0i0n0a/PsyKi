@@ -101,13 +101,6 @@ const Testphase = () => {
     }
   }, [code, router]);
 
-  useEffect(() => {
-    if (!code) {
-      router.replace('/prototype');
-      return;
-    }
-  }, [code, router]);
-
   const current = data[index];
 
   if (finished) {
