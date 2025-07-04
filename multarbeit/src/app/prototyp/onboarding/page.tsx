@@ -25,7 +25,10 @@ const Startseite = () => {
 
       <div className="max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]">
         <h1 className="text-4xl font-bold mb-6 text-center">{t('welcome')}</h1>
-        <p className="mb-8 text-lg text-center">{t('instructions')}</p>
+        <p
+          className="mb-8 text-lg text-center"
+          dangerouslySetInnerHTML={{ __html: t('instructions') }}
+        />
 
         <button
           className="px-6 py-2 text-white bg-[#004346] hover:bg-[#004346] rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer"
