@@ -49,7 +49,7 @@ const Mainphase = () => {
 
   useEffect(() => {
     if (!code) {
-      router.replace('/prototype');
+      router.replace('/prototype/testphase');
       return;
     }
     const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
@@ -212,7 +212,7 @@ const Mainphase = () => {
           </div>
         </div>
       </div>
-      <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
+      {/* <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
         <button
           onClick={() => setFinished(true)}
           style={{
@@ -225,7 +225,7 @@ const Mainphase = () => {
           }}>
           Debug Button
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

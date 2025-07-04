@@ -73,6 +73,8 @@ const Testphase = () => {
       setSliderValue(50);
     } else {
       setFinished(true);
+      localStorage.removeItem('testphaseIndex');
+      localStorage.setItem(`testphaseFinished_${code}`, 'true');
     }
   };
 
@@ -195,7 +197,7 @@ const Testphase = () => {
           </div>
         </div>
       </div>
-      <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
+      {/* <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
         <button
           onClick={() => setFinished(true)}
           style={{
@@ -208,7 +210,7 @@ const Testphase = () => {
           }}>
           Debug Button
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
