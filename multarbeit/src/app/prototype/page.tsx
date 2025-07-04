@@ -33,11 +33,30 @@ const Prototype = () => {
   const isDisabled = !!(codeFromStore && codeFromStore.trim() !== '');
   const isFormValid = code.trim() !== '' && agreed && ageConfirmed;
 
-  const handleContinue = () => {
-    if (isFormValid) {
-      setCodeStore(code.trim());
-      router.push('/prototype/onboarding');
+  const handleContinue = async () => {
+    if (!isFormValid) return;
+
+    const baseCode = code.trim();
+    let trial = 1;
+    let finalCode = baseCode;
+    let exists = true;
+
+    while (exists) {
+      const res = await fetch('/api/check-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: finalCode }),
+      });
+      const data = await res.json();
+      exists = data.exists;
+      if (exists) {
+        trial += 1;
+        finalCode = `${baseCode}_trial_${trial}`;
+      }
     }
+
+    setCodeStore(finalCode);
+    router.push('/prototype/onboarding');
   };
 
   return (
