@@ -21,7 +21,6 @@ const Testphase = () => {
   const [step, setStep] = useState(0);
   const instructionStepsLength = 6;
   const isLastStep = step === instructionStepsLength - 1;
-  const [responses, setResponses] = useState<unknown[]>([]);
   const code = useParticipantStore((state) => state.code);
 
   // const getSessionId = () => {
@@ -33,6 +32,29 @@ const Testphase = () => {
   //   }
   //   return sessionId;
   // };
+  function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
+    const start = Math.max(0, currentIndex - 5);
+    const lastFive = responses.slice(start, currentIndex + 1);
+    if (lastFive.length === 0) return null;
+
+    const diffs = lastFive.map((r) => Math.abs(r.sliderValue - r.color * 100));
+    const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+    const avgAccuracy = 100 - avgDiff;
+
+    return {
+      avgDiff: avgDiff.toFixed(1),
+      avgAccuracy: avgAccuracy.toFixed(1),
+      diffs,
+    };
+  }
+
+  const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('testphaseResponses');
+      if (saved) return JSON.parse(saved);
+    }
+    return [];
+  });
 
   const toggleLanguage = () => {
     setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
@@ -71,6 +93,10 @@ const Testphase = () => {
       localStorage.setItem(`testphaseFinished_${code}`, 'true');
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('testphaseResponses', JSON.stringify(responses));
+  }, [responses]);
 
   useEffect(() => {
     if (finished && responses.length > 0) {
@@ -136,7 +162,7 @@ const Testphase = () => {
       <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
       <div className='relative max-w-6xl px-8'>
         <AnimatePresence>
-          {index > 0 && (index + 1) % 5 === 0 ? (
+          {index > 0 && (index + 1) % 6 === 0 ? (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -145,11 +171,24 @@ const Testphase = () => {
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
-                <div className='flex items-center justify-center space-x-1'>
+                {/* <div className='flex items-center justify-center space-x-1'>
                   <div className='font-bold'> {t('feedbackNoteTitle')}</div>
                   <div>{t('feedbackNoteText')}</div>
-                </div>
-                <div className='text-sm text-gray-300'>{t('feedbackNotePlaceholder')}</div>
+                </div> */}
+                <div className='flex flex-col items-center justify-center'>
+                  {(() => {
+                    const feedback = getFeedback(responses, index);
+                    if (!feedback) return null;
+                    return (
+                      <span>
+                        <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                        <div>
+                          {t('feedbackNoteText')} <b>{feedback.avgAccuracy}%</b>
+                        </div>
+                      </span>
+                    );
+                  })()}
+                </div>{' '}
               </mark>
             </motion.div>
           ) : null}
