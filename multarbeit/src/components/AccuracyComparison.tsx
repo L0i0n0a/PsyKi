@@ -14,13 +14,13 @@ type AccuracyComparisonProps = {
 export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
 
-  const minThickness = 0.5;
-  const maxThickness = 14;
+  // const minThickness = 0.8;
+  // const maxThickness = 14;
 
-  const scaleThickness = (percent: number) => minThickness + (percent / 100) * (maxThickness - minThickness);
+  // const scaleThickness = (percent: number) => minThickness + (percent / 100) * (maxThickness - minThickness);
 
-  const menschThickness = scaleThickness(menschPercent);
-  const kiThickness = scaleThickness(kiPercent);
+  // const menschThickness = scaleThickness(menschPercent);
+  // const kiThickness = scaleThickness(kiPercent);
   const decisionPercent = decision;
 
   const menschX = (100 - menschPercent) / 2;
@@ -83,6 +83,47 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
           '#FB8C00', // dark blue
           (50 - decisionPercent) / 50 // maps 50–0 to 0–1
         );
+
+  function VariableWidthCurve({
+    x1,
+    y1,
+    cx,
+    cy,
+    x2,
+    y2,
+    color,
+    min,
+    max,
+    steps = 40,
+  }: {
+    x1: number;
+    y1: number;
+    cx: number;
+    cy: number;
+    x2: number;
+    y2: number;
+    color: string;
+    min: number;
+    max: number;
+    steps?: number;
+  }) {
+    const segments = [];
+    for (let i = 0; i < steps; i++) {
+      const t1 = i / steps;
+      const t2 = (i + 1) / steps;
+      // Quadratic Bezier formula
+      const getPoint = (t: number) => ({
+        x: (1 - t) * (1 - t) * x1 + 2 * (1 - t) * t * cx + t * t * x2,
+        y: (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * cy + t * t * y2,
+      });
+      const p1 = getPoint(t1);
+      const p2 = getPoint(t2);
+      // Thickness: thick at ends, thin in middle
+      const thickness = min + (max - min) * (2 * (t1 - 0.5) ** 2); // Parabola: max at ends, min at middle
+      segments.push(<line key={i} x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke={color} strokeWidth={thickness} strokeLinecap='round' fill='none' />);
+    }
+    return <>{segments}</>;
+  }
 
   return (
     <div className='flex flex-col items-center justify-center p-6'>
@@ -148,35 +189,10 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
 
               {/* SVG Curves */}
               <svg className='absolute top-[-130px] left-0 w-full h-[200px] pointer-events-none' xmlns='http://www.w3.org/2000/svg' viewBox='0 -10 100 100' preserveAspectRatio='none'>
-                {/* Mensch thinner curve */}
-                <path
-                  d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${decisionXPx} ${curveYEnd}`}
-                  stroke={menschColor}
-                  strokeWidth={menschThickness * 0.6}
-                  strokeLinecap='round'
-                  fill='none'
-                />
-                {/* Mensch thicker overlay */}
-                {/*   <path
-    d={`M ${menschX} ${curveYStart} Q ${menschX + 2} ${controlY}, ${bubbleX} ${curveYEnd}`}
-    stroke={menschColor}
-    strokeWidth={menschThickness} // max thickness
-    strokeLinecap="round"
-    fill="none"
-    strokeOpacity={0.3} // lighter overlay for smoothness
-  /> */}
-
-                {/* KI thinner curve */}
-                <path d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${decisionXPx} ${curveYEnd}`} stroke={kiColor} strokeWidth={kiThickness * 0.6} strokeLinecap='round' fill='none' />
-                {/* KI thicker overlay */}
-                {/*   <path
-    d={`M ${kiX} ${curveYStart} Q ${kiX - 8} ${controlY}, ${bubbleX} ${curveYEnd}`}
-    stroke={kiColor}
-    strokeWidth={kiThickness}
-    strokeLinecap="round"
-    fill="none"
-    strokeOpacity={0.3}
-  /> */}
+                {/* Mensch variable-width curve */}
+                <VariableWidthCurve x1={menschX} y1={curveYStart} cx={menschX + 2} cy={controlY} x2={decisionXPx} y2={curveYEnd} color={menschColor} min={4} max={14} />
+                {/* KI variable-width curve */}
+                <VariableWidthCurve x1={kiX} y1={curveYStart} cx={kiX - 8} cy={controlY} x2={decisionXPx} y2={curveYEnd} color={kiColor} min={4} max={14} />
               </svg>
             </div>
 
