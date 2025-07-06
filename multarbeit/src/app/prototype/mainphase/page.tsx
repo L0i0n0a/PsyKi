@@ -134,6 +134,13 @@ const Mainphase = () => {
   };
 
   if (finished) {
+    const feedback = getFeedback(responses, index);
+  const accuracy = feedback?.avgAccuracy ?? '–';
+
+  // TODO genauigkeit 1 & 2
+  const rawMessage = t('completionMessage');
+  const messageWithAccuracy = rawMessage.replaceAll('%GENAUIGKEIT%', accuracy + "%");
+
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
         <div className='header border10'>
@@ -145,11 +152,9 @@ const Mainphase = () => {
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
           <h1 className='text-4xl font-bold mb-6 text-center'>{t('completionTitle')}</h1>
           <p className='mb-8 text-lg text-center' style={{ whiteSpace: 'pre-line' }}>
-            {t('completionMessage')}
+            {messageWithAccuracy}
           </p>
-          <button className='px-6 py-2 text-white hover:bg-[#004346]! rounded-full transition-all duration-200 ease-in-out text-lg font-semibold cursor-pointer' onClick={() => router.push('/')}>
-            {t('buttonHome')}
-          </button>
+          <p className='text-lg'>Sie können die Seite nun schließen.</p>
         </div>
       </div>
     );
