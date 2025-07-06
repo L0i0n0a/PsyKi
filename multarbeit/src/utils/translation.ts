@@ -13,10 +13,38 @@ const dictionaries = {
   de,
 } as const;
 
+type ContentData = Partial<{
+  trustedCount: number;
+  correctTrustedCount: number;
+  accuracyAI: number;
+  accuracyUser: number;
+  accuracyWithoutHelp: number;
+  accuracyWithHelp: number;
+  totalCount: number;
+  acceptedCount: number;
+  acceptedCorrectCount: number;
+  rightCount: number;
+  allCount: number;
+}>;
+
+
 export const useTranslation = (locale: Locale = 'de') => {
-  const t = (key: TranslationKeys): string => {
-    return dictionaries[locale][key] || key;
+  const getNestedTranslation = (obj: any, key: string): string => {
+    return key
+      .split('.')
+      .reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj) || key;
   };
 
+  const t = (key: string, contentData?: ContentData): string => {
+    let translation = getNestedTranslation(dictionaries[locale], key);
+
+    if (contentData) {
+      Object.entries(contentData).forEach(([k, v]) => {
+        translation = translation.replaceAll(`{{${k}}}`, String(v));
+      });
+    }
+
+    return translation;
+  };
   return { t };
 };
