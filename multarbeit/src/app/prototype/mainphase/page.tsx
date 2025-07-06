@@ -20,6 +20,7 @@ const Mainphase = () => {
   const [showRecom, setShowRecom] = useState(false);
   const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
+  const [feedbackCount, setFeedbackCount] = useState(0);
 
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
@@ -86,6 +87,12 @@ const Mainphase = () => {
     }
   }, [code, router, hasHydrated]);
 
+    useEffect(() => {
+    if (index > 0 && (index + 1) % 6 === 0) {
+      setFeedbackCount((prev) => prev + 1);
+    }
+  }, [index]);
+
   const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
 
@@ -133,8 +140,12 @@ const Mainphase = () => {
     }
   };
 
+  const correctCount = useParticipantStore((state) => state.correctCount);
+  const totalCount = useParticipantStore((state) => state.totalCount);
+  const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+
   if (finished) {
-    const feedback = getFeedback(responses, index);
+  const feedback = getFeedback(responses, index);
   const accuracy = feedback?.avgAccuracy ?? '–';
 
   // TODO genauigkeit 1 & 2
@@ -184,12 +195,26 @@ const Mainphase = () => {
                   {(() => {
                     const feedback = getFeedback(responses, index);
                     if (!feedback) return null;
-                    return (
-                      <div>
-                        <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                        {t('feedbackNoteText')} <b>{feedback.avgAccuracy}%</b>
-                      </div>
-                    );
+                    if (feedbackCount % 2 === 0) {
+                      return (
+                        <span>
+                          <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                          <div>
+                            {t('feedbackNoteText')} <b>{accuracy}%</b>
+                          </div>
+                        </span>
+                      );
+                    }
+                    else {
+                      return (
+                        <span>
+                          <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                          <div>
+                            {t('feedback2', { rightCount: correctCount, allCount: totalCount })}
+                          </div>
+                        </span>
+                      );
+                    }
                   })()}
                 </div>
               </mark>
