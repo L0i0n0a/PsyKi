@@ -1,6 +1,6 @@
 {
-  "title": "Prototype V1",
-  "welcome": "Welcome to Prototype V1",
+  "title": "Prototype",
+  "welcome": "Welcome to Prototype",
   "instructions": "In this study, you will see an image with colored dots in each round.<br/><br/>Your task is to decide whether there are more <span class=\"text-orange-500 font-bold\">orange</span> or more <span class=\"text-blue-500 font-bold\">blue</span> dots.<br/><br/>In this first phase (20 images), you will become familiar with the task.<br/><br/>At the same time, we will determine how well you can recognize patterns – your individual sensitivity – based on your decisions.<br/>Simply decide according to your own judgment.",
   "start": "Start",
   "instructionTitle": "Decide whether there are more orange or more blue dots in the image.",
