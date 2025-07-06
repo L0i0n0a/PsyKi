@@ -17,7 +17,7 @@
   "buttonHome": "Back to home",
   "mainPhaseHeader": "Main Phase: ",
   "buttonConfirmNext": "Confirm & Next",
-  "assistantRecommendationTitle": "The assistance system recommends:",
+  "assistantRecommendationTitle": "The AI recommends:",
   "buttonOrange": "Orange",
   "buttonBlue": "Blue",
   "zScore": "Combined Recommendation",
@@ -59,7 +59,7 @@
   "labelBlue": "more blue",
   "labelStrongBlue": "strong blue",
   "attentionCheckTitle": "Attention Check",
-  "attentionCheckText": "Click on the blue button.",
+  "attentionCheckText": "Please click the 'Blue' button in this test, even if the image is orange.",
   "feedback1": "Your average accuracy is: ",
   "feedback2": "So far you were correct in {{rightCount}} of {{allCount}} cases.",
   "feedback": {

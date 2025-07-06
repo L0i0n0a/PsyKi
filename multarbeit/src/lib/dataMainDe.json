@@ -2,27 +2,32 @@
   {
     "header": 1,
     "color": 0.47,
-    "recom": " Eher Blau (53% Wahrscheinlichkeit für Blau)."
+    "recom": " Eher Blau (53% Wahrscheinlichkeit für Blau).",
+    "aiAccuracy": 0.93
   },
   {
     "header": 2,
     "color": 0.52,
-    "recom": " Eher Orange (56% Wahrscheinlichkeit für Orange)."
+    "recom": " Eher Orange (56% Wahrscheinlichkeit für Orange).",
+    "aiAccuracy": 0.93
   },
   {
     "header": 3,
-    "color": 0.49,
-    "recom": " Eher Blau (51% Wahrscheinlichkeit für Blau)."
+    "color": 1,
+    "recom": " Eher Blau (51% Wahrscheinlichkeit für Blau).",
+    "aiAccuracy": 0.93
   },
   {
     "header": 4,
-    "color": 0.54,
-    "recom": " Eher Orange (58% Wahrscheinlichkeit für Orange)."
+    "color": 1,
+    "recom": " Eher Orange (58% Wahrscheinlichkeit für Orange).",
+    "aiAccuracy": 0.93
   },
   {
     "header": 5,
-    "color": 0.51,
-    "recom": " Eher Orange (53% Wahrscheinlichkeit für Orange)."
+    "color": 1,
+    "recom": " Eher Orange (53% Wahrscheinlichkeit für Orange).",
+    "aiAccuracy": 0.93
   },
   {
     "header": 6,

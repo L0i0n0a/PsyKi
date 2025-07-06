@@ -17,7 +17,7 @@
   "buttonHome": "Zurück zur Hauptseite",
   "mainPhaseHeader": "Hauptphase: ",
   "buttonConfirmNext": "Bestätigen & Weiter",
-  "assistantRecommendationTitle": "Die Entscheidungshilfe empfiehlt:",
+  "assistantRecommendationTitle": "Die KI empfiehlt:",
   "buttonOrange": "Orange",
   "buttonBlue": "Blau",
   "zScore": "Kombinierte Empfehlung",
@@ -59,7 +59,7 @@
   "labelBlue": "eher blau",
   "labelStrongBlue": "stark blau",
   "attentionCheckTitle": "Aufmerksamkeitscheck",
-  "attentionCheckText": "Klicke auf den blauen Button.",
+  "attentionCheckText": "Klicke bei diesem Test auf jeden Fall auf den Button 'Blau' auch wenn das Bild orange ist.",
   "feedback1": "Ihre durchschnittliche Genauigkeit beträgt: ",
   "feedback2": "Bisher lagen Sie in {{rightCount}} von {{allCount}} Fällen richtig.",
   "feedback": {

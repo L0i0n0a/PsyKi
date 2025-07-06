@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
-import dataDe from '@/lib/dataMainDe.json';
-import dataEn from '@/lib/dataMainEn.json';
+import dataDeRaw from '@/lib/dataMainDe.json';
+import dataEnRaw from '@/lib/dataMainEn.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
@@ -11,6 +11,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AccuracyComparison from '@/components/AccuracyComparison';
 // import { v4 as uuidv4 } from 'uuid';
 import { useParticipantStore } from '@/store';
+
+type MainPhaseItem = {
+  header: number;
+  color: number;
+  recom: string;
+  aiAccuracy?: number;
+};
 
 const Mainphase = () => {
   const router = useRouter();
@@ -21,6 +28,9 @@ const Mainphase = () => {
   const [locale, setLocale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
   const [feedbackCount, setFeedbackCount] = useState(0);
+
+  const dataDe = dataDeRaw as MainPhaseItem[];
+  const dataEn = dataEnRaw as MainPhaseItem[];
 
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
@@ -103,6 +113,10 @@ const Mainphase = () => {
   const handleClick = () => {
     if (finished) return;
     setShowRecom(true);
+
+    console.log('Human Calc:', HumanCalc);
+    console.log('AI Calc:', AiCalc);
+    console.log('Human + AI Calculation:', HuAiCalc);
   };
 
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
@@ -151,6 +165,11 @@ const Mainphase = () => {
   const correctCount = useParticipantStore((state) => state.correctCount);
   const totalCount = useParticipantStore((state) => state.totalCount);
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+
+  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
+  const HumanCalc = (Number(accuracy) / (Number(accuracy) * current.aiAccuracy!)) * sliderValue;
+  const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy))) * aiGuess;
+  const HuAiCalc = HumanCalc + AiCalc;
 
   if (finished) {
     const feedback = getFeedback(responses, index);
@@ -282,14 +301,14 @@ const Mainphase = () => {
               </div>
             ) : (
               <div className='flex flex-col w-full space-y-6 '>
+                <div className='text-center flex space-x-2'>
+                  <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
+                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{aiGuess * 100}%</p>
+                </div>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={-1} kiPercent={1} locale={locale} decision={sliderValue} kiAccuracy={0.93} menschAccuracy={0.8} />
+                  <AccuracyComparison menschPercent={HumanCalc} kiPercent={AiCalc} locale={locale} decision={HuAiCalc} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
-                  <div className='text-center'>
-                    <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
-                    <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</p>
-                  </div>
                   <div className='flex w-full justify-center space-x-4'>
                     <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={() => handleChoice('orange')}>
                       {t('buttonOrange')}
