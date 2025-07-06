@@ -60,6 +60,8 @@ const Testphase = () => {
     setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
   };
 
+  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
+
   const handleClick = () => {
     if (finished) return;
     const response = {
@@ -68,6 +70,13 @@ const Testphase = () => {
       sliderValue,
       timestamp: new Date().toISOString(),
     };
+
+    const userChoice = sliderValue > 50 ? 'orange' : 'blue';
+    const correctChoice = current.color < 0.5 ? 'orange' : 'blue';
+    const isCorrect = userChoice === correctChoice;
+
+    incrementAccuracy(isCorrect);
+
     setResponses((prev) => [...prev, response]);
     //console.log('Collected response:', response);
 
@@ -123,7 +132,11 @@ const Testphase = () => {
     }
   }, [code, router, hasHydrated]);
 
+  const correctCount = useParticipantStore((state) => state.correctCount);
+  const totalCount = useParticipantStore((state) => state.totalCount);
+
   const current = data[index];
+  const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
   if (finished) {
     return (
@@ -183,12 +196,12 @@ const Testphase = () => {
                       <span>
                         <div className='font-bold'> {t('feedbackNoteTitle')}</div>
                         <div>
-                          {t('feedbackNoteText')} <b>{feedback.avgAccuracy}%</b>
+                          {t('feedbackNoteText')} <b>{accuracy}%</b>
                         </div>
                       </span>
                     );
                   })()}
-                </div>{' '}
+                </div>
               </mark>
             </motion.div>
           ) : null}

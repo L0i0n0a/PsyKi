@@ -23,21 +23,22 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   // const kiThickness = scaleThickness(kiPercent);
   const decisionPercent = decision;
 
-  const menschX = (100 - menschPercent) / 2;
-  const kiX = 50 + kiPercent / 2;
+  const menschX = menschPercent; // 0–100 maps to 0–100%
+  const kiX = kiPercent;
+
+  // 0–100 maps to 0–100%
 
   //console.log(decision);
 
   // Todo correct calculation for decision aid
-  const decisionX = decisionPercent <= 50 ? 50 - decisionPercent : decisionPercent;
-
+  const decisionX = decisionPercent;
   // const bubbleX = 50; // stays centered
 
   const curveYStart = 64;
   const curveYEnd = 64;
   const controlY = 0;
 
-  const decisionXPx = (decisionX / 100) * 100;
+  const decisionXPx = decisionX;
   function hexToRgb(hex: string) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -74,15 +75,15 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   const decisionColor =
     decisionPercent >= 50
       ? interpolateColor(
-        '#90CAF9', // light orange
-        '#0D47A1', // dark orange
-        (decisionPercent - 50) / 50 // maps 50–100 to 0–1
-      )
+          '#90CAF9', // light orange
+          '#0D47A1', // dark orange
+          (decisionPercent - 50) / 50 // maps 50–100 to 0–1
+        )
       : interpolateColor(
-        '#FFE0B2', // light blue
-        '#FB8C00', // dark blue
-        (50 - decisionPercent) / 50 // maps 50–0 to 0–1
-      );
+          '#FFE0B2', // light blue
+          '#FB8C00', // dark blue
+          (50 - decisionPercent) / 50 // maps 50–0 to 0–1
+        );
 
   function VariableWidthCurve({
     x1,
@@ -130,7 +131,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
       <h1 className='text-2xl mb-36 text-center'> {t('zScore')}</h1>
       <div className='flex flex-col w-full max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
-          {/* Mensch 
+          {/* Mensch
           <div className='text-center'>
             <p className='text-base font-semibold'>{t('human')}</p>
             <p className='text-lg font-bold'>{menschPercent}%</p>
@@ -185,7 +186,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
                   left: `${decisionX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: decisionColor,
-                  border: "5px solid #ffffff",
+                  border: '5px solid #ffffff',
                 }}
               />
 
@@ -210,16 +211,15 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
             <p>{t('accuracyValues')}</p>
             <div className='flex flex-row justify-center'>
               <div>
-                  <p className='text-base font-semibold'>{t('human')}</p>
-                  <p className='text-lg font-bold'>{menschPercent}%</p>
-                </div>
+                <p className='text-base font-semibold'>{t('human')}</p>
+                <p className='text-lg font-bold'>{menschPercent}%</p>
+              </div>
               <div>
-                  <p className='text-base font-semibold'>{t('ki')}</p>
-                  <p className='text-lg font-semibold'>{kiPercent}%</p>
-                </div>
+                <p className='text-base font-semibold'>{t('ki')}</p>
+                <p className='text-lg font-semibold'>{kiPercent}%</p>
+              </div>
             </div>
           </div>
-
 
           {/* KI */}
           {/* <div className='text-center'>
