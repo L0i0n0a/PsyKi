@@ -1,0 +1,802 @@
+[
+  {
+    "color": 0.016,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.055,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.019,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.073,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.015,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.027,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.016,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.087,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.018,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.016,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.063,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.063,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.02,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.081,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": -0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.07,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.009,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.041,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.069,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.031,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.032,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.034,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.075,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.082,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.033,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.077,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.085,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.027,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.021,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.013,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.054,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.065,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.052,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.038,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.017,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.019,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.063,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.05,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.02,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.069,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.072,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": -0.024,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.034,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.073,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.029,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.04,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.051,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.082,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.031,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.03,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.033,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.046,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.084,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.012,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.006,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.058,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.01,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.073,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.025,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.086,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.01,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.082,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.05,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.089,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.087,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.074,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.027,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.036,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.003,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.089,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.049,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.043,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.019,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.052,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.036,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.055,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.088,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.085,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.079,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.049,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.045,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.068,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.088,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.071,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.009,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.043,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.037,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.058,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.031,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.047,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.024,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.002,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.029,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.016,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.044,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.078,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": -0.055,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.069,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": -0.069,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.005,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.068,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.06,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.078,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.079,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.058,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.056,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.079,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.062,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.012,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.043,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.074,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.031,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.074,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.008,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.067,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.033,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.03,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.008,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.027,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.013,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.038,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.023,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.084,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.052,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.062,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.059,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.054,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.029,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.055,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.024,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.013,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.081,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.059,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": -0.03,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.01,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.06,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.044,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.07,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.079,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.065,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.043,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.034,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.012,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.064,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.05,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.061,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.009,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.072,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.003,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.04,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.086,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.004,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.008,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.029,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.046,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.015,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.022,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.088,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.048,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.071,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.077,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.038,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.081,
+    "aiAccuracy": 0.4
+  },
+  {
+    "color": 0.033,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.006,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.011,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.014,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.073,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.088,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.066,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.05,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.06,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.04,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.08,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.014,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.027,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.001,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.068,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": 0.03,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.078,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.078,
+    "aiAccuracy": 0.93
+  },
+  {
+    "color": -0.069,
+    "aiAccuracy": 0.4
+  }
+]

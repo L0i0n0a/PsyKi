@@ -224,7 +224,7 @@ const Testphase = () => {
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
-          {t('testPhaseHeader')} {current.header}/20
+          {t('testPhaseHeader')} {index + 1}/{data.length}
         </h2>
         <div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden'>
           <div

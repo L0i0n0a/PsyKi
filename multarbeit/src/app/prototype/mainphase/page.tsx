@@ -2,8 +2,7 @@
 import { useEffect, useState } from 'react';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
-import dataDeRaw from '@/lib/dataMainDe.json';
-import dataEnRaw from '@/lib/dataMainEn.json';
+import dataRaw from '@/lib/dataMain.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
@@ -13,7 +12,6 @@ import AccuracyComparison from '@/components/AccuracyComparison';
 import { useParticipantStore } from '@/store';
 
 type MainPhaseItem = {
-  header: number;
   color: number;
   recom: string;
   aiAccuracy?: number;
@@ -29,8 +27,7 @@ const Mainphase = () => {
   const { t } = useTranslation(locale);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
-  const dataDe = dataDeRaw as MainPhaseItem[];
-  const dataEn = dataEnRaw as MainPhaseItem[];
+  const data = dataRaw as MainPhaseItem[];
 
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
@@ -103,7 +100,6 @@ const Mainphase = () => {
     }
   }, [index]);
 
-  const data = locale === 'de' ? dataDe : dataEn;
   const current = data[index];
 
   const toggleLanguage = () => {
@@ -117,6 +113,9 @@ const Mainphase = () => {
     console.log('Human Calc:', HumanCalc);
     console.log('AI Calc:', AiCalc);
     console.log('Human + AI Calculation:', HuAiCalc);
+    console.log('Acc:', accuracy);
+    console.log('SLV:', sliderValue);
+    console.log('Ai Guess', aiGuess);
   };
 
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
@@ -167,8 +166,8 @@ const Mainphase = () => {
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
   const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
-  const HumanCalc = (Number(accuracy) / (Number(accuracy) * current.aiAccuracy!)) * sliderValue;
-  const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy))) * aiGuess;
+  const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
+  const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
 
   if (finished) {
@@ -270,7 +269,7 @@ const Mainphase = () => {
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
-          {t('mainPhaseHeader')} {current.header}/200
+          {t('mainPhaseHeader')} {index + 1}/{data.length}
         </h2>
         <div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden'>
           <div
