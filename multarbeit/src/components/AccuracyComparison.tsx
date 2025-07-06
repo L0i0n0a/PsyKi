@@ -205,13 +205,14 @@ const decisionColor =
             </div>
 
             {/* Labels */}
-            <div className='flex justify-between text-sm text-gray-600 mt-2 px-1'>
-              <span>{t('labelStrongOrange')}</span>
-              <span>{t('labelOrange')}</span>
-              <span>{t('labelNeutral')}</span>
-              <span>{t('labelBlue')}</span>
-              <span>{t('labelStrongBlue')}</span>
-            </div>
+            <div className='grid grid-cols-5 text-sm text-gray-600 mt-2 px-1 text-center'>
+  <span className='justify-self-start'>{t('labelStrongOrange')}</span>
+  <span>{t('labelOrange')}</span>
+  <span>{t('labelNeutral')}</span>
+  <span>{t('labelBlue')}</span>
+  <span className='justify-self-end'>{t('labelStrongBlue')}</span>
+</div>
+
           </div>
           {/* Prozentwerte unterhalb der Marker */}
           <div className='my-14 absolute top-4 w-full flex flex-col justify-center text-center font-semibold px-2'>
