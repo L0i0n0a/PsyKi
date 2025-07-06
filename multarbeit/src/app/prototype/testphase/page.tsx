@@ -22,6 +22,7 @@ const Testphase = () => {
   const instructionStepsLength = 6;
   const isLastStep = step === instructionStepsLength - 1;
   const code = useParticipantStore((state) => state.code);
+  const [feedbackCount, setFeedbackCount] = useState(0);
 
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
@@ -47,6 +48,7 @@ const Testphase = () => {
       diffs,
     };
   }
+
 
   const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
     if (typeof window !== 'undefined') {
@@ -132,6 +134,12 @@ const Testphase = () => {
     }
   }, [code, router, hasHydrated]);
 
+  useEffect(() => {
+    if (index > 0 && (index + 1) % 6 === 0) {
+      setFeedbackCount((prev) => prev + 1);
+    }
+  }, [index]);
+
   const correctCount = useParticipantStore((state) => state.correctCount);
   const totalCount = useParticipantStore((state) => state.totalCount);
 
@@ -153,9 +161,8 @@ const Testphase = () => {
           <MainText locale={locale} step={step} setStep={setStep} instructionStepsLength={instructionStepsLength} />
           <button
             disabled={!isLastStep}
-            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-              !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
-            }`}
+            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${!isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
+              }`}
             onClick={() => router.push('/prototype/mainphase')}>
             Start
           </button>
@@ -184,22 +191,31 @@ const Testphase = () => {
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
-                {/* <div className='flex items-center justify-center space-x-1'>
-                  <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                  <div>{t('feedbackNoteText')}</div>
-                </div> */}
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
                     const feedback = getFeedback(responses, index);
                     if (!feedback) return null;
-                    return (
-                      <span>
-                        <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                        <div>
-                          {t('feedbackNoteText')} <b>{accuracy}%</b>
-                        </div>
-                      </span>
-                    );
+
+                    if (feedbackCount % 2 === 0) {
+                      return (
+                        <span>
+                          <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                          <div>
+                            {t('feedbackNoteText')} <b>{accuracy}%</b>
+                          </div>
+                        </span>
+                      );
+                    }
+                    else {
+                      return (
+                        <span>
+                          <div className='font-bold'> {t('feedbackNoteTitle')}</div>
+                          <div>
+                            {t('feedback2', { rightCount: correctCount, allCount: totalCount })}
+                          </div>
+                        </span>
+                      );
+                    }
                   })()}
                 </div>
               </mark>
@@ -228,9 +244,8 @@ const Testphase = () => {
               <button
                 id='buttonNext'
                 disabled={sliderValue === 50}
-                className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-                  sliderValue === 50 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
-                }`}
+                className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${sliderValue === 50 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                  }`}
                 onClick={handleClick}>
                 {t('buttonNext')}
               </button>
