@@ -12,12 +12,14 @@ const getThumbStyle = (value: number) => {
   let color = 'rgba(255,255,255,0)';
   const border = '2px solid white';
 
-  if (value < 50) {
-    const opacity = value / 50;
-    color = `rgba(251, 140, 0, ${1 - opacity})`;
-  } else if (value > 50) {
-    const opacity = (value - 50) / 50;
+  if (value < 0) {
+    // Left side: blue, opacity increases as value approaches -1
+    const opacity = Math.abs(value);
     color = `rgba(13, 71, 161, ${opacity})`;
+  } else if (value > 0) {
+    // Right side: orange, opacity increases as value approaches 1
+    const opacity = value;
+    color = `rgba(251, 140, 0, ${opacity})`;
   }
 
   return `
@@ -33,25 +35,25 @@ const getThumbStyle = (value: number) => {
 };
 
 const getLabelText = (value: number, t: (key: 'labelOrange' | 'labelBlue' | 'labelStrongOrange' | 'labelStrongBlue' | 'labelNeutral') => string) => {
-  if (value === 50) {
+  if (value === 0) {
     return t('labelNeutral');
   }
-  if (value < 25) {
-    return t('labelStrongOrange');
-  }
-  if (value < 50) {
-    return t('labelOrange');
-  }
-  if (value > 75) {
+  if (value < -0.5) {
     return t('labelStrongBlue');
   }
-  if (value > 50) {
+  if (value < 0) {
     return t('labelBlue');
+  }
+  if (value > 0.5) {
+    return t('labelStrongOrange');
+  }
+  if (value > 0) {
+    return t('labelOrange');
   }
   return '';
 };
 
-const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange, locale }) => {
+const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange, locale }) => {
   const [internalValue, setInternalValue] = useState<number>(initial);
   const { t } = useTranslation(locale);
 
@@ -62,7 +64,7 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange
   }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVal = parseInt(e.target.value, 10);
+    const newVal = parseFloat(e.target.value);
     if (typeof value !== 'number') {
       setInternalValue(newVal);
     }
@@ -80,23 +82,23 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 50, value, onChange
       </div>
       <input
         type='range'
-        min={0}
-        max={100}
+        min={-1}
+        max={1}
+        step={0.01}
         value={sliderValue}
         onChange={handleChange}
         className='color-slider w-full appearance-none'
         style={{
           background: `
-            linear-gradient(
-              to right,
-              #FB8C00 0%,
-              #FFE0B2 49.5%,
-              white 49.5%,
-              white 50.5%,
-              #90CAF9 50.5%,
-              #0D47A1 100%
-            )
-          `,
+      linear-gradient(
+        to right,
+        #0D47A1 0%,
+        #90CAF9 49%,
+        white 50%,
+        #FFE0B2 51%,
+        #FB8C00 100%
+      )
+    `,
         }}
       />
       <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>

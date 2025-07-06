@@ -11,6 +11,10 @@ type AccuracyComparisonProps = {
   decision: number;
 };
 
+function scaleToPercent(val: number) {
+  return ((val + 1) / 2) * 100;
+}
+
 export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
 
@@ -23,15 +27,16 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   // const kiThickness = scaleThickness(kiPercent);
   const decisionPercent = decision;
 
-  const menschX = menschPercent; // 0–100 maps to 0–100%
-  const kiX = kiPercent;
+  const menschX = scaleToPercent(menschPercent); // menschPercent is now -1..1
+  const kiX = scaleToPercent(kiPercent);
 
   // 0–100 maps to 0–100%
 
   //console.log(decision);
 
   // Todo correct calculation for decision aid
-  const decisionX = decisionPercent;
+  const decisionX = scaleToPercent(decision);
+
   // const bubbleX = 50; // stays centered
 
   const curveYStart = 64;
@@ -61,15 +66,16 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   }
 
   const menschColor = interpolateColor(
-    '#FFE0B2', // light orange (0%)
-    '#FB8C00', // dark orange (100%)
-    menschPercent / 100
+    '#FB8C00', // dark orange (right)
+    '#FFE0B2', // light orange (left)
+
+    menschX / 100
   );
 
   const kiColor = interpolateColor(
-    '#90CAF9', // light blue (0%)
-    '#0D47A1', // dark blue (100%)
-    kiPercent / 100
+    '#90CAF9', // light blue (left)
+    '#0D47A1', // dark blue (right)
+    kiX / 100
   );
 
   const decisionColor =
@@ -131,7 +137,6 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
       <h1 className='text-2xl mb-36 text-center'> {t('zScore')}</h1>
       <div className='flex flex-col w-full max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
-
           {/* Z-Score Visualisierung */}
           <div className='relative flex-1 mx-4'>
             <div

@@ -15,7 +15,7 @@ import { useParticipantStore } from '@/store';
 const Mainphase = () => {
   const router = useRouter();
   const [index, setIndex] = useState(0);
-  const [sliderValue, setSliderValue] = useState(50);
+  const [sliderValue, setSliderValue] = useState(0);
   const [finished, setFinished] = useState(false);
   const [showRecom, setShowRecom] = useState(false);
   const [locale, setLocale] = useState<'de' | 'en'>('de');
@@ -118,8 +118,8 @@ const Mainphase = () => {
     setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
     //console.log('Collected response:', response);
 
-    const userChoice = sliderValue < 50 ? 'orange' : 'blue';
-    const correctChoice = current.color < 0.5 ? 'orange' : 'blue';
+    const userChoice = sliderValue < 0 ? 'orange' : 'blue';
+    const correctChoice = current.color < 0 ? 'blue' : 'orange';
     const isCorrect = userChoice === correctChoice;
 
     incrementAccuracy(isCorrect);
@@ -139,7 +139,7 @@ const Mainphase = () => {
 
     if (index < data.length - 1) {
       setIndex(nextIndex);
-      setSliderValue(50);
+      setSliderValue(0);
       setShowRecom(false);
     } else {
       setFinished(true);
@@ -251,7 +251,7 @@ const Mainphase = () => {
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
-          {t('mainPhaseHeader')} {current.header}/50
+          {t('mainPhaseHeader')} {current.header}/200
         </h2>
         <div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden'>
           <div
@@ -266,14 +266,14 @@ const Mainphase = () => {
             {!showRecom ? (
               <div>
                 <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
-                  <ColorSlider initial={50} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
+                  <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
                 </div>
                 <div className='flex justify-center mt-16!'>
                   <button
                     id='buttonNext'
-                    disabled={sliderValue === 50}
+                    disabled={sliderValue === 0}
                     className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-                      sliderValue === 50 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                      sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
                     }`}
                     onClick={handleClick}>
                     {t('buttonNext')}
@@ -283,7 +283,7 @@ const Mainphase = () => {
             ) : (
               <div className='flex flex-col w-full space-y-6 '>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale} decision={sliderValue} />
+                  <AccuracyComparison menschPercent={-1} kiPercent={1} locale={locale} decision={sliderValue} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='text-center'>
