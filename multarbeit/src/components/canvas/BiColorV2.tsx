@@ -39,9 +39,8 @@ const BiColorV2 = ({ percentage }: BiColorV2Props) => {
 
   const pixelAmount = canvasSize * canvasSize;
 
-  const color1 = [255, 128, 0, 255];
-
-  const color2 = [0, 0, 255, 255];
+  const color1 = [0, 0, 255, 255];
+  const color2 = [255, 128, 0, 255];
 
   //const [stats, setStats] = useState({ color1: 0, color2: 0, percentage: 0 });
 
@@ -96,7 +95,8 @@ const BiColorV2 = ({ percentage }: BiColorV2Props) => {
   }
 
   function recalculate() {
-    const colorPixels = Math.round(pixelAmount * percentage);
+    const orangeFraction = (percentage + 1) / 2;
+    const colorPixels = Math.round(pixelAmount * orangeFraction);
     colorArray.current.fill(1, 0, colorPixels);
     colorArray.current.fill(0, colorPixels);
     fisherYates(colorArray.current);
