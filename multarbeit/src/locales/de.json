@@ -59,5 +59,8 @@
   "labelOrange": "eher orange",
   "labelNeutral": "neutral",
   "labelBlue": "eher blau",
-  "labelStrongBlue": "stark blau"
+  "labelStrongBlue": "stark blau",
+
+  "attentionCheckTitle": "Aufmerksamkeitscheck",
+  "attentionCheckText": "Klicke auf den blauen Button."
 }
