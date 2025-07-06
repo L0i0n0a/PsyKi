@@ -87,7 +87,7 @@ const Mainphase = () => {
     }
   }, [code, router, hasHydrated]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (index > 0 && (index + 1) % 6 === 0) {
       setFeedbackCount((prev) => prev + 1);
     }
@@ -105,6 +105,8 @@ const Mainphase = () => {
     setShowRecom(true);
   };
 
+  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
+
   const handleChoice = (button: 'orange' | 'blue') => {
     const response = {
       index,
@@ -115,6 +117,12 @@ const Mainphase = () => {
     };
     setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
     //console.log('Collected response:', response);
+
+    const userChoice = sliderValue < 50 ? 'orange' : 'blue';
+    const correctChoice = current.color < 0.5 ? 'orange' : 'blue';
+    const isCorrect = userChoice === correctChoice;
+
+    incrementAccuracy(isCorrect);
 
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
     fetch('/api/save-data', {
@@ -145,12 +153,12 @@ const Mainphase = () => {
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
   if (finished) {
-  const feedback = getFeedback(responses, index);
-  const accuracy = feedback?.avgAccuracy ?? '–';
+    const feedback = getFeedback(responses, index);
+    const accuracy = feedback?.avgAccuracy ?? '–';
 
-  // TODO genauigkeit 1 & 2
-  const rawMessage = t('completionMessage');
-  const messageWithAccuracy = rawMessage.replaceAll('%GENAUIGKEIT%', accuracy + "%");
+    // TODO genauigkeit 1 & 2
+    const rawMessage = t('completionMessage');
+    const messageWithAccuracy = rawMessage.replaceAll('%GENAUIGKEIT%', accuracy + '%');
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -204,14 +212,11 @@ const Mainphase = () => {
                           </div>
                         </span>
                       );
-                    }
-                    else {
+                    } else {
                       return (
                         <span>
                           <div className='font-bold'> {t('feedbackNoteTitle')}</div>
-                          <div>
-                            {t('feedback2', { rightCount: correctCount, allCount: totalCount })}
-                          </div>
+                          <div>{t('feedback2', { rightCount: correctCount, allCount: totalCount })}</div>
                         </span>
                       );
                     }
@@ -231,7 +236,6 @@ const Mainphase = () => {
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
-                  
                     return (
                       <div>
                         <div className='font-bold'> {t('attentionCheckTitle')}</div>
@@ -243,7 +247,6 @@ const Mainphase = () => {
               </mark>
             </motion.div>
           ) : null}
-
         </AnimatePresence>
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
@@ -284,8 +287,8 @@ const Mainphase = () => {
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='text-center'>
-                     <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
-                     <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</p>
+                    <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
+                    <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</p>
                   </div>
                   <div className='flex w-full justify-center space-x-4'>
                     <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={() => handleChoice('orange')}>
