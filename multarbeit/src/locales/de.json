@@ -28,7 +28,6 @@
   "sliderBlue": "eher Blau",
   "decisionScale": "Entscheidungsskala",
   "accuracyValues": "Genauigkeitswerte",
-
   "carouselSlide1Title": "Einführung",
   "carouselSlide1Text": "In dieser Phase sehen Sie wieder Bilder mit orangenen und blauen Punkten. Ihre Aufgabe bleibt gleich: Entscheiden Sie, welche Farbe häufiger zu sehen ist.",
   "carouselSlide2Title": "Unterstützung durch ein System",
@@ -54,13 +53,29 @@
   "confirmAge": "Ich bin mindestens 18 Jahre alt.",
   "agreeToParticipate": "Ich habe die Informationen gelesen und willige in die Teilnahme ein.",
   "continue": "Weiter",
-
   "labelStrongOrange": "stark orange",
   "labelOrange": "eher orange",
   "labelNeutral": "neutral",
   "labelBlue": "eher blau",
   "labelStrongBlue": "stark blau",
-
   "attentionCheckTitle": "Aufmerksamkeitscheck",
-  "attentionCheckText": "Klicke auf den blauen Button."
+  "attentionCheckText": "Klicke auf den blauen Button.",
+  "feedback1": "Ihre durchschnittliche Genauigkeit beträgt: ",
+  "feedback2": "Bisher lagen Sie in {{rightCount}} von {{allCount}} Fällen richtig.",
+  "feedback": {
+    "titles": {
+      "1": "Letzte 10 Entscheidungen",
+      "2": "Genauigkeit",
+      "3": "Hinweis",
+      "4": "Abschluss-Feedback",
+      "5": "Nutzungsverhalten"
+    },
+    "content": {
+      "1": "Du hast der Entscheidungshilfe in <strong>{{trustedCount}}</strong> Fällen vertraut – <strong>{{correctTrustedCount}}</strong> davon waren korrekt.",
+      "2": "Die Entscheidungshilfe lag bisher in <strong>{{accuracyAI}} %</strong> der Fälle richtig.<br/>Deine eigene Genauigkeit liegt derzeit bei <strong>{{accuracyUser}} %</strong>.",
+      "3": "Auch die KI kann Fehler machen. Sie basiert auf einer festen Genauigkeit von <strong>{{accuracyAI}} %</strong>. Dein Urteil kann in manchen Fällen mehr Gewicht haben – <em>vor allem, wenn du sehr sicher bist</em>.",
+      "4": "In der Testphase <em>(ohne Entscheidungshilfe)</em> lagst du bei <strong>{{accuracyWithoutHelp}} %</strong>. Mit Hilfe waren es <strong>{{accuracyWithHelp}} %</strong>.",
+      "5": "Du hast die Empfehlung in <strong>{{acceptedCount}} von {{totalCount}}</strong> Fällen übernommen – <strong>{{acceptedCorrectCount}}</strong> davon waren korrekt."
+    }
+  }
 }

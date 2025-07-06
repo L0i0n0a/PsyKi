@@ -28,7 +28,6 @@
   "sliderBlue": "rather Blue",
   "decisionScale": "Decision Scale",
   "accuracyValues": "Accuracy Values",
-
   "carouselSlide1Title": "Introduction",
   "carouselSlide1Text": "In this phase, you will again see images with orange and blue dots. Your task remains the same: decide which color appears more frequently.",
   "carouselSlide2Title": "Support from a System",
@@ -59,7 +58,24 @@
   "labelNeutral": "neutral",
   "labelBlue": "more blue",
   "labelStrongBlue": "strong blue",
-
   "attentionCheckTitle": "Attention Check",
-  "attentionCheckText": "Click on the blue button."
+  "attentionCheckText": "Click on the blue button.",
+  "feedback1": "Your average accuracy is: ",
+  "feedback2": "So far you were correct in {{rightCount}} of {{allCount}} cases.",
+  "feedback": {
+    "titles": {
+      "1": "Last 10 decisions",
+      "2": "Accuracy",
+      "3": "Note",
+      "4": "Final feedback",
+      "5": "Usage behavior"
+    },
+    "content": {
+      "1": "You have trusted the decision aid in <strong>{{trustedCount}}</strong> cases - <strong>{{correctTrustedCount}}</strong> of these were correct. ",
+      "2": "The decision aid has been correct in <strong>{{accuracyAI}} %</strong> of cases so far.<br/>Your own accuracy is currently <strong>{{accuracyUser}} %</strong>.",
+      "3": "The AI can also make mistakes. It is based on a fixed accuracy of <strong>{{accuracyAI}} %</strong>. Your judgment may carry more weight in some cases - <em>especially if you are very confident</em>.",
+      "4": "In the test phase <em>(without decision support)</em> you were at <strong>{{accuracyWithoutHelp}} %</strong>. With help, it was <strong>{{accuracyWithHelp}} %</strong>.",
+      "5": "You accepted the recommendation in <strong>{{acceptedCount}} of {{totalCount}}</strong> cases - <strong>{{acceptedCorrectCount}}</strong> of which were correct."
+    }
+  }
 }
