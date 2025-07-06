@@ -224,7 +224,7 @@ const DesignDecisionsPage3 = () => {
           <div className='flex items-center'>
             <Image className='imageCenter' src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
             <span className='text-6xl'>	&#8594;</span>
-            <Image className='imageCenter' src='/kombiniert2.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+            <Image className='imageCenter' src='/kombiniert3.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
           </div>
           
           <p className='mt-6 text-lg'>
