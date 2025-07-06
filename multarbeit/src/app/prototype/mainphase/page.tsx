@@ -118,8 +118,8 @@ const Mainphase = () => {
     setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
     //console.log('Collected response:', response);
 
-    const userChoice = sliderValue < 0 ? 'orange' : 'blue';
-    const correctChoice = current.color < 0 ? 'blue' : 'orange';
+    const userChoice = sliderValue < 0 ? 'blue' : 'orange';
+    const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
 
     incrementAccuracy(isCorrect);

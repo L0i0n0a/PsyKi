@@ -72,10 +72,10 @@ const Testphase = () => {
       timestamp: new Date().toISOString(),
     };
 
-    //console.log('Slider value:', sliderValue);
+    console.log('Slider value:', sliderValue);
 
-    const userChoice = sliderValue > 0 ? 'orange' : 'blue';
-    const correctChoice = current.color < 0 ? 'blue' : 'orange';
+    const userChoice = sliderValue > 0 ? 'blue' : 'orange';
+    const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
 
     incrementAccuracy(isCorrect);

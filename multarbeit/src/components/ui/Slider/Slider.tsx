@@ -13,13 +13,13 @@ const getThumbStyle = (value: number) => {
   const border = '2px solid white';
 
   if (value < 0) {
-    // Left side: blue, opacity increases as value approaches -1
+    // Left side: orange, opacity increases as value approaches -1
     const opacity = Math.abs(value);
-    color = `rgba(13, 71, 161, ${opacity})`;
-  } else if (value > 0) {
-    // Right side: orange, opacity increases as value approaches 1
-    const opacity = value;
     color = `rgba(251, 140, 0, ${opacity})`;
+  } else if (value > 0) {
+    // Right side: blue, opacity increases as value approaches 1
+    const opacity = value;
+    color = `rgba(13, 71, 161, ${opacity})`;
   }
 
   return `
@@ -39,16 +39,16 @@ const getLabelText = (value: number, t: (key: 'labelOrange' | 'labelBlue' | 'lab
     return t('labelNeutral');
   }
   if (value < -0.5) {
-    return t('labelStrongBlue');
-  }
-  if (value < 0) {
-    return t('labelBlue');
-  }
-  if (value > 0.5) {
     return t('labelStrongOrange');
   }
-  if (value > 0) {
+  if (value < 0) {
     return t('labelOrange');
+  }
+  if (value > 0.5) {
+    return t('labelStrongBlue');
+  }
+  if (value > 0) {
+    return t('labelBlue');
   }
   return '';
 };
@@ -92,11 +92,11 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
           background: `
       linear-gradient(
         to right,
-        #0D47A1 0%,
-        #90CAF9 49%,
+        #FB8C00 0%,
+        #FFE0B2 49%,
         white 50%,
-        #FFE0B2 51%,
-        #FB8C00 100%
+        #90CAF9 51%,
+        #0D47A1 100%
       )
     `,
         }}
