@@ -206,9 +206,11 @@ const decisionColor =
 
             {/* Labels */}
             <div className='flex justify-between text-sm text-gray-600 mt-2 px-1'>
-              <span>100%</span>
-              <span>0%</span>
-              <span>100%</span>
+              <span>{t('labelStrongOrange')}</span>
+              <span>{t('labelOrange')}</span>
+              <span>{t('labelNeutral')}</span>
+              <span>{t('labelBlue')}</span>
+              <span>{t('labelStrongBlue')}</span>
             </div>
           </div>
           {/* Prozentwerte unterhalb der Marker */}
