@@ -18,7 +18,7 @@ interface FeedbackCardProps {
   acceptedCorrectCount?: number;
 }
 
-function interpolate(template: string, vars: Record<string, any>): string {
+function interpolate(template: string, vars: Record<string, unknown>): string {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     return key in vars ? String(vars[key]) : '';
   });
@@ -63,14 +63,11 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'
-    >
+      className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'>
       <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
         <div className='flex flex-col items-center justify-center'>
           <div className='font-bold'>{title}</div>
-          <div className='text-white font-normal text-base mt-1'>
-            {content}
-          </div>
+          <div className='text-white font-normal text-base mt-1'>{content}</div>
         </div>
       </mark>
     </motion.div>
