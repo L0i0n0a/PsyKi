@@ -197,7 +197,12 @@ const DesignDecisionsPage3 = () => {
         <h2 className='text-2xl font-semibold'>Entscheidungskala</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende Entscheidungen innerhalb der Anwendung treffen?</h3>
         <div>
-          <Image className='imageCenter' src='/decisionskala.png' alt='Entscheidungskala' width={400} height={400} />
+          <div className='flex items-center'>
+            <Image className='imageCenter' src='/decisionskala.png' alt='Entscheidungskala' width={400} height={400} />
+            <span className='text-6xl'>	&#8594;</span>
+            <Image className='imageCenter' src='/SkalaNew.png' alt='Entscheidungskala mit Neutralhinweis' width={400} height={400} />
+          </div>
+         
           <p className='mt-6 text-lg'>
             <strong>Z-Skala als Schieberegler: </strong>
             Die Antwortskala basiert auf der Z-Skala und ist als intuitiver Schieberegler umgesetzt. Nutzende müssen eine klare Antwort geben, die zumindest eher orange oder blau ist. So werden
@@ -207,7 +212,7 @@ const DesignDecisionsPage3 = () => {
           </p>
           <p className='mt-4 text-lg'>
             Der Z-Wert wird in der Anwendung durch verständliche Begriffe wie <strong>Tendenzwert</strong> oder <strong>Entscheidungspunkt</strong> ersetzt, um keine statistischen Kenntnisse
-            vorauszusetzen und Verständnisprobleme zu vermeiden.
+            vorauszusetzen und Verständnisprobleme zu vermeiden. Zusätzlich wird wie in der Abbildung rechts, eine Skala hinzugefügt die konkrete Hinweise bietet fur den Wert der Entcheidung.
           </p>
         </div>
       </section>
@@ -216,18 +221,23 @@ const DesignDecisionsPage3 = () => {
         <h2 className='text-2xl font-semibold'>Entscheidungshilfe</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
-          <Image className='imageCenter' src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+          <div className='flex items-center'>
+            <Image className='imageCenter' src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+            <span className='text-6xl'>	&#8594;</span>
+            <Image className='imageCenter' src='/kombiniert2.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+          </div>
+          
           <p className='mt-6 text-lg'>
-            <strong>Zielgerichtete Visualisierung:</strong>
+            <strong>Zielgerichtete Visualisierung :</strong>
             Durch grafische Darstellung wird nachvollziehbar, wie die Entscheidungen von Mensch und KI gemeinsam zum finalen Z-Wert führen. Diese Darstellung verbessert die Verständlichkeit und
             reduziert die kognitive Belastung.
           </p>
           <p className='mt-4 text-lg'>
-            <strong>Ergebnis:</strong>
+            <strong>Ergebnis: </strong>
             Unterstützte Entscheidungsfindung (Aided Decision Making) – transparent, effizient und nutzerzentriert.
           </p>
           <p className='mt-4 text-lg'>
-            Der kumulierte Score wird durch einen verständlichen Namen ersetzt, z. B. <em>kombinierte Entscheidung aus Mensch und KI</em> oder <em>Gesamtwert aus Mensch und KI</em>. Dies erleichtert
+            Der kumulierte Score wird durch einen verständlichen Namen ersetzt, z. B. <em>kombinierte Empfehlung aus Mensch und KI</em> oder <em>Gesamtwert aus Mensch und KI</em>. Dies erleichtert
             die Zuordnung und erklärt, dass die bestmögliche Entscheidung durch die Kombination von Mensch und KI entsteht.
           </p>
         </div>
