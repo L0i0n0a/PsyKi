@@ -27,6 +27,7 @@
   "sliderOrange": "rather Orange",
   "sliderBlue": "rather Blue",
   "decisionScale": "Decision Scale",
+    "accuracy": "Accuracy",
 
   "carouselSlide1Title": "Introduction",
   "carouselSlide1Text": "In this phase, you will again see images with orange and blue dots. Your task remains the same: decide which color appears more frequently.",

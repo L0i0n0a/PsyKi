@@ -132,8 +132,9 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
         <div className='flex items-center justify-between relative  w-full'>
           {/* Mensch */}
           <div className='text-center'>
-            <p className='text-lg font-semibold'>{t('human')}</p>
-            <p className='text-xl font-bold'>{menschPercent}%</p>
+            <p className='text-base font-semibold'>{t('human')}</p>
+            <p className='text-lg font-bold'>{menschPercent}%</p>
+            <p className='text-base font-semibold'>{t('accuracy')}</p>
           </div>
 
           {/* Z-Score Visualisierung */}
@@ -206,8 +207,9 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
 
           {/* KI */}
           <div className='text-center'>
-            <p className='text-lg font-semibold'>{t('ki')}</p>
-            <p className='text-xl font-bold'>{kiPercent}%</p>
+            <p className='text-base font-semibold'>{t('ki')}</p>
+            <p className='text-lg font-semibold'>{kiPercent}%</p>
+            <p className='text-base font-semibold'>{t('accuracy')}</p>
           </div>
         </div>
       </div>
