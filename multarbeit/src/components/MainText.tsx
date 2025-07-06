@@ -82,7 +82,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
             <button
               onClick={() => setStep((s) => Math.max(0, s - 1))}
               disabled={isFirstStep}
-              className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+              className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold z-20 ${
                 isFirstStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
               }`}>
               {t('back')}
@@ -90,7 +90,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
 
             <button
               onClick={() => setStep((s) => Math.min(instructionSteps.length - 1, s + 1))}
-              className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+              className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold z-20 ${
                 isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
               }`}>
               {`${t('next')}`}
