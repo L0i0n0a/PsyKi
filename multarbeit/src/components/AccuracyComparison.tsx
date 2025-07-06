@@ -131,12 +131,6 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
       <h1 className='text-2xl mb-36 text-center'> {t('zScore')}</h1>
       <div className='flex flex-col w-full max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
-          {/* Mensch
-          <div className='text-center'>
-            <p className='text-base font-semibold'>{t('human')}</p>
-            <p className='text-lg font-bold'>{menschPercent}%</p>
-            <p className='text-base font-semibold'>{t('accuracy')}</p>
-          </div> */}
 
           {/* Z-Score Visualisierung */}
           <div className='relative flex-1 mx-4'>
@@ -207,7 +201,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
             </div>
           </div>
           {/* Prozentwerte unterhalb der Marker */}
-          <div className='absolute top-20 w-full flex flex-col justify-center text-center font-semibold px-2'>
+          <div className='my-14 absolute top-4 w-full flex flex-col justify-center text-center font-semibold px-2'>
             <p>{t('accuracyValues')}</p>
             <div className='flex flex-row justify-center'>
               <div>
@@ -220,13 +214,6 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
               </div>
             </div>
           </div>
-
-          {/* KI */}
-          {/* <div className='text-center'>
-            <p className='text-base font-semibold'>{t('ki')}</p>
-            <p className='text-lg font-semibold'>{kiPercent}%</p>
-            <p className='text-base font-semibold'>{t('accuracy')}</p>
-          </div> */}
         </div>
       </div>
     </div>

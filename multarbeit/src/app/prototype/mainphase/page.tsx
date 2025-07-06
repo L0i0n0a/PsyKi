@@ -224,13 +224,15 @@ const Mainphase = () => {
                 </div>
               </div>
             ) : (
-              <div className='flex flex-col w-full space-y-1'>
+              <div className='flex flex-col w-full space-y-6 '>
                 <div className='w-full'>
                   <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale} decision={sliderValue} />
                 </div>
-                <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-1'>
-                  <div> {t('assistantRecommendationTitle')}</div>
-                  <div className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</div>
+                <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
+                  <div className='text-center'>
+                     <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
+                     <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{current.recom}</p>
+                  </div>
                   <div className='flex w-full justify-center space-x-4'>
                     <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={() => handleChoice('orange')}>
                       {t('buttonOrange')}

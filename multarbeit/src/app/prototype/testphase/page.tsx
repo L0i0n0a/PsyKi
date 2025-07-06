@@ -207,7 +207,7 @@ const Testphase = () => {
           ) : null}
         </AnimatePresence>
       </div>
-      <div className=' max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
+      <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
           {t('testPhaseHeader')} {current.header}/20
         </h2>
