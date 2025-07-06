@@ -283,7 +283,7 @@ const Mainphase = () => {
             ) : (
               <div className='flex flex-col w-full space-y-6 '>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={-1} kiPercent={1} locale={locale} decision={sliderValue} />
+                  <AccuracyComparison menschPercent={-1} kiPercent={1} locale={locale} decision={sliderValue} kiAccuracy={0.93} menschAccuracy={0.8} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='text-center'>

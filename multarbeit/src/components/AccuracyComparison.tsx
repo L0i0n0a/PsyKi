@@ -9,13 +9,15 @@ type AccuracyComparisonProps = {
   kiPercent: number;
   locale: 'de' | 'en';
   decision: number;
+  menschAccuracy: number;
+  kiAccuracy: number;
 };
 
 function scaleToPercent(val: number) {
   return ((val + 1) / 2) * 100;
 }
 
-export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision }: AccuracyComparisonProps) {
+export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision, menschAccuracy, kiAccuracy }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
 
   // const minThickness = 0.8;
@@ -78,18 +80,22 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
     kiX / 100
   );
 
-  const decisionColor =
-    decisionPercent >= 50
-      ? interpolateColor(
-          '#90CAF9', // light orange
-          '#0D47A1', // dark orange
-          (decisionPercent - 50) / 50 // maps 50–100 to 0–1
-        )
-      : interpolateColor(
-          '#FFE0B2', // light blue
-          '#FB8C00', // dark blue
-          (50 - decisionPercent) / 50 // maps 50–0 to 0–1
-        );
+const clampedDecision = Math.max(-1, Math.min(1, decisionPercent));
+const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
+
+const decisionColor =
+  decisionPercent >= 0
+    ? interpolateColor(
+        '#90CAF9', // light blue (start)
+        '#0D47A1', // dark blue (end)
+        color
+      )
+    : interpolateColor(
+        '#FFE0B2', // light orange (start)
+        '#FB8C00', // dark orange (end)
+        color
+      );
+
 
   function VariableWidthCurve({
     x1,
@@ -211,11 +217,11 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
             <div className='flex flex-row justify-center'>
               <div>
                 <p className='text-base font-semibold'>{t('human')}</p>
-                <p className='text-lg font-bold'>{menschPercent}%</p>
+                <p className='text-lg font-bold'>{menschAccuracy}%</p>
               </div>
               <div>
                 <p className='text-base font-semibold'>{t('ki')}</p>
-                <p className='text-lg font-semibold'>{kiPercent}%</p>
+                <p className='text-lg font-semibold'>{kiAccuracy}%</p>
               </div>
             </div>
           </div>
