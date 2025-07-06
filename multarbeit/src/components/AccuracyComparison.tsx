@@ -74,15 +74,15 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   const decisionColor =
     decisionPercent >= 50
       ? interpolateColor(
-          '#90CAF9', // light orange
-          '#0D47A1', // dark orange
-          (decisionPercent - 50) / 50 // maps 50–100 to 0–1
-        )
+        '#90CAF9', // light orange
+        '#0D47A1', // dark orange
+        (decisionPercent - 50) / 50 // maps 50–100 to 0–1
+      )
       : interpolateColor(
-          '#FFE0B2', // light blue
-          '#FB8C00', // dark blue
-          (50 - decisionPercent) / 50 // maps 50–0 to 0–1
-        );
+        '#FFE0B2', // light blue
+        '#FB8C00', // dark blue
+        (50 - decisionPercent) / 50 // maps 50–0 to 0–1
+      );
 
   function VariableWidthCurve({
     x1,
@@ -130,12 +130,12 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
       <h1 className='text-2xl mb-36 text-center'> {t('zScore')}</h1>
       <div className='flex flex-col w-full max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
-          {/* Mensch */}
+          {/* Mensch 
           <div className='text-center'>
             <p className='text-base font-semibold'>{t('human')}</p>
             <p className='text-lg font-bold'>{menschPercent}%</p>
             <p className='text-base font-semibold'>{t('accuracy')}</p>
-          </div>
+          </div> */}
 
           {/* Z-Score Visualisierung */}
           <div className='relative flex-1 mx-4'>
@@ -180,11 +180,12 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
                 </p>
               </div>
               <div
-                className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-10 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-white shadow z-10'
                 style={{
                   left: `${decisionX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: decisionColor,
+                  border: "5px solid #ffffff",
                 }}
               />
 
@@ -204,13 +205,28 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
               <span>100%</span>
             </div>
           </div>
+          {/* Prozentwerte unterhalb der Marker */}
+          <div className='absolute top-20 w-full flex flex-col justify-center text-center font-semibold px-2'>
+            <p>{t('accuracyValues')}</p>
+            <div className='flex flex-row justify-center'>
+              <div>
+                  <p className='text-base font-semibold'>{t('human')}</p>
+                  <p className='text-lg font-bold'>{menschPercent}%</p>
+                </div>
+              <div>
+                  <p className='text-base font-semibold'>{t('ki')}</p>
+                  <p className='text-lg font-semibold'>{kiPercent}%</p>
+                </div>
+            </div>
+          </div>
+
 
           {/* KI */}
-          <div className='text-center'>
+          {/* <div className='text-center'>
             <p className='text-base font-semibold'>{t('ki')}</p>
             <p className='text-lg font-semibold'>{kiPercent}%</p>
             <p className='text-base font-semibold'>{t('accuracy')}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

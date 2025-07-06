@@ -27,7 +27,7 @@
   "sliderOrange": "eher Orange",
   "sliderBlue": "eher Blau",
   "decisionScale": "Entscheidungsskala",
-  "accuracy": "Genauigkeit",
+  "accuracyValues": "Genauigkeitswerte",
 
   "carouselSlide1Title": "Einführung",
   "carouselSlide1Text": "In dieser Phase sehen Sie wieder Bilder mit orangenen und blauen Punkten. Ihre Aufgabe bleibt gleich: Entscheiden Sie, welche Farbe häufiger zu sehen ist.",
