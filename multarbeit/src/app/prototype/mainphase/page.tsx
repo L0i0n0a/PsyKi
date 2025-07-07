@@ -255,7 +255,16 @@ const Mainphase = () => {
   // const humanSensitivity = zHitRateH - zFalseAlarmRateH;
   //const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
 
+  // const aiIsCorrect = Math.random() < current.aiAccuracy!;
+  // const aiDirection = Math.sign(current.color); // +1 = blue, -1 = orange
+
+  // const aiGuessRaw = aiIsCorrect
+  //   ? aiDirection * (Math.random() * 1.5 + 0.5) // e.g. [0.5–2.0] in correct direction
+  //   : -aiDirection * (Math.random() * 1.5 + 0.5); // wrong direction
+
+  // const aiGuess = Math.max(-3, Math.min(3, aiGuessRaw)); // Clamp to slider scale
   const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
+
   const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
   const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
@@ -269,18 +278,15 @@ const Mainphase = () => {
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
   const XHuman = sliderValue;
-  const XAid = aiGuess;
+  const XAid = aiGuess * current.color;
 
   const Z = aHuman * XHuman + aAid * XAid;
-  // const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
   console.log(aHuman, 'aHuman');
   console.log(aAid, 'aAid');
   console.log(XHuman, 'XHuman');
   console.log(XAid, 'XAid');
-
-  console.log(dPrimeAid, 'dPrimeAid');
-  console.log(dPrimeHuman, 'dPrimeHuman');
   console.log('Z:', Z.toFixed(3));
 
   const getColorString = (value: number): string => {
@@ -293,7 +299,7 @@ const Mainphase = () => {
 
     // TODO genauigkeit 1 & 2
     const rawMessage = t('completionMessage');
-    const messageWithAccuracy = rawMessage.replaceAll('%GENAUIGKEIT%', accuracy + '%');
+    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', accuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -419,10 +425,10 @@ const Mainphase = () => {
               <div className='flex flex-col w-full space-y-6 '>
                 <div className='text-center m-0 flex justify-center'>
                   <p className='text-lg mr-2'> {t('assistantRecommendationTitle')}</p>
-                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)} (${(aiGuess * 100).toFixed(1)}%)`}</p>
+                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)}`}</p>
                 </div>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={dPrimeHuman} kiPercent={dPrimeAid} locale={locale} decision={Z} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
+                  <AccuracyComparison menschPercent={XHuman} kiPercent={XAid} locale={locale} decision={Z} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='flex w-full justify-center space-x-4'>
