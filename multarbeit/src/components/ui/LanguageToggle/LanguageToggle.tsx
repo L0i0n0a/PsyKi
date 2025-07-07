@@ -1,5 +1,6 @@
 import React from 'react';
 
+// --- Flag Icons ---
 const FlagDE = () => (
   <svg width='20' height='14' viewBox='0 0 20 14' className='inline' aria-label='Deutsch'>
     <rect width='20' height='14' fill='#FFCE00' />
@@ -22,12 +23,14 @@ const FlagEN = () => (
   </svg>
 );
 
+// --- Props ---
 type LanguageToggleProps = {
   locale: string;
   onToggle: () => void;
   className?: string;
 };
 
+// --- Component ---
 const LanguageToggle: React.FC<LanguageToggleProps> = ({ locale, onToggle, className = '' }) => (
   <button
     onClick={onToggle}

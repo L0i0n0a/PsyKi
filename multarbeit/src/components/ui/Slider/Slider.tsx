@@ -1,5 +1,5 @@
-import { useTranslation } from '@/utils/translation';
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '@/utils/translation';
 
 type ColorSliderProps = {
   initial?: number;
@@ -8,6 +8,7 @@ type ColorSliderProps = {
   locale: 'de' | 'en';
 };
 
+// --- Utility Functions ---
 const getThumbStyle = (value: number) => {
   let color = 'rgba(255,255,255,0)';
   const border = '2px solid white';
@@ -40,6 +41,7 @@ const getLabelText = (value: number, t: (key: 'secOrange' | 'secBlue' | 'secStro
   return '';
 };
 
+// --- Component ---
 const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange, locale }) => {
   const [internalValue, setInternalValue] = useState<number>(initial);
   const { t } = useTranslation(locale);
@@ -65,7 +67,6 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
       <div className='flex gap-2 justify-center mt-8 items-center w-full mb-2'>
         <div>{t('decisionScale')}:</div>
         <div>{getLabelText(sliderValue, t)}</div>
-        {/* <div className='w-12 text-gray-800 text-right'>{sliderValue}%</div> */}
       </div>
       <input
         type='range'
@@ -77,15 +78,15 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
         className='color-slider w-full appearance-none'
         style={{
           background: `
-      linear-gradient(
-        to right,
-        #FB8C00 0%,
-        #FFE0B2 49%,
-        white 50%,
-        #90CAF9 51%,
-        #0D47A1 100%
-      )
-    `,
+            linear-gradient(
+              to right,
+              #FB8C00 0%,
+              #FFE0B2 49%,
+              white 50%,
+              #90CAF9 51%,
+              #0D47A1 100%
+            )
+          `,
         }}
       />
       <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>

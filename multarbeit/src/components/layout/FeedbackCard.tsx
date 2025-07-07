@@ -1,14 +1,14 @@
 'use client';
 
+import React, { useState } from 'react';
 import { useTranslation } from '@/utils/translation';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
 
 interface FeedbackCardProps {
   type: number;
   index?: number;
   accuracyAI?: number;
-  accuracyUser?: string;
+  accuracyUser?: number;
   accuracyWithoutHelp?: number;
   accuracyWithHelp?: number;
   trustedCount?: number;
@@ -18,12 +18,14 @@ interface FeedbackCardProps {
   acceptedCorrectCount?: number;
 }
 
+// --- Helper Functions ---
 function interpolate(template: string, vars: Record<string, unknown>): string {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     return key in vars ? String(vars[key]) : '';
   });
 }
 
+// --- Component ---
 export const FeedbackCard: React.FC<FeedbackCardProps> = ({
   type,
   index = 0,
@@ -37,7 +39,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
   acceptedCount = 35,
   acceptedCorrectCount = 30,
 }) => {
-  const [locale] = useState<'de' | 'en'>('de'); // could be dynamic later
+  const [locale] = useState<'de' | 'en'>('de');
   const { t } = useTranslation(locale);
 
   const contentData = {

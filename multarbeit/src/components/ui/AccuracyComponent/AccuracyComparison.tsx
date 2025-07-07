@@ -18,7 +18,6 @@ function scaleToPercent(val: number) {
   return ((val + 3) / 6) * 100;
 }
 
-
 export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision, menschAccuracy, kiAccuracy }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
 
@@ -83,10 +82,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   //const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
 
   const color = Math.min(1, Math.abs(clampedDecision / 3));
-  const decisionColor =
-    clampedDecision >= 0
-      ? interpolateColor('#90CAF9', '#0D47A1', color)
-      : interpolateColor('#FFE0B2', '#FB8C00', color);
+  const decisionColor = clampedDecision >= 0 ? interpolateColor('#90CAF9', '#0D47A1', color) : interpolateColor('#FFE0B2', '#FB8C00', color);
 
   function VariableWidthCurve({
     x1,
@@ -151,8 +147,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
                   left: `${menschX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: menschColor,
-                }}
-              >
+                }}>
                 {locale === 'de' ? 'M' : 'H'}
               </div>
 
@@ -163,11 +158,9 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
                   left: `${kiX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: kiColor,
-                }}
-              >
+                }}>
                 {locale === 'de' ? 'KI' : 'AI'}
               </div>
-
 
               {/* Decision Marker */}
               <div>
@@ -208,7 +201,6 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
               <span>{t('secBlue')}</span>
               <span className='justify-self-end'>{t('secStrongBlue')}</span>
             </div>
-
           </div>
           {/* Prozentwerte unterhalb der Marker */}
           <div className='my-14 absolute top-4 w-full flex flex-col justify-center text-center font-semibold px-2'>

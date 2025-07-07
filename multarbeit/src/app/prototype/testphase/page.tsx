@@ -1,17 +1,17 @@
 'use client';
 import { useEffect, useState } from 'react';
-import BiColorV2 from '@/components/canvas/BiColorV2';
+import BiColor from '@/components/canvas/BiColor';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import data from '@/lib/dataTest.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
-import MainText from '@/components/MainText';
-// import { v4 as uuidv4 } from 'uuid';
+import MainText from '@/components/ui/TextComponent/MainText';
 import { useParticipantStore } from '@/store';
 
 const Testphase = () => {
+  // --- State and Store ---
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [sliderValue, setSliderValue] = useState(0);
@@ -21,8 +21,10 @@ const Testphase = () => {
   const [step, setStep] = useState(0);
   const instructionStepsLength = 6;
   const isLastStep = step === instructionStepsLength - 1;
-  const code = useParticipantStore((state) => state.code);
   const [feedbackCount, setFeedbackCount] = useState(0);
+
+  // Zustand store values
+  const code = useParticipantStore((state) => state.code);
   const hits = useParticipantStore((state) => state.hits);
   const setHits = useParticipantStore((state) => state.setHits);
   const misses = useParticipantStore((state) => state.misses);
@@ -31,34 +33,15 @@ const Testphase = () => {
   const setFalseAlarms = useParticipantStore((state) => state.setFalseAlarms);
   const correctRejections = useParticipantStore((state) => state.correctRejections);
   const setCorrectRejections = useParticipantStore((state) => state.setCorrectRejections);
+  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
+  const correctCount = useParticipantStore((state) => state.correctCount);
+  const totalCount = useParticipantStore((state) => state.totalCount);
+  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
 
-  // const getSessionId = () => {
-  //   if (typeof window === 'undefined') return '';
-  //   let sessionId = localStorage.getItem('sessionId');
-  //   if (!sessionId) {
-  //     sessionId = uuidv4();
-  //     localStorage.setItem('sessionId', sessionId);
-  //   }
-  //   return sessionId;
-  // };
-  function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
-    const start = Math.max(0, currentIndex - 5);
-    const lastFive = responses.slice(start, currentIndex + 1);
-    if (lastFive.length === 0) return null;
+  // --- Data ---
+  const current = data[index];
 
-    const diffs = lastFive.map((r) => Math.abs(r.sliderValue - r.color * 100));
-    const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
-    const avgAccuracy = 100 - avgDiff;
-
-    console.log(`[Feedback] CurrentIndex: ${currentIndex}, AvgDiff: ${avgDiff.toFixed(1)}, AvgAccuracy: ${avgAccuracy.toFixed(1)}, Diffs:`, diffs);
-
-    return {
-      avgDiff: avgDiff.toFixed(1),
-      avgAccuracy: avgAccuracy.toFixed(1),
-      diffs,
-    };
-  }
-
+  // --- Responses state ---
   const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('testphaseResponses');
@@ -67,11 +50,23 @@ const Testphase = () => {
     return [];
   });
 
-  const toggleLanguage = () => {
-    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
-  };
+  // --- Utility functions ---
+  function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
+    const start = Math.max(0, currentIndex - 5);
+    const lastFive = responses.slice(start, currentIndex + 1);
+    if (lastFive.length === 0) return null;
+    const diffs = lastFive.map((r) => Math.abs(r.sliderValue - r.color * 100));
+    const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+    const avgAccuracy = 100 - avgDiff;
+    return {
+      avgDiff: avgDiff.toFixed(1),
+      avgAccuracy: avgAccuracy.toFixed(1),
+      diffs,
+    };
+  }
 
-  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
+  // --- Handlers ---
+  const toggleLanguage = () => setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
 
   const handleClick = () => {
     if (finished) return;
@@ -82,44 +77,26 @@ const Testphase = () => {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Slider value:', sliderValue);
-
     const userChoice = sliderValue > 0 ? 'blue' : 'orange';
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
-    console.log(`[Click] Index: ${index}, Slider: ${sliderValue}, Color: ${current.color}, UserChoice: ${userChoice}, CorrectChoice: ${correctChoice}, Correct: ${isCorrect}`);
 
-    // Definition:
-    // Blau = positive class → color > 0
-    // Orange = negative class → color < 0
-
-    const isSignal = current.color > 0; // „Blau“ = Signal
+    // SDT logic
+    const isSignal = current.color > 0;
     const choseBlue = sliderValue > 0;
 
     if (isSignal) {
-      if (choseBlue) {
-        setHits(hits + 1);
-      } else {
-        setMisses(misses + 1);
-      }
+      if (choseBlue) setHits(hits + 1);
+      else setMisses(misses + 1);
     } else {
-      if (choseBlue) {
-        setFalseAlarms(falseAlarms + 1);
-      } else {
-        setCorrectRejections(correctRejections + 1);
-      }
+      if (choseBlue) setFalseAlarms(falseAlarms + 1);
+      else setCorrectRejections(correctRejections + 1);
     }
-    console.log('--- SDT Classification ---');
-    console.log('Hits:', hits + (isSignal && choseBlue ? 1 : 0));
-    console.log('Misses:', misses + (isSignal && !choseBlue ? 1 : 0));
-    console.log('False Alarms:', falseAlarms + (!isSignal && choseBlue ? 1 : 0));
-    console.log('Correct Rejections:', correctRejections + (!isSignal && !choseBlue ? 1 : 0));
 
     incrementAccuracy(isCorrect);
-
     setResponses((prev) => [...prev, response]);
-    //console.log('Collected response:', response);
 
+    // Save response to backend
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
     fetch('/api/save-data', {
       method: 'POST',
@@ -130,6 +107,7 @@ const Testphase = () => {
       body: JSON.stringify({ code, responses: [response] }),
     });
 
+    // Progress
     const nextIndex = index < data.length - 1 ? index + 1 : index;
     localStorage.setItem('testphaseIndex', String(nextIndex));
 
@@ -143,47 +121,31 @@ const Testphase = () => {
     }
   };
 
+  // --- Effects ---
   useEffect(() => {
     localStorage.setItem('testphaseResponses', JSON.stringify(responses));
   }, [responses]);
 
   useEffect(() => {
-    if (finished && responses.length > 0) {
-    }
-  }, [finished, responses, code]);
-
-  useEffect(() => {
     const savedIndex = localStorage.getItem('testphaseIndex');
-    if (savedIndex !== null) {
-      setIndex(Number(savedIndex));
-    }
+    if (savedIndex !== null) setIndex(Number(savedIndex));
   }, []);
-
-  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
 
   useEffect(() => {
     if (!hasHydrated) return;
-    if (!code) {
-      router.replace('/prototype');
-    }
+    if (!code) router.replace('/prototype');
     const finishedFlag = localStorage.getItem(`testphaseFinished_${code}`);
-    if (finishedFlag === 'true') {
-      setFinished(true);
-    }
+    if (finishedFlag === 'true') setFinished(true);
   }, [code, router, hasHydrated]);
 
   useEffect(() => {
-    if (index > 0 && (index + 1) % 6 === 0) {
-      setFeedbackCount((prev) => prev + 1);
-    }
+    if (index > 0 && (index + 1) % 6 === 0) setFeedbackCount((prev) => prev + 1);
   }, [index]);
 
-  const correctCount = useParticipantStore((state) => state.correctCount);
-  const totalCount = useParticipantStore((state) => state.totalCount);
-
-  const current = data[index];
+  // --- Derived values ---
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
+  // --- Render ---
   if (finished) {
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -194,8 +156,6 @@ const Testphase = () => {
           </div>
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center '>
-          {/* <h1 className='text-4xl font-bold mb-6 text-center'>{t('finalPhaseTitle')}</h1>
-          <p className='mb-8 text-lg text-center'>{t('finalPhaseDescription')}</p> */}
           <MainText locale={locale} step={step} setStep={setStep} instructionStepsLength={instructionStepsLength} />
           <button
             disabled={!isLastStep}
@@ -221,7 +181,7 @@ const Testphase = () => {
       <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
       <div className='relative max-w-6xl px-8'>
         <AnimatePresence>
-          {index > 0 && (index + 1) % 6 === 0 ? (
+          {index > 0 && (index + 1) % 6 === 0 && (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -234,7 +194,6 @@ const Testphase = () => {
                   {(() => {
                     const feedback = getFeedback(responses, index);
                     if (!feedback) return null;
-
                     if (feedbackCount % 2 === 0) {
                       return (
                         <span>
@@ -256,7 +215,7 @@ const Testphase = () => {
                 </div>
               </mark>
             </motion.div>
-          ) : null}
+          )}
         </AnimatePresence>
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
@@ -271,10 +230,10 @@ const Testphase = () => {
             }}></div>
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
-          <BiColorV2 percentage={current.color} />
+          <BiColor percentage={current.color} />
           <div className='flex h-[256px] w-full m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
-              <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
+              <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={setSliderValue} />
             </div>
             <div className='flex justify-center mt-16!'>
               <button
@@ -290,20 +249,6 @@ const Testphase = () => {
           </div>
         </div>
       </div>
-      {/* <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <button
-          onClick={() => setFinished(true)}
-          style={{
-            padding: '10px 20px',
-            background: '#b7b7b7',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}>
-          Debug Button
-        </button>
-      </div> */}
     </div>
   );
 };

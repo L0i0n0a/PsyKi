@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// --- POST Handler ---
 export async function POST(req: Request) {
   const { code } = await req.json();
 
@@ -9,10 +10,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ exists: false }, { status: 400 });
   }
 
-  const dir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
+  // Determine data directory
+  const dataDir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
   const filename = `participant_${code}.json`;
-  const filePath = path.join(dir, filename);
+  const filePath = path.join(dataDir, filename);
 
+  // Check if file exists
   const exists = fs.existsSync(filePath);
 
   return NextResponse.json({ exists });

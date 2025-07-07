@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// --- Auth Constants ---
 const AUTH_USER = process.env.DOWNLOAD_USER;
 const AUTH_PASS = process.env.DOWNLOAD_PASS;
 
+// --- Helper: Parse Basic Auth ---
 function parseBasicAuth(authHeader: string | null) {
   if (!authHeader?.startsWith('Basic ')) return null;
   const base64 = authHeader.split(' ')[1];
@@ -12,6 +14,7 @@ function parseBasicAuth(authHeader: string | null) {
   return { user, pass };
 }
 
+// --- GET Handler ---
 export async function GET(req: Request) {
   const authHeader = req.headers.get('authorization');
   const creds = parseBasicAuth(authHeader);

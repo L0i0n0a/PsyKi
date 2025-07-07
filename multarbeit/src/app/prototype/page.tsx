@@ -7,21 +7,19 @@ import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { useParticipantStore } from '@/store';
 
 const Prototype = () => {
+  // --- State ---
   const router = useRouter();
   const [locale, setLocale] = useState<'de' | 'en'>('de');
-
   const [code, setCode] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [ageConfirmed, setAgeConfirmed] = useState(false);
 
   const { t } = useTranslation(locale);
 
-  const toggleLanguage = () => {
-    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
-  };
-
+  // Zustand store
   const { setCode: setCodeStore, code: codeFromStore } = useParticipantStore();
 
+  // --- Effects ---
   useEffect(() => {
     if (codeFromStore && codeFromStore.trim() !== '') {
       setCode(codeFromStore);
@@ -30,13 +28,16 @@ const Prototype = () => {
     }
   }, [codeFromStore]);
 
+  // --- Derived values ---
   const isDisabled = !!(codeFromStore && codeFromStore.trim() !== '');
   const isFormValid = code.trim() !== '' && agreed && ageConfirmed;
+
+  // --- Handlers ---
+  const toggleLanguage = () => setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
 
   const handleContinue = async () => {
     if (!isFormValid) return;
 
-    // If code is already in the store, just continue with it
     if (codeFromStore && codeFromStore.trim() !== '') {
       router.push('/prototype/onboarding');
       return;
@@ -65,6 +66,7 @@ const Prototype = () => {
     router.push('/prototype/onboarding');
   };
 
+  // --- Render ---
   return (
     <div className='max-w-3xl mx-auto p-6 min-h-screen flex flex-col justify-center space-y-6'>
       <div className='flex justify-between items-center'>

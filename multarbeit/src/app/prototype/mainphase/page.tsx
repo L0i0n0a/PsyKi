@@ -1,15 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import jStat from 'jstat';
-import BiColorV2 from '@/components/canvas/BiColorV2';
+import BiColor from '@/components/canvas/BiColor';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import dataRaw from '@/lib/dataMain.json';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/utils/translation';
 import LanguageToggle from '@/components/ui/LanguageToggle/LanguageToggle';
 import { AnimatePresence, motion } from 'framer-motion';
-import AccuracyComparison from '@/components/AccuracyComparison';
-// import { v4 as uuidv4 } from 'uuid';
+import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 import { useParticipantStore } from '@/store';
 
 type MainPhaseItem = {
@@ -19,6 +18,7 @@ type MainPhaseItem = {
 };
 
 const Mainphase = () => {
+  // --- State and Store ---
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [sliderValue, setSliderValue] = useState(0);
@@ -28,6 +28,7 @@ const Mainphase = () => {
   const { t } = useTranslation(locale);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
+  // Zustand store values
   const hits = useParticipantStore((state) => state.hits);
   const setHits = useParticipantStore((state) => state.setHits);
   const misses = useParticipantStore((state) => state.misses);
@@ -36,75 +37,35 @@ const Mainphase = () => {
   const setFalseA = useParticipantStore((state) => state.setFalseAlarms);
   const correctRej = useParticipantStore((state) => state.correctRejections);
   const setCorrectRe = useParticipantStore((state) => state.setCorrectRejections);
-  // const [hitRate, setHitRate] = useState(0); // hr=hits/(hits + misses)
-  // const [faRate, setFaRate] = useState(0); // far=falseA/(falseA + correctR)
-  // // Z-Funktion (Standardnormalverteilung)
-  // const z = (p: number) => jStat.normal.inv(p, 0, 1);
+  const correctCount = useParticipantStore((state) => state.correctCount);
+  const totalCount = useParticipantStore((state) => state.totalCount);
+  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
+  const code = useParticipantStore((state) => state.code);
+  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
 
+  // Data
   const data = dataRaw as MainPhaseItem[];
+  const current = data[index];
 
-  // const getSessionId = () => {
-  //   if (typeof window === 'undefined') return '';
-  //   let sessionId = localStorage.getItem('sessionId');
-  //   if (!sessionId) {
-  //     sessionId = uuidv4();
-  //     localStorage.setItem('sessionId', sessionId);
-  //   }
-  //   return sessionId;
-  // };
+  // --- Derived values ---
+  const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
+  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
 
-  /**
-   * Calculates the False Alarm Rate (FAR).
-   * @param falseA - Number of false alarms (false positives).
-   * @param correctR - Number of correct rejections (true negatives).
-   * @returns FAR value
-   */
-  function calculateFalseAlarmRate(falseA: number, correctR: number): number {
-    const totalNegatives = falseA + correctR;
-    if (totalNegatives === 0) return 0; // Avoid division by zero
-    return falseA / totalNegatives;
-  }
+  // SDT calculations
+  const currentHitRate = calculateHitRate(hits, misses);
+  const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
+  const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
+  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
+  const totalDP = dPrimeHuman + dPrimeAid;
+  const aHuman = dPrimeHuman / totalDP;
+  const aAid = dPrimeAid / totalDP;
+  const XHuman = sliderValue;
+  const XAid = aiGuessValue;
+  const Z = aHuman * XHuman + aAid * XAid;
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
-  //const far = calculateFalseAlarmRate(10, 90);
-  //console.log(`False Alarm Rate: ${(far * 100).toFixed(2)}%`); // Output: 10.00%
-
-  /**
-   * Calculates the Hit Rate (HR).
-   * @param hits - Number of hits (true positives).
-   * @param misses - Number of misses (false negatives).
-   * @returns HR value as a number between 0 and 1.
-   */
-  function calculateHitRate(hits: number, misses: number): number {
-    const totalPositives = hits + misses;
-    console.log(hits, ' = ', misses);
-    if (totalPositives === 0) return 0; // Avoid division by zero
-    return hits / totalPositives;
-  }
-  //const hr = calculateHitRate(45, 5);
-  //console.log(`Hit Rate: ${(hr * 100).toFixed(2)}%`); // Output: 90.00%
-
-  /**
-   * Berechnet d' aus Hit Rate (HR) und False Alarm Rate (FAR)
-   * @param hr Hit Rate (zwischen 0 und 1)
-   * @param far False Alarm Rate (zwischen 0 und 1)
-   * @returns d' Sensitivitätsmaß
-   */
-  function calculateDPrime(hr: number, far: number): number {
-    // Extremwerte abfangen (numerisch stabilisieren)
-    const epsilon = 1e-5;
-    const adjustedHR = Math.min(Math.max(hr, epsilon), 1 - epsilon);
-    const adjustedFAR = Math.min(Math.max(far, epsilon), 1 - epsilon);
-
-    const zHR = jStat.normal.inv(adjustedHR, 0, 1);
-    const zFAR = jStat.normal.inv(adjustedFAR, 0, 1);
-
-    const dPrime = zHR - zFAR;
-    return dPrime;
-  }
-
-  //const d = calculateDPrime(0.82, 0.14);
-  //console.log('d\' =', d.toFixed(3)); // z. B. 1.99
-
+  // --- Responses state ---
   const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('mainphaseResponses');
@@ -113,19 +74,77 @@ const Mainphase = () => {
     return [];
   });
 
+  // --- Effects ---
   useEffect(() => {
     localStorage.setItem('mainphaseResponses', JSON.stringify(responses));
   }, [responses]);
+
+  useEffect(() => {
+    const savedIndex = localStorage.getItem('mainphaseIndex');
+    if (savedIndex !== null) setIndex(Number(savedIndex));
+  }, []);
+
+  useEffect(() => {
+    if (!hasHydrated) return;
+    if (!code) router.replace('/prototype');
+    const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
+    if (finishedFlag === 'true') setFinished(true);
+  }, [code, router, hasHydrated]);
+
+  useEffect(() => {
+    if (index > 0 && (index + 1) % 6 === 0) setFeedbackCount((prev) => prev + 1);
+  }, [index]);
+
+  // --- Utility functions ---
+  function calculateFalseAlarmRate(falseA: number, correctR: number): number {
+    const totalNegatives = falseA + correctR;
+    if (totalNegatives === 0) return 0;
+    return falseA / totalNegatives;
+  }
+
+  function calculateHitRate(hits: number, misses: number): number {
+    const totalPositives = hits + misses;
+    if (totalPositives === 0) return 0;
+    return hits / totalPositives;
+  }
+
+  function calculateDPrime(hr: number, far: number): number {
+    const epsilon = 1e-5;
+    const adjustedHR = Math.min(Math.max(hr, epsilon), 1 - epsilon);
+    const adjustedFAR = Math.min(Math.max(far, epsilon), 1 - epsilon);
+    const zHR = jStat.normal.inv(adjustedHR, 0, 1);
+    const zFAR = jStat.normal.inv(adjustedFAR, 0, 1);
+    return zHR - zFAR;
+  }
+
+  function randn_bm() {
+    let u = 0,
+      v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+
+  function getAiGuess(trueColor: string): number {
+    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
+    const stdDev = 0.3;
+    const aiGuessRaw = aiMean + randn_bm() * stdDev;
+    const min = -3;
+    const max = 3;
+    return Math.max(min, Math.min(max, aiGuessRaw));
+  }
+
+  function getColorString(value: number): string {
+    return value < 0 ? t('buttonOrange') : t('buttonBlue');
+  }
 
   function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
     const start = Math.max(0, currentIndex - 5);
     const lastFive = responses.slice(start, currentIndex + 1);
     if (lastFive.length === 0) return null;
-
     const diffs = lastFive.map((r) => Math.abs(r.sliderValue - r.color * 100));
     const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
     const avgAccuracy = 100 - avgDiff;
-
     return {
       avgDiff: avgDiff.toFixed(1),
       avgAccuracy: avgAccuracy.toFixed(1),
@@ -133,72 +152,15 @@ const Mainphase = () => {
     };
   }
 
-  const code = useParticipantStore((state) => state.code);
-
-  useEffect(() => {
-    if (finished && responses.length > 0) {
-    }
-  }, [finished, responses, code]);
-
-  useEffect(() => {
-    const savedIndex = localStorage.getItem('mainphaseIndex');
-    if (savedIndex !== null) {
-      setIndex(Number(savedIndex));
-    }
-  }, []);
-
-  const hasHydrated = useParticipantStore((state) => state._hasHydrated);
-
-  useEffect(() => {
-    if (!hasHydrated) return;
-    if (!code) {
-      router.replace('/prototype');
-    }
-    const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
-    if (finishedFlag === 'true') {
-      setFinished(true);
-    }
-  }, [code, router, hasHydrated]);
-
-  useEffect(() => {
-    if (index > 0 && (index + 1) % 6 === 0) {
-      setFeedbackCount((prev) => prev + 1);
-    }
-  }, [index]);
-
-  const current = data[index];
-
-  const toggleLanguage = () => {
-    setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
-  };
+  // --- Handlers ---
+  const toggleLanguage = () => setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
 
   const handleClick = () => {
     if (finished) return;
     setShowRecom(true);
-
-    console.log('Human Calc:', HumanCalc);
-    console.log('AI Calc:', AiCalc);
-    console.log('Human + AI Calculation:', HuAiCalc);
-    console.log('Acc:', accuracy);
-    console.log('SLV:', sliderValue);
-    console.log('Ai Guess', aiGuess);
-
-    console.log('--- OW Calculation ---');
-    console.log('HR:', currentHitRate.toFixed(3));
-    console.log('FAR:', currentFaRate.toFixed(3));
-    console.log("d' human:", dPrimeHuman.toFixed(3));
-    console.log("d' aid:", dPrimeAid.toFixed(3));
-    console.log('aHuman:', aHuman.toFixed(3), 'aAid:', aAid.toFixed(3));
-    console.log('XHuman:', XHuman.toFixed(3), 'XAi:', XAid.toFixed(3));
-    console.log('Z (combined evidence):', Z.toFixed(3));
-    console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   };
 
-  const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
-
   const handleChoice = (button: 'orange' | 'blue') => {
-    console.log('🧠 User made a choice:', button);
-
     const response = {
       index,
       color: current.color,
@@ -207,12 +169,10 @@ const Mainphase = () => {
       buttonPressed: button,
     };
     setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
-    //console.log('Collected response:', response);
 
     const userChoice = sliderValue > 0 ? 'blue' : 'orange';
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
-    console.log('✅ Is Correct:', isCorrect, '| User:', userChoice, '| Correct:', correctChoice);
 
     if (correctChoice === 'blue') {
       if (userChoice === 'blue') setHits(hits + 1);
@@ -248,84 +208,12 @@ const Mainphase = () => {
     }
   };
 
-  // Standardnormalverteilte Zufallszahl (Box-Muller-Methode)
-  function randn_bm() {
-    let u = 0,
-      v = 0;
-    while (u === 0) u = Math.random();
-    while (v === 0) v = Math.random();
-    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-  }
-
-  // Generierung der KI-Entscheidung (X von KI)
-  // trueColor: "orange" oder "blau"
-  function getAiGuess(trueColor: string): number {
-    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
-    const stdDev = 0.3; // smaller std dev means less randomness
-    const aiGuessRaw = aiMean + randn_bm() * stdDev;
-
-    const min = -3;
-    const max = 3;
-
-    return Math.max(min, Math.min(max, aiGuessRaw));
-  }
-
-  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
-
-  console.log('cc', current.color);
-
-  const correctCount = useParticipantStore((state) => state.correctCount);
-  const totalCount = useParticipantStore((state) => state.totalCount);
-  const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
-
-  // const humanSensitivity = zHitRateH - zFalseAlarmRateH;
-  //const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
-
-  // const aiIsCorrect = Math.random() < current.aiAccuracy!;
-  // const aiDirection = Math.sign(current.color); // +1 = blue, -1 = orange
-
-  // const aiGuessRaw = aiIsCorrect
-  //   ? aiDirection * (Math.random() * 1.5 + 0.5) // e.g. [0.5–2.0] in correct direction
-  //   : -aiDirection * (Math.random() * 1.5 + 0.5); // wrong direction
-
-  // const aiGuess = Math.max(-3, Math.min(3, aiGuessRaw)); // Clamp to slider scale
-  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
-
-  const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
-  const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
-  const HuAiCalc = HumanCalc + AiCalc;
-
-  const currentHitRate = calculateHitRate(hits, misses); // between 0–1
-  const currentFaRate = calculateFalseAlarmRate(falseA, correctRej); // between 0–1
-  const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
-  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
-
-  const totalDP = dPrimeHuman + dPrimeAid;
-  const aHuman = dPrimeHuman / totalDP;
-  const aAid = dPrimeAid / totalDP;
-  const XHuman = sliderValue;
-  const XAid = aiGuessValue;
-
-  const Z = aHuman * XHuman + aAid * XAid;
-  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
-
-  console.log(aHuman, 'aHuman');
-  console.log(aAid, 'aAid');
-  console.log(XHuman, 'XHuman');
-  console.log(XAid, 'XAid');
-  console.log('Z:', Z.toFixed(3));
-
-  const getColorString = (value: number): string => {
-    return value < 0 ? t('buttonOrange') : t('buttonBlue');
-  };
-
+  // --- Render ---
   if (finished) {
     const feedback = getFeedback(responses, index);
-    const accuracy = feedback?.avgAccuracy ?? '–';
-
-    // TODO genauigkeit 1 & 2
+    const avgAccuracy = feedback?.avgAccuracy ?? '–';
     const rawMessage = t('completionMessage');
-    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', accuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
+    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', avgAccuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -357,7 +245,7 @@ const Mainphase = () => {
       <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
       <div className='relative max-w-6xl px-8'>
         <AnimatePresence>
-          {index > 0 && (index + 1) % 6 === 0 ? (
+          {index > 0 && (index + 1) % 6 === 0 && (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -391,8 +279,8 @@ const Mainphase = () => {
                 </div>
               </mark>
             </motion.div>
-          ) : null}
-          {index > 0 && (index + 1) % 50 === 0 ? (
+          )}
+          {index > 0 && (index + 1) % 50 === 0 && (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -402,18 +290,14 @@ const Mainphase = () => {
               className='md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
-                  {(() => {
-                    return (
-                      <div>
-                        <div className='font-bold'> {t('attentionCheckTitle')}</div>
-                        {t('attentionCheckText')}
-                      </div>
-                    );
-                  })()}
+                  <div>
+                    <div className='font-bold'> {t('attentionCheckTitle')}</div>
+                    {t('attentionCheckText')}
+                  </div>
                 </div>
               </mark>
             </motion.div>
-          ) : null}
+          )}
         </AnimatePresence>
       </div>
       <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
@@ -428,12 +312,12 @@ const Mainphase = () => {
             }}></div>
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
-          <BiColorV2 percentage={current.color} />
+          <BiColor percentage={current.color} />
           <div className='flex m-4 w-full flex-col justify-center space-y-4'>
             {!showRecom ? (
               <div>
                 <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
-                  <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
+                  <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={setSliderValue} />
                 </div>
                 <div className='flex justify-center mt-16!'>
                   <button
@@ -471,20 +355,6 @@ const Mainphase = () => {
           </div>
         </div>
       </div>
-      {/* <div style={{ position: 'fixed', bottom: 20, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <button
-          onClick={() => setFinished(true)}
-          style={{
-            padding: '10px 20px',
-            background: '#b7b7b7',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}>
-          Debug Button
-        </button>
-      </div> */}
     </div>
   );
 };

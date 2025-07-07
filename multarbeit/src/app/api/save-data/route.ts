@@ -5,8 +5,6 @@ import path from 'path';
 const SECRET = process.env.SAVE_DATA_TOKEN;
 
 export async function POST(req: Request) {
-  //console.log('📥 POST /api/save-data called');
-
   const clientToken = req.headers.get('x-secret-token');
   if (SECRET && clientToken !== SECRET) {
     console.warn('❌ Invalid or missing secret token');
@@ -21,20 +19,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Missing code' }, { status: 400 });
     }
 
+    // Determine data directory
     const dir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
     const filename = `participant_${code}.json`;
     const filePath = path.join(dir, filename);
 
+    // Ensure directory exists
     fs.mkdirSync(dir, { recursive: true });
 
-    let existing = [];
+    // Read existing data if present
+    let existing: unknown[] = [];
     if (fs.existsSync(filePath)) {
       existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     }
 
+    // Merge and save
     const merged = [...existing, ...(responses || [])];
     fs.writeFileSync(filePath, JSON.stringify(merged, null, 2));
-    //console.log(`✅ Data written to ${filePath}`);
 
     return NextResponse.json({ message: 'Data saved', file: filename }, { status: 200 });
   } catch (err) {

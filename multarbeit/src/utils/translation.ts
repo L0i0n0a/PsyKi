@@ -5,9 +5,6 @@ import de from '@/locales/de.json';
 
 type Locale = 'en' | 'de';
 
-// Extract keys from one of the dictionaries to provide type safety
-// type TranslationKeys = keyof typeof en;
-
 const dictionaries = {
   en,
   de,
@@ -27,12 +24,14 @@ type ContentData = Partial<{
   allCount: number;
 }>;
 
+// --- Translation Hook ---
 export const useTranslation = (locale: Locale = 'de') => {
   const getNestedTranslation = (obj: unknown, key: string): string => {
     const result = key.split('.').reduce((acc, part) => (acc && typeof acc === 'object' && (acc as Record<string, unknown>)[part] !== undefined ? (acc as Record<string, unknown>)[part] : null), obj);
     return typeof result === 'string' ? result : key;
   };
 
+  // Main translation function
   const t = (key: string, contentData?: ContentData): string => {
     let translation = getNestedTranslation(dictionaries[locale], key);
 
@@ -44,5 +43,6 @@ export const useTranslation = (locale: Locale = 'de') => {
 
     return translation;
   };
+
   return { t };
 };

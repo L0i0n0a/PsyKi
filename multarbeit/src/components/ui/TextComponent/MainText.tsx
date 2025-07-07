@@ -1,7 +1,7 @@
 'use client';
 import { useTranslation } from '@/utils/translation';
 import React from 'react';
-import AccuracyComparison from './AccuracyComparison';
+import AccuracyComparison from '../AccuracyComponent/AccuracyComparison';
 
 type MainTextProps = {
   locale: 'de' | 'en';

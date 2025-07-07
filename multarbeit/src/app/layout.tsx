@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
+// --- Font Setup ---
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -12,17 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+// --- Metadata ---
 export const metadata: Metadata = {
   title: 'PsyKi: Optimale Gewichtung',
   description:
     'Das Optimal Weighting (OW) Modell ist ein theoretisches Modell, das beschreibt, wie ein Mensch oder ein System die Hinweise von einem menschlichen Entscheider und eines automatisierten Hilfsmittels optimal kombiniert, um die beste mögliche Entscheidung zu treffen.',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// --- Layout ---
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='de'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
