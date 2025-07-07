@@ -79,7 +79,7 @@ const Mainphase = () => {
   }
   //const hr = calculateHitRate(45, 5);
   //console.log(`Hit Rate: ${(hr * 100).toFixed(2)}%`); // Output: 90.00%
-  
+
   /**
    * Berechnet d' aus Hit Rate (HR) und False Alarm Rate (FAR)
    * @param hr Hit Rate (zwischen 0 und 1)
@@ -180,12 +180,25 @@ const Mainphase = () => {
     console.log('Acc:', accuracy);
     console.log('SLV:', sliderValue);
     console.log('Ai Guess', aiGuess);
+
+    console.log('--- OW Calculation ---');
+console.log('HR:', currentHitRate.toFixed(3));
+console.log('FAR:', currentFaRate.toFixed(3));
+console.log("d' human:", dPrimeHuman.toFixed(3));
+console.log("d' aid:", dPrimeAid.toFixed(3));
+console.log('aHuman:', aHuman.toFixed(3), 'aAid:', aAid.toFixed(3));
+console.log('XHuman:', XHuman.toFixed(3), 'XAi:', XAid.toFixed(3));
+console.log('Z (combined evidence):', Z.toFixed(3));
+console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
+
   };
 
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
 
   const handleChoice = (button: 'orange' | 'blue') => {
     console.log('🧠 User made a choice:', button);
+
+
     const response = {
       index,
       color: current.color,
@@ -200,6 +213,16 @@ const Mainphase = () => {
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
     console.log('✅ Is Correct:', isCorrect, '| User:', userChoice, '| Correct:', correctChoice);
+
+
+    if (correctChoice === 'blue') {
+      if (userChoice === 'blue') setHits(h => h + 1);
+      else setMisses(m => m + 1);
+    } else {
+      if (userChoice === 'blue') setFalseA(f => f + 1);
+      else setCorrectRe(r => r + 1);
+    }
+
 
     incrementAccuracy(isCorrect);
 
@@ -231,14 +254,29 @@ const Mainphase = () => {
   const totalCount = useParticipantStore((state) => state.totalCount);
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
-  const humanSensitivity = zHitRateH - zFalseAlarmRateH;
-  const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
+ // const humanSensitivity = zHitRateH - zFalseAlarmRateH;
+  //const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
 
 
   const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
   const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
   const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
+
+  const currentHitRate = calculateHitRate(hits, misses); // between 0–1
+  const currentFaRate = calculateFalseAlarmRate(falseA, correctRej); // between 0–1
+  const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
+  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
+
+  const totalDP = dPrimeHuman + dPrimeAid;
+  const aHuman = dPrimeHuman / totalDP;
+  const aAid = dPrimeAid / totalDP;
+  const XHuman = sliderValue / 100; // normiert zwischen -1 und 1
+  const XAid = aiGuess; // ist bereits skaliert
+
+  const Z = aHuman * XHuman + aAid * XAid;
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
+
 
   const getColorString = (value: number): string => {
     return value < 0 ? t('buttonOrange') : t('buttonBlue');
@@ -364,9 +402,8 @@ const Mainphase = () => {
                   <button
                     id='buttonNext'
                     disabled={sliderValue === 0}
-                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-                      sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
-                    }`}
+                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                      }`}
                     onClick={handleClick}>
                     {t('buttonNext')}
                   </button>
