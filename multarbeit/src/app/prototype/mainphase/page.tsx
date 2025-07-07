@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import  jStat from 'jstat';
+import jStat from 'jstat';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import dataRaw from '@/lib/dataMain.json';
@@ -28,16 +28,18 @@ const Mainphase = () => {
   const { t } = useTranslation(locale);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
-  const [hits, setHits] = useState(0); //für blau entschieden, wenn blau richtig war
-  const [misses, setMisses] = useState(0); //für orange entschieden, obwohl blau richtig wa
-  const [falseA, setFalseA] = useState(0); //für blau entschieden, obwohl orange richtig war
-  const [correctRej, setCorrectRe] = useState(0); //für orange entschieden, wenn orange richtig war
-  const [hitRate, setHitRate] = useState(0); // hr=hits/(hits + misses)
-  const [faRate, setFaRate] = useState(0); // far=falseA/(falseA + correctR)
-  // Z-Funktion (Standardnormalverteilung)
-  const z = (p: number) => jStat.normal.inv(p, 0, 1);
-
-
+  const hits = useParticipantStore((state) => state.hits);
+  const setHits = useParticipantStore((state) => state.setHits);
+  const misses = useParticipantStore((state) => state.misses);
+  const setMisses = useParticipantStore((state) => state.setMisses);
+  const falseA = useParticipantStore((state) => state.falseAlarms);
+  const setFalseA = useParticipantStore((state) => state.setFalseAlarms);
+  const correctRej = useParticipantStore((state) => state.correctRejections);
+  const setCorrectRe = useParticipantStore((state) => state.setCorrectRejections);
+  // const [hitRate, setHitRate] = useState(0); // hr=hits/(hits + misses)
+  // const [faRate, setFaRate] = useState(0); // far=falseA/(falseA + correctR)
+  // // Z-Funktion (Standardnormalverteilung)
+  // const z = (p: number) => jStat.normal.inv(p, 0, 1);
 
   const data = dataRaw as MainPhaseItem[];
 
@@ -52,11 +54,11 @@ const Mainphase = () => {
   // };
 
   /**
- * Calculates the False Alarm Rate (FAR).
- * @param falseA - Number of false alarms (false positives).
- * @param correctR - Number of correct rejections (true negatives).
- * @returns FAR value 
- */
+   * Calculates the False Alarm Rate (FAR).
+   * @param falseA - Number of false alarms (false positives).
+   * @param correctR - Number of correct rejections (true negatives).
+   * @returns FAR value
+   */
   function calculateFalseAlarmRate(falseA: number, correctR: number): number {
     const totalNegatives = falseA + correctR;
     if (totalNegatives === 0) return 0; // Avoid division by zero
@@ -67,14 +69,14 @@ const Mainphase = () => {
   //console.log(`False Alarm Rate: ${(far * 100).toFixed(2)}%`); // Output: 10.00%
 
   /**
- * Calculates the Hit Rate (HR).
- * @param hits - Number of hits (true positives).
- * @param misses - Number of misses (false negatives).
- * @returns HR value as a number between 0 and 1.
- */
+   * Calculates the Hit Rate (HR).
+   * @param hits - Number of hits (true positives).
+   * @param misses - Number of misses (false negatives).
+   * @returns HR value as a number between 0 and 1.
+   */
   function calculateHitRate(hits: number, misses: number): number {
     const totalPositives = hits + misses;
-    console.log(hits, " = ", misses);
+    console.log(hits, ' = ', misses);
     if (totalPositives === 0) return 0; // Avoid division by zero
     return hits / totalPositives;
   }
@@ -102,7 +104,6 @@ const Mainphase = () => {
 
   //const d = calculateDPrime(0.82, 0.14);
   //console.log('d\' =', d.toFixed(3)); // z. B. 1.99
-
 
   const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
     if (typeof window !== 'undefined') {
@@ -183,22 +184,20 @@ const Mainphase = () => {
     console.log('Ai Guess', aiGuess);
 
     console.log('--- OW Calculation ---');
-console.log('HR:', currentHitRate.toFixed(3));
-console.log('FAR:', currentFaRate.toFixed(3));
-console.log("d' human:", dPrimeHuman.toFixed(3));
-console.log("d' aid:", dPrimeAid.toFixed(3));
-console.log('aHuman:', aHuman.toFixed(3), 'aAid:', aAid.toFixed(3));
-console.log('XHuman:', XHuman.toFixed(3), 'XAi:', XAid.toFixed(3));
-console.log('Z (combined evidence):', Z.toFixed(3));
-console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
-
+    console.log('HR:', currentHitRate.toFixed(3));
+    console.log('FAR:', currentFaRate.toFixed(3));
+    console.log("d' human:", dPrimeHuman.toFixed(3));
+    console.log("d' aid:", dPrimeAid.toFixed(3));
+    console.log('aHuman:', aHuman.toFixed(3), 'aAid:', aAid.toFixed(3));
+    console.log('XHuman:', XHuman.toFixed(3), 'XAi:', XAid.toFixed(3));
+    console.log('Z (combined evidence):', Z.toFixed(3));
+    console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   };
 
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
 
   const handleChoice = (button: 'orange' | 'blue') => {
     console.log('🧠 User made a choice:', button);
-
 
     const response = {
       index,
@@ -210,20 +209,18 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
     setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
     //console.log('Collected response:', response);
 
-    const userChoice = sliderValue < 0 ? 'blue' : 'orange';
+    const userChoice = sliderValue > 0 ? 'blue' : 'orange';
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
     console.log('✅ Is Correct:', isCorrect, '| User:', userChoice, '| Correct:', correctChoice);
 
-
     if (correctChoice === 'blue') {
-      if (userChoice === 'blue') setHits(h => h + 1);
-      else setMisses(m => m + 1);
+      if (userChoice === 'blue') setHits(hits + 1);
+      else setMisses(misses + 1);
     } else {
-      if (userChoice === 'blue') setFalseA(f => f + 1);
-      else setCorrectRe(r => r + 1);
+      if (userChoice === 'blue') setFalseA(falseA + 1);
+      else setCorrectRe(correctRej + 1);
     }
-
 
     incrementAccuracy(isCorrect);
 
@@ -255,16 +252,13 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   const totalCount = useParticipantStore((state) => state.totalCount);
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
- // const humanSensitivity = zHitRateH - zFalseAlarmRateH;
+  // const humanSensitivity = zHitRateH - zFalseAlarmRateH;
   //const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
-
 
   const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
   const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
   const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
-
-  
 
   const currentHitRate = calculateHitRate(hits, misses); // between 0–1
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej); // between 0–1
@@ -274,12 +268,20 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   const totalDP = dPrimeHuman + dPrimeAid;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
-  const XHuman = sliderValue; 
-  const XAid = aiGuess; 
+  const XHuman = sliderValue;
+  const XAid = aiGuess;
 
   const Z = aHuman * XHuman + aAid * XAid;
-  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
+  // const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
+  console.log(aHuman, 'aHuman');
+  console.log(aAid, 'aAid');
+  console.log(XHuman, 'XHuman');
+  console.log(XAid, 'XAid');
+
+  console.log(dPrimeAid, 'dPrimeAid');
+  console.log(dPrimeHuman, 'dPrimeHuman');
+  console.log('Z:', Z.toFixed(3));
 
   const getColorString = (value: number): string => {
     return value < 0 ? t('buttonOrange') : t('buttonBlue');
@@ -405,8 +407,9 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
                   <button
                     id='buttonNext'
                     disabled={sliderValue === 0}
-                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
-                      }`}
+                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+                      sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                    }`}
                     onClick={handleClick}>
                     {t('buttonNext')}
                   </button>

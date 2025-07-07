@@ -31,11 +31,7 @@ const getThumbStyle = (value: number) => {
   `;
 };
 
-
-const getLabelText = (
-  value: number,
-  t: (key: 'secOrange' | 'secBlue' | 'secStrongOrange' | 'secStrongBlue' | 'secNeutral') => string
-) => {
+const getLabelText = (value: number, t: (key: 'secOrange' | 'secBlue' | 'secStrongOrange' | 'secStrongBlue' | 'secNeutral') => string) => {
   if (value === 0) return t('secNeutral');
   if (value < -2) return t('secStrongOrange');
   if (value < 0) return t('secOrange');
@@ -43,7 +39,6 @@ const getLabelText = (
   if (value > 0) return t('secBlue');
   return '';
 };
-
 
 const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange, locale }) => {
   const [internalValue, setInternalValue] = useState<number>(initial);

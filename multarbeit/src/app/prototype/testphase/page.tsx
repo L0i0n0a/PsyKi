@@ -23,11 +23,14 @@ const Testphase = () => {
   const isLastStep = step === instructionStepsLength - 1;
   const code = useParticipantStore((state) => state.code);
   const [feedbackCount, setFeedbackCount] = useState(0);
-  const [hits, setHits] = useState(0);
-  const [misses, setMisses] = useState(0);
-  const [falseAlarms, setFalseAlarms] = useState(0);
-  const [correctRejections, setCorrectRejections] = useState(0);
-
+  const hits = useParticipantStore((state) => state.hits);
+  const setHits = useParticipantStore((state) => state.setHits);
+  const misses = useParticipantStore((state) => state.misses);
+  const setMisses = useParticipantStore((state) => state.setMisses);
+  const falseAlarms = useParticipantStore((state) => state.falseAlarms);
+  const setFalseAlarms = useParticipantStore((state) => state.setFalseAlarms);
+  const correctRejections = useParticipantStore((state) => state.correctRejections);
+  const setCorrectRejections = useParticipantStore((state) => state.setCorrectRejections);
 
   // const getSessionId = () => {
   //   if (typeof window === 'undefined') return '';
@@ -93,19 +96,17 @@ const Testphase = () => {
     const isSignal = current.color > 0; // „Blau“ = Signal
     const choseBlue = sliderValue > 0;
 
-    // Signal vorhanden (Blau)
     if (isSignal) {
       if (choseBlue) {
-        setHits((prev) => prev + 1); // korrekt blau gewählt → Hit
+        setHits(hits + 1);
       } else {
-        setMisses((prev) => prev + 1); // falsch orange gewählt → Miss
+        setMisses(misses + 1);
       }
     } else {
-      // Kein Signal (Orange)
       if (choseBlue) {
-        setFalseAlarms((prev) => prev + 1); // falsch blau gewählt → False Alarm
+        setFalseAlarms(falseAlarms + 1);
       } else {
-        setCorrectRejections((prev) => prev + 1); // korrekt orange gewählt → Correct Rejection
+        setCorrectRejections(correctRejections + 1);
       }
     }
     console.log('--- SDT Classification ---');
@@ -113,8 +114,6 @@ const Testphase = () => {
     console.log('Misses:', misses + (isSignal && !choseBlue ? 1 : 0));
     console.log('False Alarms:', falseAlarms + (!isSignal && choseBlue ? 1 : 0));
     console.log('Correct Rejections:', correctRejections + (!isSignal && !choseBlue ? 1 : 0));
-
-
 
     incrementAccuracy(isCorrect);
 
@@ -200,8 +199,9 @@ const Testphase = () => {
           <MainText locale={locale} step={step} setStep={setStep} instructionStepsLength={instructionStepsLength} />
           <button
             disabled={!isLastStep}
-            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${!isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
-              }`}
+            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+              !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
+            }`}
             onClick={() => router.push('/prototype/mainphase')}>
             Start
           </button>
@@ -280,8 +280,9 @@ const Testphase = () => {
               <button
                 id='buttonNext'
                 disabled={sliderValue === 0}
-                className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
-                  }`}
+                className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
+                  sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                }`}
                 onClick={handleClick}>
                 {t('buttonNext')}
               </button>
