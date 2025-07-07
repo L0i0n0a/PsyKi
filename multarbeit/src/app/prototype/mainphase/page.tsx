@@ -74,6 +74,7 @@ const Mainphase = () => {
  */
   function calculateHitRate(hits: number, misses: number): number {
     const totalPositives = hits + misses;
+    console.log(hits, " = ", misses);
     if (totalPositives === 0) return 0; // Avoid division by zero
     return hits / totalPositives;
   }
@@ -273,8 +274,8 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   const totalDP = dPrimeHuman + dPrimeAid;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
-  const XHuman = sliderValue; // normiert zwischen -1 und 1
-  const XAid = aiGuess; // ist bereits skaliert
+  const XHuman = sliderValue; 
+  const XAid = aiGuess; 
 
   const Z = aHuman * XHuman + aAid * XAid;
   const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
