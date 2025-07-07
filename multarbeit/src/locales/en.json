@@ -80,7 +80,7 @@
   },
   "secStrongOrange": "very safe orange",
   "secOrange": "safe orange",
-  "secNeutral": "unsafe",
+  "secNeutral": "uncertain",
   "secBlue": "safe blue",
   "secStrongBlue": "very safe blue"
 }
