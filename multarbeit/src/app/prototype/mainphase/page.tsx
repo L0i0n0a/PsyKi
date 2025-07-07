@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { jStat } from 'jstat';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import dataRaw from '@/lib/dataMain.json';
@@ -27,6 +28,17 @@ const Mainphase = () => {
   const { t } = useTranslation(locale);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
+  const [hits, setHits] = useState(0); //für blau entschieden, wenn blau richtig war
+  const [misses, setMisses] = useState(0); //für orange entschieden, obwohl blau richtig wa
+  const [falseA, setFalseA] = useState(0); //für blau entschieden, obwohl orange richtig war
+  const [correctRej, setCorrectRe] = useState(0); //für orange entschieden, wenn orange richtig war
+  const [hitRate, setHitRate] = useState(0); // hr=hits/(hits + misses)
+  const [faRate, setFaRate] = useState(0); // far=falseA/(falseA + correctR)
+  // Z-Funktion (Standardnormalverteilung)
+  const z = (p: number) => jStat.normal.inv(p, 0, 1);
+
+
+
   const data = dataRaw as MainPhaseItem[];
 
   // const getSessionId = () => {
@@ -38,6 +50,58 @@ const Mainphase = () => {
   //   }
   //   return sessionId;
   // };
+
+  /**
+ * Calculates the False Alarm Rate (FAR).
+ * @param falseA - Number of false alarms (false positives).
+ * @param correctR - Number of correct rejections (true negatives).
+ * @returns FAR value 
+ */
+  function calculateFalseAlarmRate(falseA: number, correctR: number): number {
+    const totalNegatives = falseA + correctR;
+    if (totalNegatives === 0) return 0; // Avoid division by zero
+    return falseA / totalNegatives;
+  }
+
+  //const far = calculateFalseAlarmRate(10, 90);
+  //console.log(`False Alarm Rate: ${(far * 100).toFixed(2)}%`); // Output: 10.00%
+
+  /**
+ * Calculates the Hit Rate (HR).
+ * @param hits - Number of hits (true positives).
+ * @param misses - Number of misses (false negatives).
+ * @returns HR value as a number between 0 and 1.
+ */
+  function calculateHitRate(hits: number, misses: number): number {
+    const totalPositives = hits + misses;
+    if (totalPositives === 0) return 0; // Avoid division by zero
+    return hits / totalPositives;
+  }
+  //const hr = calculateHitRate(45, 5);
+  //console.log(`Hit Rate: ${(hr * 100).toFixed(2)}%`); // Output: 90.00%
+  
+  /**
+   * Berechnet d' aus Hit Rate (HR) und False Alarm Rate (FAR)
+   * @param hr Hit Rate (zwischen 0 und 1)
+   * @param far False Alarm Rate (zwischen 0 und 1)
+   * @returns d' Sensitivitätsmaß
+   */
+  function calculateDPrime(hr: number, far: number): number {
+    // Extremwerte abfangen (numerisch stabilisieren)
+    const epsilon = 1e-5;
+    const adjustedHR = Math.min(Math.max(hr, epsilon), 1 - epsilon);
+    const adjustedFAR = Math.min(Math.max(far, epsilon), 1 - epsilon);
+
+    const zHR = jStat.normal.inv(adjustedHR, 0, 1);
+    const zFAR = jStat.normal.inv(adjustedFAR, 0, 1);
+
+    const dPrime = zHR - zFAR;
+    return dPrime;
+  }
+
+  //const d = calculateDPrime(0.82, 0.14);
+  //console.log('d\' =', d.toFixed(3)); // z. B. 1.99
+
 
   const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
     if (typeof window !== 'undefined') {
@@ -121,6 +185,7 @@ const Mainphase = () => {
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
 
   const handleChoice = (button: 'orange' | 'blue') => {
+    console.log('🧠 User made a choice:', button);
     const response = {
       index,
       color: current.color,
@@ -134,6 +199,7 @@ const Mainphase = () => {
     const userChoice = sliderValue < 0 ? 'blue' : 'orange';
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
+    console.log('✅ Is Correct:', isCorrect, '| User:', userChoice, '| Correct:', correctChoice);
 
     incrementAccuracy(isCorrect);
 
@@ -164,6 +230,10 @@ const Mainphase = () => {
   const correctCount = useParticipantStore((state) => state.correctCount);
   const totalCount = useParticipantStore((state) => state.totalCount);
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+
+  const humanSensitivity = zHitRateH - zFalseAlarmRateH;
+  const aiSensitivity = zHitRateAI - zFalseAlarmRateAI;
+
 
   const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
   const HumanCalc = (Number(accuracy) / 100 / (Number(accuracy) / 100 + current.aiAccuracy!)) * sliderValue;
