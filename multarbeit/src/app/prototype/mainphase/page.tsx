@@ -300,6 +300,8 @@ const Mainphase = () => {
     // TODO genauigkeit 1 & 2
     const rawMessage = t('completionMessage');
     const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', accuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
+    const rawMessage = t('completionMessage');
+    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', accuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
