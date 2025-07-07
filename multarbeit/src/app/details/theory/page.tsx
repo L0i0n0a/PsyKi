@@ -10,7 +10,7 @@ const OWModelTheory: React.FC = () => {
   return (
     <div className='max-w-5xl mx-auto px-4 py-8 space-y-6'>
       <iframe
-        src='/OptimalWeighing.pdf'
+        src='/optimal-weighing.pdf'
         style={{
           width: '100%',
           height: '100vh',

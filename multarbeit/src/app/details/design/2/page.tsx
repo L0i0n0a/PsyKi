@@ -95,7 +95,7 @@ const DesignDecisionsPage2: React.FC = () => {
       title: 'Z-Kriterium als Skala anzeigen',
       content: (
         <>
-          <Image src='/Skala.png' width={400} height={400} alt='Beispielhafte Skala-Auswertung' className='my-6 mx-auto max-w-sm rounded shadow' />
+          <Image src='/scale-scribble.png' width={400} height={400} alt='Beispielhafte Skala-Auswertung' className='my-6 mx-auto max-w-sm rounded shadow' />
           <p className='mb-4'>Für die Eingabe der Entscheidung und für die Ausgabe als Entscheidungshilfe.</p>
           <p className='mb-4'>
             <strong>Offene Fragen:</strong>
@@ -119,7 +119,7 @@ const DesignDecisionsPage2: React.FC = () => {
           <p className='mb-4'>
             <strong>Visuell:</strong>
           </p>
-          <Image src='/Kombination.png' alt='Beispielhafte Kombinations-Darstellung' className='my-6 mx-auto max-w-sm rounded shadow' width={400} height={400} />
+          <Image src='/combined-scribble.png' alt='Beispielhafte Kombinations-Darstellung' className='my-6 mx-auto max-w-sm rounded shadow' width={400} height={400} />
           <p className='mb-4'>2 Ströme von Mensch und KI, die unterschiedlich dick sind und zu Z-Wert konvergieren</p>
         </>
       ),
@@ -204,7 +204,7 @@ const DesignDecisionsPage2: React.FC = () => {
             </ul>
           </div>
           <div>
-            <Image src='/Rastergrafik.svg' height={400} width={400} alt='' />
+            <Image src='/user-flows.svg' height={400} width={400} alt='' />
             <p className='imageSourceText text-center'>Inkscape</p>
           </div>
         </div>

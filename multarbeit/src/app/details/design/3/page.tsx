@@ -28,11 +28,11 @@ const DesignDecisionsPage3: React.FC = () => {
           </p>
           <div className='flex flex-row justify-between items-center'>
             <div>
-              <Image src='/ow1.png' alt='' width={500} height={300} />
+              <Image src='/ow-1.png' alt='' width={500} height={300} />
               <p className='imageSourcetext text-center'>Erklärung der Entscheidungsfindung</p>
             </div>
             <div>
-              <Image src='/ow3.png' alt='' width={500} height={300} />
+              <Image src='/ow-2.png' alt='' width={500} height={300} />
               <p className='imageSourcetext text-center'>Beispiel der Referenzwert-Darstellung</p>
             </div>
           </div>
@@ -128,7 +128,7 @@ const DesignDecisionsPage3: React.FC = () => {
         <h2 className='text-2xl font-semibold'>Integrated Information Processing Modell</h2>
         <h2 className='text-2xl mb-4'>Welche theoretische Grundlage beinhaltet die Anwendung, um die Strategie verständlich zu machen?</h2>
         <div>
-          <Image className='imageCenter' src='/iip.png' alt='IIP-Modell' width={500} height={400} />
+          <Image className='imageCenter' src='/iip-model.png' alt='IIP-Modell' width={500} height={400} />
           <p className='imageSourcetext text-center'>Schrills, 2025</p>
           <p className='text-xl p-4'>
             Das Integrated Information Processing (IIP) Modell beschreibt, wie Mensch und KI sinnvoll zusammenwirken können, indem es drei zentrale Schnittstellen identifiziert, die wir systematisch
@@ -190,9 +190,9 @@ const DesignDecisionsPage3: React.FC = () => {
         <h3 className='text-xl mb-4'>Wie können Nutzende Entscheidungen innerhalb der Anwendung treffen?</h3>
         <div>
           <div className='flex items-center'>
-            <Image className='imageCenter' src='/decisionskala.png' alt='Entscheidungskala' width={400} height={400} />
+            <Image className='imageCenter' src='/decision-scale.png' alt='Entscheidungskala' width={400} height={400} />
             <span className='text-6xl'> &#8594;</span>
-            <Image className='imageCenter' src='/SkalaNew.png' alt='Entscheidungskala mit Neutralhinweis' width={400} height={400} />
+            <Image className='imageCenter' src='/scale-implemented.png' alt='Entscheidungskala mit Neutralhinweis' width={400} height={400} />
           </div>
           <p className='mt-6 text-lg'>
             <strong>Z-Skala als Schieberegler: </strong>
@@ -214,9 +214,9 @@ const DesignDecisionsPage3: React.FC = () => {
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
           <div className='flex items-center'>
-            <Image className='imageCenter' src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+            <Image className='imageCenter' src='/z-score.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
             <span className='text-6xl'> &#8594;</span>
-            <Image className='imageCenter' src='/kombiniert3.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
+            <Image className='imageCenter' src='/combined-implemented.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
           </div>
           <p className='mt-6 text-lg'>
             <strong>Zielgerichtete Visualisierung :</strong>

@@ -21,7 +21,7 @@ export default function Home() {
         imageSource='Benchmarking Aided Decision Making in a Signal Detection Task
 Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         onClick={() => router.push('/details/theory')}
-        imageUrl='/graph.png'
+        imageUrl='/decision-graph.png'
         title='Optimale Gewichtung: Theorie '
         description={
           <>
@@ -35,7 +35,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
       <SectionLeft
         imageSource='Med Badr Chemmaoui (Unsplash)'
         onClick={() => router.push('/details/design/1')}
-        imageUrl='/unsplash_med.jpg'
+        imageUrl='/design-decisions.jpg'
         title='Erste Designentscheidungen'
         description={
           <>
@@ -50,13 +50,13 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
 
       {/* Scribbles carousel */}
       <h2 className='text-3xl font-bold m-4 text-center'>Erste Scribbles</h2>
-      <Carousel images={['/IMG_0086.png', '/IMG_0087.png']} imageDescriptions={['Scribble 1: Menschliche Einschätzung', 'Scribble 2: Vergleich Mensch und KI']} />
+      <Carousel images={['/scribble-1.png', '/scribble-2.png']} imageDescriptions={['Scribble 1: Menschliche Einschätzung', 'Scribble 2: Vergleich Mensch und KI']} />
 
       {/* Prototype design section */}
       <SectionRight
         imageSource='Anima - Nick Meyer'
         onClick={() => router.push('/details/design/2')}
-        imageUrl='/cover-image-2.jpg'
+        imageUrl='/user-flow.jpg'
         title='Prototyp-Entwurf & Userflows'
         description={
           <>
@@ -71,7 +71,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
       <SectionLeft
         imageSource='Kateryna Mayka von Eleken'
         onClick={() => router.push('/prototype')}
-        imageUrl='/prototyp.png'
+        imageUrl='/prototype-example.png'
         title='Prototyp für Optimal Weighting Strategie'
         description={<>Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden.</>}
       />
@@ -80,7 +80,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
       <SectionRight
         imageSource='CONEDU/Schnepfleitner, auf erwachsenenbildung.at'
         onClick={() => router.push('/details/design/3')}
-        imageUrl='/sec3.webp'
+        imageUrl='/communication-feedback.webp'
         title='Wissenschaftskommunikation & Feedback'
         description={
           <>

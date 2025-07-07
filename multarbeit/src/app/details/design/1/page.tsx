@@ -55,7 +55,7 @@ const DesignDecisionsPage: React.FC = () => {
             </ul>
           </div>
           <div>
-            <Image src='/zielgruppe.png' height={400} width={400} alt='Zielgruppe' />
+            <Image src='/target-group.png' height={400} width={400} alt='Zielgruppe' />
             <p className='imageSourceText text-right'>ChatGPT</p>
           </div>
         </div>
@@ -120,7 +120,7 @@ const DesignDecisionsPage: React.FC = () => {
         <div className='flex gap-8 items-start'>
           {/* First element */}
           <div className='flex flex-col items-start w-2/4'>
-            <Image height={200} width={400} src='/IMG_0086.png' alt='Scribble 1' className='h-[200px] w-auto' />
+            <Image height={200} width={400} src='/scribble-1.png' alt='Scribble 1' className='h-[200px] w-auto' />
             <div className='mt-4'>
               <h3 className='font-bold'>Menschliche Einschätzung:</h3>
               <ul className='ml-6 list-disc list-inside space-y-1 mt-2'>
@@ -132,7 +132,7 @@ const DesignDecisionsPage: React.FC = () => {
           </div>
           {/* Second element */}
           <div className='flex flex-col items-start w-2/4'>
-            <Image height={200} width={400} src='/IMG_0087.png' alt='Scribble 2' className='h-[200px] w-auto' />
+            <Image height={200} width={400} src='/scribble-2.png' alt='Scribble 2' className='h-[200px] w-auto' />
             <div className='mt-4'>
               <h3 className='font-bold'>Finale Entscheidung:</h3>
               <ul className='ml-6 list-disc list-inside space-y-1 mt-2'>
