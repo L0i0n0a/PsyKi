@@ -11,14 +11,11 @@ type ColorSliderProps = {
 const getThumbStyle = (value: number) => {
   let color = 'rgba(255,255,255,0)';
   const border = '2px solid white';
+  const opacity = Math.min(1, Math.abs(value / 3));
 
   if (value < 0) {
-    // Left side: orange, opacity increases as value approaches -1
-    const opacity = Math.abs(value);
     color = `rgba(251, 140, 0, ${opacity})`;
   } else if (value > 0) {
-    // Right side: blue, opacity increases as value approaches 1
-    const opacity = value;
     color = `rgba(13, 71, 161, ${opacity})`;
   }
 
@@ -34,24 +31,19 @@ const getThumbStyle = (value: number) => {
   `;
 };
 
-const getLabelText = (value: number, t: (key: 'secOrange' | 'secBlue' | 'secStrongOrange' | 'secStrongBlue' | 'secNeutral') => string) => {
-  if (value === 0) {
-    return t('secNeutral');
-  }
-  if (value < -0.5) {
-    return t('secStrongOrange');
-  }
-  if (value < 0) {
-    return t('secOrange');
-  }
-  if (value > 0.5) {
-    return t('secStrongBlue');
-  }
-  if (value > 0) {
-    return t('secBlue');
-  }
+
+const getLabelText = (
+  value: number,
+  t: (key: 'secOrange' | 'secBlue' | 'secStrongOrange' | 'secStrongBlue' | 'secNeutral') => string
+) => {
+  if (value === 0) return t('secNeutral');
+  if (value < -2) return t('secStrongOrange');
+  if (value < 0) return t('secOrange');
+  if (value > 2) return t('secStrongBlue');
+  if (value > 0) return t('secBlue');
   return '';
 };
+
 
 const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange, locale }) => {
   const [internalValue, setInternalValue] = useState<number>(initial);
@@ -82,8 +74,8 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
       </div>
       <input
         type='range'
-        min={-1}
-        max={1}
+        min={-3}
+        max={3}
         step={0.01}
         value={sliderValue}
         onChange={handleChange}

@@ -14,8 +14,10 @@ type AccuracyComparisonProps = {
 };
 
 function scaleToPercent(val: number) {
-  return ((val + 1) / 2) * 100;
+  // Convert -3..3 to 0..100
+  return ((val + 3) / 6) * 100;
 }
+
 
 export default function AccuracyComparison({ menschPercent, kiPercent, locale, decision, menschAccuracy, kiAccuracy }: AccuracyComparisonProps) {
   const { t } = useTranslation(locale);
@@ -68,32 +70,24 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
   }
 
   function getColorForScore(score: number): string {
-    const t = Math.abs(score); // Scale from 0 to 1
+    const t = Math.min(1, Math.abs(score / 3)); // Normalize from -3..3 to 0..1
     return score < 0
-      ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -1 to 0
-      : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 1
+      ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -3 to 0
+      : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 3
   }
-
+  
   const menschColor = getColorForScore(menschPercent);
   const kiColor = getColorForScore(kiPercent);
 
-  const clampedDecision = Math.max(-1, Math.min(1, decisionPercent));
-  const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
+  const clampedDecision = Math.max(-3, Math.min(3, decisionPercent));
+  //const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
 
+  const color = Math.min(1, Math.abs(clampedDecision / 3));
   const decisionColor =
-    decisionPercent >= 0
-      ? interpolateColor(
-        '#90CAF9', // light blue (start)
-        '#0D47A1', // dark blue (end)
-        color
-      )
-      : interpolateColor(
-        '#FFE0B2', // light orange (start)
-        '#FB8C00', // dark orange (end)
-        color
-      );
-
-
+    clampedDecision >= 0
+      ? interpolateColor('#90CAF9', '#0D47A1', color)
+      : interpolateColor('#FFE0B2', '#FB8C00', color);
+  
   function VariableWidthCurve({
     x1,
     y1,

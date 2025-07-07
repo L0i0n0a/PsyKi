@@ -42,6 +42,8 @@ const Testphase = () => {
     const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
     const avgAccuracy = 100 - avgDiff;
 
+    console.log(`[Feedback] CurrentIndex: ${currentIndex}, AvgDiff: ${avgDiff.toFixed(1)}, AvgAccuracy: ${avgAccuracy.toFixed(1)}, Diffs:`, diffs);
+
     return {
       avgDiff: avgDiff.toFixed(1),
       avgAccuracy: avgAccuracy.toFixed(1),
@@ -77,6 +79,7 @@ const Testphase = () => {
     const userChoice = sliderValue > 0 ? 'blue' : 'orange';
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
+    console.log(`[Click] Index: ${index}, Slider: ${sliderValue}, Color: ${current.color}, UserChoice: ${userChoice}, CorrectChoice: ${correctChoice}, Correct: ${isCorrect}`);
 
     incrementAccuracy(isCorrect);
 
@@ -146,6 +149,11 @@ const Testphase = () => {
 
   const current = data[index];
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+
+  // Slider change debug
+  useEffect(() => {
+    console.log(`[Slider] Value changed: ${sliderValue}`);
+  }, [sliderValue]);
 
   if (finished) {
     return (
