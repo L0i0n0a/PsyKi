@@ -39,7 +39,7 @@
   "carouselSlide5Title": "Accuracy Note",
   "carouselSlide5Text": "💡 The automated system has an average accuracy of 93%. Your own weighting was calculated based on your performance during the test phase.",
   "carouselSlide6Title": "Your Choice",
-  "carouselSlide6Text": "You are free to decide whether and how much to rely on the system. Our goal is transparency – to help you make well-informed decisions using both assessments.",
+  "carouselSlide6Text": "You are free to decide whether and how much you want to rely on the system. Our goal is to provide transparency and help you make well-informed decisions using both sources of information.",
   "back": "Back",
   "next": "Next",
   "step": "Step",
@@ -78,9 +78,9 @@
       "5": "You accepted the recommendation in <strong>{{acceptedCount}} of {{totalCount}}</strong> cases - <strong>{{acceptedCorrectCount}}</strong> of which were correct."
     }
   },
-  "secStrongOrange": "very safe orange",
-  "secOrange": "safe orange",
+  "secStrongOrange": "very confident orange",
+  "secOrange": "confident orange",
   "secNeutral": "uncertain",
-  "secBlue": "safe blue",
-  "secStrongBlue": "very safe blue"
+  "secBlue": "confident blue",
+  "secStrongBlue": "very confident blue"
 }
