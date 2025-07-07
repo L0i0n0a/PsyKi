@@ -34,21 +34,21 @@ const getThumbStyle = (value: number) => {
   `;
 };
 
-const getLabelText = (value: number, t: (key: 'labelOrange' | 'labelBlue' | 'labelStrongOrange' | 'labelStrongBlue' | 'labelNeutral') => string) => {
+const getLabelText = (value: number, t: (key: 'secOrange' | 'secBlue' | 'secStrongOrange' | 'secStrongBlue' | 'secNeutral') => string) => {
   if (value === 0) {
-    return t('labelNeutral');
+    return t('secNeutral');
   }
   if (value < -0.5) {
-    return t('labelStrongOrange');
+    return t('secStrongOrange');
   }
   if (value < 0) {
-    return t('labelOrange');
+    return t('secOrange');
   }
   if (value > 0.5) {
-    return t('labelStrongBlue');
+    return t('secStrongBlue');
   }
   if (value > 0) {
-    return t('labelBlue');
+    return t('secBlue');
   }
   return '';
 };
@@ -102,11 +102,11 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
         }}
       />
       <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>
-        <span className='justify-self-start'>{t('labelStrongOrange')}</span>
-        <span>{t('labelOrange')}</span>
-        <span>{t('labelNeutral')}</span>
-        <span>{t('labelBlue')}</span>
-        <span className='justify-self-end'>{t('labelStrongBlue')}</span>
+        <span className='justify-self-start'>{t('secStrongOrange')}</span>
+        <span>{t('secOrange')}</span>
+        <span>{t('secNeutral')}</span>
+        <span>{t('secBlue')}</span>
+        <span className='justify-self-end'>{t('secStrongBlue')}</span>
       </div>
 
       <style>{`
