@@ -304,8 +304,8 @@ const Mainphase = () => {
               </div>
             ) : (
               <div className='flex flex-col w-full space-y-6 '>
-                <div className='text-center flex space-x-2 justify-center'>
-                  <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
+                <div className='text-center m-0 flex justify-center'>
+                  <p className='text-lg mr-2'> {t('assistantRecommendationTitle')}</p>
                   <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)} (${(aiGuess * 100).toFixed(1)}%)`}</p>
                 </div>
                 <div className='w-full'>

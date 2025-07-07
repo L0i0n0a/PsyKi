@@ -137,7 +137,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
 
   return (
     <div className='flex w-full flex-col items-center justify-center p-6'>
-      <h1 className='text-2xl w-full mb-36 text-center'> {t('zScore')}</h1>
+      <h1 className='text-2xl w-full mb-30 text-center'> {t('zScore')}</h1>
       <div className='flex flex-col w-full min-w-110 md:min-w-96 max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
           {/* Z-Score Visualisierung */}
