@@ -102,11 +102,11 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
         }}
       />
       <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>
-        <span className='justify-self-start'>{t('secStrongOrange')}</span>
+        <span className='justify-self-start break-words whitespace-normal'>{t('secStrongOrange')}</span>
         <span>{t('secOrange')}</span>
         <span>{t('secNeutral')}</span>
         <span>{t('secBlue')}</span>
-        <span className='justify-self-end'>{t('secStrongBlue')}</span>
+        <span className='justify-self-end break-words whitespace-normal'>{t('secStrongBlue')}</span>
       </div>
 
       <style>{`

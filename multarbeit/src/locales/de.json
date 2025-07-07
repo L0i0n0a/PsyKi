@@ -33,7 +33,7 @@
   "carouselSlide2Title": "Unterstützung durch ein System",
   "carouselSlide2Text": "Zusätzlich zu Ihrer eigenen Einschätzung analysiert ein automatisiertes System dasselbe Bild. Es wurde darauf trainiert, Farben im Bild zu erkennen und eine Schätzung abzugeben.",
   "carouselSlide3Title": "Eine gemeinsame Empfehlung",
-  "carouselSlide3Text": "Die Entscheidungshilfe (KI) kombiniert Ihre Einschätzung mit der des Systems. Dabei wird berücksichtigt, wie zuverlässig beide sind – und entsprechend gewichtet. So entsteht eine gemeinsame Empfehlung.",
+  "carouselSlide3Text": "Die Entscheidungshilfe (KI) kombiniert Ihre Einschätzung mit der des Systems. Dabei wird berücksichtigt, wie zuverlässig beide sind – und entsprechend gewichtet. So entsteht eine gemeinsame Empfehlung. Die kombinierte Empfehlung unten zeigt Beispielwerte.",
   "carouselSlide4Title": "Gewichtung der Einschätzungen",
   "carouselSlide4Text": "Ihre Einschätzung und die des Systems gehen anteilig in die Entscheidung ein. Je nachdem, wie zuverlässig jede Quelle ist, wird sie stärker oder schwächer gewichtet.",
   "carouselSlide5Title": "Hinweis zur Genauigkeit",

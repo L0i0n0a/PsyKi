@@ -33,7 +33,7 @@
   "carouselSlide2Title": "Support from a System",
   "carouselSlide2Text": "In addition to your own judgment, an automated system also analyzes the same image. It is trained to detect the color distribution and make a prediction.",
   "carouselSlide3Title": "A Combined Recommendation",
-  "carouselSlide3Text": "The decision support system (AI) combines your judgment with that of the automated analysis. It considers how reliable each is – and weights them accordingly to create a shared recommendation.",
+  "carouselSlide3Text": "The decision support system (AI) combines your judgment with that of the automated analysis. It considers how reliable each is – and weights them accordingly to create a shared recommendation. The combined recommendation below shows example values.",
   "carouselSlide4Title": "Weighting the Assessments",
   "carouselSlide4Text": "Your judgment and the system's each contribute to the decision. Depending on how reliable each source is, it will be weighted more or less heavily.",
   "carouselSlide5Title": "Accuracy Note",
