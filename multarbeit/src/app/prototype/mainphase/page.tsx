@@ -170,6 +170,10 @@ const Mainphase = () => {
   const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
 
+  const getColorString = (value: number): string => {
+    return value < 0 ? t('buttonOrange') : t('buttonBlue');
+  };
+
   if (finished) {
     const feedback = getFeedback(responses, index);
     const accuracy = feedback?.avgAccuracy ?? '–';
@@ -300,9 +304,9 @@ const Mainphase = () => {
               </div>
             ) : (
               <div className='flex flex-col w-full space-y-6 '>
-                <div className='text-center flex space-x-2'>
+                <div className='text-center flex space-x-2 justify-center'>
                   <p className='text-lg'> {t('assistantRecommendationTitle')}</p>
-                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'>{aiGuess * 100}%</p>
+                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)} (${(aiGuess * 100).toFixed(1)}%)`}</p>
                 </div>
                 <div className='w-full'>
                   <AccuracyComparison menschPercent={HumanCalc} kiPercent={AiCalc} locale={locale} decision={HuAiCalc} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />

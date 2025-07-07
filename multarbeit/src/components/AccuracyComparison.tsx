@@ -67,18 +67,15 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
     return rgbToHex({ r, g, b });
   }
 
-  const menschColor = interpolateColor(
-    '#FB8C00', // dark orange (right)
-    '#FFE0B2', // light orange (left)
+ function getColorForScore(score: number): string {
+  const t = Math.abs(score); // Scale from 0 to 1
+  return score < 0
+    ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -1 to 0
+    : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 1
+}
 
-    menschX / 100
-  );
-
-  const kiColor = interpolateColor(
-    '#90CAF9', // light blue (left)
-    '#0D47A1', // dark blue (right)
-    kiX / 100
-  );
+const menschColor = getColorForScore(menschPercent);
+const kiColor = getColorForScore(kiPercent);
 
 const clampedDecision = Math.max(-1, Math.min(1, decisionPercent));
 const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
@@ -155,7 +152,7 @@ const decisionColor =
 
               {/* Mensch Marker */}
               <div
-                className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-8 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white shadow z-10'
                 style={{
                   left: `${menschX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
@@ -165,7 +162,7 @@ const decisionColor =
 
               {/* KI Marker */}
               <div
-                className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-8 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white shadow z-10'
                 style={{
                   left: `${kiX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
@@ -186,7 +183,7 @@ const decisionColor =
                 </p>
               </div>
               <div
-                className='absolute top-10 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
                 style={{
                   left: `${decisionX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
