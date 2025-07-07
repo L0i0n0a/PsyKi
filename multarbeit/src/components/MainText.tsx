@@ -37,7 +37,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide3Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide3Text')}</p>
-          <AccuracyComparison menschPercent={40} kiPercent={93} locale={locale} decision={50} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison menschPercent={-0.4} kiPercent={0.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
         </div>
       ),
     },
@@ -46,7 +46,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide4Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide4Text')}</p>
-          <AccuracyComparison menschPercent={40} kiPercent={93} locale={locale} decision={50} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison menschPercent={-0.4} kiPercent={0.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
         </div>
       ),
     },
@@ -55,7 +55,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide5Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide5Text')}</p>
-          <AccuracyComparison menschPercent={40} kiPercent={93} locale={locale} decision={50} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison menschPercent={-0.4} kiPercent={0.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
         </div>
       ),
     },
@@ -64,7 +64,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide6Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide6Text')}</p>
-          <AccuracyComparison menschPercent={60} kiPercent={93} locale={locale} decision={50} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison menschPercent={-0.4} kiPercent={0.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
         </div>
       ),
     },
