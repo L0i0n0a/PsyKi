@@ -77,5 +77,10 @@
       "4": "In the test phase <em>(without decision support)</em> you were at <strong>{{accuracyWithoutHelp}} %</strong>. With help, it was <strong>{{accuracyWithHelp}} %</strong>.",
       "5": "You accepted the recommendation in <strong>{{acceptedCount}} of {{totalCount}}</strong> cases - <strong>{{acceptedCorrectCount}}</strong> of which were correct."
     }
-  }
+  },
+  "secStrongOrange": "very safe orange",
+  "secOrange": "safe orange",
+  "secNeutral": "unsafe",
+  "secBlue": "safe blue",
+  "secStrongBlue": "very safe blue"
 }

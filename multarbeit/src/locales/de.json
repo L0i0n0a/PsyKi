@@ -77,5 +77,10 @@
       "4": "In der Testphase <em>(ohne Entscheidungshilfe)</em> lagst du bei <strong>{{accuracyWithoutHelp}} %</strong>. Mit Hilfe waren es <strong>{{accuracyWithHelp}} %</strong>.",
       "5": "Du hast die Empfehlung in <strong>{{acceptedCount}} von {{totalCount}}</strong> Fällen übernommen – <strong>{{acceptedCorrectCount}}</strong> davon waren korrekt."
     }
-  }
+  },
+  "secStrongOrange": "sehr sicher orange",
+  "secOrange": "sicher orange",
+  "secNeutral": "unsicher",
+  "secBlue": "sicher blau",
+  "secStrongBlue": "sehr sicher blau"
 }

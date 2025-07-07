@@ -67,27 +67,27 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
     return rgbToHex({ r, g, b });
   }
 
- function getColorForScore(score: number): string {
-  const t = Math.abs(score); // Scale from 0 to 1
-  return score < 0
-    ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -1 to 0
-    : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 1
-}
+  function getColorForScore(score: number): string {
+    const t = Math.abs(score); // Scale from 0 to 1
+    return score < 0
+      ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -1 to 0
+      : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 1
+  }
 
-const menschColor = getColorForScore(menschPercent);
-const kiColor = getColorForScore(kiPercent);
+  const menschColor = getColorForScore(menschPercent);
+  const kiColor = getColorForScore(kiPercent);
 
-const clampedDecision = Math.max(-1, Math.min(1, decisionPercent));
-const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
+  const clampedDecision = Math.max(-1, Math.min(1, decisionPercent));
+  const color = Math.abs(clampedDecision); // always a positive interpolation factor between 0 and 1
 
-const decisionColor =
-  decisionPercent >= 0
-    ? interpolateColor(
+  const decisionColor =
+    decisionPercent >= 0
+      ? interpolateColor(
         '#90CAF9', // light blue (start)
         '#0D47A1', // dark blue (end)
         color
       )
-    : interpolateColor(
+      : interpolateColor(
         '#FFE0B2', // light orange (start)
         '#FB8C00', // dark orange (end)
         color
@@ -136,9 +136,9 @@ const decisionColor =
   }
 
   return (
-    <div className='flex flex-col items-center justify-center p-6'>
-      <h1 className='text-2xl mb-36 text-center'> {t('zScore')}</h1>
-      <div className='flex flex-col w-full max-w-3xl'>
+    <div className='flex w-full flex-col items-center justify-center p-6'>
+      <h1 className='text-2xl w-full mb-36 text-center'> {t('zScore')}</h1>
+      <div className='flex flex-col w-full min-w-110 md:min-w-96 max-w-3xl'>
         <div className='flex items-center justify-between relative  w-full'>
           {/* Z-Score Visualisierung */}
           <div className='relative flex-1 mx-4'>
@@ -203,23 +203,23 @@ const decisionColor =
 
             {/* Labels */}
             <div className='grid grid-cols-5 text-sm text-gray-600 mt-2 px-1 text-center'>
-  <span className='justify-self-start'>{t('labelStrongOrange')}</span>
-  <span>{t('labelOrange')}</span>
-  <span>{t('labelNeutral')}</span>
-  <span>{t('labelBlue')}</span>
-  <span className='justify-self-end'>{t('labelStrongBlue')}</span>
-</div>
+              <span className='justify-self-start'>{t('secStrongOrange')}</span>
+              <span>{t('secOrange')}</span>
+              <span>{t('secNeutral')}</span>
+              <span>{t('secBlue')}</span>
+              <span className='justify-self-end'>{t('secStrongBlue')}</span>
+            </div>
 
           </div>
           {/* Prozentwerte unterhalb der Marker */}
           <div className='my-14 absolute top-4 w-full flex flex-col justify-center text-center font-semibold px-2'>
-            <p>{t('accuracyValues')}</p>
+            <p className='mt-4'>{t('accuracyValues')}</p>
             <div className='flex flex-row justify-center'>
-              <div>
+              <div className='mx-4'>
                 <p className='text-base font-semibold'>{t('human')}</p>
                 <p className='text-lg font-bold'>{menschAccuracy}%</p>
               </div>
-              <div>
+              <div className='mx-4'>
                 <p className='text-base font-semibold'>{t('ki')}</p>
                 <p className='text-lg font-semibold'>{kiAccuracy}%</p>
               </div>
