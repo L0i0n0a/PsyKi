@@ -13,7 +13,7 @@
   "feedbackNoteText": "Your average accuracy is: ",
   "feedbackNotePlaceholder": "Placeholder percentage not yet integrated in Prototype V1",
   "completionTitle": "Thank you for your participation!",
-  "completionMessage": "In this study, we wanted to explore how people collaborate with AI systems. Your individual accuracy in the first phase was %GENAUIGKEIT%.\n\nIn the second part, we used a system that combined your judgments with those of an AI. The combination took into account how reliable each estimate was. The more accurate a source was — whether you or the AI — the more weight it was given. The accuracy with the help of the system was %GENAUIGKEIT%.\n\nThe goal of this strategy is to make better decisions together by combining human and machine input. Your participation helps us understand how decision support systems can be designed to support people meaningfully without overriding them.",
+  "completionMessage": "In this study, we wanted to explore how people collaborate with AI systems. Your individual accuracy in the first phase was %GENAUIGKEIT1%.\n\nIn the second part, we used a system that combined your judgments with those of an AI. The combination took into account how reliable each estimate was. The more accurate a source was — whether you or the AI — the more weight it was given. The accuracy with the help of the system was %GENAUIGKEIT2%.\n\nThe goal of this strategy is to make better decisions together by combining human and machine input. Your participation helps us understand how decision support systems can be designed to support people meaningfully without overriding them.",
   "buttonHome": "Back to home",
   "mainPhaseHeader": "Main Phase: ",
   "buttonConfirmNext": "Confirm & Next",

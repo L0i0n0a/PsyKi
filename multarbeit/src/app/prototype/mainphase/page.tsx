@@ -272,7 +272,7 @@ const Mainphase = () => {
   const XAid = aiGuess;
 
   const Z = aHuman * XHuman + aAid * XAid;
-  // const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
   console.log(aHuman, 'aHuman');
   console.log(aAid, 'aAid');
@@ -292,8 +292,11 @@ const Mainphase = () => {
     const accuracy = feedback?.avgAccuracy ?? '–';
 
     // TODO genauigkeit 1 & 2
-    const rawMessage = t('completionMessage');
-    const messageWithAccuracy = rawMessage.replaceAll('%GENAUIGKEIT%', accuracy + '%');
+        const rawMessage = t('completionMessage');
+    const messageWithAccuracy = rawMessage
+          .replace('%GENAUIGKEIT1%', accuracy + '%')
+          .replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
+
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
