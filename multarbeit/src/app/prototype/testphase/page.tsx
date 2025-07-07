@@ -150,11 +150,6 @@ const Testphase = () => {
   const current = data[index];
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
-  // Slider change debug
-  useEffect(() => {
-    console.log(`[Slider] Value changed: ${sliderValue}`);
-  }, [sliderValue]);
-
   if (finished) {
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -243,7 +238,7 @@ const Testphase = () => {
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColorV2 percentage={current.color} />
-          <div className='flex h-[256px] w-full max-w-xs m-4 flex-col items-center justify-center space-y-4'>
+          <div className='flex h-[256px] w-full m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
               <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={(val) => setSliderValue(val)} />
             </div>

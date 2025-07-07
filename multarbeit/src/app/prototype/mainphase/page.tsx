@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { jStat } from 'jstat';
+import  jStat from 'jstat';
 import BiColorV2 from '@/components/canvas/BiColorV2';
 import ColorSlider from '@/components/ui/Slider/Slider';
 import dataRaw from '@/lib/dataMain.json';
@@ -263,6 +263,8 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   const AiCalc = (current.aiAccuracy! / (current.aiAccuracy! + Number(accuracy) / 100)) * aiGuess;
   const HuAiCalc = HumanCalc + AiCalc;
 
+  
+
   const currentHitRate = calculateHitRate(hits, misses); // between 0–1
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej); // between 0–1
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
@@ -271,7 +273,7 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
   const totalDP = dPrimeHuman + dPrimeAid;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
-  const XHuman = sliderValue / 100; // normiert zwischen -1 und 1
+  const XHuman = sliderValue; // normiert zwischen -1 und 1
   const XAid = aiGuess; // ist bereits skaliert
 
   const Z = aHuman * XHuman + aAid * XAid;
@@ -416,7 +418,7 @@ console.log('OW Decision:', Z > 0 ? 'Orange' : 'Blue');
                   <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)} (${(aiGuess * 100).toFixed(1)}%)`}</p>
                 </div>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={HumanCalc} kiPercent={AiCalc} locale={locale} decision={HuAiCalc} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
+                  <AccuracyComparison menschPercent={dPrimeHuman} kiPercent={dPrimeAid} locale={locale} decision={Z} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='flex w-full justify-center space-x-4'>
