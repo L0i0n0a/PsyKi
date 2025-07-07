@@ -248,6 +248,32 @@ const Mainphase = () => {
     }
   };
 
+  // Standardnormalverteilte Zufallszahl (Box-Muller-Methode)
+  function randn_bm() {
+    let u = 0,
+      v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+
+  // Generierung der KI-Entscheidung (X von KI)
+  // trueColor: "orange" oder "blau"
+  function getAiGuess(trueColor: string): number {
+    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
+    const stdDev = 0.3; // smaller std dev means less randomness
+    const aiGuessRaw = aiMean + randn_bm() * stdDev;
+
+    const min = -3;
+    const max = 3;
+
+    return Math.max(min, Math.min(max, aiGuessRaw));
+  }
+
+  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
+
+  console.log('cc', current.color);
+
   const correctCount = useParticipantStore((state) => state.correctCount);
   const totalCount = useParticipantStore((state) => state.totalCount);
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
@@ -278,7 +304,7 @@ const Mainphase = () => {
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
   const XHuman = sliderValue;
-  const XAid = aiGuess * current.color;
+  const XAid = aiGuessValue;
 
   const Z = aHuman * XHuman + aAid * XAid;
   const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
