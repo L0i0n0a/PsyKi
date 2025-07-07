@@ -75,7 +75,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
       ? interpolateColor('#FFE0B2', '#FB8C00', t) // Orange for -3 to 0
       : interpolateColor('#90CAF9', '#0D47A1', t); // Blue for 0 to 3
   }
-  
+
   const menschColor = getColorForScore(menschPercent);
   const kiColor = getColorForScore(kiPercent);
 
@@ -87,7 +87,7 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
     clampedDecision >= 0
       ? interpolateColor('#90CAF9', '#0D47A1', color)
       : interpolateColor('#FFE0B2', '#FB8C00', color);
-  
+
   function VariableWidthCurve({
     x1,
     y1,
@@ -146,23 +146,28 @@ export default function AccuracyComparison({ menschPercent, kiPercent, locale, d
 
               {/* Mensch Marker */}
               <div
-                className='absolute top-8 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-4 w-6 h-6 rounded-full border-2 border-white shadow z-10 flex items-center justify-center text-white text-xs font-bold'
                 style={{
                   left: `${menschX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: menschColor,
                 }}
-              />
+              >
+                {locale === 'de' ? 'M' : 'H'}
+              </div>
 
               {/* KI Marker */}
               <div
-                className='absolute top-8 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white shadow z-10'
+                className='absolute top-4 w-6 h-6 rounded-full border-2 border-white shadow z-10 flex items-center justify-center text-white text-xs font-bold'
                 style={{
                   left: `${kiX}%`,
                   transform: 'translateX(-50%) translateY(-50%)',
                   backgroundColor: kiColor,
                 }}
-              />
+              >
+                {locale === 'de' ? 'KI' : 'AI'}
+              </div>
+
 
               {/* Decision Marker */}
               <div>
