@@ -16,7 +16,7 @@ export default function Home() {
         <h2 className='text-3xl m-4 text-center'>Strategie: Optimale Gewichtung</h2>
       </div>
 
-      {/* Theorie Section */}
+      {/* Theory section */}
       <SectionRight
         imageSource='Benchmarking Aided Decision Making in a Signal Detection Task
 Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
@@ -31,7 +31,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Designentscheidungen Section */}
+      {/* Design decisions section */}
       <SectionLeft
         imageSource='Med Badr Chemmaoui (Unsplash)'
         onClick={() => router.push('/details/design/1')}
@@ -48,11 +48,11 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Scribbles Carousel */}
+      {/* Scribbles carousel */}
       <h2 className='text-3xl font-bold m-4 text-center'>Erste Scribbles</h2>
       <Carousel images={['/IMG_0086.png', '/IMG_0087.png']} imageDescriptions={['Scribble 1: Menschliche Einschätzung', 'Scribble 2: Vergleich Mensch und KI']} />
 
-      {/* Prototyp-Entwurf Section */}
+      {/* Prototype design section */}
       <SectionRight
         imageSource='Anima - Nick Meyer'
         onClick={() => router.push('/details/design/2')}
@@ -67,7 +67,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Prototyp Section */}
+      {/* Prototype section */}
       <SectionLeft
         imageSource='Kateryna Mayka von Eleken'
         onClick={() => router.push('/prototype')}
@@ -76,7 +76,7 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         description={<>Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden.</>}
       />
 
-      {/* Wissenschaftskommunikation Section */}
+      {/* Science communication section */}
       <SectionRight
         imageSource='CONEDU/Schnepfleitner, auf erwachsenenbildung.at'
         onClick={() => router.push('/details/design/3')}

@@ -1,16 +1,17 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button/Button';
 import Image from 'next/image';
 import BiColor from '@/components/canvas/BiColor';
 
-const DesignDecisionsPage2 = () => {
+const DesignDecisionsPage2: React.FC = () => {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [stepD, setStepD] = useState(0);
 
+  // --- Instruction Steps ---
   const instructionSteps = [
     {
       title: 'Herzlich Willkommen zu unserer Studie!',
@@ -88,6 +89,7 @@ const DesignDecisionsPage2 = () => {
     },
   ];
 
+  // --- Decision Help Steps ---
   const decisionHelpSteps = [
     {
       title: 'Z-Kriterium als Skala anzeigen',
@@ -111,7 +113,7 @@ const DesignDecisionsPage2 = () => {
             <strong>Textuell:</strong>
           </p>
           <p className='mb-4'>
-            Ihre Einschätzung: 40% Einfluss <br></br>
+            Ihre Einschätzung: 40% Einfluss <br />
             Automatisierte Hilfe: 60% Einfluss
           </p>
           <p className='mb-4'>
@@ -136,17 +138,20 @@ const DesignDecisionsPage2 = () => {
     },
   ];
 
+  // --- Step Navigation ---
   const isLastStep = step === instructionSteps.length - 1;
   const isFirstStep = step === 0;
-
   const isLastStepD = stepD === decisionHelpSteps.length - 1;
   const isFirstStepD = stepD === 0;
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
+      {/* Header */}
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Prototyp-Entwurf & Userflows</h1>
       </div>
+
+      {/* Target audience */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Zielgruppe</h2>
         <h2 className='text-2xl mb-4'>Welche Zielgruppe soll die Anwendung testen und evaluieren?</h2>
@@ -157,7 +162,7 @@ const DesignDecisionsPage2 = () => {
               <strong>Sprache:</strong> Gute Deutschkenntnisse oder Englisch-Kenntnisse (Verständnis der Anweisungen & Feedbacktexte)
             </li>
             <li>
-              <strong>ATI-Score:</strong> {'>= 3'}{' '}
+              <strong>ATI-Score:</strong> {'>= 3'}
             </li>
             <li>Vertraut mit interaktiven Anwendungen, Web-UIs, Slidern</li>
             <li>Normales oder korrigiertes Sehvermögen (Farbunterscheidung Blau–Orange muss gewährleistet sein)</li>
@@ -166,6 +171,8 @@ const DesignDecisionsPage2 = () => {
           </ul>
         </div>
       </section>
+
+      {/* User flows */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>User Flows</h2>
         <h2 className='text-2xl mb-4'>Wie navigieren Nutzende durch die Anwendung?</h2>
@@ -197,21 +204,19 @@ const DesignDecisionsPage2 = () => {
             </ul>
           </div>
           <div>
-            <Image src={'/Rastergrafik.svg'} height={400} width={400} alt=''></Image>
+            <Image src='/Rastergrafik.svg' height={400} width={400} alt='' />
             <p className='imageSourceText text-center'>Inkscape</p>
           </div>
         </div>
       </section>
 
+      {/* Textual explanations for the prototype */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold mb-4'>Textuelle Erklärungen für den Prototypen</h2>
-
         <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
           <div className='w-full max-w-2xl m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
             <h1 className='text-2xl font-bold mb-4 text-center'>{instructionSteps[step].title}</h1>
-
             {instructionSteps[step].content}
-
             <div className='flex justify-between mt-6'>
               <button
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
@@ -219,12 +224,10 @@ const DesignDecisionsPage2 = () => {
                 className={`px-4 py-2 rounded-lg font-semibold transition ${isFirstStep ? 'bg-gray-300 text-white cursor-not-allowed' : 'bg-gray-200 text-white hover:bg-gray-300'}`}>
                 Zurück
               </button>
-
               <button onClick={() => setStep((s) => Math.min(instructionSteps.length - 1, s + 1))} className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition'>
                 {isLastStep ? 'Fertig' : 'Weiter'}
               </button>
             </div>
-
             <div className='mt-4 text-center text-sm text-gray-500'>
               Schritt {step + 1} von {instructionSteps.length}
             </div>
@@ -232,6 +235,7 @@ const DesignDecisionsPage2 = () => {
         </div>
       </section>
 
+      {/* Preliminary considerations for the prototype */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Vorüberlegungen zum Prototyp</h2>
         <h2 className='text-2xl mb-4'>Welchen Umfang soll der Prototyp haben?</h2>
@@ -257,8 +261,8 @@ const DesignDecisionsPage2 = () => {
         </div>
         <h2 className='text-2xl mb-4'>Welche Komponenten sollen enthalten sein?</h2>
         <div className='flex lg:flex-row gap-6 mt-6'>
-          {/* Linke Box */}
-          <div className='flex-1 p-6 rounded-xl shadow-md bgLightGreen '>
+          {/* Left box */}
+          <div className='flex-1 p-6 rounded-xl shadow-md bgLightGreen'>
             <h2 className='text-lg font-bold text-blue-700 mb-4 textColourGreen'>UI-Komponenten</h2>
             <ul className='list-disc list-inside space-y-1'>
               <li>Header Text mit Anweisung</li>
@@ -280,7 +284,6 @@ const DesignDecisionsPage2 = () => {
               </li>
               <li>Info- oder Hilfe-Button (zeigt State + Erklärung)</li>
             </ul>
-
             <h2 className='text-lg font-bold text-blue-700 mt-6 mb-2 textColourGreen'>Interaktions-Logik</h2>
             <ul className='list-disc list-inside space-y-1'>
               <li>
@@ -291,8 +294,7 @@ const DesignDecisionsPage2 = () => {
               </li>
             </ul>
           </div>
-
-          {/* Rechte Box */}
+          {/* Right box */}
           <div className='flex-1 bgLightGreen p-6 rounded-xl shadow-md'>
             <h2 className='text-lg font-bold textColourGreen mb-4'>State Management</h2>
             <ul className='list-disc list-inside space-y-1'>
@@ -308,7 +310,6 @@ const DesignDecisionsPage2 = () => {
                 <code>showFeedback</code> (sichtbar alle 10 Trials)
               </li>
             </ul>
-
             <h2 className='text-lg font-bold textColourGreen mt-6 mb-2'>Entscheidungs-Speicher (Planung)</h2>
             <ul className='list-disc list-inside space-y-1'>
               <li>Bild</li>
@@ -318,7 +319,6 @@ const DesignDecisionsPage2 = () => {
             </ul>
           </div>
         </div>
-
         <h2 className='text-2xl mt-6'>Wie bekommen Nutzende Feedback?</h2>
         <div>
           <p className='mt-2 text-lg textColourGreen'>Feedback nach jedem Block (z.B. 10 Bilder)</p>
@@ -353,15 +353,14 @@ const DesignDecisionsPage2 = () => {
           </ul>
         </div>
       </section>
+
+      {/* Decision support */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold mb-4'>Gestaltung der Entscheidungshilfe</h2>
-
         <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
           <div className='w-full max-w-2xl m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
             <h1 className='text-2xl font-bold mb-4 text-center'>{decisionHelpSteps[stepD].title}</h1>
-
             {decisionHelpSteps[stepD].content}
-
             <div className='flex justify-between mt-6'>
               <button
                 onClick={() => setStepD((s) => Math.max(0, s - 1))}
@@ -369,12 +368,10 @@ const DesignDecisionsPage2 = () => {
                 className={`px-4 py-2 rounded-lg font-semibold transition ${isFirstStepD ? 'bg-gray-300 text-white cursor-not-allowed' : 'bg-gray-200 text-white hover:bg-gray-300'}`}>
                 Zurück
               </button>
-
               <button onClick={() => setStepD((s) => Math.min(decisionHelpSteps.length - 1, s + 1))} className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition'>
                 {isLastStepD ? 'Fertig' : 'Weiter'}
               </button>
             </div>
-
             <div className='mt-4 text-center text-sm text-gray-500'>
               Schritt {stepD + 1} von {decisionHelpSteps.length}
             </div>
@@ -382,30 +379,28 @@ const DesignDecisionsPage2 = () => {
         </div>
       </section>
 
+      {/* Implementation considerations */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Umsetzungsüberlegungen für die Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie können die Bilder erstellt werden?</h2>
         <BiColor percentage={0.5} />
         <h2 className='text-2xl mb-4'>Welche Formeln des OW-Modell sind wo einzusetzen?</h2>
         <div className='space-y-8 mt-6'>
-          {/* Sensitivität Mensch */}
+          {/* Human sensitivity */}
           <section className='p-6 bg-[#74b3ce] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-2'>Sensitivität des Menschen</h2>
             <p className='mb-2'>
-              Wird während der <strong>Testdurchgänge</strong> berechnet und in der
-              <strong> Hauptphase</strong> weiter fortlaufend angepasst.
+              Wird während der <strong>Testdurchgänge</strong> berechnet und in der <strong>Hauptphase</strong> weiter fortlaufend angepasst.
             </p>
             <code className='bg-white/10 px-2 py-1 rounded-md'>Formel: d’ = z(Hit rate) - z (False - Alarm Rate)</code>
           </section>
-
-          {/* Sensitivität Maschine */}
+          {/* Sensitivity machine */}
           <section className='p-6 bg-[#508991] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-2'>Sensitivität der KI</h2>
             <p className='mb-2'>Ist anfangs festgelegt und für jedes Bild gilt:</p>
             <code className='bg-white/10 px-2 py-1 rounded-md'>Trefferrate = 0.93 → Falschalarmrate = 1 – 0.93 = 0.07</code>
           </section>
-
-          {/* Entscheidungskriterium */}
+          {/* Decision criterion */}
           <section className='p-6 bg-[#004346] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-4'>Entscheidungskriterium</h2>
             <p className='mb-2'>Gewichtung zwischen menschlicher und künstlicher Einschätzung:</p>
@@ -414,8 +409,7 @@ const DesignDecisionsPage2 = () => {
             </div>
             <p className='mt-2 italic text-sm'>→ Liefert Tendenz: Orange oder Blau für jeden Durchgang</p>
           </section>
-
-          {/* Gesamtsensitivität */}
+          {/* Overall sensitivity */}
           <section className='p-6 bg-[#172a3a] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-4'>Gesamtsensitivität (aus Mensch und KI)</h2>
             <p className='mb-2'>Am Ende der Hauptphase berechnet:</p>
@@ -426,6 +420,7 @@ const DesignDecisionsPage2 = () => {
         </div>
       </section>
 
+      {/* Back button */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />
       </div>

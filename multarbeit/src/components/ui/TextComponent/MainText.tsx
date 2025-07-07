@@ -1,6 +1,7 @@
 'use client';
-import { useTranslation } from '@/utils/translation';
+
 import React from 'react';
+import { useTranslation } from '@/utils/translation';
 import AccuracyComparison from '../AccuracyComponent/AccuracyComparison';
 
 type MainTextProps = {
@@ -10,10 +11,10 @@ type MainTextProps = {
   instructionStepsLength: number;
 };
 
-const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextProps) => {
-  const isLastStep = step === instructionStepsLength - 1;
-
+const MainText: React.FC<MainTextProps> = ({ locale, step, setStep, instructionStepsLength }) => {
   const { t } = useTranslation(locale);
+  const isFirstStep = step === 0;
+  const isLastStep = step === instructionStepsLength - 1;
 
   const instructionSteps = [
     {
@@ -37,7 +38,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide3Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide3Text')}</p>
-          <AccuracyComparison menschPercent={-1} kiPercent={2.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison humanPercent={-1} aiPercent={2.6} locale={locale} decision={0.1} humanAccuracy={60} aiAccuracy={93} />
         </div>
       ),
     },
@@ -46,7 +47,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide4Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide4Text')}</p>
-          <AccuracyComparison menschPercent={-1} kiPercent={2.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison humanPercent={-1} aiPercent={2.6} locale={locale} decision={0.1} humanAccuracy={60} aiAccuracy={93} />
         </div>
       ),
     },
@@ -55,7 +56,7 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide5Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide5Text')}</p>
-          <AccuracyComparison menschPercent={-1} kiPercent={2.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison humanPercent={-1} aiPercent={2.6} locale={locale} decision={0.1} humanAccuracy={60} aiAccuracy={93} />
         </div>
       ),
     },
@@ -64,19 +65,16 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
         <div>
           <h1 className='text-2xl font-bold mb-4 text-center'>{t('carouselSlide6Title')}</h1>
           <p className='mb-4 text-lg text-center'>{t('carouselSlide6Text')}</p>
-          <AccuracyComparison menschPercent={-1} kiPercent={2.6} locale={locale} decision={0.1} menschAccuracy={60} kiAccuracy={93} />
+          <AccuracyComparison humanPercent={-1} aiPercent={2.6} locale={locale} decision={0.1} humanAccuracy={60} aiAccuracy={93} />
         </div>
       ),
     },
   ];
 
-  const isFirstStep = step === 0;
-
   return (
     <section className='sectionBorder'>
-      <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6 '>
+      <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
         <div className='w-full max-w-2xl m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
-          {/* <h1 className='text-2xl font-bold mb-4 text-center'>{instructionSteps[step].title}</h1> */}
           <div className='min-h-[12svh]'>{instructionSteps[step].content}</div>
           <div className='flex justify-between mt-6'>
             <button
@@ -87,16 +85,14 @@ const MainText = ({ locale, step, setStep, instructionStepsLength }: MainTextPro
               }`}>
               {t('back')}
             </button>
-
             <button
               onClick={() => setStep((s) => Math.min(instructionSteps.length - 1, s + 1))}
               className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold z-20 ${
                 isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
               }`}>
-              {`${t('next')}`}
+              {t('next')}
             </button>
           </div>
-
           <div className='mt-4 text-center text-sm text-gray-500'>
             {t('step')} {step + 1} {t('of')} {instructionSteps.length}
           </div>

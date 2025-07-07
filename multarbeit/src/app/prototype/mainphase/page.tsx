@@ -338,7 +338,7 @@ const Mainphase = () => {
                   <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)}`}</p>
                 </div>
                 <div className='w-full'>
-                  <AccuracyComparison menschPercent={XHuman} kiPercent={XAid} locale={locale} decision={Z} kiAccuracy={current.aiAccuracy! * 100} menschAccuracy={Number(accuracy)} />
+                  <AccuracyComparison humanPercent={XHuman} aiPercent={XAid} locale={locale} decision={Z} aiAccuracy={current.aiAccuracy! * 100} humanAccuracy={Number(accuracy)} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
                   <div className='flex w-full justify-center space-x-4'>

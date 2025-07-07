@@ -1,22 +1,23 @@
 'use client';
+
 import React from 'react';
-// import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button/Button';
-// import BiColor from "@/components/canvas/BiColor";
 import Image from 'next/image';
 import FeedbackHintCard from '@/components/layout/FeedbackHintCard';
 import FeedbackSlider from '@/components/ui/Slider/FeedbackSlider';
 
-const DesignDecisionsPage3 = () => {
+const DesignDecisionsPage3: React.FC = () => {
   const router = useRouter();
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
+      {/* Header */}
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Wissenschaftskommunikation & Feedback</h1>
       </div>
 
+      {/* Review of the OW-Model */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Rückblick OW-Modell</h2>
         <h2 className='text-2xl mb-4'>Wie funktioniert das Modell?</h2>
@@ -28,9 +29,8 @@ const DesignDecisionsPage3 = () => {
           <div className='flex flex-row justify-between items-center'>
             <div>
               <Image src='/ow1.png' alt='' width={500} height={300} />
-              <p className='imageSourcetext text-center'> Erklärung der Entscheidungsfindung</p>
+              <p className='imageSourcetext text-center'>Erklärung der Entscheidungsfindung</p>
             </div>
-
             <div>
               <Image src='/ow3.png' alt='' width={500} height={300} />
               <p className='imageSourcetext text-center'>Beispiel der Referenzwert-Darstellung</p>
@@ -39,10 +39,10 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Process in the application */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ablauf in der Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie durchlaufen Nutzende die Anwendung?</h2>
-        {/* Einführung */}
         <div className='mb-6'>
           <h4 className='text-lg font-semibold mt-4'>1. Einführung</h4>
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
@@ -50,8 +50,6 @@ const DesignDecisionsPage3 = () => {
             <li>Ziel: Grundlage &amp; Verständnis schaffen</li>
           </ul>
         </div>
-
-        {/* Testphase */}
         <div className='mb-6'>
           <h4 className='text-lg font-semibold mt-4'>2. Testphase</h4>
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
@@ -65,8 +63,6 @@ const DesignDecisionsPage3 = () => {
             </li>
           </ul>
         </div>
-
-        {/* Hauptphase */}
         <div className='mb-6'>
           <h4 className='text-lg font-semibold mt-4'>3. Hauptphase</h4>
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
@@ -88,8 +84,6 @@ const DesignDecisionsPage3 = () => {
             </li>
           </ul>
         </div>
-
-        {/* Abschluss */}
         <div className='mb-6'>
           <h4 className='text-lg font-semibold mt-4'>4. Abschluss</h4>
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
@@ -106,6 +100,7 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Design of the application */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Gestaltung der Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie ist die Anwendung gestaltet, um die Strategie zu fördern?</h2>
@@ -116,10 +111,10 @@ const DesignDecisionsPage3 = () => {
               <strong>Schlicht:</strong> Farbliche Gestaltung minimal gehalten, um Biases vorzubeugen
             </li>
             <li>
-              <strong>Übersichtlich:</strong> Cognitive Load gering halten{' '}
+              <strong>Übersichtlich:</strong> Cognitive Load gering halten
             </li>
             <li>
-              <strong>Gebrauchtstauglich:</strong> einfaches und verständliches Layout
+              <strong>Gebrauchtstauglich:</strong> Einfaches und verständliches Layout
             </li>
             <li>
               <strong>Progress:</strong> Eine Fortschrittsanzeige hilft den Nutzenden den aktuellen Zustand der Anwendung zu verstehen
@@ -128,33 +123,29 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Integrated Information Processing Model */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Integrated Information Processing Modell</h2>
         <h2 className='text-2xl mb-4'>Welche theoretische Grundlage beinhaltet die Anwendung, um die Strategie verständlich zu machen?</h2>
         <div>
-          <Image className='imageCenter' src='/iip.png' alt='IIP-Modell' width={500} height={400}></Image>
+          <Image className='imageCenter' src='/iip.png' alt='IIP-Modell' width={500} height={400} />
           <p className='imageSourcetext text-center'>Schrills, 2025</p>
-          <p className='text-xl p-4 '>
+          <p className='text-xl p-4'>
             Das Integrated Information Processing (IIP) Modell beschreibt, wie Mensch und KI sinnvoll zusammenwirken können, indem es drei zentrale Schnittstellen identifiziert, die wir systematisch
             berücksichtigen:
           </p>
           <div className='grid grid-rows-3 md:grid-rows-2 gap-4'>
-            <FeedbackHintCard title={'1. Input Function:'} color={'orange'}>
-              {' '}
+            <FeedbackHintCard title='1. Input Function:' color='orange'>
               Mensch und KI nehmen das Bild parallel wahr – visuell bzw. algorithmisch. Nutzer:innen geben ihre Einschätzung direkt mittels Schieberegler ein. Gleichzeitig analysiert die KI das Bild
               und liefert eine eigene Einschätzung. Im Onboarding wird erklärt, welche Bildmerkmale die KI nutzt und wie zuverlässig sie dabei ist.
               <p className='font-bold'>→ Ziel: Erklärbarkeit des Systems schaffen.</p>
             </FeedbackHintCard>
-
-            <FeedbackHintCard title={'2. Goal / Reference:'} color={'yellow'}>
-              {' '}
+            <FeedbackHintCard title='2. Goal / Reference:' color='yellow'>
               Beide Einschätzungen werden an einem Ziel- oder Referenzwert gespiegelt. Die Nutzer:innen erfahren, was das Ziel der Entscheidungshilfe ist und wie die KI zu ihrem Vorschlag kommt.
               Zusätzlich werden Genauigkeit und Sicherheit der KI sowie Sensitivität und Sicherheit des Menschen pro Trial dargestellt.
               <p className='font-bold'>→ Ziel: Aufbau eines mentalen Modells zur Verlässlichkeit beider Quellen und Verständnis gegenüber verschiedenen Einschätzungen.</p>
             </FeedbackHintCard>
-
-            <FeedbackHintCard title={'3. Output Function:'} color={'violet'}>
-              {' '}
+            <FeedbackHintCard title='3. Output Function:' color='violet'>
               Basierend auf beiden Einschätzungen wird eine kombinierte Empfehlung visualisiert (mittels gewichteter Kombination). Die finale Entscheidung liegt jedoch bei den Nutzer:innen. Die
               Visualisierung des kombinierten Entscheidungspunkt (kumulierte Empfehlung) wird klar auf der Skala als Ergebnis der OW-Rechnung angegeben, das hilft den Workload möglichst gering halten.
               Feedback zu ihrer Entscheidung unterstützen die Nutzer:innen eine realistische Vertrauenskalibrierung zu erfahren und stärkt zudem die Motivation.
@@ -164,7 +155,7 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
-      {/* Hinweise zur Skala */}
+      {/* Scale design and classification */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Skalengestaltung & Einordnung</h2>
         <p className='text-lg mt-4'>
@@ -179,7 +170,7 @@ const DesignDecisionsPage3 = () => {
         </p>
       </section>
 
-      {/* Hinweis zur Analyse-Logik */}
+      {/* Mental model and system behavior */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Mentales Modell & Systemverhalten</h2>
         <p className='text-lg mt-4'>
@@ -193,16 +184,16 @@ const DesignDecisionsPage3 = () => {
         </p>
       </section>
 
+      {/* Decision scale */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Entscheidungskala</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende Entscheidungen innerhalb der Anwendung treffen?</h3>
         <div>
           <div className='flex items-center'>
             <Image className='imageCenter' src='/decisionskala.png' alt='Entscheidungskala' width={400} height={400} />
-            <span className='text-6xl'>	&#8594;</span>
+            <span className='text-6xl'> &#8594;</span>
             <Image className='imageCenter' src='/SkalaNew.png' alt='Entscheidungskala mit Neutralhinweis' width={400} height={400} />
           </div>
-         
           <p className='mt-6 text-lg'>
             <strong>Z-Skala als Schieberegler: </strong>
             Die Antwortskala basiert auf der Z-Skala und ist als intuitiver Schieberegler umgesetzt. Nutzende müssen eine klare Antwort geben, die zumindest eher orange oder blau ist. So werden
@@ -217,16 +208,16 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Decision support */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Entscheidungshilfe</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
           <div className='flex items-center'>
             <Image className='imageCenter' src='/zscore.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
-            <span className='text-6xl'>	&#8594;</span>
+            <span className='text-6xl'> &#8594;</span>
             <Image className='imageCenter' src='/kombiniert3.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
           </div>
-          
           <p className='mt-6 text-lg'>
             <strong>Zielgerichtete Visualisierung :</strong>
             Durch grafische Darstellung wird nachvollziehbar, wie die Entscheidungen von Mensch und KI gemeinsam zum finalen Z-Wert führen. Diese Darstellung verbessert die Verständlichkeit und
@@ -237,12 +228,13 @@ const DesignDecisionsPage3 = () => {
             Unterstützte Entscheidungsfindung (Aided Decision Making) – transparent, effizient und nutzerzentriert.
           </p>
           <p className='mt-4 text-lg'>
-            Der kumulierte Score wird durch einen verständlichen Namen ersetzt, z. B. <em>kombinierte Empfehlung aus Mensch und KI</em> oder <em>Gesamtwert aus Mensch und KI</em>. Dies erleichtert
-            die Zuordnung und erklärt, dass die bestmögliche Entscheidung durch die Kombination von Mensch und KI entsteht.
+            Der kumulierte Score wird durch einen verständlichen Namen ersetzt, z. B. <em>kombinierte Empfehlung aus Mensch und KI</em> oder <em>Gesamtwert aus Mensch und KI</em>. Dies erleichtert die
+            Zuordnung und erklärt, dass die bestmögliche Entscheidung durch die Kombination von Mensch und KI entsteht.
           </p>
         </div>
       </section>
 
+      {/* Explanatory texts */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Erklärungstexte</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende dazu animiert werden, die OW-Strategie zu verfolgen?</h3>
@@ -268,6 +260,7 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Feedback */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Feedback</h2>
         <h2 className='text-2xl mb-4'>Wie können Nutzende ihre Entscheidungen einordnen und die bestmögliche Wahl treffen?</h2>
@@ -279,31 +272,31 @@ const DesignDecisionsPage3 = () => {
             anzupassen. Transparente Erklärungen zu möglichen Fehlern des Systems fördern das Verständnis für die Grenzen der Unterstützung. Diese ganzheitliche Rückmeldung soll die Motivation zur
             Nutzung der Entscheidungshilfe stärken und zugleich das Bewusstsein für die eigene Entscheidungsqualität schärfen, um so insgesamt fundiertere und sicherere Entscheidungen zu ermöglichen.
           </p>
-
           <h3 className='text-xl font-semibold mb-4'>Feedback-Beispiele</h3>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <FeedbackHintCard title='Letzte 10 Entscheidungen' color={'green'}>
+            <FeedbackHintCard title='Letzte 10 Entscheidungen' color='green'>
               Du hast der Entscheidungshilfe in <strong>7</strong> Fällen vertraut – <strong>6</strong> davon waren korrekt.
             </FeedbackHintCard>
-            <FeedbackHintCard title='Genauigkeit' color={'green'}>
+            <FeedbackHintCard title='Genauigkeit' color='green'>
               Die Entscheidungshilfe lag bisher in <strong>… %</strong> der Fälle richtig.
               <br />
               Deine eigene Genauigkeit liegt derzeit bei <strong>72 %</strong>.
             </FeedbackHintCard>
-            <FeedbackHintCard title='Hinweis' color={'green'}>
+            <FeedbackHintCard title='Hinweis' color='green'>
               Auch die KI kann Fehler machen. Sie basiert auf einer festen Genauigkeit von <strong>93 %</strong>. Dein Urteil kann in manchen Fällen mehr Gewicht haben –{' '}
               <em>vor allem, wenn du sehr sicher bist</em>.
             </FeedbackHintCard>
-            <FeedbackHintCard title='Abschluss-Feedback' color={'green'}>
+            <FeedbackHintCard title='Abschluss-Feedback' color='green'>
               In der Testphase <em>(ohne Entscheidungshilfe)</em> lagst du bei <strong>70 %</strong>. Mit Hilfe waren es <strong>82 %</strong>.
             </FeedbackHintCard>
-            <FeedbackHintCard title='Nutzungsverhalten' color={'green'}>
+            <FeedbackHintCard title='Nutzungsverhalten' color='green'>
               Du hast die Empfehlung in <strong>35 von 50</strong> Fällen übernommen – <strong>30</strong> davon waren korrekt.
             </FeedbackHintCard>
           </div>
         </div>
       </section>
 
+      {/* Feedback Mentimeter */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Feedback</h2>
         <p className='text-2xl mb-4'>Hier befinden sich die Mentimenter-Ergebnisse aus der Vorstellung des Prototypen innerhalb des Moduls.</p>
@@ -314,7 +307,6 @@ const DesignDecisionsPage3 = () => {
           <FeedbackSlider title='Gebrauchstauglich' value={4.2} />
           <FeedbackSlider title='Workload reduzierend' value={4.2} />
         </div>
-
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'>
           {[
@@ -331,32 +323,26 @@ const DesignDecisionsPage3 = () => {
             </div>
           ))}
         </div>
-
         <div className='space-y-4 mb-8'>
           <h4 className='text-lg'>Wie bewerten Sie die Entscheidungsskala?</h4>
           <FeedbackSlider title='Verständlich' value={3.4} />
           <FeedbackSlider title='Gebrauchstauglich' value={3.8} />
           <FeedbackSlider title='Workload reduzierend' value={3.8} />
         </div>
-
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'>
-          {['Slider Sensitivität beachten- könnte zu Frustration führen, wenn ein Nutzer genau 70 Prozent angeben will, aber immer daneben liegt beim Verschieben des Sliders.".'].map(
-            (text, index) => (
-              <div key={index} className='bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800'>
-                {text}
-              </div>
-            )
-          )}
+          {['Slider Sensitivität beachten- könnte zu Frustration führen, wenn ein Nutzer genau 70 Prozent angeben will, aber immer daneben liegt beim Verschieben des Sliders.'].map((text, index) => (
+            <div key={index} className='bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800'>
+              {text}
+            </div>
+          ))}
         </div>
-
         <div className='space-y-4 mb-8'>
           <h4 className='text-lg'>Wie bewerten Sie die Visualisierung der Entscheidungshilfe?</h4>
           <FeedbackSlider title='Verständlich' value={3.6} />
           <FeedbackSlider title='Gebrauchstauglich' value={3.9} />
           <FeedbackSlider title='Workload reduzierend' value={3.1} />
         </div>
-
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           {[
@@ -371,6 +357,7 @@ const DesignDecisionsPage3 = () => {
         </div>
       </section>
 
+      {/* Back button */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />
       </div>
