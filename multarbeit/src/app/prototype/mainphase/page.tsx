@@ -112,8 +112,6 @@ const Mainphase = () => {
     return Math.max(min, Math.min(max, aiGuessRaw));
   }
   const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
-
-  const aiGuess = current.divergence ? current.color + current.divergence : current.color;
   const currentHitRate = calculateHitRate(hits, misses);
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
@@ -124,6 +122,7 @@ const Mainphase = () => {
   const XHuman = sliderValue;
   const XAid = aiGuessValue;
   const Z = aHuman * XHuman + aAid * XAid;
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
   const testPhaseCorrect = finalTestphaseResponses.filter((r) => {
     const userChoice = typeof r.buttonPressed === 'string' ? r.buttonPressed : r.sliderValue > 0 ? 'blue' : 'orange';
@@ -176,6 +175,7 @@ const Mainphase = () => {
       sliderValue,
       timestamp: new Date().toISOString(),
       buttonPressed: button,
+      dPrimeTeam,
     };
     addMainphaseResponse({
       index,
@@ -349,7 +349,7 @@ const Mainphase = () => {
               <div className='flex flex-col w-full'>
                 <div className='text-center m-0 flex justify-center'>
                   <p className='text-lg mr-2'> {t('assistantRecommendationTitle')}</p>
-                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)}`}</p>
+                  <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(XAid)}`}</p>
                 </div>
                 <div className='w-full'>
                   <AccuracyComparison humanPercent={XHuman} aiPercent={XAid} locale={locale} decision={Z} aiAccuracy={current.aiAccuracy! * 100} humanAccuracy={Number(accuracy)} />
