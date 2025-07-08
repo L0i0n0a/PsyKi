@@ -10,17 +10,15 @@ def generate_entries(num_entries=200, high_acc=0.93, low_acc=0.4, low_acc_count=
     ai_accuracies = first_10 + rest
 
     for i in range(num_entries):
-        if i != 0 and i % 50 == 0:
-            color = 1
+        if i > 0 and (i + 1) % 50 == 0:
+            color = 3
         else:
             color = 0
-            while abs(color) < 0.3:
-                color = round(random.uniform(-0.4, 0.4), 2)
-        divergence = random.choice([-0.05, 0.05])
+            while abs(color) < 0.02:
+                color = round(random.uniform(-0.07, 0.07), 2)
         entry = {
             "color": color,
             "aiAccuracy": ai_accuracies[i],
-            "divergence": divergence
         }
         entries.append(entry)
     return entries
@@ -29,8 +27,8 @@ def generate_test_entries(num_entries=20):
     entries = []
     for i in range(num_entries):
         color = 0
-        while abs(color) < 0.3:
-            color = round(random.uniform(-0.4, 0.4), 2)
+        while abs(color) < 0.02:
+            color = round(random.uniform(-0.07, 0.07), 2)
         entry = {"color": color}
         entries.append(entry)
     return entries
