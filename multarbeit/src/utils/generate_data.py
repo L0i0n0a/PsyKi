@@ -17,6 +17,7 @@ def generate_entries(num_entries=200, high_acc=0.93, low_acc=0.4, low_acc_count=
             while abs(color) < 0.02:
                 color = round(random.uniform(-0.07, 0.07), 2)
         entry = {
+            "index": i + 1,
             "color": color,
             "aiAccuracy": ai_accuracies[i],
         }

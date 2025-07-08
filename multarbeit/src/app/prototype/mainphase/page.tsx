@@ -104,11 +104,18 @@ const Mainphase = () => {
   }
 
   function getAiGuess(trueColor: string, aiAccuracy?: number): number {
-    const isInverted = aiAccuracy === 0.4;
-
-    const actualColor = isInverted ? (trueColor === 'orange' ? 'blue' : 'orange') : trueColor;
-
-    const aiMean = actualColor === 'orange' ? -1.5 : 1.5;
+    // If AI accuracy is 0.4, always guess the opposite color
+    if (aiAccuracy === 0.4) {
+      // Flip the mean: if true is orange, guess blue; if true is blue, guess orange
+      const aiMean = trueColor === 'orange' ? 1.5 : -1.5;
+      const stdDev = 0.3;
+      const aiGuessRaw = aiMean + randn_bm() * stdDev;
+      const min = -3;
+      const max = 3;
+      return Math.max(min, Math.min(max, aiGuessRaw));
+    }
+    // Normal behavior
+    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
     const stdDev = 0.3;
     const aiGuessRaw = aiMean + randn_bm() * stdDev;
     const min = -3;
@@ -116,7 +123,7 @@ const Mainphase = () => {
     return Math.max(min, Math.min(max, aiGuessRaw));
   }
 
-  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
+  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue', current.aiAccuracy);
   const currentHitRate = calculateHitRate(hits, misses);
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
