@@ -78,9 +78,9 @@
       "5": "You accepted the recommendation in <strong>{{acceptedCount}} of {{totalCount}}</strong> cases - <strong>{{acceptedCorrectCount}}</strong> of which were correct."
     }
   },
-  "secStrongOrange": "very confident orange",
-  "secOrange": "confident orange",
+  "secStrongOrange": "confident orange",
+  "secOrange": "more orange",
   "secNeutral": "uncertain",
-  "secBlue": "confident blue",
-  "secStrongBlue": "very confident blue"
+  "secBlue": "more blue",
+  "secStrongBlue": "confident blue"
 }
