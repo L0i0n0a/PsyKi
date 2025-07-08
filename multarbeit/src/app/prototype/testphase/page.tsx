@@ -20,7 +20,6 @@ const Testphase = () => {
   const { t } = useTranslation(locale);
   const [step, setStep] = useState(0);
   const instructionStepsLength = 6;
-  const isLastStep = step === instructionStepsLength - 1;
   const [feedbackCount, setFeedbackCount] = useState(0);
 
   // Zustand store values
@@ -155,16 +154,8 @@ const Testphase = () => {
             <LanguageToggle locale={locale} onToggle={toggleLanguage} />
           </div>
         </div>
-        <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center '>
+        <div className='max-w-8xl mx-auto flex flex-col items-center justify-center '>
           <MainText locale={locale} step={step} setStep={setStep} instructionStepsLength={instructionStepsLength} />
-          <button
-            disabled={!isLastStep}
-            className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-              !isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
-            }`}
-            onClick={() => router.push('/prototype/mainphase')}>
-            Start
-          </button>
         </div>
       </div>
     );

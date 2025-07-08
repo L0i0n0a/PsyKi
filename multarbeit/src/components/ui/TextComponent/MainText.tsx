@@ -73,9 +73,9 @@ const MainText: React.FC<MainTextProps> = ({ locale, step, setStep, instructionS
 
   return (
     <section className='sectionBorder'>
-      <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
-        <div className='w-full max-w-2xl m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
-          <div className='min-h-[12svh]'>{instructionSteps[step].content}</div>
+      <div className='h-auto w-full bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
+        <div className=' m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
+          <div className='min-h-[47svh]'>{instructionSteps[step].content}</div>
           <div className='flex justify-between mt-6'>
             <button
               onClick={() => setStep((s) => Math.max(0, s - 1))}
@@ -86,11 +86,11 @@ const MainText: React.FC<MainTextProps> = ({ locale, step, setStep, instructionS
               {t('back')}
             </button>
             <button
-              onClick={() => setStep((s) => Math.min(instructionSteps.length - 1, s + 1))}
+              onClick={isLastStep ? () => window.location.assign('/prototype/mainphase') : () => setStep((s) => Math.min(instructionSteps.length - 1, s + 1))}
               className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold z-20 ${
-                isLastStep ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
+                isLastStep ? 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer' : 'bg-[#004346] text-white hover:bg-[#004346]! cursor-pointer'
               }`}>
-              {t('next')}
+              {isLastStep ? t('start') : t('next')}
             </button>
           </div>
           <div className='mt-4 text-center text-sm text-gray-500'>
