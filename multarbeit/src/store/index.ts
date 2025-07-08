@@ -1,6 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export interface Response {
+  index: number;
+  color: number;
+  sliderValue: number;
+  timestamp?: string;
+  buttonPressed?: 'orange' | 'blue';
+}
+
 interface ParticipantStore {
   code: string;
   setCode: (code: string) => void;
@@ -17,6 +25,20 @@ interface ParticipantStore {
   setCorrectRejections: (n: number) => void;
   _hasHydrated: boolean;
   setHasHydrated: (state: boolean) => void;
+
+  // Testphase (live)
+  testphaseResponses: Response[];
+  addTestphaseResponse: (response: Response) => void;
+  clearTestphaseResponses: () => void;
+
+  // Finalized testphase data (immutable after testphase)
+  finalTestphaseResponses: Response[];
+  setFinalTestphaseResponses: (responses: Response[]) => void;
+
+  // Mainphase
+  mainphaseResponses: Response[];
+  addMainphaseResponse: (response: Response) => void;
+  clearMainphaseResponses: () => void;
 }
 
 export const useParticipantStore = create<ParticipantStore>()(
@@ -41,6 +63,26 @@ export const useParticipantStore = create<ParticipantStore>()(
       setCorrectRejections: (n) => set({ correctRejections: n }),
       _hasHydrated: false,
       setHasHydrated: (state) => set({ _hasHydrated: state }),
+
+      // Testphase (live)
+      testphaseResponses: [],
+      addTestphaseResponse: (response) =>
+        set((state) => ({
+          testphaseResponses: [...state.testphaseResponses, response],
+        })),
+      clearTestphaseResponses: () => set({ testphaseResponses: [] }),
+
+      // Finalized testphase data (immutable after testphase)
+      finalTestphaseResponses: [],
+      setFinalTestphaseResponses: (responses) => set({ finalTestphaseResponses: responses }),
+
+      // Mainphase
+      mainphaseResponses: [],
+      addMainphaseResponse: (response) =>
+        set((state) => ({
+          mainphaseResponses: [...state.mainphaseResponses, response],
+        })),
+      clearMainphaseResponses: () => set({ mainphaseResponses: [] }),
     }),
     {
       name: 'participant-store',
@@ -52,6 +94,9 @@ export const useParticipantStore = create<ParticipantStore>()(
         misses: state.misses,
         falseAlarms: state.falseAlarms,
         correctRejections: state.correctRejections,
+        testphaseResponses: state.testphaseResponses,
+        finalTestphaseResponses: state.finalTestphaseResponses,
+        mainphaseResponses: state.mainphaseResponses,
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);

@@ -42,6 +42,10 @@ const Mainphase = () => {
   const incrementAccuracy = useParticipantStore((state) => state.incrementAccuracy);
   const code = useParticipantStore((state) => state.code);
   const hasHydrated = useParticipantStore((state) => state._hasHydrated);
+  const mainphaseResponses = useParticipantStore((state) => state.mainphaseResponses);
+  const addMainphaseResponse = useParticipantStore((state) => state.addMainphaseResponse);
+  const clearMainphaseResponses = useParticipantStore((state) => state.clearMainphaseResponses);
+  const finalTestphaseResponses = useParticipantStore((state) => state.finalTestphaseResponses);
 
   // Data
   const data = dataRaw as MainPhaseItem[];
@@ -49,53 +53,8 @@ const Mainphase = () => {
 
   // --- Derived values ---
   const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
-  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
-  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
 
   // SDT calculations
-  const currentHitRate = calculateHitRate(hits, misses);
-  const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
-  const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
-  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
-  const totalDP = dPrimeHuman + dPrimeAid;
-  const aHuman = dPrimeHuman / totalDP;
-  const aAid = dPrimeAid / totalDP;
-  const XHuman = sliderValue;
-  const XAid = aiGuessValue;
-  const Z = aHuman * XHuman + aAid * XAid;
-  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
-
-  // --- Responses state ---
-  const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('mainphaseResponses');
-      if (saved) return JSON.parse(saved);
-    }
-    return [];
-  });
-
-  // --- Effects ---
-  useEffect(() => {
-    localStorage.setItem('mainphaseResponses', JSON.stringify(responses));
-  }, [responses]);
-
-  useEffect(() => {
-    const savedIndex = localStorage.getItem('mainphaseIndex');
-    if (savedIndex !== null) setIndex(Number(savedIndex));
-  }, []);
-
-  useEffect(() => {
-    if (!hasHydrated) return;
-    if (!code) router.replace('/prototype');
-    const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
-    if (finishedFlag === 'true') setFinished(true);
-  }, [code, router, hasHydrated]);
-
-  useEffect(() => {
-    if (index > 0 && (index + 1) % 6 === 0) setFeedbackCount((prev) => prev + 1);
-  }, [index]);
-
-  // --- Utility functions ---
   function calculateFalseAlarmRate(falseA: number, correctR: number): number {
     const totalNegatives = falseA + correctR;
     if (totalNegatives === 0) return 0;
@@ -152,6 +111,41 @@ const Mainphase = () => {
     };
   }
 
+  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
+  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
+  const currentHitRate = calculateHitRate(hits, misses);
+  const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
+  const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
+  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
+  const totalDP = dPrimeHuman + dPrimeAid;
+  const aHuman = dPrimeHuman / totalDP;
+  const aAid = dPrimeAid / totalDP;
+  const XHuman = sliderValue;
+  const XAid = aiGuessValue;
+  const Z = aHuman * XHuman + aAid * XAid;
+
+  const testPhaseCorrect = finalTestphaseResponses.filter((r) => {
+    const userChoice = typeof r.buttonPressed === 'string' ? r.buttonPressed : r.sliderValue > 0 ? 'blue' : 'orange';
+    const correctChoice = r.color < 0 ? 'orange' : 'blue';
+    return userChoice === correctChoice;
+  }).length;
+  const testPhaseTotal = finalTestphaseResponses.length;
+  const testPhaseAccuracy = testPhaseTotal > 0 ? ((testPhaseCorrect / testPhaseTotal) * 100).toFixed(1) : '0';
+
+  // --- Effects ---
+  useEffect(() => {
+    if (index === 0) clearMainphaseResponses();
+  }, [index, clearMainphaseResponses]);
+
+  useEffect(() => {
+    if (!hasHydrated) return;
+    if (!code) router.replace('/prototype');
+  }, [code, router, hasHydrated]);
+
+  useEffect(() => {
+    if (index > 0 && (index + 1) % 6 === 0) setFeedbackCount((prev) => prev + 1);
+  }, [index]);
+
   // --- Handlers ---
   const toggleLanguage = () => setLocale((prev) => (prev === 'de' ? 'en' : 'de'));
 
@@ -168,9 +162,14 @@ const Mainphase = () => {
       timestamp: new Date().toISOString(),
       buttonPressed: button,
     };
-    setResponses((prev) => [...prev, { index, color: current.color, sliderValue }]);
+    addMainphaseResponse({
+      index,
+      color: current.color,
+      sliderValue,
+      buttonPressed: button,
+    });
 
-    const userChoice = sliderValue > 0 ? 'blue' : 'orange';
+    const userChoice = button;
     const correctChoice = current.color < 0 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
 
@@ -195,7 +194,6 @@ const Mainphase = () => {
     });
 
     const nextIndex = index < data.length - 1 ? index + 1 : index;
-    localStorage.setItem('mainphaseIndex', String(nextIndex));
 
     if (index < data.length - 1) {
       setIndex(nextIndex);
@@ -203,17 +201,15 @@ const Mainphase = () => {
       setShowRecom(false);
     } else {
       setFinished(true);
-      localStorage.removeItem('mainphaseIndex');
-      localStorage.setItem(`mainphaseFinished_${code}`, 'true');
     }
   };
 
   // --- Render ---
   if (finished) {
-    const feedback = getFeedback(responses, index);
+    const feedback = getFeedback(mainphaseResponses, index);
     const avgAccuracy = feedback?.avgAccuracy ?? '–';
     const rawMessage = t('completionMessage');
-    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', avgAccuracy + '%').replace('%GENAUIGKEIT2%', dPrimeTeam + '%');
+    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', testPhaseAccuracy + '%').replace('%GENAUIGKEIT2%', avgAccuracy + '%');
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -256,7 +252,7 @@ const Mainphase = () => {
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
-                    const feedback = getFeedback(responses, index);
+                    const feedback = getFeedback(mainphaseResponses, index);
                     if (!feedback) return null;
                     if (feedbackCount % 2 === 0) {
                       return (

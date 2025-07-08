@@ -36,18 +36,13 @@ const Testphase = () => {
   const correctCount = useParticipantStore((state) => state.correctCount);
   const totalCount = useParticipantStore((state) => state.totalCount);
   const hasHydrated = useParticipantStore((state) => state._hasHydrated);
+  const addTestphaseResponse = useParticipantStore((state) => state.addTestphaseResponse);
+  const clearTestphaseResponses = useParticipantStore((state) => state.clearTestphaseResponses);
+  const setFinalTestphaseResponses = useParticipantStore((state) => state.setFinalTestphaseResponses);
+  const testphaseResponses = useParticipantStore((state) => state.testphaseResponses);
 
   // --- Data ---
   const current = data[index];
-
-  // --- Responses state ---
-  const [responses, setResponses] = useState<{ index: number; color: number; sliderValue: number }[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('testphaseResponses');
-      if (saved) return JSON.parse(saved);
-    }
-    return [];
-  });
 
   // --- Utility functions ---
   function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
@@ -93,7 +88,9 @@ const Testphase = () => {
     }
 
     incrementAccuracy(isCorrect);
-    setResponses((prev) => [...prev, response]);
+
+    // Store response in Zustand
+    addTestphaseResponse(response);
 
     // Save response to backend
     const TOKEN = process.env.NEXT_PUBLIC_SAVE_DATA_TOKEN ?? '';
@@ -108,33 +105,24 @@ const Testphase = () => {
 
     // Progress
     const nextIndex = index < data.length - 1 ? index + 1 : index;
-    localStorage.setItem('testphaseIndex', String(nextIndex));
 
     if (index < data.length - 1) {
       setIndex(nextIndex);
       setSliderValue(0);
     } else {
       setFinished(true);
-      localStorage.removeItem('testphaseIndex');
-      localStorage.setItem(`testphaseFinished_${code}`, 'true');
+      setFinalTestphaseResponses([...testphaseResponses, response]);
     }
   };
 
   // --- Effects ---
   useEffect(() => {
-    localStorage.setItem('testphaseResponses', JSON.stringify(responses));
-  }, [responses]);
-
-  useEffect(() => {
-    const savedIndex = localStorage.getItem('testphaseIndex');
-    if (savedIndex !== null) setIndex(Number(savedIndex));
-  }, []);
+    if (index === 0) clearTestphaseResponses();
+  }, [index, clearTestphaseResponses]);
 
   useEffect(() => {
     if (!hasHydrated) return;
     if (!code) router.replace('/prototype');
-    const finishedFlag = localStorage.getItem(`testphaseFinished_${code}`);
-    if (finishedFlag === 'true') setFinished(true);
   }, [code, router, hasHydrated]);
 
   useEffect(() => {
@@ -183,7 +171,7 @@ const Testphase = () => {
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
-                    const feedback = getFeedback(responses, index);
+                    const feedback = getFeedback(testphaseResponses, index);
                     if (!feedback) return null;
                     if (feedbackCount % 2 === 0) {
                       return (
