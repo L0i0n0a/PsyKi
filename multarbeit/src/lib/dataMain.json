@@ -196,7 +196,7 @@
     "aiAccuracy": 0.93
   },
   {
-    "color": 3,
+    "color": -3,
     "aiAccuracy": 0.93
   },
   {
@@ -396,7 +396,7 @@
     "aiAccuracy": 0.93
   },
   {
-    "color": 3,
+    "color": -3,
     "aiAccuracy": 0.93
   },
   {
@@ -596,7 +596,7 @@
     "aiAccuracy": 0.93
   },
   {
-    "color": 3,
+    "color": -3,
     "aiAccuracy": 0.93
   },
   {
@@ -796,7 +796,7 @@
     "aiAccuracy": 0.93
   },
   {
-    "color": 3,
+    "color": 0.03,
     "aiAccuracy": 0.93
   }
 ]

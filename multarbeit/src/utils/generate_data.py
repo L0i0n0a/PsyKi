@@ -11,7 +11,7 @@ def generate_entries(num_entries=200, high_acc=0.93, low_acc=0.4, low_acc_count=
 
     for i in range(num_entries):
         if i > 0 and (i + 1) % 50 == 0:
-            color = 3
+            color = -3
         else:
             color = 0
             while abs(color) < 0.02:
