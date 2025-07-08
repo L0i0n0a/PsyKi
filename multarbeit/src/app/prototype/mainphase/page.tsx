@@ -314,7 +314,7 @@ const Mainphase = () => {
               width: `${((index + 1) / data.length) * 100}%`,
             }}></div>
         </div>
-        <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
+        <div className='items-center h-full max-h-[60svh] w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColor percentage={current.color} />
           <div className='flex m-4 w-full flex-col justify-center space-y-4'>
             {!showRecom ? (
@@ -335,7 +335,7 @@ const Mainphase = () => {
                 </div>
               </div>
             ) : (
-              <div className='flex flex-col w-full space-y-6 '>
+              <div className='flex flex-col w-full'>
                 <div className='text-center m-0 flex justify-center'>
                   <p className='text-lg mr-2'> {t('assistantRecommendationTitle')}</p>
                   <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(aiGuess)}`}</p>
