@@ -46,6 +46,7 @@ const Mainphase = () => {
   const addMainphaseResponse = useParticipantStore((state) => state.addMainphaseResponse);
   const clearMainphaseResponses = useParticipantStore((state) => state.clearMainphaseResponses);
   const finalTestphaseResponses = useParticipantStore((state) => state.finalTestphaseResponses);
+  const testphaseFinished = useParticipantStore((state) => state.testphaseFinished);
 
   // Data
   const data = dataRaw as MainPhaseItem[];
@@ -126,6 +127,13 @@ const Mainphase = () => {
 
   useEffect(() => {
     if (!hasHydrated) return;
+    if (!finished && !testphaseFinished) {
+      router.replace('/prototype/testphase');
+    }
+  }, [testphaseFinished, router, finished, hasHydrated]);
+
+  useEffect(() => {
+    if (!hasHydrated) return;
     if (!code) router.replace('/prototype');
     const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
     if (finishedFlag === 'true') setFinished(true);
@@ -183,6 +191,7 @@ const Mainphase = () => {
     });
 
     const nextIndex = index < data.length - 1 ? index + 1 : index;
+    localStorage.setItem('mainphaseIndex', String(nextIndex));
 
     if (index < data.length - 1) {
       setIndex(nextIndex);
@@ -190,6 +199,8 @@ const Mainphase = () => {
       setShowRecom(false);
     } else {
       setFinished(true);
+      localStorage.removeItem('mainphaseIndex');
+      localStorage.setItem(`mainphaseFinished_${code}`, 'true');
     }
   };
 

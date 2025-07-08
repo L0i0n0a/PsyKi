@@ -40,6 +40,7 @@ const Testphase = () => {
   const clearTestphaseResponses = useParticipantStore((state) => state.clearTestphaseResponses);
   const setFinalTestphaseResponses = useParticipantStore((state) => state.setFinalTestphaseResponses);
   const testphaseResponses = useParticipantStore((state) => state.testphaseResponses);
+  const setTestphaseFinished = useParticipantStore((state) => state.setTestphaseFinished);
 
   // --- Data ---
   const current = data[index];
@@ -113,6 +114,7 @@ const Testphase = () => {
     } else {
       setFinished(true);
       setFinalTestphaseResponses(testphaseResponses);
+      setTestphaseFinished(true);
       localStorage.removeItem('testphaseIndex');
       localStorage.setItem(`testphaseFinished_${code}`, 'true');
     }

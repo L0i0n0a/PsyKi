@@ -25,6 +25,8 @@ interface ParticipantStore {
   setCorrectRejections: (n: number) => void;
   _hasHydrated: boolean;
   setHasHydrated: (state: boolean) => void;
+  testphaseFinished: boolean;
+  setTestphaseFinished: (finished: boolean) => void;
 
   // Testphase (live)
   testphaseResponses: Response[];
@@ -63,6 +65,8 @@ export const useParticipantStore = create<ParticipantStore>()(
       setCorrectRejections: (n) => set({ correctRejections: n }),
       _hasHydrated: false,
       setHasHydrated: (state) => set({ _hasHydrated: state }),
+      testphaseFinished: false,
+      setTestphaseFinished: (finished) => set({ testphaseFinished: finished }),
 
       // Testphase (live)
       testphaseResponses: [],
@@ -97,6 +101,7 @@ export const useParticipantStore = create<ParticipantStore>()(
         testphaseResponses: state.testphaseResponses,
         finalTestphaseResponses: state.finalTestphaseResponses,
         mainphaseResponses: state.mainphaseResponses,
+        testphaseFinished: state.testphaseFinished,
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
