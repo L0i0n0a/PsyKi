@@ -103,19 +103,24 @@ const Mainphase = () => {
     return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
   }
 
-  function getAiGuess(trueColor: string): number {
-    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
+  function getAiGuess(trueColor: string, aiAccuracy?: number): number {
+    const isInverted = aiAccuracy === 0.4;
+
+    const actualColor = isInverted ? (trueColor === 'orange' ? 'blue' : 'orange') : trueColor;
+
+    const aiMean = actualColor === 'orange' ? -1.5 : 1.5;
     const stdDev = 0.3;
     const aiGuessRaw = aiMean + randn_bm() * stdDev;
     const min = -3;
     const max = 3;
     return Math.max(min, Math.min(max, aiGuessRaw));
   }
+
   const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
   const currentHitRate = calculateHitRate(hits, misses);
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
-  const dPrimeAid = calculateDPrime(current.aiAccuracy ?? 0.93, 1 - (current.aiAccuracy ?? 0.93));
+  const dPrimeAid = calculateDPrime(0.93, 1 - 0.93);
   const totalDP = dPrimeHuman + dPrimeAid;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
@@ -368,7 +373,7 @@ const Mainphase = () => {
                   <p className='text-lg font-semibold md:max-w-full max-w-2xs text-center'> {`${getColorString(XAid)}`}</p>
                 </div>
                 <div className='w-full'>
-                  <AccuracyComparison humanPercent={XHuman} aiPercent={XAid} locale={locale} decision={Z} aiAccuracy={current.aiAccuracy! * 100} humanAccuracy={Number(accuracy)} />
+                  <AccuracyComparison humanPercent={XHuman} aiPercent={XAid} locale={locale} decision={Z} aiAccuracy={93} humanAccuracy={Number(accuracy)} />
                 </div>
                 <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 mt-16'>
                   <div className='flex w-full justify-center space-x-4'>
