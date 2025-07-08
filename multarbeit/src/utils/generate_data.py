@@ -16,9 +16,11 @@ def generate_entries(num_entries=200, high_acc=0.93, low_acc=0.4, low_acc_count=
             color = 0
             while abs(color) < 0.3:
                 color = round(random.uniform(-0.9, 0.9), 2)
+        divergence = random.choice([-0.05, 0.05])
         entry = {
             "color": color,
-            "aiAccuracy": ai_accuracies[i]
+            "aiAccuracy": ai_accuracies[i],
+            "divergence": divergence
         }
         entries.append(entry)
     return entries

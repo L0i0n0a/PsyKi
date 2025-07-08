@@ -1,802 +1,1002 @@
 [
   {
-    "color": 0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.37,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.38,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.4,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.53,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.72,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.85,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.55,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.49,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.42,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.82,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.54,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.34,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.61,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.78,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.86,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.5,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.8,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.65,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.56,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.43,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.74,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": -0.82,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.72,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.87,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.5,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.3,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.62,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.57,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.3,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.76,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.55,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.61,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.44,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.84,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.69,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.56,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.62,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.32,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.68,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.82,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.35,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.37,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 1,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.37,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.36,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.52,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.56,
-    "aiAccuracy": 0.93
+    "color": -0.88,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
     "color": -0.58,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": 0.84,
-    "aiAccuracy": 0.93
+    "color": 0.54,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": -0.78,
-    "aiAccuracy": 0.93
+    "color": -0.5,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
     "color": -0.34,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.57,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.69,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.4,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.42,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.81,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.61,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.75,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.88,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.85,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.72,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.34,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.78,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.37,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.33,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.6,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.43,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.33,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
     "color": -0.42,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": -0.41,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.64,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.82,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.52,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.81,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.71,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.84,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.43,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.89,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": -0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.33,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.36,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.83,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.8,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.83,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.88,
-    "aiAccuracy": 0.93
+    "color": 0.41,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
     "color": 0.59,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.33,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.35,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 1,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.5,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.45,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.55,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.4,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.58,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.87,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.85,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.68,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.46,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.86,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.67,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.38,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.68,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.57,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.58,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.32,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.32,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.73,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.76,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.43,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.78,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.85,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.78,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.39,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.81,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.81,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.32,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.76,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.8,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.86,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.52,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.56,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.7,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.62,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": -0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.42,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.49,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.57,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.49,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.79,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.88,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.48,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 1,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.55,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.75,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.83,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.64,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.77,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.35,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.42,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.4,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": 0.31,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.43,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.72,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.61,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.69,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.45,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.84,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.38,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.62,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.86,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.67,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.74,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.49,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
     "color": -0.38,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.88,
-    "aiAccuracy": 0.93
+    "color": 0.42,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.85,
-    "aiAccuracy": 0.4
-  },
-  {
-    "color": -0.69,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": 0.4,
-    "aiAccuracy": 0.93
+    "color": 0.6,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
   },
   {
     "color": 0.86,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": -0.74,
-    "aiAccuracy": 0.93
+    "color": 0.32,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": -0.56,
-    "aiAccuracy": 0.93
+    "color": 0.6,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": -0.51,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.47,
-    "aiAccuracy": 0.93
-  },
-  {
-    "color": -0.6,
-    "aiAccuracy": 0.93
+    "color": 0.71,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
     "color": -0.52,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
   },
   {
-    "color": -0.74,
-    "aiAccuracy": 0.93
+    "color": 0.7,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": -0.34,
-    "aiAccuracy": 0.93
+    "color": 0.41,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.48,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.36,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.71,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
     "color": -0.56,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": -0.68,
-    "aiAccuracy": 0.93
+    "color": 0.77,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": 0.34,
-    "aiAccuracy": 0.93
+    "color": -0.36,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": 0.53,
-    "aiAccuracy": 0.93
+    "color": -0.51,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": 0.86,
-    "aiAccuracy": 0.93
+    "color": -0.69,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.37,
-    "aiAccuracy": 0.93
+    "color": -0.6,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.5,
-    "aiAccuracy": 0.4
+    "color": -0.41,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.5,
-    "aiAccuracy": 0.93
+    "color": -0.75,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": -0.37,
-    "aiAccuracy": 0.93
+    "color": -0.48,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": -0.76,
-    "aiAccuracy": 0.93
+    "color": -0.46,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
   },
   {
-    "color": 0.58,
-    "aiAccuracy": 0.93
+    "color": 0.72,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
-    "color": -0.37,
-    "aiAccuracy": 0.93
+    "color": -0.57,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   },
   {
     "color": -0.86,
-    "aiAccuracy": 0.93
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.34,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.69,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.52,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.72,
+    "aiAccuracy": 0.4,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.45,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.39,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.54,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.58,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.37,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.76,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.73,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.55,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.72,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.55,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.52,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.46,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.33,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.68,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.41,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.86,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.88,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.54,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.32,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.67,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.53,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.39,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.35,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.56,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.72,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.75,
+    "aiAccuracy": 0.4,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.3,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.49,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.88,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.69,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.73,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.49,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.49,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.53,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.71,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.59,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.64,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.53,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.74,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.56,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.64,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.85,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.4,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.51,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.53,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.65,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.73,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.81,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.87,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.52,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.58,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.43,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.87,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.7,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.62,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.48,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.59,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.65,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.5,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.78,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.86,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.71,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.9,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.73,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.45,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.82,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.86,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.41,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.67,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.76,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.58,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.35,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.31,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.41,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.77,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.33,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.53,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.66,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.58,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.65,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.83,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.46,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.87,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.76,
+    "aiAccuracy": 0.4,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.54,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.37,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.66,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.68,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.82,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.9,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.35,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.72,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.38,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.32,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.63,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.88,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.68,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.4,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.3,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.63,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.45,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.53,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.63,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.46,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.56,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.7,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.45,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.52,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.69,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.85,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": 1,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.82,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.75,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.35,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.56,
+    "aiAccuracy": 0.4,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.75,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.85,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.81,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.74,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.85,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.66,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.72,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.64,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.3,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.34,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.32,
+    "aiAccuracy": 0.4,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.42,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.46,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.53,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.47,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.69,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.38,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.4,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.51,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.89,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.56,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.5,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.44,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.43,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.59,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.8,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.33,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.42,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.57,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.64,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.76,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.46,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.48,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.6,
+    "aiAccuracy": 0.4,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.41,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.73,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.45,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.33,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": -0.55,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.59,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.44,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": -0.73,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.36,
+    "aiAccuracy": 0.93,
+    "divergence": -0.05
+  },
+  {
+    "color": 0.85,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
+  },
+  {
+    "color": 0.54,
+    "aiAccuracy": 0.93,
+    "divergence": 0.05
   }
 ]

@@ -13,8 +13,8 @@ import { useParticipantStore } from '@/store';
 
 type MainPhaseItem = {
   color: number;
-  recom: string;
   aiAccuracy?: number;
+  divergence?: number;
 };
 
 const Mainphase = () => {
@@ -76,23 +76,6 @@ const Mainphase = () => {
     return zHR - zFAR;
   }
 
-  function randn_bm() {
-    let u = 0,
-      v = 0;
-    while (u === 0) u = Math.random();
-    while (v === 0) v = Math.random();
-    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-  }
-
-  function getAiGuess(trueColor: string): number {
-    const aiMean = trueColor === 'orange' ? -1.5 : 1.5;
-    const stdDev = 0.3;
-    const aiGuessRaw = aiMean + randn_bm() * stdDev;
-    const min = -3;
-    const max = 3;
-    return Math.max(min, Math.min(max, aiGuessRaw));
-  }
-
   function getColorString(value: number): string {
     return value < 0 ? t('buttonOrange') : t('buttonBlue');
   }
@@ -111,8 +94,7 @@ const Mainphase = () => {
     };
   }
 
-  const aiGuess = Math.random() < 0.5 ? Math.max(-1, current.color - 0.05) : Math.min(1, current.color + 0.05);
-  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue');
+  const aiGuess = current.divergence ? current.color + current.divergence : current.color;
   const currentHitRate = calculateHitRate(hits, misses);
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
@@ -121,7 +103,7 @@ const Mainphase = () => {
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
   const XHuman = sliderValue;
-  const XAid = aiGuessValue;
+  const XAid = aiGuess;
   const Z = aHuman * XHuman + aAid * XAid;
 
   const testPhaseCorrect = finalTestphaseResponses.filter((r) => {
