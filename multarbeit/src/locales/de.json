@@ -78,9 +78,9 @@
       "5": "Du hast die Empfehlung in <strong>{{acceptedCount}} von {{totalCount}}</strong> Fällen übernommen – <strong>{{acceptedCorrectCount}}</strong> davon waren korrekt."
     }
   },
-  "secStrongOrange": "sehr sicher orange",
-  "secOrange": "sicher orange",
+  "secStrongOrange": "sicher orange",
+  "secOrange": "eher orange",
   "secNeutral": "unsicher",
-  "secBlue": "sicher blau",
-  "secStrongBlue": "sehr sicher blau"
+  "secBlue": "eher blau",
+  "secStrongBlue": "sicher blau"
 }
