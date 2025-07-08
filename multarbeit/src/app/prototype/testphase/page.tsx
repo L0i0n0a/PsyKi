@@ -105,13 +105,16 @@ const Testphase = () => {
 
     // Progress
     const nextIndex = index < data.length - 1 ? index + 1 : index;
+    localStorage.setItem('testphaseIndex', String(nextIndex));
 
     if (index < data.length - 1) {
       setIndex(nextIndex);
       setSliderValue(0);
     } else {
       setFinished(true);
-      setFinalTestphaseResponses([...testphaseResponses, response]);
+      setFinalTestphaseResponses(testphaseResponses);
+      localStorage.removeItem('testphaseIndex');
+      localStorage.setItem(`testphaseFinished_${code}`, 'true');
     }
   };
 
@@ -121,8 +124,15 @@ const Testphase = () => {
   }, [index, clearTestphaseResponses]);
 
   useEffect(() => {
+    const savedIndex = localStorage.getItem('testphaseIndex');
+    if (savedIndex !== null) setIndex(Number(savedIndex));
+  }, []);
+
+  useEffect(() => {
     if (!hasHydrated) return;
     if (!code) router.replace('/prototype');
+    const finishedFlag = localStorage.getItem(`testphaseFinished_${code}`);
+    if (finishedFlag === 'true') setFinished(true);
   }, [code, router, hasHydrated]);
 
   useEffect(() => {

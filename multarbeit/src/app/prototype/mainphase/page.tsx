@@ -138,8 +138,15 @@ const Mainphase = () => {
   }, [index, clearMainphaseResponses]);
 
   useEffect(() => {
+    const savedIndex = localStorage.getItem('mainphaseIndex');
+    if (savedIndex !== null) setIndex(Number(savedIndex));
+  }, []);
+
+  useEffect(() => {
     if (!hasHydrated) return;
     if (!code) router.replace('/prototype');
+    const finishedFlag = localStorage.getItem(`mainphaseFinished_${code}`);
+    if (finishedFlag === 'true') setFinished(true);
   }, [code, router, hasHydrated]);
 
   useEffect(() => {
