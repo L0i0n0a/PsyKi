@@ -87,13 +87,12 @@ export default function AccuracyComparison({ humanPercent, aiPercent, locale, de
   // --- Derived values ---
   const humanX = scaleToPercent(humanPercent);
   const aiX = scaleToPercent(aiPercent);
-
-  const clampedDecision = Math.max(-3, Math.min(3, decision));
-  const decisionX = scaleToPercent(clampedDecision);
+  const decisionX = scaleToPercent(decision);
 
   const humanColor = getColorForScore(humanPercent);
   const aiColor = getColorForScore(aiPercent);
 
+  const clampedDecision = Math.max(-3, Math.min(3, decision));
   const color = Math.min(1, Math.abs(clampedDecision / 3));
   const decisionColor = clampedDecision >= 0 ? interpolateColor('#90CAF9', '#0D47A1', color) : interpolateColor('#FFE0B2', '#FB8C00', color);
 
