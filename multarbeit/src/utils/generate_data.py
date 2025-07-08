@@ -14,8 +14,8 @@ def generate_entries(num_entries=200, high_acc=0.93, low_acc=0.4, low_acc_count=
             color = 3
         else:
             color = 0
-            while abs(color) < 0.05:
-                color = round(random.uniform(-0.1, 0.1), 2)
+            while abs(color) < 0.02:
+                color = round(random.uniform(-0.07, 0.07), 2)
         entry = {
             "color": color,
             "aiAccuracy": ai_accuracies[i],
@@ -27,8 +27,8 @@ def generate_test_entries(num_entries=20):
     entries = []
     for i in range(num_entries):
         color = 0
-        while abs(color) < 0.05:
-            color = round(random.uniform(-0.1, 0.1), 2)
+        while abs(color) < 0.02:
+            color = round(random.uniform(-0.07, 0.07), 2)
         entry = {"color": color}
         entries.append(entry)
     return entries
