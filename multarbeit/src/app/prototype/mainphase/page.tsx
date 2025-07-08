@@ -225,9 +225,37 @@ const Mainphase = () => {
   // --- Render ---
   if (finished) {
     const feedback = getFeedback(mainphaseResponses, index);
-    const avgAccuracy = feedback?.avgAccuracy ?? '–';
-    const rawMessage = t('completionMessage');
-    const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', testPhaseAccuracy + '%').replace('%GENAUIGKEIT2%', avgAccuracy + '%');
+const avgAccuracy = feedback?.avgAccuracy ?? '–';
+const avgAccuracyNum = avgAccuracy === '–' ? NaN : parseFloat(avgAccuracy);
+
+const testPhaseAccuracyNum = testPhaseTotal > 0 ? (testPhaseCorrect / testPhaseTotal) * 100 : 0;
+const testPhaseAccuracy = testPhaseAccuracyNum.toFixed(1);
+
+// Replace placeholders with bold versions
+const formattedTestAccuracy = `<span class='font-bold text-green-600'>${testPhaseAccuracy}%</span>`;
+const formattedAvgAccuracy = avgAccuracyNum
+  ? `<span class='font-bold text-green-600'>${avgAccuracy}%</span>.`
+  : avgAccuracy;  // if no avgAccuracy, just show as is (e.g., '–')
+
+const rawMessage = t('completionMessage');
+const messageWithAccuracy = rawMessage
+  .replace('%GENAUIGKEIT1%', formattedTestAccuracy)
+  .replace('%GENAUIGKEIT2%', formattedAvgAccuracy);
+
+// Show team message only if both are valid numbers
+const showTeamMessage = !isNaN(avgAccuracyNum) && !isNaN(testPhaseAccuracyNum) && avgAccuracyNum >= testPhaseAccuracyNum;
+
+const improvement = showTeamMessage
+  ? (avgAccuracyNum - testPhaseAccuracyNum).toFixed(1)
+  : null;
+
+
+
+    // Translate improvement message
+    const improvementMessage =
+      locale === 'de'
+        ? ` Sie waren mit der KI ein gutes Team!<br />Sie waren <strong>${improvement}%</strong> genauer mit ihrer Hilfe.`
+        : ` You were a good team with the AI!<br />You were <strong>${improvement}%</strong> more accurate with its help.`;
 
     return (
       <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -239,10 +267,19 @@ const Mainphase = () => {
         </div>
         <div className='max-w-4xl mx-auto p-8 flex flex-col items-center justify-center min-h-[60vh]'>
           <h1 className='text-4xl font-bold mb-6 text-center'>{t('completionTitle')}</h1>
-          <p className='mb-8 text-lg text-center' style={{ whiteSpace: 'pre-line' }}>
-            {messageWithAccuracy}
-          </p>
-          <p className='text-lg'>Sie können die Seite nun schließen.</p>
+          <p
+            className='mb-8 text-lg text-center'
+            style={{ whiteSpace: 'pre-line' }}
+            dangerouslySetInnerHTML={{ __html: messageWithAccuracy }}
+          />
+          {showTeamMessage && (
+            <p
+              className='text-lg font-semibold text-center text-green-600'
+              dangerouslySetInnerHTML={{ __html: improvementMessage }}
+            />
+          )}
+
+          <p className='text-lg mt-4'>Sie können die Seite nun schließen.</p>
         </div>
       </div>
     );
@@ -337,9 +374,8 @@ const Mainphase = () => {
                   <button
                     id='buttonNext'
                     disabled={sliderValue === 0}
-                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${
-                      sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
-                    }`}
+                    className={`px-6 py-2 rounded-full transition-all duration-200 ease-in-out text-lg font-semibold ${sliderValue === 0 ? 'bg-gray-300! text-gray-400 cursor-not-allowed' : 'text-white bg-[#004346] hover:bg-[#004346] cursor-pointer'
+                      }`}
                     onClick={handleClick}>
                     {t('buttonNext')}
                   </button>
