@@ -353,7 +353,7 @@ const Mainphase = () => {
               width: `${((index + 1) / data.length) * 100}%`,
             }}></div>
         </div>
-        <div className='items-center h-full max-h-[60svh] w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
+        <div className='items-center h-full max-h-[65svh] w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColor percentage={current.color} />
           <div className='flex m-4 w-full flex-col justify-center space-y-4'>
             {!showRecom ? (
@@ -382,7 +382,7 @@ const Mainphase = () => {
                 <div className='w-full'>
                   <AccuracyComparison humanPercent={XHuman} aiPercent={XAid} locale={locale} decision={Z} aiAccuracy={93} humanAccuracy={Number(accuracy)} />
                 </div>
-                <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 my-16'>
+                <div className='flex flex-col min-w-xs justify-center items-center w-full space-y-6 mt-16'>
                   <div className='flex w-full justify-center space-x-4'>
                     <button className='px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer' onClick={() => handleChoice('orange')}>
                       {t('buttonOrange')}
