@@ -63,7 +63,7 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
   const sliderValue = typeof value === 'number' ? value : internalValue;
 
   return (
-    <div className='relative flex-col items-center gap-4 w-full max-w-lg'>
+    <div className='relative flex-col items-center gap-4 w-full max-w-lg md:max-w-xl lg:max-w-2xl '>
       <div className='flex gap-2 justify-center mt-8 items-center w-full mb-2'>
         <div>{t('decisionScale')}:</div>
         <div>{getLabelText(sliderValue, t)}</div>
