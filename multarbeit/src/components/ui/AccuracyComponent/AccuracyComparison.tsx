@@ -99,6 +99,22 @@ export default function AccuracyComparison({ humanPercent, aiPercent, locale, de
   // --- Render ---
   return (
     <div className='flex w-full flex-col items-center justify-center p-6'>
+      {/* Percentage values ​​below the markers */}
+          {/* Accuracy Values */}
+<div className='mt-2 mb-4 w-full flex flex-col items-center text-center px-2'>
+  <p className='mb-2 text-lg'>{t('accuracyValues')}</p>
+  <div className='flex flex-row justify-center gap-8'>
+    <div>
+      <p className='text-base '>{t('human')}</p>
+      <p className='text-lg '>{humanAccuracy}%</p>
+    </div>
+    <div>
+      <p className='text-base '>{t('ai')}</p>
+      <p className='text-lg '>{aiAccuracy}%</p>
+    </div>
+  </div>
+</div>
+
       <h1 className='text-2xl w-full mb-30 text-center'>{t('zScore')}</h1>
       <div className='flex flex-col w-full min-w-110 md:min-w-96 max-w-3xl'>
         <div className='flex items-center justify-between relative w-full'>
@@ -191,20 +207,7 @@ export default function AccuracyComparison({ humanPercent, aiPercent, locale, de
             </div>
           </div>
 
-          {/* Percentage values ​​below the markers */}
-          <div className='my-14 absolute top-4 w-full flex flex-col justify-center text-center font-semibold px-2'>
-            <p className='mt-4'>{t('accuracyValues')}</p>
-            <div className='flex flex-row justify-center'>
-              <div className='mx-4'>
-                <p className='text-base font-semibold'>{t('human')}</p>
-                <p className='text-lg font-bold'>{humanAccuracy}%</p>
-              </div>
-              <div className='mx-4'>
-                <p className='text-base font-semibold'>{t('ai')}</p>
-                <p className='text-lg font-semibold'>{aiAccuracy}%</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

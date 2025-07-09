@@ -330,7 +330,7 @@ const Mainphase = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full">
+    <div className="max-w-6xl lg:max-w-7xl xl:max-w-[90rem] mx-auto p-6 space-y-8 min-h-screen h-full">
       <div className="header border10">
         <div className="relative flex justify-center items-center">
           <h1 className="md:text-4xl text-2xl font-bold m-4 text-center">
@@ -351,7 +351,15 @@ const Mainphase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2"
+              className='
+  fixed top-4 left-1/2 -translate-x-1/2 z-50 mx-auto
+  w-full max-w-4xl px-4 
+  md:absolute md:top-[-120px] md:z-10 
+  md:mt-8 md:absolut md:transform-none
+  bg-gradient-to-r from-[#39ab52] to-[#66ad28] 
+  text-gray-900 rounded-[10px] shadow-lg 
+  text-center font-bold md:text-2xl text-md p-2 mt-8 top-[-10px]
+'
             >
               <mark
                 style={{ background: "none", color: "#ffffff", padding: 0 }}
@@ -400,7 +408,15 @@ const Mainphase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="md:text-2xl text-md p-2 max-w-4xl font-bold w-full mx-auto bg-gradient-to-r from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg mt-8 text-center z-10 absolute top-[-120] left-1/2 -translate-x-1/2"
+              className='
+  fixed top-4 left-1/2 -translate-x-1/2 z-50 mx-auto
+  w-full max-w-4xl px-4 
+  md:absolute md:top-[-120px] md:z-10 
+  md:mt-8 md:absolut md:transform-none
+  bg-gradient-to-r from-[#39ab52] to-[#66ad28] 
+  text-gray-900 rounded-[10px] shadow-lg 
+  text-center font-bold md:text-2xl text-md p-2 mt-8 top-[-10px]
+'
             >
               <mark
                 style={{ background: "none", color: "#ffffff", padding: 0 }}
@@ -416,7 +432,7 @@ const Mainphase = () => {
           )}
         </AnimatePresence>
       </div>
-      <div className="max-w-4xl mx-auto h-full flex flex-col items-center justify-center">
+      <div className="max-w-4xl lg:max-w-6xl xl:max-w-[90rem] mx-auto mx-auto h-full flex flex-col items-center justify-center">
         <h2 className="self-start font-bold md:text-2xl text-md pb-4">
           {t("mainPhaseHeader")} {index + 1}/{data.length}
         </h2>
@@ -518,7 +534,7 @@ const Mainphase = () => {
                     humanAccuracy={Number(accuracy)}
                   />
                 </div>
-                <div className="flex flex-col min-w-xs justify-center items-center w-full space-y-6 mt-16">
+                <div className="flex flex-col min-w-xs justify-center items-center w-full space-y-6 mt-2">
                   <div className="flex w-full justify-center space-x-4">
                     <button
                       className="px-6 py-2 bg-orange-500! text-white rounded-full text-lg font-semibold transition hover:bg-orange-800! cursor-pointer"
