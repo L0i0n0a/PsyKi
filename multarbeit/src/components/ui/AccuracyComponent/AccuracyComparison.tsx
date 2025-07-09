@@ -135,26 +135,42 @@ export default function AccuracyComparison({ humanPercent, aiPercent, locale, de
               </div>
 
               {/* Decision marker */}
-              <div>
-                <p
-                  className='absolute top-[-60] -translate-y-1/2 z-10'
-                  style={{
-                    left: `${decisionX}%`,
-                    transform: 'translateX(-50%) translateY(-50%)',
-                    color: decisionColor,
-                  }}>
-                  {t('result')}
-                </p>
-              </div>
-              <div
-                className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
-                style={{
-                  left: `${decisionX}%`,
-                  transform: 'translateX(-50%) translateY(-50%)',
-                  backgroundColor: decisionColor,
-                  border: '5px solid #ffffff',
-                }}
-              />
+              {/* --- Overlap Detection --- */}
+{(() => {
+  const overlapThreshold = 5; // percent range to consider as "overlap"
+  const overlaps = Math.abs(decisionX - humanX) < overlapThreshold || Math.abs(decisionX - aiX) < overlapThreshold;
+  const bubbleOpacity = overlaps ? 0.6 : 1;
+  const textOpacity = overlaps ? 0.4 : 1;
+
+  return (
+    <>
+      {/* Decision Label */}
+      <p
+        className='absolute top-[-60px] -translate-y-1/2 z-10 text-sm font-bold'
+        style={{
+          left: `${decisionX}%`,
+          transform: 'translateX(-50%) translateY(-50%)',
+          color: decisionColor,
+          opacity: textOpacity,
+        }}>
+        {t('result')}
+      </p>
+
+      {/* Decision Bubble */}
+      <div
+        className='absolute top-8 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-white shadow z-10'
+        style={{
+          left: `${decisionX}%`,
+          transform: 'translateX(-50%) translateY(-50%)',
+          backgroundColor: decisionColor,
+          border: '5px solid #ffffff',
+          opacity: bubbleOpacity,
+        }}
+      />
+    </>
+  );
+})()}
+
 
               {/* SVG curves */}
               <svg className='absolute top-[-130px] left-0 w-full h-[200px] pointer-events-none' xmlns='http://www.w3.org/2000/svg' viewBox='0 -10 100 100' preserveAspectRatio='none'>
