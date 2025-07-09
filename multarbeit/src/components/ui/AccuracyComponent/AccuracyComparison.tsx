@@ -166,7 +166,7 @@ export default function AccuracyComparison({ humanPercent, aiPercent, locale, de
             </div>
 
             {/* Labels */}
-            <div className='grid grid-cols-5 text-sm text-gray-600 mt-2 px-1 text-center'>
+            <div className='grid grid-cols-5 text-base text-gray-600 mt-2 px-1 text-center'>
               <span className='justify-self-start'>{t('secStrongOrange')}</span>
               <span>{t('secOrange')}</span>
               <span>{t('secNeutral')}</span>

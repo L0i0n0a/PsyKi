@@ -89,7 +89,7 @@ const ColorSlider: React.FC<ColorSliderProps> = ({ initial = 0, value, onChange,
           `,
         }}
       />
-      <div className='grid grid-cols-5 text-sm text-gray-600 w-full px-1 mt-2 text-center'>
+      <div className='grid grid-cols-5 text-base text-gray-600 w-full px-1 mt-2 text-center'>
         <span className='justify-self-start break-words whitespace-normal'>{t('secStrongOrange')}</span>
         <span>{t('secOrange')}</span>
         <span>{t('secNeutral')}</span>
