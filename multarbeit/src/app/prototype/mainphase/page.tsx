@@ -468,7 +468,7 @@ const Mainphase = () => {
             );
           })}
         </div>
-        <div className="items-center h-full max-h-[65svh] w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6">
+        <div className="items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6">
           <BiColor percentage={current.color} />
           <div className="flex m-4 w-full flex-col justify-center space-y-4">
             {!showRecom ? (

@@ -162,7 +162,7 @@ const Testphase = () => {
   }
 
   return (
-    <div className='max-w-6xl mx-auto p-6 space-y-8 min-h-screen h-full'>
+    <div className='max-w-6xl lg:max-w-7xl xl:max-w-[90rem] mx-auto p-6 space-y-8 min-h-screen h-full'>
       <div className='header border10'>
         <div className='relative flex justify-center items-center'>
           <h1 className='md:text-4xl text-2xl font-bold m-4 text-center'>{t('title')}</h1>
@@ -218,7 +218,7 @@ const Testphase = () => {
           )}
         </AnimatePresence>
       </div>
-      <div className='max-w-4xl mx-auto h-full flex flex-col items-center justify-center'>
+      <div className='max-w-4xl lg:max-w-6xl xl:max-w-[90rem] mx-auto h-full flex flex-col items-center justify-center'>
         <h2 className='self-start font-bold md:text-2xl text-md pb-4'>
           {t('testPhaseHeader')} {index + 1}/{data.length}
         </h2>
@@ -231,7 +231,7 @@ const Testphase = () => {
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
           <BiColor percentage={current.color} />
-          <div className='flex h-[256px] w-full m-4 flex-col items-center justify-center space-y-4'>
+          <div className='flex w-full m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
               <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={setSliderValue} />
             </div>
