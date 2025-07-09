@@ -420,55 +420,54 @@ const Mainphase = () => {
         <h2 className="self-start font-bold md:text-2xl text-md pb-4">
           {t("mainPhaseHeader")} {index + 1}/{data.length}
         </h2>
-<div className='w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden relative'>
-  <div
-    className='h-full bg-[#39ab52] transition-all duration-300'
-    style={{
-      width: `${((index + 1) / data.length) * 100}%`,
-    }}
-  ></div>
-  {/* Milestone Circles */}
-  { [0.25, 0.5, 0.75].map((milestone, i) => {
-      const reached = ((index + 1) / data.length) >= milestone;
-      return (
-        <div
-          key={i}
-          className="absolute"
-          style={{
-            left: `${milestone * 100}%`,
-            top: 0,
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            transform: 'translateX(-50%)',
-            zIndex: 2,
-          }}
-        >
+        <div className="w-full h-8 bg-gray-100 border-2 drop-shadow-xl border-[#508991] text-center rounded-full! mb-4 overflow-hidden relative">
           <div
+            className="h-full bg-[#39ab52] transition-all duration-300"
             style={{
-              width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
-              background: reached ? '#508991' : '#fff',
-              border: `2px solid ${reached ? '#508991' : '#508991'}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: reached ? '#fff' : '#508991',
-              fontWeight: 'bold',
-              fontSize: '0.8rem',
-              boxShadow: reached ? '0 0 6px #50899188' : undefined,
-              transition: 'background 0.3s, border 0.3s, color 0.3s',
+              width: `${((index + 1) / data.length) * 100}%`,
             }}
-            title={`Trial ${Math.round(milestone * data.length)}`}
-          >
-            {Math.round(milestone * data.length)}
-          </div>
+          ></div>
+          {/* Milestone Circles */}
+          {[0.25, 0.5, 0.75].map((milestone, i) => {
+            const reached = (index + 1) / data.length >= milestone;
+            return (
+              <div
+                key={i}
+                className="absolute"
+                style={{
+                  left: `${milestone * 100}%`,
+                  top: 0,
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  transform: "translateX(-50%)",
+                  zIndex: 2,
+                }}
+              >
+                <div
+                  style={{
+                    width: "2rem",
+                    height: "2rem",
+                    borderRadius: "50%",
+                    background: reached ? "#508991" : "#fff",
+                    border: `2px solid ${reached ? "#508991" : "#508991"}`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: reached ? "#fff" : "#508991",
+                    fontWeight: "bold",
+                    fontSize: "0.8rem",
+                    boxShadow: reached ? "0 0 6px #50899188" : undefined,
+                    transition: "background 0.3s, border 0.3s, color 0.3s",
+                  }}
+                  title={`Trial ${Math.round(milestone * data.length)}`}
+                >
+                  {Math.round(milestone * data.length)}
+                </div>
+              </div>
+            );
+          })}
         </div>
-      );
-    })
-  }
-</div>
         <div className="items-center h-full max-h-[65svh] w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6">
           <BiColor percentage={current.color} />
           <div className="flex m-4 w-full flex-col justify-center space-y-4">
