@@ -13,6 +13,7 @@ import { useParticipantStore } from '@/store';
 
 type MainPhaseItem = {
   color: number;
+  index: number;
   aiAccuracy?: number;
   divergence?: number;
 };
@@ -377,7 +378,7 @@ const Mainphase = () => {
           })}
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
-          <BiColor percentage={current.color} />
+          <BiColor percentage={current.color} index={current.index} />
           <div className='flex m-4 w-full flex-col justify-center space-y-4'>
             {!showRecom ? (
               <div>

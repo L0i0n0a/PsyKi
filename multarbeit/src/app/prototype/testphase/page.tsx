@@ -227,7 +227,7 @@ const Testphase = () => {
             }}></div>
         </div>
         <div className='items-center h-full w-full sectionBorder justify-around flex  md:flex-row flex-col drop-shadow-xl rounded-2xl bg-white p-6'>
-          <BiColor percentage={current.color} />
+          <BiColor percentage={current.color} index={current.index} />
           <div className='flex w-full m-4 flex-col items-center justify-center space-y-4'>
             <div className='text-lg mt-auto text-center mb-4 flex flex-col items-center justify-center w-full'>
               <ColorSlider initial={0} value={sliderValue} locale={locale} onChange={setSliderValue} />

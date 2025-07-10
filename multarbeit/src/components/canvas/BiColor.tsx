@@ -4,12 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 
 type BiColorProps = {
   percentage: number;
+  index: number;
 };
 
 const colorBlue = [0, 0, 255, 255];
 const colorOrange = [255, 128, 0, 255];
 
-const BiColor = ({ percentage }: BiColorProps) => {
+const BiColor = ({ percentage, index }: BiColorProps) => {
   const [canvasSize, setCanvasSize] = useState(256);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const colorArray = useRef<number[]>([]);
@@ -36,7 +37,7 @@ const BiColor = ({ percentage }: BiColorProps) => {
     colorArray.current = new Array(pixelAmount).fill(0);
     recalculate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canvasSize, percentage]);
+  }, [canvasSize, index]);
 
   // --- Functions ---
   function setPixelColor(pixel: number, color: number[]) {

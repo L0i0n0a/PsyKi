@@ -1,62 +1,22 @@
 [
-  {
-    "color": 48
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 52
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 48
-  },
-  {
-    "color": 52
-  }
+  { "index": 1, "color": 48 },
+  { "index": 2, "color": 48 },
+  { "index": 3, "color": 52 },
+  { "index": 4, "color": 48 },
+  { "index": 5, "color": 48 },
+  { "index": 6, "color": 52 },
+  { "index": 7, "color": 52 },
+  { "index": 8, "color": 52 },
+  { "index": 9, "color": 52 },
+  { "index": 10, "color": 52 },
+  { "index": 11, "color": 48 },
+  { "index": 12, "color": 48 },
+  { "index": 13, "color": 52 },
+  { "index": 14, "color": 48 },
+  { "index": 15, "color": 48 },
+  { "index": 16, "color": 52 },
+  { "index": 17, "color": 52 },
+  { "index": 18, "color": 48 },
+  { "index": 19, "color": 48 },
+  { "index": 20, "color": 52 }
 ]
