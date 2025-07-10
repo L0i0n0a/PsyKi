@@ -1,1002 +1,1002 @@
 [
   {
     "index": 1,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 2,
-    "color": -0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 3,
-    "color": -0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 4,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 5,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 6,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 7,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 8,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 9,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 10,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 11,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 12,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 13,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 14,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 15,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 16,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 17,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 18,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 19,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 20,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 21,
-    "color": -0.03,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 22,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 23,
-    "color": -0.07,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 24,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 25,
-    "color": 0.04,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 26,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 27,
-    "color": -0.04,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 28,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 29,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 30,
-    "color": -0.04,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 31,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 32,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 33,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 34,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 35,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 36,
-    "color": -0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 37,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 38,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 39,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 40,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 41,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 42,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 43,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 44,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 45,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 46,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 47,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 48,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 49,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 50,
-    "color": -3,
+    "color": 0,
     "aiAccuracy": 0.93
   },
   {
     "index": 51,
-    "color": 0.06,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 52,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 53,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 54,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 55,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 56,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 57,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 58,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 59,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 60,
-    "color": -0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 61,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 62,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 63,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 64,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 65,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 66,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 67,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 68,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 69,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 70,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 71,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 72,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 73,
-    "color": -0.05,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 74,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 75,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 76,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 77,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 78,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 79,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 80,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 81,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 82,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 83,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 84,
-    "color": -0.03,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 85,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 86,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 87,
-    "color": 0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 88,
-    "color": 0.03,
-    "aiAccuracy": 0.4
+    "color": 52,
+    "aiAccuracy": 0.93
   },
   {
     "index": 89,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 90,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 91,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 92,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 93,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 94,
-    "color": 0.02,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 95,
-    "color": -0.02,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 96,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 97,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 98,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 99,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 100,
-    "color": -3,
+    "color": 0,
     "aiAccuracy": 0.93
   },
   {
     "index": 101,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 102,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 103,
-    "color": -0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 104,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 105,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 106,
-    "color": 0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 107,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 108,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 109,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 110,
-    "color": -0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 111,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 112,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 113,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 114,
-    "color": -0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 115,
-    "color": -0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 116,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 117,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 118,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 119,
-    "color": 0.02,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 120,
-    "color": -0.03,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 121,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 122,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 123,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 124,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 125,
-    "color": -0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 126,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 127,
-    "color": -0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 128,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 129,
-    "color": -0.07,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   },
   {
     "index": 130,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 131,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 132,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 133,
-    "color": 0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 134,
-    "color": -0.06,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 135,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 136,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 137,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 138,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 139,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 140,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 141,
-    "color": -0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 142,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 143,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 144,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 145,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 146,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 147,
-    "color": -0.02,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 148,
-    "color": -0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 149,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 150,
-    "color": -3,
-    "aiAccuracy": 0.4
+    "color": 0,
+    "aiAccuracy": 0.93
   },
   {
     "index": 151,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 152,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 153,
-    "color": 0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 154,
-    "color": 0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 155,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 156,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 157,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 158,
-    "color": -0.05,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 159,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 160,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 161,
-    "color": 0.05,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 162,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 163,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 164,
-    "color": -0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 165,
-    "color": -0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 166,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 167,
-    "color": -0.07,
-    "aiAccuracy": 0.4
+    "color": 52,
+    "aiAccuracy": 0.93
   },
   {
     "index": 168,
-    "color": -0.06,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 169,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 170,
-    "color": 0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 171,
-    "color": -0.07,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 172,
-    "color": -0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 173,
-    "color": -0.03,
-    "aiAccuracy": 0.4
+    "color": 52,
+    "aiAccuracy": 0.93
   },
   {
     "index": 174,
-    "color": 0.05,
-    "aiAccuracy": 0.4
+    "color": 52,
+    "aiAccuracy": 0.93
   },
   {
     "index": 175,
-    "color": -0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 176,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 177,
-    "color": 0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 178,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 179,
-    "color": 0.04,
-    "aiAccuracy": 0.93
+    "color": 48,
+    "aiAccuracy": 0.4
   },
   {
     "index": 180,
-    "color": -0.04,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 181,
-    "color": 0.03,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 182,
-    "color": -0.07,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 183,
-    "color": 0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 184,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 185,
-    "color": 0.03,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 186,
-    "color": -0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 187,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 188,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 189,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 190,
-    "color": 0.02,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 191,
-    "color": -0.02,
-    "aiAccuracy": 0.93
+    "color": 52,
+    "aiAccuracy": 0.4
   },
   {
     "index": 192,
-    "color": -0.02,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 193,
-    "color": -0.06,
-    "aiAccuracy": 0.4
+    "color": 52,
+    "aiAccuracy": 0.93
   },
   {
     "index": 194,
-    "color": -0.05,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 195,
-    "color": 0.04,
-    "aiAccuracy": 0.93
-  },
-  {
-    "index": 196,
-    "color": 0.04,
+    "color": 52,
     "aiAccuracy": 0.4
   },
   {
+    "index": 196,
+    "color": 52,
+    "aiAccuracy": 0.93
+  },
+  {
     "index": 197,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 198,
-    "color": 0.04,
+    "color": 48,
     "aiAccuracy": 0.93
   },
   {
     "index": 199,
-    "color": 0.06,
+    "color": 52,
     "aiAccuracy": 0.93
   },
   {
     "index": 200,
-    "color": -3,
-    "aiAccuracy": 0.4
+    "color": 48,
+    "aiAccuracy": 0.93
   }
 ]

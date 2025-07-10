@@ -77,11 +77,11 @@ const Testphase = () => {
     };
 
     const userChoice = sliderValue > 0 ? 'blue' : 'orange';
-    const correctChoice = current.color < 0 ? 'orange' : 'blue';
+    const correctChoice = current.color < 50 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
 
     // SDT logic
-    const isSignal = current.color > 0;
+    const isSignal = current.color > 50;
     const choseBlue = sliderValue > 0;
 
     if (isSignal) {

@@ -121,7 +121,7 @@ const Mainphase = () => {
     return Math.max(min, Math.min(max, aiGuessRaw));
   }
 
-  const aiGuessValue = getAiGuess(current.color < 0 ? 'orange' : 'blue', current.aiAccuracy);
+  const aiGuessValue = getAiGuess(current.color < 50 ? 'orange' : 'blue', current.aiAccuracy);
   const currentHitRate = calculateHitRate(hits, misses);
   const currentFaRate = calculateFalseAlarmRate(falseA, correctRej);
   const dPrimeHuman = calculateDPrime(currentHitRate, currentFaRate);
@@ -135,8 +135,8 @@ const Mainphase = () => {
   const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
   const testPhaseCorrect = finalTestphaseResponses.filter((r) => {
-    const userChoice = typeof r.buttonPressed === 'string' ? r.buttonPressed : r.sliderValue > 0 ? 'blue' : 'orange';
-    const correctChoice = r.color < 0 ? 'orange' : 'blue';
+    const userChoice = typeof r.buttonPressed === 'string' ? r.buttonPressed : r.sliderValue > 50 ? 'blue' : 'orange';
+    const correctChoice = r.color < 50 ? 'orange' : 'blue';
     return userChoice === correctChoice;
   }).length;
   const testPhaseTotal = finalTestphaseResponses.length;
@@ -198,7 +198,7 @@ const Mainphase = () => {
     });
 
     const userChoice = button;
-    const correctChoice = current.color < 0 ? 'orange' : 'blue';
+    const correctChoice = current.color < 50 ? 'orange' : 'blue';
     const isCorrect = userChoice === correctChoice;
 
     if (correctChoice === 'blue') {

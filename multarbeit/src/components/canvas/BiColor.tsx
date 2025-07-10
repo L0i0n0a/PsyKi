@@ -69,7 +69,7 @@ const BiColor = ({ percentage }: BiColorProps) => {
   }
 
   function recalculate() {
-    const orangeFraction = (percentage + 3) / 6;
+    const orangeFraction = percentage / 100;
     const colorPixels = Math.round(pixelAmount * orangeFraction);
     colorArray.current.fill(1, 0, colorPixels);
     colorArray.current.fill(0, colorPixels);
