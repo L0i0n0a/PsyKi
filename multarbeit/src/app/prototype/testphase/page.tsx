@@ -183,7 +183,7 @@ const Testphase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className='bg-gradient-to-r lg:w-[90%] sm_w-full w-[90%] sm:h-18 h-24 mx-auto sm:top-auto sm:left-auto sm:right-auto top-6 left-6 right-6 sm:absolute fixed from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg text-center justify-center flex items-center font-bold md:text-2xl text-md'>
+              className='bg-gradient-to-r lg:w-[90%] z-20 sm:w-full sm:h-18 h-24 mx-auto sm:top-auto sm:left-auto sm:right-auto top-6 left-6 right-6 sm:absolute fixed from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg text-center justify-center flex items-center font-bold md:text-2xl text-md'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {

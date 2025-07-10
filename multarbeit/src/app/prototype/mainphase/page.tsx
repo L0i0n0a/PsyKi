@@ -238,22 +238,27 @@ const Mainphase = () => {
 
   // --- Render ---
   if (finished) {
-    const feedback = getFeedback(mainphaseResponses, index);
-    const avgAccuracy = feedback?.avgAccuracy ?? '–';
-    const avgAccuracyNum = avgAccuracy === '–' ? NaN : parseFloat(avgAccuracy);
+    // const feedback = getFeedback(mainphaseResponses, index);
+    // const avgAccuracy = feedback?.avgAccuracy ?? '–';
+    // const avgAccuracyNum = avgAccuracy === '–' ? NaN : parseFloat(avgAccuracy);
 
     const testPhaseAccuracyNum = testPhaseTotal > 0 ? (testPhaseCorrect / testPhaseTotal) * 100 : 0;
     const testPhaseAccuracy = testPhaseAccuracyNum.toFixed(1);
 
+    const mainPhaseAccuracyNum = hasHydrated && totalCount > 0 ? (correctCount / totalCount) * 100 : 0;
+    const mainPhaseAccuracy = mainPhaseAccuracyNum.toFixed(1);
+
     const formattedTestAccuracy = `<span class='font-bold text-green-600'>${testPhaseAccuracy}%</span>`;
-    const formattedAvgAccuracy = avgAccuracyNum ? `<span class='font-bold text-green-600'>${avgAccuracy}%</span>.` : avgAccuracy;
+    const formattedAvgAccuracy = `<span class='font-bold text-green-600'>${mainPhaseAccuracy}%</span>.`;
 
     const rawMessage = t('completionMessage');
     const messageWithAccuracy = rawMessage.replace('%GENAUIGKEIT1%', formattedTestAccuracy).replace('%GENAUIGKEIT2%', formattedAvgAccuracy);
 
-    const showTeamMessage = !isNaN(avgAccuracyNum) && !isNaN(testPhaseAccuracyNum) && avgAccuracyNum >= testPhaseAccuracyNum;
+    //const showTeamMessage = !isNaN(avgAccuracyNum) && !isNaN(testPhaseAccuracyNum) && avgAccuracyNum >= testPhaseAccuracyNum;
+    //const improvement = showTeamMessage ? (avgAccuracyNum - testPhaseAccuracyNum).toFixed(1) : null;
 
-    const improvement = showTeamMessage ? (avgAccuracyNum - testPhaseAccuracyNum).toFixed(1) : null;
+    const showTeamMessage = mainPhaseAccuracyNum > testPhaseAccuracyNum;
+    const improvement = showTeamMessage ? (mainPhaseAccuracyNum - testPhaseAccuracyNum).toFixed(1) : null;
 
     const improvementMessage =
       locale === 'de'
@@ -296,7 +301,7 @@ const Mainphase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className='bg-gradient-to-r lg:w-[90%] sm_w-full w-[90%] sm:h-18 h-24 mx-auto sm:top-auto sm:left-auto sm:right-auto top-6 left-6 right-6 sm:absolute fixed from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg text-center justify-center flex items-center font-bold md:text-2xl text-md'>
+              className='bg-gradient-to-r z-20 lg:w-[90%] sm:w-full sm:h-18 h-24 mx-auto sm:top-auto sm:left-auto sm:right-auto top-6 left-6 right-6 sm:absolute fixed from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg text-center justify-center flex items-center font-bold md:text-2xl text-md'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
