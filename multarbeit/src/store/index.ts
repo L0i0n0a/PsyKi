@@ -27,6 +27,8 @@ interface ParticipantStore {
   setHasHydrated: (state: boolean) => void;
   testphaseFinished: boolean;
   setTestphaseFinished: (finished: boolean) => void;
+  feedbackCount: number;
+  setFeedbackCount: (count: number) => void;
 
   // Testphase (live)
   testphaseResponses: Response[];
@@ -67,6 +69,8 @@ export const useParticipantStore = create<ParticipantStore>()(
       setHasHydrated: (state) => set({ _hasHydrated: state }),
       testphaseFinished: false,
       setTestphaseFinished: (finished) => set({ testphaseFinished: finished }),
+      feedbackCount: 0,
+      setFeedbackCount: (count) => set({ feedbackCount: count }),
 
       // Testphase (live)
       testphaseResponses: [],
@@ -102,6 +106,7 @@ export const useParticipantStore = create<ParticipantStore>()(
         finalTestphaseResponses: state.finalTestphaseResponses,
         mainphaseResponses: state.mainphaseResponses,
         testphaseFinished: state.testphaseFinished,
+        feedbackCount: state.feedbackCount,
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);

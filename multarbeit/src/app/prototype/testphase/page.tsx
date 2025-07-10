@@ -20,7 +20,6 @@ const Testphase = () => {
   const { t } = useTranslation(locale);
   const [step, setStep] = useState(0);
   const instructionStepsLength = 6;
-  const [feedbackCount, setFeedbackCount] = useState(0);
 
   // Zustand store values
   const code = useParticipantStore((state) => state.code);
@@ -41,9 +40,14 @@ const Testphase = () => {
   const setFinalTestphaseResponses = useParticipantStore((state) => state.setFinalTestphaseResponses);
   const testphaseResponses = useParticipantStore((state) => state.testphaseResponses);
   const setTestphaseFinished = useParticipantStore((state) => state.setTestphaseFinished);
+  const feedbackCount = useParticipantStore((state) => state.feedbackCount);
+  const setFeedbackCount = useParticipantStore((state) => state.setFeedbackCount);
 
   // --- Data ---
   const current = data[index];
+
+  // Calculate accuracy from store values
+  const accuracy = hasHydrated && totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
   // --- Utility functions ---
   function getFeedback(responses: { index: number; color: number; sliderValue: number }[], currentIndex: number) {
@@ -113,7 +117,7 @@ const Testphase = () => {
       setSliderValue(0);
     } else {
       setFinished(true);
-      setFinalTestphaseResponses(testphaseResponses);
+      setFinalTestphaseResponses([...testphaseResponses, response]);
       setTestphaseFinished(true);
       localStorage.removeItem('testphaseIndex');
       localStorage.setItem(`testphaseFinished_${code}`, 'true');
@@ -122,13 +126,15 @@ const Testphase = () => {
 
   // --- Effects ---
   useEffect(() => {
-    if (index === 0) clearTestphaseResponses();
-  }, [index, clearTestphaseResponses]);
-
-  useEffect(() => {
     const savedIndex = localStorage.getItem('testphaseIndex');
-    if (savedIndex !== null) setIndex(Number(savedIndex));
-  }, []);
+    if (savedIndex !== null) {
+      setIndex(Number(savedIndex));
+    } else {
+      // Only clear responses and reset feedback count if we're actually starting fresh (no saved index)
+      clearTestphaseResponses();
+      setFeedbackCount(0);
+    }
+  }, [clearTestphaseResponses, setFeedbackCount]); // Run only once on mount
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -138,11 +144,12 @@ const Testphase = () => {
   }, [code, router, hasHydrated]);
 
   useEffect(() => {
-    if (index > 0 && (index + 1) % 6 === 0) setFeedbackCount((prev) => prev + 1);
-  }, [index]);
-
-  // --- Derived values ---
-  const accuracy = totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
+    if (index > 0 && (index + 1) % 6 === 0) {
+      // Calculate the expected feedback count based on index
+      const expectedFeedbackCount = Math.floor((index + 1) / 6);
+      setFeedbackCount(expectedFeedbackCount);
+    }
+  }, [index, setFeedbackCount]);
 
   // --- Render ---
   if (finished) {
