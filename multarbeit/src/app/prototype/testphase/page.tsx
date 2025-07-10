@@ -46,7 +46,7 @@ const Testphase = () => {
   // --- Data ---
   const current = data[index];
 
-  // Calculate accuracy from store values
+  // --- Derived values ---
   const accuracy = hasHydrated && totalCount > 0 ? ((correctCount / totalCount) * 100).toFixed(1) : '0';
 
   // --- Utility functions ---
@@ -130,11 +130,10 @@ const Testphase = () => {
     if (savedIndex !== null) {
       setIndex(Number(savedIndex));
     } else {
-      // Only clear responses and reset feedback count if we're actually starting fresh (no saved index)
       clearTestphaseResponses();
       setFeedbackCount(0);
     }
-  }, [clearTestphaseResponses, setFeedbackCount]); // Run only once on mount
+  }, [clearTestphaseResponses, setFeedbackCount]);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -145,7 +144,6 @@ const Testphase = () => {
 
   useEffect(() => {
     if (index > 0 && (index + 1) % 6 === 0) {
-      // Calculate the expected feedback count based on index
       const expectedFeedbackCount = Math.floor((index + 1) / 6);
       setFeedbackCount(expectedFeedbackCount);
     }
@@ -213,7 +211,7 @@ const Testphase = () => {
               </mark>
             </motion.div>
           ) : (
-            <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
+            <div className='md:text-xl text-md flex justify-center'>{t('instructionTitle')}</div>
           )}
         </AnimatePresence>
       </div>
