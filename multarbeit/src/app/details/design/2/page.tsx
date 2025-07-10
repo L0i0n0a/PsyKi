@@ -383,7 +383,7 @@ const DesignDecisionsPage2: React.FC = () => {
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Umsetzungsüberlegungen für die Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie können die Bilder erstellt werden?</h2>
-        <BiColor percentage={0.5} />
+        <BiColor percentage={0.5} index={1} />
         <h2 className='text-2xl mb-4'>Welche Formeln des OW-Modell sind wo einzusetzen?</h2>
         <div className='space-y-8 mt-6'>
           {/* Human sensitivity */}
