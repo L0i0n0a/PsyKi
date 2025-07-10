@@ -169,26 +169,16 @@ const Testphase = () => {
           <LanguageToggle locale={locale} onToggle={toggleLanguage} />
         </div>
       </div>
-      <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
-      <div className='relative max-w-6xl px-8'>
+      <div className='sm:relative mx-auto z-10 py-4 items-center justify-center flex max-w-6xl px-8'>
         <AnimatePresence>
-          {index > 0 && (index + 1) % 6 === 0 && (
+          {index > 0 && (index + 1) % 6 === 0 ? (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className='
-  fixed top-4 left-1/2 -translate-x-1/2 z-50 mx-auto
-  w-full max-w-4xl px-4 
-  md:absolute md:top-[-120px] md:z-10 
-  md:mt-8 md:absolut md:transform-none
-  bg-gradient-to-r from-[#39ab52] to-[#66ad28] 
-  text-gray-900 rounded-[10px] shadow-lg 
-  text-center font-bold md:text-2xl text-md p-2 mt-8 top-[-10px]
-'
->
+              className='bg-gradient-to-r lg:w-[90%] sm_w-full w-[90%] sm:h-18 h-24 mx-auto sm:top-auto sm:left-auto sm:right-auto top-6 left-6 right-6 sm:absolute fixed from-[#39ab52] to-[#66ad28] text-gray-900 rounded-[10px] shadow-lg text-center justify-center flex items-center font-bold md:text-2xl text-md'>
               <mark style={{ background: 'none', color: '#ffffff', padding: 0 }}>
                 <div className='flex flex-col items-center justify-center'>
                   {(() => {
@@ -215,6 +205,8 @@ const Testphase = () => {
                 </div>
               </mark>
             </motion.div>
+          ) : (
+            <div className='md:text-2xl text-md flex justify-center'>{t('instructionTitle')}</div>
           )}
         </AnimatePresence>
       </div>
