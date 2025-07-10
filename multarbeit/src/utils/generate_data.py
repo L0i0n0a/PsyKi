@@ -26,7 +26,10 @@ def generate_test_entries(num_entries=20):
     entries = []
     for i in range(num_entries):
         color = random.choice([48, 52])
-        entry = {"color": color}
+        entry = {
+            "index": i + 1,
+            "color": color
+        }
         entries.append(entry)
     return entries
 
