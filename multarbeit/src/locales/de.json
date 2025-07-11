@@ -1,6 +1,6 @@
 {
-  "title": "Prototyp",
-  "welcome": "Willkommen zum Prototyp",
+  "title": "Studie zur Farberkennung",
+  "welcome": "Willkommen zur Studie",
   "instructions": "In dieser Studie sehen Sie in jedem Durchgang ein Bild mit Farbpunkten.<br/><br/>Ihre Aufgabe ist es zu entscheiden, ob mehr <span class=\"text-orange-500 font-bold\">orange</span> oder mehr <span class=\"text-blue-500 font-bold\">blaue</span> Punkte enthalten sind.<br/><br/>In dieser ersten Phase (20 Bilder) machen Sie sich mit der Aufgabe vertraut.<br/><br/>Gleichzeitig ermitteln wir anhand Ihrer Entscheidungen, wie gut Sie Muster erkennen können <br/> – also Ihre individuelle Genauigkeit.<br/><br/>Entscheiden Sie einfach so, wie Sie es für richtig halten.",
   "start": "Start",
   "instructionTitle": "Entscheiden Sie ob mehr orange oder mehr blaue Punkte im Bild zu sehen sind.",
