@@ -187,6 +187,7 @@ const Mainphase = () => {
       index,
       color: current.color,
       sliderValue,
+      aiGuessValue,
       timestamp: new Date().toISOString(),
       buttonPressed: button,
       dPrimeTeam,
