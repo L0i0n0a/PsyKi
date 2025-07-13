@@ -89,6 +89,15 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
           </>
         }
       />
+
+      <SectionLeft
+        imageSource='by Storyset'
+        onClick={() => router.push('/details/design/4')}
+        imageUrl='/result.png'
+        title='Finalisierung & Ergebnisbewertung'
+        description={<>In diesem Abschnitt wird die finale Version des Prototypen aufgezeigt. Zudem werden die in der Studie gesammelten Ergebnis aufgezeigt und diskutiert.</>}
+      />
+
     </div>
   );
 }
