@@ -51,6 +51,11 @@ const screens = [
     image: '/main2.png',
   },
   {
+    title: 'Aufmerksamkeitscheck',
+    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    image: '/attention.png',
+  },
+  {
     title: 'Gemeinsame Empfehlung (Teamwert)',
     text: 'Der kombinierte Assistenzpunkt (Teamwert) wird visualisiert. Die Entscheidung bleibt bei den Nutzer:innen, doch sie erhalten ein transparentes, nachvollziehbares Feedback.',
     image: '/end.png',

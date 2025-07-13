@@ -7,6 +7,8 @@ import Image from 'next/image';
 import FeedbackHintCard from '@/components/layout/FeedbackHintCard';
 import FeedbackSlider from '@/components/ui/Slider/FeedbackSlider';
 import FinalScreensFlow from '@/components/layout/FinalScreensFlow';
+import AnimatedDataChart from '@/components/layout/AnimatedDataChart';
+import AllParticipantsChart from '@/components/layout/AllParticipantsChart';
 
 const DesignDecisionsPage3: React.FC = () => {
     const router = useRouter();
@@ -27,6 +29,9 @@ const DesignDecisionsPage3: React.FC = () => {
                     und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
                 </p>
             </section>
+
+            <AnimatedDataChart/>
+            <AllParticipantsChart/>
 
             
 <FinalScreensFlow />
