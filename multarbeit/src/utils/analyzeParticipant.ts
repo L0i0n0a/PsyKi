@@ -428,6 +428,7 @@ export function computeSDTfromTrials(trials: any[]) {
   const totalDP = dPrimeHuman + dPrimeAI;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAI / totalDP;
+  const dPrimeTeamSimple = computeDPrimeTeamSimple(hitRate, faRate);
 
   return {
     counts: { hits, misses, falseAlarms, correctRejects },
@@ -436,14 +437,97 @@ export function computeSDTfromTrials(trials: any[]) {
       human: dPrimeHuman.toFixed(2),
       ai: dPrimeAI.toFixed(2),
       team: dPrimeTeam.toFixed(2),
+      teamSimple: dPrimeTeamSimple.toFixed(2),
     },
     decisionWeights: {
       aHuman: aHuman.toFixed(2),
       aAid: aAid.toFixed(2),
     },
   };
+
 }
 
+export function computeSDTfromTrialsButton(trials: any[]) {
+  let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
+  let hitsH = 0, missesH = 0, falseAlarmsH = 0, correctRejectsH = 0;
+
+  trials.forEach(trial => {
+    if (!('buttonPressed' in trial)) return;
+
+    const isSignal = trial.color >= 50; // blue = signal present
+    const participantSaysSignal = trial.buttonPressed.toLowerCase() === "blue";
+    const participantSaysSignalSlider = trial.sliderValue > 0; // participant chooses blue
+
+    if (isSignal) {
+      if (participantSaysSignal) hits++;
+      else misses++;
+    } else {
+      if (participantSaysSignal) falseAlarms++;
+      else correctRejects++;
+    }
+    if (isSignal) {
+      if (participantSaysSignalSlider) hitsH++;
+      else missesH++;
+    } else {
+      if (participantSaysSignalSlider) falseAlarmsH++;
+      else correctRejectsH++;
+    }
+  });
+
+  const hitRate = hits + misses > 0 ? hits / (hits + misses) : 0;
+  const faRate = falseAlarms + correctRejects > 0 ? falseAlarms / (falseAlarms + correctRejects) : 0;
+  const hitRateH = hitsH + missesH > 0 ? hitsH / (hitsH + missesH) : 0;
+  const faRateH = falseAlarmsH + correctRejectsH > 0 ? falseAlarmsH / (falseAlarmsH + correctRejectsH) : 0;
+
+  const epsilon = 1e-5;
+  const adjustedHR = Math.min(Math.max(hitRate, epsilon), 1 - epsilon);
+  const adjustedFAR = Math.min(Math.max(faRate, epsilon), 1 - epsilon);
+  const adjustedHRH = Math.min(Math.max(hitRateH, epsilon), 1 - epsilon);
+  const adjustedFARH = Math.min(Math.max(faRateH, epsilon), 1 - epsilon);
+
+  const dPrimeHuman = jStat.normal.inv(adjustedHRH, 0, 1) - jStat.normal.inv(adjustedFARH, 0, 1);
+  const dPrimeAI = jStat.normal.inv(0.93, 0, 1) - jStat.normal.inv(0.07, 0, 1);
+  const dPrimeTeam = Math.sqrt(dPrimeHuman ** 2 + dPrimeAI ** 2);
+  const totalDP = dPrimeHuman + dPrimeAI;
+  const aHuman = dPrimeHuman / totalDP;
+  const aAid = dPrimeAI / totalDP;
+  const dPrimeTeamSimple = computeDPrimeTeamSimple(hitRate, faRate);
+
+  return {
+    counts: { hits, misses, falseAlarms, correctRejects },
+    rates: { hitRate: hitRate.toFixed(2), falseAlarmRate: faRate.toFixed(2) },
+    dPrimes: {
+      human: dPrimeHuman.toFixed(2),
+      ai: dPrimeAI.toFixed(2),
+      team: dPrimeTeam.toFixed(2),
+      teamSimple: dPrimeTeamSimple.toFixed(2),
+    },
+    decisionWeights: {
+      aHuman: aHuman.toFixed(2),
+      aAid: aAid.toFixed(2),
+    },
+  };
+
+}
+
+export function calculateMeanTeamSimple(results: any[]): number {
+  const teamSimples = results.map(r => parseFloat(r.dPrimes.teamSimple));
+  return teamSimples.length > 0 ? jStat.mean(teamSimples) : 0;
+}
+
+export function calculateMedianTeamSimple(results: any[]): number {
+  const teamSimples = results.map(r => parseFloat(r.dPrimes.teamSimple));
+  return teamSimples.length > 0 ? jStat.median(teamSimples) : 0;
+}
+
+function computeDPrimeTeamSimple(hitRate: number, faRate: number): number {
+  const epsilon = 1e-5;
+
+  const adjustedHR = Math.min(Math.max(hitRate, epsilon), 1 - epsilon);
+  const adjustedFAR = Math.min(Math.max(faRate, epsilon), 1 - epsilon);
+
+  return jStat.normal.inv(adjustedHR, 0, 1) - jStat.normal.inv(adjustedFAR, 0, 1);
+}
 
 // reference values finden aus paper
 export function calculateTimeDifferences(data: { [key: string]: any[] }): { [key: string]: number | null } {

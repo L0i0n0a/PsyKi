@@ -7,6 +7,7 @@ import Image from "next/image";
 import FeedbackHintCard from "@/components/layout/FeedbackHintCard";
 // import FeedbackSlider from '@/components/ui/Slider/FeedbackSlider';
 import FinalScreensFlow from "@/components/layout/FinalScreensFlow";
+import ResultsTable from "@/components/layout/ResultsTable";
 import AnimatedDataChart from "@/components/layout/AnimatedDataChart";
 import AllParticipantsChart from "@/components/layout/AllParticipantsChart";
 import jStat from "jstat";
@@ -19,23 +20,36 @@ import {
   compareSliderWithButton,
   compareSliderWithButtonDetailed,
   computeSDTfromTrials,
+  computeSDTfromTrialsButton,
   evaluateAccuracyWithSliderAndButton,
+  calculateMedianTeamSimple,
   summarizeAIGuessSliderSideMatch,
+  calculateMeanTeamSimple,
 } from "@/utils/analyzeParticipant";
 import ParticipantsResults from "@/components/layout/ParticipantsResults";
 import {
   calculateOverallMean,
   calculateMedianTeamSensitivity,
 } from "@/utils/analyzeParticipant";
-import SDTResults from "@/components/layout/SDTResults";
 import DecisionTable from "@/components/layout/DecisionChart";
+import SDTSummaryTable from "@/components/layout/SDTSummaryTable";
 
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
 
+  //const allResults = participantData.map((p) => computeSDTfromTrials(p.trials));
+  const allResults = Object.entries(participantData).map(
+    ([participantId, trials]) => computeSDTfromTrialsButton(trials)
+  );
+
+  const participantKey = Object.keys(participantData)[0]; // or specify directly
+  const participantDataObj = participantData[participantKey];
+
   // const meanHuman = calculateMittelwertHumanSensitivity(rawData);
   //const medianHuman = calculateMedianHumanSensitivity(rawData);
   const meanTeam = calculateOverallMean(participantData, "dPrimeTeam");
+  const meanTeamReal = calculateMeanTeamSimple(allResults).toFixed(2);
+  const medianTeamReal = calculateMedianTeamSimple(allResults).toFixed(2);
   const medianTeam = calculateOverallMedian(participantData, "dPrimeTeam");
   const timeDifference = calculateTimeDifferences(participantData);
   const comparisonResult = compareSliderWithButton(participantData);
@@ -81,7 +95,22 @@ const DesignDecisionsPage4: React.FC = () => {
           fontFamily: "Arial, sans-serif",
         }}
       >
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
+       
+      </section>
+
+
+      {/* <div className="sectionBorder flex flex-col"  >
+        <AnimatedDataChart />
+        <AllParticipantsChart />
+      </div> */}
+
+      <section className="sectionBorder">
+      <div className="flex flex-col justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold mb-10">
+          Signal Detection Zusammenfassung der Teilnehmenden
+        </h1>
+
+         <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
           Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis
         </h2>
         <p>
@@ -196,39 +225,11 @@ const DesignDecisionsPage4: React.FC = () => {
             </tr>
           </tbody>
         </table>
-        <p>
-          <strong>Legende:</strong>
-          <br />
-          <span style={{ color: "green" }}>✅ Richtig</span>,{" "}
-          <span style={{ color: "orange" }}>⚠️ Fehler (False Alarm)</span>,{" "}
-          <span style={{ color: "red" }}>❌ Fehler (Miss)</span>
-        </p>
-      </section>
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold text-center mb-10">
-          Signal Detection Summary by Participant
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(participantData).map(
-            ([participantId, trials]: [string, any[]]) => {
-              const result = computeSDTfromTrials(trials);
-              return (
-                <div
-                  key={participantId}
-                  className="bg-white shadow-md rounded-2xl p-5"
-                >
-                  <h2 className="text-xl font-semibold mb-3">
-                    {participantId}
-                  </h2>
-                  <SDTResults results={result} />
-                </div>
-              );
-            }
-          )}
-        </div>
+        
+        <SDTSummaryTable participantData={participantData} />
       </div>
-
-      <section className="sectionBorder">
+      </section>
+      {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Übereinstimmung: Menschliche Einschätzung vs. KI
         </h2>
@@ -244,7 +245,7 @@ const DesignDecisionsPage4: React.FC = () => {
             )
           )}
         </ul>
-      </section>
+      </section> */}
 
       {/* 
 <section className="sectionBorder">
@@ -276,7 +277,7 @@ const DesignDecisionsPage4: React.FC = () => {
         ))}
       </section> */}
 
-      <section className="sectionBorder">
+      {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
         <ul className="list-disc list-inside space-y-3">
           {Object.entries(accuracyResults2).map(([participant, result]) => (
@@ -298,7 +299,7 @@ const DesignDecisionsPage4: React.FC = () => {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
 
       {/* 
 <section className="sectionBorder">
@@ -314,7 +315,8 @@ const DesignDecisionsPage4: React.FC = () => {
 </section>
  */}
 
-      <section className="sectionBorder">
+      {/* Zeitdifferenz */}
+      {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Zeitdifferenzen zwischen Index 0 und 199
         </h2>
@@ -328,9 +330,9 @@ const DesignDecisionsPage4: React.FC = () => {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
 
-      <section className="sectionBorder">
+      {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Erklärung: Vergleich Mensch vs. Button
         </h2>
@@ -360,9 +362,9 @@ const DesignDecisionsPage4: React.FC = () => {
           Die berechneten Werte zeigen an, wie häufig diese Übereinstimmungen
           auftreten – sowohl insgesamt als auch pro Teilnehmer:in.
         </p>
-      </section>
+      </section> */}
       <section
-      className="sectionBorder"
+        className="sectionBorder"
         style={{
           padding: "1rem",
           borderRadius: "8px",
@@ -376,7 +378,7 @@ const DesignDecisionsPage4: React.FC = () => {
         <DecisionTable />
       </section>
 
-      <section className="sectionBorder">
+      {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Umentschieden?</h2>
         <p className="text-lg mt-2">
           <strong>Gesamt:</strong>
@@ -401,15 +403,22 @@ const DesignDecisionsPage4: React.FC = () => {
             )
           )}
         </ul>
-      </section>
-
+      </section> */}
+{/* 
       <div>Mittelwert: {meanTeam}</div>
       <div>Median: {medianTeam}</div>
+      <div>MittelwertReak: {meanTeamReal}</div>
+      <div>MedianReal: {medianTeamReal}</div> */}
 
-      <ParticipantsResults />
-
-      <AnimatedDataChart />
-      <AllParticipantsChart />
+     {/*  <h1>All Participants Results</h1>
+      {Object.entries(participantData).map(
+        ([participantKey, participantData]) => (
+          <div key={participantKey} style={{ marginBottom: 40 }}>
+            <h2>{participantKey}</h2>
+            <ResultsTable data={participantData} />
+          </div>
+        )
+      )} */}
 
       <FinalScreensFlow />
 
