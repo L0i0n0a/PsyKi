@@ -1,11 +1,11 @@
-import  jStat  from 'jstat';
+import jStat from 'jstat';
 
 /**
  * Compute SDT metrics for a participant's set of trials
  * @param {Array} trials - Array of trial objects
  * @returns {Object} - SDT metrics and per-trial results
- * 
- * 
+ *
+ *
  * Also inhaltlich würde Sinn machen:
 
 - Mittelwert/Median Sensitivität des/der Menschen (Gegenüberstellen mit KI - 93%)
@@ -25,25 +25,24 @@ interface Trial {
   aiGuessValue?: number;
 }
 
-interface ParticipantSummary {
-  dPrimeHuman: number;
-  dPrimeTeam: number;
-  // ... add other fields if needed
-}
+// interface ParticipantSummary {
+//   dPrimeHuman: number;
+//   dPrimeTeam: number;
+//   // ... add other fields if needed
+// }
 
 type AllParticipantsData = {
   [filename: string]: Trial[];
 };
 
-function calculateMedianHumanSensitivity() {
- //alle werte und mittelsten suchen
-}
+// function calculateMedianHumanSensitivity() {
+//   //alle werte und mittelsten suchen
+// }
 
-function calculateMittelwertHumanSensitivity() {
-  //alle werte durch anzahl
-
-}
-export function compareSliderWithButtonDetailed(data: { [key: string]: any }) {
+// function calculateMittelwertHumanSensitivity() {
+//   //alle werte durch anzahl
+// }
+export function compareSliderWithButtonDetailed(data: { [key: string]: Trial[] }) {
   let totalComparisons = 0;
   let matches = 0;
   let mismatches = 0;
@@ -65,13 +64,9 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: any }) {
     let participantComparisons = 0;
 
     records
-      .filter(
-        (record: any) =>
-          typeof record.sliderValue === 'number' &&
-          (record.buttonPressed === 'blue' || record.buttonPressed === 'orange')
-      )
-      .forEach((record: any) => {
-        const { sliderValue, buttonPressed, index } = record;
+      .filter((record: Trial) => typeof record.sliderValue === 'number' && (record.buttonPressed === 'blue' || record.buttonPressed === 'orange'))
+      .forEach((record: Trial) => {
+        const { sliderValue, buttonPressed } = record;
         const expectedButton = sliderValue > 0 ? 'blue' : 'orange';
         const match = buttonPressed === expectedButton;
 
@@ -84,14 +79,9 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: any }) {
 
         participantComparisons++;
         totalComparisons++;
-
-       
       });
 
-    const matchPercentage =
-      participantComparisons > 0
-        ? (participantMatches / participantComparisons) * 100
-        : 0;
+    const matchPercentage = participantComparisons > 0 ? (participantMatches / participantComparisons) * 100 : 0;
 
     perParticipantResults[`tN${participantIndex}`] = {
       comparisons: participantComparisons,
@@ -103,8 +93,7 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: any }) {
     participantIndex++;
   }
 
-  const overallMatchPercentage =
-    totalComparisons > 0 ? (matches / totalComparisons) * 100 : 0;
+  const overallMatchPercentage = totalComparisons > 0 ? (matches / totalComparisons) * 100 : 0;
 
   return {
     overall: {
@@ -117,7 +106,7 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: any }) {
   };
 }
 
-export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }) {
+export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: Trial[] }) {
   const perParticipantResults: {
     [participant: string]: {
       buttonComparison: {
@@ -155,7 +144,7 @@ export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }
     let sliderOnlyCorrect = 0;
     let sliderOnlyIncorrect = 0;
 
-    records.forEach((record: any) => {
+    records.forEach((record: Trial) => {
       const { sliderValue, color, buttonPressed } = record;
 
       if (typeof sliderValue !== 'number' || typeof color !== 'number') return;
@@ -173,14 +162,11 @@ export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }
         const sliderCorrectness = sliderExpected === expectedColor;
         if (sliderCorrectness) sliderInButtonTrialsCorrect++;
         else sliderInButtonTrialsIncorrect++;
-
-        
       } else {
         // 3. Slider-only trial
         const sliderCorrectness = sliderExpected === expectedColor;
         if (sliderCorrectness) sliderOnlyCorrect++;
-        else sliderOnlyIncorrect =+ 1;
-
+        else sliderOnlyIncorrect++;
       }
     });
 
@@ -194,19 +180,19 @@ export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }
         correct: buttonCorrect,
         incorrect: buttonIncorrect,
         total: buttonTotal,
-        accuracyPercentage: buttonTotal > 0 ? +(buttonCorrect / buttonTotal * 100).toFixed(2) : 0,
+        accuracyPercentage: buttonTotal > 0 ? +((buttonCorrect / buttonTotal) * 100).toFixed(2) : 0,
       },
       sliderWhenButtonExists: {
         correct: sliderInButtonTrialsCorrect,
         incorrect: sliderInButtonTrialsIncorrect,
         total: sliderInButtonTotal,
-        accuracyPercentage: sliderInButtonTotal > 0 ? +(sliderInButtonTrialsCorrect / sliderInButtonTotal * 100).toFixed(2) : 0,
+        accuracyPercentage: sliderInButtonTotal > 0 ? +((sliderInButtonTrialsCorrect / sliderInButtonTotal) * 100).toFixed(2) : 0,
       },
       sliderOnlyTrials: {
         correct: sliderOnlyCorrect,
         incorrect: sliderOnlyIncorrect,
         total: sliderOnlyTotal,
-        accuracyPercentage: sliderOnlyTotal > 0 ? +(sliderOnlyCorrect / sliderOnlyTotal * 100).toFixed(2) : 0,
+        accuracyPercentage: sliderOnlyTotal > 0 ? +((sliderOnlyCorrect / sliderOnlyTotal) * 100).toFixed(2) : 0,
       },
     };
 
@@ -216,7 +202,7 @@ export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }
   return perParticipantResults;
 }
 
-export function compareAIGuessWithSlider(data: { [key: string]: any }) {
+export function compareAIGuessWithSlider(data: { [key: string]: Trial[] }) {
   const results: {
     [participant: string]: {
       comparisons: Array<{
@@ -232,13 +218,10 @@ export function compareAIGuessWithSlider(data: { [key: string]: any }) {
     const records = data[participant];
     results[participant] = { comparisons: [] };
 
-    records.forEach((record: any) => {
+    records.forEach((record: Trial) => {
       const { index, sliderValue, aiGuessValue } = record;
 
-      if (
-        typeof sliderValue === 'number' &&
-        typeof aiGuessValue === 'number'
-      ) {
+      if (typeof sliderValue === 'number' && typeof aiGuessValue === 'number') {
         results[participant].comparisons.push({
           index,
           sliderValue,
@@ -252,7 +235,7 @@ export function compareAIGuessWithSlider(data: { [key: string]: any }) {
   return results;
 }
 
-export function compareAIGuessWithSliderSideMatch(data: { [key: string]: any }) {
+export function compareAIGuessWithSliderSideMatch(data: { [key: string]: Trial[] }) {
   const results: {
     [participant: string]: {
       comparisons: Array<{
@@ -276,13 +259,10 @@ export function compareAIGuessWithSliderSideMatch(data: { [key: string]: any }) 
 
     results[participant] = { comparisons: [], totalComparisons: 0, matches: 0, matchPercentage: 0 };
 
-    records.forEach((record: any) => {
+    records.forEach((record: Trial) => {
       const { index, sliderValue, aiGuessValue } = record;
 
-      if (
-        typeof sliderValue === 'number' &&
-        typeof aiGuessValue === 'number'
-      ) {
+      if (typeof sliderValue === 'number' && typeof aiGuessValue === 'number') {
         const sliderSide = sliderValue > 0 ? 'blue' : 'orange';
         const aiSide = aiGuessValue > 0 ? 'blue' : 'orange';
         const isMatch = sliderSide === aiSide;
@@ -309,7 +289,7 @@ export function compareAIGuessWithSliderSideMatch(data: { [key: string]: any }) 
   return results;
 }
 
-export function summarizeAIGuessSliderSideMatch(data: { [key: string]: any }) {
+export function summarizeAIGuessSliderSideMatch(data: { [key: string]: Trial[] }) {
   const summary: {
     [participant: string]: {
       totalComparisons: number;
@@ -324,13 +304,9 @@ export function summarizeAIGuessSliderSideMatch(data: { [key: string]: any }) {
     let matches = 0;
     let totalComparisons = 0;
 
-    records.forEach((record: any) => {
+    records.forEach((record: Trial) => {
       // Ensure both values exist and are numbers
-      if (
-        record.hasOwnProperty('aiGuessValue') &&
-        typeof record.aiGuessValue === 'number' &&
-        typeof record.sliderValue === 'number'
-      ) {
+      if (record.hasOwnProperty('aiGuessValue') && typeof record.aiGuessValue === 'number' && typeof record.sliderValue === 'number') {
         const sliderSide = record.sliderValue > 0 ? 'blue' : 'orange';
         const aiSide = record.aiGuessValue > 0 ? 'blue' : 'orange';
 
@@ -346,19 +322,14 @@ export function summarizeAIGuessSliderSideMatch(data: { [key: string]: any }) {
       totalComparisons,
       matches,
       mismatches: totalComparisons - matches,
-      matchPercentage:
-        totalComparisons > 0
-          ? parseFloat(((matches / totalComparisons) * 100).toFixed(2))
-          : 0,
+      matchPercentage: totalComparisons > 0 ? parseFloat(((matches / totalComparisons) * 100).toFixed(2)) : 0,
     };
   }
 
   return summary;
 }
 
-
-
-export function compareSliderWithButton(data: { [key: string]: any }) {
+export function compareSliderWithButton(data: { [key: string]: Trial[] }) {
   let totalComparisons = 0;
   let matches = 0;
   let mismatches = 0;
@@ -366,13 +337,10 @@ export function compareSliderWithButton(data: { [key: string]: any }) {
   for (const participant in data) {
     const records = data[participant];
 
-    records.forEach((record: any, index: number) => {
+    records.forEach((record: Trial) => {
       const { sliderValue, buttonPressed } = record;
 
-      if (
-        typeof sliderValue === 'number' &&
-        (buttonPressed === 'blue' || buttonPressed === 'orange')
-      ) {
+      if (typeof sliderValue === 'number' && (buttonPressed === 'blue' || buttonPressed === 'orange')) {
         const expectedButton = sliderValue > 0 ? 'blue' : 'orange';
 
         const match = buttonPressed === expectedButton;
@@ -402,7 +370,7 @@ export function computeSDTfromTrials(trials: any[]) {
 
   let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
 
-  trials.forEach(trial => {
+  trials.forEach((trial) => {
     if (!('buttonPressed' in trial)) return;
 
     const isSignal = trial.color >= 50; // blue = signal present
@@ -446,7 +414,6 @@ export function computeSDTfromTrials(trials: any[]) {
       aAid: aAid.toFixed(2),
     },
   };
-
 }
 
 export function computeSDTfromTrialsButton(trials: any[]) {
@@ -456,11 +423,11 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
   let hitsH = 0, missesH = 0, falseAlarmsH = 0, correctRejectsH = 0;
 
-  trials.forEach(trial => {
+  trials.forEach((trial) => {
     if (!('buttonPressed' in trial)) return;
 
     const isSignal = trial.color >= 50; // blue = signal present
-    const participantSaysSignal = trial.buttonPressed.toLowerCase() === "blue";
+    const participantSaysSignal = trial.buttonPressed!.toLowerCase() === 'blue';
     const participantSaysSignalSlider = trial.sliderValue > 0; // participant chooses blue
 
     if (isSignal) {
@@ -485,8 +452,8 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   const faRateH = falseAlarmsH + correctRejectsH > 0 ? falseAlarmsH / (falseAlarmsH + correctRejectsH) : 0;
 
   const epsilon = 1e-5;
-  const adjustedHR = Math.min(Math.max(hitRate, epsilon), 1 - epsilon);
-  const adjustedFAR = Math.min(Math.max(faRate, epsilon), 1 - epsilon);
+  // const adjustedHR = Math.min(Math.max(hitRate, epsilon), 1 - epsilon);
+  // const adjustedFAR = Math.min(Math.max(faRate, epsilon), 1 - epsilon);
   const adjustedHRH = Math.min(Math.max(hitRateH, epsilon), 1 - epsilon);
   const adjustedFARH = Math.min(Math.max(faRateH, epsilon), 1 - epsilon);
 
@@ -515,16 +482,15 @@ export function computeSDTfromTrialsButton(trials: any[]) {
       aAid: aAid.toFixed(2),
     },
   };
-
 }
 
-export function calculateMeanTeamSimple(results: any[]): number {
-  const teamSimples = results.map(r => parseFloat(r.dPrimes.teamSimple));
+export function calculateMeanTeamSimple(results: { dPrimes: { teamSimple: string } }[]): number {
+  const teamSimples = results.map((r) => parseFloat(r.dPrimes.teamSimple));
   return teamSimples.length > 0 ? jStat.mean(teamSimples) : 0;
 }
 
-export function calculateMedianTeamSimple(results: any[]): number {
-  const teamSimples = results.map(r => parseFloat(r.dPrimes.teamSimple));
+export function calculateMedianTeamSimple(results: { dPrimes: { teamSimple: string } }[]): number {
+  const teamSimples = results.map((r) => parseFloat(r.dPrimes.teamSimple));
   return teamSimples.length > 0 ? jStat.median(teamSimples) : 0;
 }
 
@@ -538,15 +504,15 @@ function computeDPrimeTeamSimple(hitRate: number, faRate: number): number {
 }
 
 // reference values finden aus paper
-export function calculateTimeDifferences(data: { [key: string]: any[] }): { [key: string]: number | null } {
+export function calculateTimeDifferences(data: { [key: string]: Trial[] }): { [key: string]: number | null } {
   const differences: { [key: string]: number | null } = {};
 
   for (const participant in data) {
     const records = data[participant];
 
     // Find records at index 0 and 199
-    const recordAt0 = records.find(record => record.index === 0);
-    const recordAt199 = records.find(record => record.index === 199);
+    const recordAt0 = records.find((record) => record.index === 0);
+    const recordAt199 = records.find((record) => record.index === 199);
 
     if (recordAt0 && recordAt199 && recordAt0.timestamp && recordAt199.timestamp) {
       const time0 = new Date(recordAt0.timestamp).getTime();
@@ -563,36 +529,8 @@ export function calculateTimeDifferences(data: { [key: string]: any[] }): { [key
   return differences;
 }
 
-
-export function calculateOverallMean(data: { [x: string]: any }, parameter: string | number) {
+export function calculateOverallMean<K extends keyof Trial>(data: { [x: string]: Trial[] }, parameter: K) {
   const allValues: number[] = [];
-
-
-  for (const participant in data) {
-    const records = data[participant];
-
-    // Find the record with index === 199
-    const recordAt199 = records.find((record: { index: number }) => record.index === 199);
-
-    if (recordAt199) {
-      const value = recordAt199[parameter];
-      if (typeof value === 'number' && !isNaN(value)) {
-        allValues.push(value);
-       
-      } 
-    } 
-  }
-
-  const meanValue = jStat.mean(allValues);
-
-
-  return meanValue;
-}
-
-export function calculateOverallMedian(data: { [x: string]: any }, parameter: string | number) {
-  const allValues: number[] = [];
-
- 
 
   for (const participant in data) {
     const records = data[participant];
@@ -605,7 +543,29 @@ export function calculateOverallMedian(data: { [x: string]: any }, parameter: st
       if (typeof value === 'number' && !isNaN(value)) {
         allValues.push(value);
       }
-    } 
+    }
+  }
+
+  const meanValue = jStat.mean(allValues);
+
+  return meanValue;
+}
+
+export function calculateOverallMedian<K extends keyof Trial>(data: { [x: string]: Trial[] }, parameter: K) {
+  const allValues: number[] = [];
+
+  for (const participant in data) {
+    const records = data[participant];
+
+    // Find the record with index === 199
+    const recordAt199 = records.find((record: { index: number }) => record.index === 199);
+
+    if (recordAt199) {
+      const value = recordAt199[parameter];
+      if (typeof value === 'number' && !isNaN(value)) {
+        allValues.push(value);
+      }
+    }
   }
 
   const medianValue = jStat.median(allValues);
@@ -638,8 +598,6 @@ export function analyzeParticipant(trials: string | any[]) {
 
   const results = [];
 
-
-
   // Classify each trial
   for (const trial of trials) {
     const isSignal = trial.color >= 50; // blue
@@ -655,14 +613,7 @@ export function analyzeParticipant(trials: string | any[]) {
       ...trial,
       isSignal,
       isResponseBlue,
-      classification:
-        isSignal && isResponseBlue
-          ? 'hit'
-          : isSignal && !isResponseBlue
-          ? 'miss'
-          : !isSignal && isResponseBlue
-          ? 'falseAlarm'
-          : 'correctRejection',
+      classification: isSignal && isResponseBlue ? 'hit' : isSignal && !isResponseBlue ? 'miss' : !isSignal && isResponseBlue ? 'falseAlarm' : 'correctRejection',
     });
   }
 
@@ -690,7 +641,7 @@ export function analyzeParticipant(trials: string | any[]) {
   const perTrialWithZ = results.map((trial) => {
     const XHuman = trial.sliderValue;
     const XAid = trial.aiGuessValue;
-    const Z = aHuman * XHuman + aAid * XAid;
+    const Z = aHuman * XHuman + aAid * XAid!;
 
     return {
       ...trial,
@@ -731,6 +682,9 @@ function calculateDPrime(hr: number, far: number) {
   return zHR - zFAR;
 }
 
+// function average(nums: number[]): number {
+//   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
+// }
 
 function average(nums: number[]): number {
   return nums.reduce((sum, val) => sum + val, 0) / nums.length;

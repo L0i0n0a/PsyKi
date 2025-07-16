@@ -1,9 +1,18 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { computeSDTfromTrialsButton } from "@/utils/analyzeParticipant";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { computeSDTfromTrialsButton } from '@/utils/analyzeParticipant';
+
+interface Trial {
+  index: number;
+  color: number;
+  sliderValue: number;
+  timestamp: string;
+  buttonPressed?: string;
+  aiGuessValue?: number;
+}
 
 type ParticipantData = {
-  [participantId: string]: any[];
+  [participantId: string]: Trial[];
 };
 
 type SDTSummaryTableProps = {
@@ -22,7 +31,7 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
 
 const numIncluded = filteredEntries.length;
 
-  let totals = {
+  const totals = {
     hits: 0,
     misses: 0,
     falseAlarms: 0,
@@ -59,17 +68,11 @@ const numIncluded = filteredEntries.length;
     totals.dPrimeTeam += dTeam;
     totals.dPrimeTeamSimple += dTeamSimple;
 
-    const rowStyle = idx % 2 === 0 ? { backgroundColor: "#e2f4f9ff" } : {};
+    const rowStyle = idx % 2 === 0 ? { backgroundColor: '#e2f4f9ff' } : {};
 
     return (
-      <motion.tr
-        key={participantId}
-        style={rowStyle}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: idx * 0.05 }}
-      >
-        <td style={{ textAlign: "right", paddingRight: "10px" }}>{idx + 1}</td>
+      <motion.tr key={participantId} style={rowStyle} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }}>
+        <td style={{ textAlign: 'right', paddingRight: '10px' }}>{idx + 1}</td>
         <td>{counts.hits}</td>
         <td>{counts.misses}</td>
         <td>{counts.falseAlarms}</td>
@@ -101,35 +104,29 @@ const means = {
     <motion.table
       border={1}
       cellPadding={10}
-      style={{ borderCollapse: "collapse", width: "100%", textAlign: "center" }}
+      style={{ borderCollapse: 'collapse', width: '100%', textAlign: 'center' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-    >
+      transition={{ duration: 0.4 }}>
       <thead>
         <tr>
-          <th style={{ textAlign: "right", paddingRight: "10px" }}>ID</th>
+          <th style={{ textAlign: 'right', paddingRight: '10px' }}>ID</th>
           <th>Hits</th>
           <th>Misses</th>
           <th>False Alarms</th>
           <th>Correct Rejections</th>
           <th>Hit Rate</th>
           <th>False Alarm Rate</th>
-          <th>d' Human</th>
-          <th>d' AI</th>
-          <th>d' Team</th>
-          <th>d' TeamSimple</th>
+          <th>d&apos; Human</th>
+          <th>d&apos; AI</th>
+          <th>d&apos; Team</th>
+          <th>d&apos; TeamSimple</th>
         </tr>
       </thead>
       <tbody>
         {rows}
-        <motion.tr
-          style={{ backgroundColor: "#d0e8d0", fontWeight: "bold" }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.4 }}
-        >
-          <td style={{ textAlign: "right", paddingRight: "10px" }}>Mean</td>
+        <motion.tr style={{ backgroundColor: '#d0e8d0', fontWeight: 'bold' }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.4 }}>
+          <td style={{ textAlign: 'right', paddingRight: '10px' }}>Mean</td>
           <td>{means.hits}</td>
           <td>{means.misses}</td>
           <td>{means.falseAlarms}</td>
