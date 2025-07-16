@@ -179,9 +179,8 @@ export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: any }
         // 3. Slider-only trial
         const sliderCorrectness = sliderExpected === expectedColor;
         if (sliderCorrectness) sliderOnlyCorrect++;
-        else sliderOnlyIncorrect++;
+        else sliderOnlyIncorrect =+ 1;
 
-        
       }
     });
 
@@ -398,6 +397,9 @@ export function compareSliderWithButton(data: { [key: string]: any }) {
 }
 
 export function computeSDTfromTrials(trials: any[]) {
+  // Filter out trials where color is 0
+  trials = trials.filter((trial: any) => trial.color !== 0);
+
   let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
 
   trials.forEach(trial => {
@@ -448,6 +450,9 @@ export function computeSDTfromTrials(trials: any[]) {
 }
 
 export function computeSDTfromTrialsButton(trials: any[]) {
+  // Filter out trials where color is 0
+  trials = trials.filter((trial: any) => trial.color !== 0);
+
   let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
   let hitsH = 0, missesH = 0, falseAlarmsH = 0, correctRejectsH = 0;
 
@@ -485,6 +490,8 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   const adjustedHRH = Math.min(Math.max(hitRateH, epsilon), 1 - epsilon);
   const adjustedFARH = Math.min(Math.max(faRateH, epsilon), 1 - epsilon);
 
+ 
+
   const dPrimeHuman = jStat.normal.inv(adjustedHRH, 0, 1) - jStat.normal.inv(adjustedFARH, 0, 1);
   const dPrimeAI = jStat.normal.inv(0.93, 0, 1) - jStat.normal.inv(0.07, 0, 1);
   const dPrimeTeam = Math.sqrt(dPrimeHuman ** 2 + dPrimeAI ** 2);
@@ -492,6 +499,7 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAI / totalDP;
   const dPrimeTeamSimple = computeDPrimeTeamSimple(hitRate, faRate);
+
 
   return {
     counts: { hits, misses, falseAlarms, correctRejects },
@@ -605,10 +613,10 @@ export function calculateOverallMedian(data: { [x: string]: any }, parameter: st
   return medianValue;
 }
 
-
 // ⬇️ Median Team-Sensitivität
 export function calculateMedianTeamSensitivity(data: AllParticipantsData): number {
-  const values = Object.values(data).map((trials) => {
+  const filteredData = filterParticipantsByDPrimeHuman(data);
+  const values = Object.values(filteredData).map((trials) => {
     const result = analyzeParticipant(trials);
     return parseFloat(result.summary.dPrimeTeam);
   });
@@ -618,6 +626,9 @@ export function calculateMedianTeamSensitivity(data: AllParticipantsData): numbe
 
 
 export function analyzeParticipant(trials: string | any[]) {
+  // Filter out trials where color is 0
+  trials = trials.filter((trial: any) => trial.color !== 0);
+
   const epsilon = 1e-5;
 
   let hits = 0;
@@ -723,4 +734,120 @@ function calculateDPrime(hr: number, far: number) {
 
 function average(nums: number[]): number {
   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
+}
+
+// Filter out participants with dPrimeHuman < 1 in functions that process all participants
+type AllParticipantsData = {
+  [filename: string]: Trial[];
+};
+
+export function filterParticipantsByDPrimeHuman(data: AllParticipantsData): AllParticipantsData {
+  const filtered: AllParticipantsData = {};
+  for (const participant in data) {
+    const trials = data[participant].filter((trial: any) => trial.color !== 0);
+    const result = analyzeParticipant(trials);
+    if (parseFloat(result.summary.dPrimeHuman) >= 1) {
+      filtered[participant] = data[participant];
+    }
+  }
+  return filtered;
+}
+
+export function analyzeParticipantButton(trials: any[]) {
+  // Filter out trials where color is 0
+  trials = trials.filter((trial: any) => trial.color !== 0);
+
+  // Calculate dPrimeHuman for this participant
+  const result = analyzeParticipant(trials);
+  if (parseFloat(result.summary.dPrimeHuman) < 1) {
+    return null; // Exclude this participant
+  }
+
+  let hits = 0;
+  let misses = 0;
+  let falseAlarms = 0;
+  let correctRejections = 0;
+
+  const results = [];
+
+  // Classify each trial
+  for (const trial of trials) {
+    const isSignal = trial.color >= 50; // blue
+    const isResponseBlue = trial.buttonPressed === 'blue';
+
+    if (isSignal && isResponseBlue) hits++;
+    else if (isSignal && !isResponseBlue) misses++;
+    else if (!isSignal && isResponseBlue) falseAlarms++;
+    else if (!isSignal && !isResponseBlue) correctRejections++;
+
+    // Store classification for each trial
+    results.push({
+      ...trial,
+      isSignal,
+      isResponseBlue,
+      classification:
+        isSignal && isResponseBlue
+          ? 'hit'
+          : isSignal && !isResponseBlue
+          ? 'miss'
+          : !isSignal && isResponseBlue
+          ? 'falseAlarm'
+          : 'correctRejection',
+    });
+  }
+
+  const total = trials.length;
+  const accuracy = ((hits + correctRejections) / total) * 100;
+
+  const hitRate = hits / (hits + misses || 1); // prevent divide-by-zero
+  const faRate = falseAlarms / (falseAlarms + correctRejections || 1);
+
+  const boundedHR = Math.min(Math.max(hitRate, 1e-5), 1 - 1e-5);
+  const boundedFAR = Math.min(Math.max(faRate, 1e-5), 1 - 1e-5);
+
+  const zHR = jStat.normal.inv(boundedHR, 0, 1);
+  const zFAR = jStat.normal.inv(boundedFAR, 0, 1);
+
+  const dPrimeHuman = zHR - zFAR;
+
+  // AI assumed static values (could vary if dynamic model available)
+  const dPrimeAid = calculateDPrime(0.93, 0.07);
+
+  const totalDP = dPrimeHuman + dPrimeAid;
+  const aHuman = dPrimeHuman / totalDP;
+  const aAid = dPrimeAid / totalDP;
+
+  const perTrialWithZ = results.map((trial) => {
+    const XHuman = trial.sliderValue;
+    const XAid = trial.aiGuessValue;
+    const Z = aHuman * XHuman + aAid * XAid;
+
+    return {
+      ...trial,
+      XHuman,
+      XAid,
+      Z,
+    };
+  });
+
+  const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
+
+  return {
+    summary: {
+      total,
+      hits,
+      misses,
+      falseAlarms,
+      correctRejections,
+      accuracy: accuracy.toFixed(1),
+      hitRate: hitRate.toFixed(3),
+      falseAlarmRate: faRate.toFixed(3),
+      dPrimeHuman: dPrimeHuman.toFixed(3),
+      dPrimeAid: dPrimeAid.toFixed(3),
+      dPrimeTeam: dPrimeTeam.toFixed(3),
+      aHuman: aHuman.toFixed(3),
+      aAid: aAid.toFixed(3),
+    },
+    trials: perTrialWithZ,
+  };
 }

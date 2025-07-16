@@ -14,6 +14,14 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
   const participantEntries = Object.entries(participantData);
   const numParticipants = participantEntries.length;
 
+  const filteredEntries = participantEntries.filter(([_, trials]) => {
+  const results = computeSDTfromTrialsButton(trials);
+  const dPrimeHuman = parseFloat(results.dPrimes.human);
+  return dPrimeHuman >= 1;
+});
+
+const numIncluded = filteredEntries.length;
+
   let totals = {
     hits: 0,
     misses: 0,
@@ -27,7 +35,9 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
     dPrimeTeamSimple: 0,
   };
 
-  const rows = participantEntries.map(([participantId, trials], idx) => {
+
+
+  const rows = filteredEntries.map(([participantId, trials], idx) => {
     const results = computeSDTfromTrialsButton(trials);
     const { counts, rates, dPrimes } = results;
 
@@ -74,18 +84,18 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
     );
   });
 
-  const means = {
-    hits: (totals.hits / numParticipants).toFixed(2),
-    misses: (totals.misses / numParticipants).toFixed(2),
-    falseAlarms: (totals.falseAlarms / numParticipants).toFixed(2),
-    correctRejects: (totals.correctRejects / numParticipants).toFixed(2),
-    hitRate: (totals.hitRate / numParticipants).toFixed(2),
-    falseAlarmRate: (totals.falseAlarmRate / numParticipants).toFixed(2),
-    dPrimeHuman: (totals.dPrimeHuman / numParticipants).toFixed(2),
-    dPrimeAI: (totals.dPrimeAI / numParticipants).toFixed(2),
-    dPrimeTeam: (totals.dPrimeTeam / numParticipants).toFixed(2),
-    dPrimeTeamSimple: (totals.dPrimeTeamSimple / numParticipants).toFixed(2),
-  };
+const means = {
+  hits: (totals.hits / numIncluded).toFixed(2),
+  misses: (totals.misses / numIncluded).toFixed(2),
+  falseAlarms: (totals.falseAlarms / numIncluded).toFixed(2),
+  correctRejects: (totals.correctRejects / numIncluded).toFixed(2),
+  hitRate: (totals.hitRate / numIncluded).toFixed(2),
+  falseAlarmRate: (totals.falseAlarmRate / numIncluded).toFixed(2),
+  dPrimeHuman: (totals.dPrimeHuman / numIncluded).toFixed(2),
+  dPrimeAI: (totals.dPrimeAI / numIncluded).toFixed(2),
+  dPrimeTeam: (totals.dPrimeTeam / numIncluded).toFixed(2),
+  dPrimeTeamSimple: (totals.dPrimeTeamSimple / numIncluded).toFixed(2),
+};
 
   return (
     <motion.table
