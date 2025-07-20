@@ -3,73 +3,66 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-// import { useScroll, useSpring } from 'framer-motion';
 
 const screens = [
   {
-    title: '1. Entscheidung ohne KI',
-    text: 'In der ersten Stufe trifft der Mensch eine Entscheidung, ohne Einblick in die Einschätzung der KI. Die Farbgebung, Begriffe wie "Tendenzwert" und ein selbsterklärender Slider erleichtern den Zugang ohne statistisches Vorwissen.',
+    title: '1. Einwilligung & Code',
+    text: 'Am Anfang geben die Teilnehmenden ihren Code ein und bestätigen die Informationen zur Teilnahme.',
     image: '/start.png',
   },
   {
-    title: '2. KI-Vorschlag wird eingeblendet',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '2. Einführung zur Studie und Testphase',
+    text: 'In diesem Screen wird den Teilnehmenden die Studie grundlegend erklärt.',
     image: '/begin.png',
   },
   {
-    title: '3. Gemeinsame Empfehlung (Teamwert)',
-    text: 'Der kombinierte Assistenzpunkt (Teamwert) wird visualisiert. Die Entscheidung bleibt bei den Nutzer:innen, doch sie erhalten ein transparentes, nachvollziehbares Feedback. Dieses Interface stärkt das Vertrauen in die Zusammenarbeit zwischen Mensch und KI.',
+    title: '3. Entscheidung ohne KI',
+    text: 'In der ersten Stufe trifft der Mensch eine Entscheidung, ohne Einblick in die Einschätzung der KI zu erhalten. Die Farbgebung, Begriffe wie "Entscheidungsskala" und ein selbsterklärender Slider erleichtern den Zugang ohne statistisches Vorwissen. Und ermöglichen so die Aufgabe mit geringerem Workload zu bearbeiten.',
     image: '/test.png',
   },
   {
-    title: 'KI-Vorschlag wird eingeblendet',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '4. Hinweise werden angezeigt',
+    text: 'Nach einigen Trials werden dem Teilnhemenden Hinweise zur aktuellen Genauigkeit eingeblendet. So kann die eigene Entscheidung analysiert werden und die Teilnhemenden bekommen Feedback, wie oft sie bisher richitg lagen.',
     image: '/hinweis1.png',
   },
   {
-    title: 'KI-Vorschlag wird eingeblendet',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '4. Hinweise werden angezeigt',
+    text: 'Die Hinweise werden auf zwei verschiedene Arten angezeigt. Einmal als Prozentzahl mit errechneter Genauigkeit und einmal als Absolutwerte mit richtigen Fällen von Gesamtfällen.',
     image: '/hinweis2.png',
   },
   {
-    title: 'Gemeinsame Empfehlung (Teamwert)',
-    text: 'Der kombinierte Assistenzpunkt (Teamwert) wird visualisiert. Die Entscheidung bleibt bei den Nutzer:innen, doch sie erhalten ein transparentes, nachvollziehbares Feedback.',
+    title: '5. Einführung in die Hauptphase',
+    text: 'Nach den 20 Testtrials gibt es eine erneute Erklärung für die hauptphase, hier wird zusätzlich zum vorherigen task auch die KI erklärt. Dazu wird die Einschätzung der KI erklärt und wie eine gemeinsame Entscheidung stattfindet.',
     image: '/explain.png',
   },
   {
-    title: 'KI-Vorschlag wird eingeblendet',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '5. Einführung in die Hauptphase',
+    text: 'Ebenfalls beinhaltet die Einführung die Erklärung der Entscheidungshilfe. Diese visualisiert den Teilnhemenden wie ihre eigene Einschätzung genüber der KI liegt und gibt entsprechend eine Empfehlung an die Teilnhemenden, bei der der optimale Wert ermittelt wird. Im Hintergrund passiert hier der Kern der OW-Strategie.',
     image: '/explain2.png',
   },
   {
-    title: 'Gemeinsame Empfehlung (Teamwert)',
-    text: 'Der kombinierte Assistenzpunkt (Teamwert) wird visualisiert. Die Entscheidung bleibt bei den Nutzer:innen, doch sie erhalten ein transparentes, nachvollziehbares Feedback.',
+    title: '6. Menschliche Entscheidung',
+    text: 'Im ersten Schritt treffen die Teilnehmenden ihre eigene Entscheidung, um die Einschätzung unverfälscht geschehen zu lassen. Zusätzlich wird hier in der Hauptphase ein Fortschrittsbalken mit Zahlen angezeigt, der die Teilnehmenden über ihren aktuellen Stand aufklärt.',
     image: '/main.png',
   },
   {
-    title: 'KI-Vorschlag wird eingeblendet',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '7. KI-Vorschlag & gemeinsame Empfehlung',
+    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis. Im Optimalfall nutzen die Teilnehmenden dann die empfohlene Farbe und folgen so der Strategie.',
     image: '/main2.png',
   },
   {
-    title: 'Aufmerksamkeitscheck',
-    text: 'Nach der menschlichen Einschätzung zeigt die KI ihren Vorschlag. Die Nutzer:innen erkennen sofort, wie stark die Einschätzungen übereinstimmen. Die farbliche Darstellung stärkt das intuitive Verständnis.',
+    title: '8. Aufmerksamkeitscheck',
+    text: 'Alle 50 Trials ist ein Aufmerksamkeitscheck eingebaut, der überprüfem soll ob die Teilnehmenden die Aufgabe fokussiert ausüben oder einfach wild klicken.',
     image: '/attention.png',
   },
   {
-    title: 'Gemeinsame Empfehlung (Teamwert)',
-    text: 'Der kombinierte Assistenzpunkt (Teamwert) wird visualisiert. Die Entscheidung bleibt bei den Nutzer:innen, doch sie erhalten ein transparentes, nachvollziehbares Feedback.',
+    title: '9. Debriefing',
+    text: 'Am Ende derstudie bekommen die Teilnehmenden noch einmal eine kurze Erkärung zur Studie und ihnen wird gesamtheitliches Feedback zu ihrer Performance gegeben.',
     image: '/end.png',
   },
 ];
 
 const FinalScreensFlow: React.FC = () => {
-  // const { scrollYProgress } = useScroll();
-  // const scaleX = useSpring(scrollYProgress, {
-  //   stiffness: 100,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
 
   return (
     <section className='relative py-16 px-4 md:px-10 overflow-hidden sectionBorder'>
@@ -85,7 +78,7 @@ const FinalScreensFlow: React.FC = () => {
       <div className='absolute bottom-[30%] left-[25%] w-[350px] h-[350px] bg-orange-400 opacity-50 rounded-full blur-[100px] -z-10'></div>
 
       <h2 className='text-2xl  font-semibold mb-16 text-center relative z-10'>
-        <span className='bg-white'>Finale UI-Screens – Vergleich & Erläuterung</span>
+        <span className='bg-white'>Finale UI-Screens – Erläuterung</span>
       </h2>
 
       <div className='relative z-10 space-y-24'>
@@ -102,7 +95,7 @@ const FinalScreensFlow: React.FC = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}>
               {/* Gradient dot */}
               <div
-                className='absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-white rounded-full z-20 border-[3px] border-transparent animate-pulse'
+                className='absolute left-1/2 transform  -translate-x-1/2 w-5 h-5 bg-white rounded-full z-20 border-[3px] border-transparent animate-pulse'
                 style={{
                   borderImage: 'linear-gradient(to bottom, #f97316, #a78bfa, #3b82f6) 1',
                   borderImageSlice: 1,

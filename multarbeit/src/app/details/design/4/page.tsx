@@ -74,7 +74,7 @@ const DesignDecisionsPage4: React.FC = () => {
         </p>
       </section>
 
-      <section
+      {/* <section
         style={{
           padding: '1rem',
           backgroundColor: '#f9f9f9',
@@ -82,95 +82,14 @@ const DesignDecisionsPage4: React.FC = () => {
           maxWidth: '600px',
           margin: '1rem auto',
           fontFamily: 'Arial, sans-serif',
-        }}></section>
+        }}></section> */}
 
       {/* <div className="sectionBorder flex flex-col"  >
         <AnimatedDataChart />
         <AllParticipantsChart />
       </div> */}
 
-      <section className='sectionBorder'>
-        <div className='flex flex-col justify-between items-center mb-6'>
-          <h1 className='text-3xl font-bold mb-10'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
-
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
-          <p>
-            In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
-          </p>
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              marginTop: '1rem',
-              marginBottom: '1rem',
-            }}>
-            <thead>
-              <tr style={{ backgroundColor: '#ddd' }}>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Stimulus (Farbe)</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Slider-Antwort</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Kategorie</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Erklärung</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'green',
-                  }}>
-                  Correct Rejection ✅
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'orange',
-                  }}>
-                  False Alarm ⚠️
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'green',
-                  }}>
-                  Hit ✅
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'red',
-                  }}>
-                  Miss ❌
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <SDTSummaryTable participantData={participantData} />
-        </div>
-      </section>
+      
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Übereinstimmung: Menschliche Einschätzung vs. KI
@@ -305,17 +224,7 @@ const DesignDecisionsPage4: React.FC = () => {
           auftreten – sowohl insgesamt als auch pro Teilnehmer:in.
         </p>
       </section> */}
-      <section
-        className='sectionBorder'
-        style={{
-          padding: '1rem',
-          borderRadius: '8px',
-          margin: '1rem auto',
-          fontFamily: 'Arial, sans-serif',
-        }}>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Kontingenztabelle der Entscheidungen</h2>
-        <DecisionTable />
-      </section>
+      
 
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Umentschieden?</h2>
@@ -411,6 +320,101 @@ const DesignDecisionsPage4: React.FC = () => {
           (z. B. blau/orange) und dynamische Anzeige (z. B. Text-Feedback: &quot;unsicher&quot; bis &quot;sehr sicher&quot;) wird ein kontinuierliches, aber verständliches Feedback ermöglicht. Ränder
           und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
         </p>
+      </section>
+
+      <section className='sectionBorder'>
+        <div className='flex flex-col justify-between items-center mb-6'>
+          <h1 className='text-3xl font-bold mb-10'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
+
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
+          <p>
+            In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
+          </p>
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              marginTop: '1rem',
+              marginBottom: '1rem',
+            }}>
+            <thead>
+              <tr style={{ backgroundColor: '#ddd' }}>
+                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Stimulus (Farbe)</th>
+                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Slider-Antwort</th>
+                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Kategorie</th>
+                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Erklärung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                <td
+                  style={{
+                    border: '1px solid #ccc',
+                    padding: '0.5rem',
+                    color: 'green',
+                  }}>
+                  Correct Rejection ✅
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
+              </tr>
+              <tr>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                <td
+                  style={{
+                    border: '1px solid #ccc',
+                    padding: '0.5rem',
+                    color: 'orange',
+                  }}>
+                  False Alarm ⚠️
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
+              </tr>
+              <tr>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                <td
+                  style={{
+                    border: '1px solid #ccc',
+                    padding: '0.5rem',
+                    color: 'green',
+                  }}>
+                  Hit ✅
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
+              </tr>
+              <tr>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                <td
+                  style={{
+                    border: '1px solid #ccc',
+                    padding: '0.5rem',
+                    color: 'red',
+                  }}>
+                  Miss ❌
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <SDTSummaryTable participantData={participantData} />
+        </div>
+      </section>
+
+      <section
+        className='sectionBorder'
+        style={{
+          padding: '1rem',
+          borderRadius: '8px',
+          margin: '1rem auto',
+          fontFamily: 'Arial, sans-serif',
+        }}>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Kontingenztabelle der Entscheidungen</h2>
+        <DecisionTable />
       </section>
 
       {/* Back button */}
