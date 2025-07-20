@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Carousel from '@/components/layout/Carousel';
 import SectionLeft from '@/components/layout/SectionLeft';
 import SectionRight from '@/components/layout/SectionRight';
+import SectionMiddle from '@/components/layout/SectionMiddle';
 
 export default function Home() {
   const router = useRouter();
@@ -30,6 +31,12 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
           </>
         }
       />
+
+      {/* Presentation One */}
+      <SectionMiddle imageSource='' onClick={() => router.push('/details/strategy/')} imageUrl='/vortragStrategie.png' title='Erster Vortrag: Metakognitive Strategie' description={<>
+            Hier kann in Kurzfassung nachgelesen werden, was die Optimal Weighting Strategie (OW) ist und wie sie funktioniert.
+          </>} />
+      
 
       {/* Design decisions section */}
       <SectionLeft
@@ -66,6 +73,11 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
           </>
         }
       />
+
+      {/* Presentation Two */}
+      <SectionMiddle imageSource='' onClick={() => router.push('/details/prototypShow/')} imageUrl='/vortragPrototype.png' title='Zweiter Vortrag: Designidee' description={<>
+            Hier kann in Kurzform nachgeschaut werden, wie die Optimal Weighting Strategie innerhalb des Prototypens angewendet wurde und welche theoretischen Konzepte einbezogen wurden.
+          </>} />
 
       {/* Prototype section */}
       <SectionLeft
