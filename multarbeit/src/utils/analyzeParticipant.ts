@@ -31,9 +31,9 @@ interface Trial {
 //   // ... add other fields if needed
 // }
 
-type AllParticipantsData = {
-  [filename: string]: Trial[];
-};
+// type AllParticipantsData = {
+//   [filename: string]: Trial[];
+// };
 
 // function calculateMedianHumanSensitivity() {
 //   //alle werte und mittelsten suchen
@@ -210,6 +210,10 @@ export function compareAIGuessWithSlider(data: { [key: string]: Trial[] }) {
         sliderValue: number;
         aiGuessValue: number;
         difference: number;
+        sliderSide?: 'orange' | 'blue';
+        aiGuessSide?: 'orange' | 'blue';
+        isMatch?: boolean;
+        color?: string;
       }>;
     };
   } = {};
@@ -364,11 +368,14 @@ export function compareSliderWithButton(data: { [key: string]: Trial[] }) {
   };
 }
 
-export function computeSDTfromTrials(trials: any[]) {
+export function computeSDTfromTrials(trials: Trial[]) {
   // Filter out trials where color is 0
-  trials = trials.filter((trial: any) => trial.color !== 0);
+  trials = trials.filter((trial: Trial) => trial.color !== 0);
 
-  let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
+  let hits = 0,
+    misses = 0,
+    falseAlarms = 0,
+    correctRejects = 0;
 
   trials.forEach((trial) => {
     if (!('buttonPressed' in trial)) return;
@@ -416,12 +423,18 @@ export function computeSDTfromTrials(trials: any[]) {
   };
 }
 
-export function computeSDTfromTrialsButton(trials: any[]) {
+export function computeSDTfromTrialsButton(trials: Trial[]) {
   // Filter out trials where color is 0
-  trials = trials.filter((trial: any) => trial.color !== 0);
+  trials = trials.filter((trial: Trial) => trial.color !== 0);
 
-  let hits = 0, misses = 0, falseAlarms = 0, correctRejects = 0;
-  let hitsH = 0, missesH = 0, falseAlarmsH = 0, correctRejectsH = 0;
+  let hits = 0,
+    misses = 0,
+    falseAlarms = 0,
+    correctRejects = 0;
+  let hitsH = 0,
+    missesH = 0,
+    falseAlarmsH = 0,
+    correctRejectsH = 0;
 
   trials.forEach((trial) => {
     if (!('buttonPressed' in trial)) return;
@@ -457,8 +470,6 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   const adjustedHRH = Math.min(Math.max(hitRateH, epsilon), 1 - epsilon);
   const adjustedFARH = Math.min(Math.max(faRateH, epsilon), 1 - epsilon);
 
- 
-
   const dPrimeHuman = jStat.normal.inv(adjustedHRH, 0, 1) - jStat.normal.inv(adjustedFARH, 0, 1);
   const dPrimeAI = jStat.normal.inv(0.93, 0, 1) - jStat.normal.inv(0.07, 0, 1);
   const dPrimeTeam = Math.sqrt(dPrimeHuman ** 2 + dPrimeAI ** 2);
@@ -466,7 +477,6 @@ export function computeSDTfromTrialsButton(trials: any[]) {
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAI / totalDP;
   const dPrimeTeamSimple = computeDPrimeTeamSimple(hitRate, faRate);
-
 
   return {
     counts: { hits, misses, falseAlarms, correctRejects },
@@ -583,11 +593,9 @@ export function calculateMedianTeamSensitivity(data: AllParticipantsData): numbe
   return jStat.median(values);
 }
 
-
-
-export function analyzeParticipant(trials: string | any[]) {
+export function analyzeParticipant(trials: Trial[]) {
   // Filter out trials where color is 0
-  trials = trials.filter((trial: any) => trial.color !== 0);
+  trials = trials.filter((trial: Trial) => trial.color !== 0);
 
   const epsilon = 1e-5;
 
@@ -686,9 +694,9 @@ function calculateDPrime(hr: number, far: number) {
 //   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
 // }
 
-function average(nums: number[]): number {
-  return nums.reduce((sum, val) => sum + val, 0) / nums.length;
-}
+// function average(nums: number[]): number {
+//   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
+// }
 
 // Filter out participants with dPrimeHuman < 1 in functions that process all participants
 type AllParticipantsData = {
@@ -698,7 +706,7 @@ type AllParticipantsData = {
 export function filterParticipantsByDPrimeHuman(data: AllParticipantsData): AllParticipantsData {
   const filtered: AllParticipantsData = {};
   for (const participant in data) {
-    const trials = data[participant].filter((trial: any) => trial.color !== 0);
+    const trials = data[participant].filter((trial: Trial) => trial.color !== 0);
     const result = analyzeParticipant(trials);
     if (parseFloat(result.summary.dPrimeHuman) >= 1) {
       filtered[participant] = data[participant];
@@ -707,9 +715,9 @@ export function filterParticipantsByDPrimeHuman(data: AllParticipantsData): AllP
   return filtered;
 }
 
-export function analyzeParticipantButton(trials: any[]) {
+export function analyzeParticipantButton(trials: Trial[]) {
   // Filter out trials where color is 0
-  trials = trials.filter((trial: any) => trial.color !== 0);
+  trials = trials.filter((trial: Trial) => trial.color !== 0);
 
   // Calculate dPrimeHuman for this participant
   const result = analyzeParticipant(trials);
@@ -739,14 +747,7 @@ export function analyzeParticipantButton(trials: any[]) {
       ...trial,
       isSignal,
       isResponseBlue,
-      classification:
-        isSignal && isResponseBlue
-          ? 'hit'
-          : isSignal && !isResponseBlue
-          ? 'miss'
-          : !isSignal && isResponseBlue
-          ? 'falseAlarm'
-          : 'correctRejection',
+      classification: isSignal && isResponseBlue ? 'hit' : isSignal && !isResponseBlue ? 'miss' : !isSignal && isResponseBlue ? 'falseAlarm' : 'correctRejection',
     });
   }
 
@@ -774,7 +775,7 @@ export function analyzeParticipantButton(trials: any[]) {
   const perTrialWithZ = results.map((trial) => {
     const XHuman = trial.sliderValue;
     const XAid = trial.aiGuessValue;
-    const Z = aHuman * XHuman + aAid * XAid;
+    const Z = aHuman * XHuman + aAid * XAid!;
 
     return {
       ...trial,
