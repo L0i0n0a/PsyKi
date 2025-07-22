@@ -13,22 +13,22 @@ import FinalScreensFlow from '@/components/layout/FinalScreensFlow';
 // import jStat from "jstat";
 import participantData from '@/store/participants.json';
 import // analyzeParticipant,
-// calculateOverallMedian,
-// calculateTimeDifferences,
-// compareAIGuessWithSlider,
-// compareSliderWithButton,
-// compareSliderWithButtonDetailed,
-// computeSDTfromTrials,
-// computeSDTfromTrialsButton,
- //evaluateAccuracyWithSliderAndButton,
-// calculateMedianTeamSimple,
-// summarizeAIGuessSliderSideMatch,
-// calculateMeanTeamSimple,
-'@/utils/analyzeParticipant';
+  // calculateOverallMedian,
+  // calculateTimeDifferences,
+  // compareAIGuessWithSlider,
+  // compareSliderWithButton,
+  // compareSliderWithButtonDetailed,
+  // computeSDTfromTrials,
+  // computeSDTfromTrialsButton,
+  //evaluateAccuracyWithSliderAndButton,
+  // calculateMedianTeamSimple,
+  // summarizeAIGuessSliderSideMatch,
+  // calculateMeanTeamSimple,
+  '@/utils/analyzeParticipant';
 // import ParticipantsResults from "@/components/layout/ParticipantsResults";
 import // calculateOverallMean,
-// calculateMedianTeamSensitivity,
-'@/utils/analyzeParticipant';
+  // calculateMedianTeamSensitivity,
+  '@/utils/analyzeParticipant';
 import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
@@ -55,7 +55,7 @@ const DesignDecisionsPage4: React.FC = () => {
   // const comparisonResult = compareSliderWithButton(participantData);
   // const comparisonResult2 = compareSliderWithButtonDetailed(participantData);
   // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-   const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
+  const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
@@ -66,7 +66,7 @@ const DesignDecisionsPage4: React.FC = () => {
         <h1 className='text-4xl font-bold m-4 text-center'>Finalisierung & Ergebnisse</h1>
       </div>
 
-     {/*  <section className='sectionBorder'>
+      {/*  <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
         <p className='text-lg mt-4'>
           Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
@@ -139,7 +139,7 @@ const DesignDecisionsPage4: React.FC = () => {
         ))}
       </section> */}
 
-    {/*   <section className="sectionBorder">
+      {/*   <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
         <ul className="list-disc list-inside space-y-3">
           {Object.entries(accuracyResults2).map(([participant, result]) => (
@@ -399,11 +399,11 @@ const DesignDecisionsPage4: React.FC = () => {
         <p className='text-lg m-4'>In diesem Abschnitt werden einige Ideen und Reflexionen zur Studie genannt. Einige beschreiben unsere Überlegungen im anfänglichen Prozess und einige Ideen erschlossen sich nach der Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.</p>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <FeedbackHintCard title='Workflow' color='teal'>
-           Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
+            Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
             <p className='font-bold'>→ Idee: Bessere Vertrauenskalibirierung in Entscheidungshilfe</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Nudging' color='yellow'>
-           Eventuell stärkeres Nudging einbauen, hin zur Entscheidungshilfe. Vielleicht mit zusätzlicher Nachfrage, warum man sich gegen die Hilfe entschieden hat.
+            Eventuell stärkeres Nudging einbauen, hin zur Entscheidungshilfe. Vielleicht mit zusätzlicher Nachfrage, warum man sich gegen die Hilfe entschieden hat.
             <p className='font-bold'>→ Idee: Befolgung der Strategie eher erzwingen, Optimalzustand erzeugen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Hinweise' color='violet'>
@@ -411,120 +411,124 @@ const DesignDecisionsPage4: React.FC = () => {
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe verdeutlichen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Vortest' color='green'>
-           Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu untersuchen.
+            Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu untersuchen.
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe untersuchen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Entscheidungshilfe' color='pink'>
-           Entwicklung einer individuell passenden Darstellung zur eigenen Strategie, die Nutzende unterstützt. Hierbei wurden alle wichtigen Aspekte, wie Mensch, KI und OW-Modell einbezogen.
+            Entwicklung einer individuell passenden Darstellung zur eigenen Strategie, die Nutzende unterstützt. Hierbei wurden alle wichtigen Aspekte, wie Mensch, KI und OW-Modell einbezogen.
             <p className='font-bold'>→ Learning: Darstellungsformen neu denken</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Unser Learning' color='blue'>
-           Innerhalb des Prozesses der Studienerstellung haben wir als Gruppe wertvolle Informationen lernen koennen. Über Planung, Abbilden einer vorhandenen Studie, Entwicklung konkreter Strategien und Anpassung der Anwendung an konkrete Userflows sowie Datenauswertng und Vergleich.
-          <p className='font-bold'>→ Learning: Wissen erweitert</p>
+            Innerhalb des Prozesses der Studienerstellung haben wir als Gruppe wertvolle Informationen lernen koennen. Über Planung, Abbilden einer vorhandenen Studie, Entwicklung konkreter Strategien und Anpassung der Anwendung an konkrete Userflows sowie Datenauswertng und Vergleich.
+            <p className='font-bold'>→ Learning: Wissen erweitert</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Projektentwicklung' color='orange'>
-           Wir haben als Gruppe ein komplettes Softwareprojekt konzipiert, realisiert und in Einsatz gebracht.
-          <p className='font-bold'>→ Learning: Projekt umgesetzt</p>
+            Wir haben als Gruppe ein komplettes Softwareprojekt konzipiert, realisiert und in Einsatz gebracht.
+            <p className='font-bold'>→ Learning: Projekt umgesetzt</p>
           </FeedbackHintCard>
         </div>
       </section>
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ergebnisse und Datenbewertung</h2>
+        <p className='text-lg m-4'>In diesem Abschnitt werden die Ergebnisse der durchgeführten Studie aufgezeigt. Dabei geht es sowohl um unsere Teilnehmenden und deren Leistung, als auch um den Vergleich mit dem Originalpaper.</p>
+
+        <div>
+          <div className='flex flex-col justify-between'>
+            <h1 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
+
+            <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
+            <p className='text-lg m-4'>
+              In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
+            </p>
+            <table
+              style={{
+                width: '100%',
+                borderCollapse: 'collapse',
+                marginTop: '1rem',
+                marginBottom: '1rem',
+              }}>
+              <thead>
+                <tr style={{ backgroundColor: '#ddd' }}>
+                  <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Stimulus (Farbe)</th>
+                  <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Slider-Antwort</th>
+                  <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Kategorie</th>
+                  <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Erklärung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'green',
+                    }}>
+                    Correct Rejection ✅
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
+                </tr>
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'orange',
+                    }}>
+                    False Alarm ⚠️
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
+                </tr>
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'green',
+                    }}>
+                    Hit ✅
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
+                </tr>
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'red',
+                    }}>
+                    Miss ❌
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <SDTSummaryTable participantData={participantData} />
+            <p className='text-lg m-4'>TODO: erklarung der tabelle</p>
+          </div>
+        </div>
         <div className='flex flex-row justify-center'>
           <WerteVergleich />
         </div>
         <p className='text-lg mt-4'>
           Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab.
 
-Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
+          Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
 
-Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
+          Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
       </section>
 
-      <section className='sectionBorder'>
-        <div className='flex flex-col justify-between items-center mb-6'>
-          <h1 className='text-3xl font-bold mb-10'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
-          <p>
-            In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
-          </p>
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              marginTop: '1rem',
-              marginBottom: '1rem',
-            }}>
-            <thead>
-              <tr style={{ backgroundColor: '#ddd' }}>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Stimulus (Farbe)</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Slider-Antwort</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Kategorie</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Erklärung</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'green',
-                  }}>
-                  Correct Rejection ✅
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'orange',
-                  }}>
-                  False Alarm ⚠️
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'green',
-                  }}>
-                  Hit ✅
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                <td
-                  style={{
-                    border: '1px solid #ccc',
-                    padding: '0.5rem',
-                    color: 'red',
-                  }}>
-                  Miss ❌
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <SDTSummaryTable participantData={participantData} />
-        </div>
-      </section>
 
       <section
         className='sectionBorder'
