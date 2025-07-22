@@ -25,29 +25,30 @@ import // analyzeParticipant,
 // summarizeAIGuessSliderSideMatch,
 // calculateMeanTeamSimple,
 '@/utils/analyzeParticipant';
-  // calculateOverallMedian,
-  // calculateTimeDifferences,
-  // compareAIGuessWithSlider,
-  // compareSliderWithButton,
-  // compareSliderWithButtonDetailed,
-  // computeSDTfromTrials,
-  // computeSDTfromTrialsButton,
-  //evaluateAccuracyWithSliderAndButton,
-  // calculateMedianTeamSimple,
-  // summarizeAIGuessSliderSideMatch,
-  // calculateMeanTeamSimple,
-  '@/utils/analyzeParticipant';
+// calculateOverallMedian,
+// calculateTimeDifferences,
+// compareAIGuessWithSlider,
+// compareSliderWithButton,
+// compareSliderWithButtonDetailed,
+// computeSDTfromTrials,
+// computeSDTfromTrialsButton,
+//evaluateAccuracyWithSliderAndButton,
+// calculateMedianTeamSimple,
+// summarizeAIGuessSliderSideMatch,
+// calculateMeanTeamSimple,
+// '@/utils/analyzeParticipant';
 // import ParticipantsResults from "@/components/layout/ParticipantsResults";
 import // calculateOverallMean,
 // calculateMedianTeamSensitivity,
 '@/utils/analyzeParticipant';
 // import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
-  // calculateMedianTeamSensitivity,
-  '@/utils/analyzeParticipant';
+// calculateMedianTeamSensitivity,
+// '@/utils/analyzeParticipant';
 import { calculateTimeDifferences } from '@/utils/analyzeParticipant';
-import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
+// import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
+import SDTBoxplot from '@/components/layout/SDTBoxplot';
 import WerteVergleich from '@/components/layout/ResultComparison';
 import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 import TimeChart from '@/components/layout/TimeChart';
@@ -75,7 +76,7 @@ const DesignDecisionsPage4: React.FC = () => {
   //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
   // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
- // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
+  // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
@@ -200,13 +201,9 @@ const DesignDecisionsPage4: React.FC = () => {
  */}
 
       {/* Zeitdifferenz */}
-      <section className="sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm">
-  <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-    Zeitdifferenzen & Lernverhalten der Teilnehmenden
-  </h2>
-
-</section>
-
+      <section className='sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm'>
+        <h2 className='text-2xl font-semibold mb-4 text-gray-800'>Zeitdifferenzen & Lernverhalten der Teilnehmenden</h2>
+      </section>
 
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
@@ -539,7 +536,7 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
             <div className='bg-[#ffffff83] p-4 rounded mt-4'>
-              <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(0)} />
+              <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(68)} />
             </div>
           </div>
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-yellow-50 hover:bg-yellow-100 border-yellow-300'>
@@ -668,7 +665,7 @@ const DesignDecisionsPage4: React.FC = () => {
         </p>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <FeedbackHintCard title='Entscheidungsreihenfolge' color='indigo'>
-           Vielleicht hätte man erst die Entscheidung der KI zeigen können. Dann den Mensch entscheiden lassen. Und dann die Entscheidungshilfe zum Schluss anzeigen.
+            Vielleicht hätte man erst die Entscheidung der KI zeigen können. Dann den Mensch entscheiden lassen. Und dann die Entscheidungshilfe zum Schluss anzeigen.
             <p className='font-bold'>→ Idee: Nudging hin zur KI und potenziell zur optimalen Strategie</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Workflow' color='teal'>
@@ -685,7 +682,8 @@ const DesignDecisionsPage4: React.FC = () => {
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe verdeutlichen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Vortest' color='green'>
-            Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu untersuchen.
+            Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu
+            untersuchen.
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe untersuchen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Entscheidungshilfe' color='pink'>
@@ -706,14 +704,15 @@ const DesignDecisionsPage4: React.FC = () => {
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ergebnisse und Datenbewertung</h2>
-        <p className='text-lg m-4'>In diesem Abschnitt werden die Ergebnisse der durchgeführten Studie aufgezeigt. Dabei geht es sowohl um unsere Teilnehmenden und deren Leistung, als auch um den Vergleich mit dem Originalpaper.</p>
+        <p className='text-lg m-4'>
+          In diesem Abschnitt werden die Ergebnisse der durchgeführten Studie aufgezeigt. Dabei geht es sowohl um unsere Teilnehmenden und deren Leistung, als auch um den Vergleich mit dem
+          Originalpaper.
+        </p>
 
         <div>
           <div className='flex flex-col justify-between'>
-            <h2 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h2>
-
             <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
-            <p className='text-lg m-4'>
+            <p className='text-lg ml-4'>
               In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
             </p>
             <table
@@ -732,32 +731,7 @@ const DesignDecisionsPage4: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                  <td
-                    style={{
-                      border: '1px solid #ccc',
-                      padding: '0.5rem',
-                      color: 'green',
-                    }}>
-                    Correct Rejection ✅
-                  </td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
-                </tr>
-                <tr>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                  <td
-                    style={{
-                      border: '1px solid #ccc',
-                      padding: '0.5rem',
-                      color: 'orange',
-                    }}>
-                    False Alarm ⚠️
-                  </td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
-                </tr>
+                {/* Hit */}
                 <tr>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
@@ -771,6 +745,7 @@ const DesignDecisionsPage4: React.FC = () => {
                   </td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
                 </tr>
+                {/* Miss */}
                 <tr>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
@@ -784,32 +759,66 @@ const DesignDecisionsPage4: React.FC = () => {
                   </td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
                 </tr>
+                {/* False Alarm */}
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'orange',
+                    }}>
+                    False Alarm ⚠️
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
+                </tr>
+                {/* Correct Rejection */}
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'green',
+                    }}>
+                    Correct Rejection ✅
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
+                </tr>
               </tbody>
             </table>
-            <h1 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
+            <h1 className='text-xl font-bold mb-4 mt-4 text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
 
             <SDTSummaryTable participantData={participantData} />
-            <p className='text-lg m-4'>Zwei Teilnehmende wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.</p>
+            <div className='mt-8'>
+              {/* Boxplot visualization of SDT metrics */}
+              <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>Boxplots</h2>
+              <SDTBoxplot participantData={participantData} />
+            </div>
+            <p className='text-lg mt-4 mb-4'>
+              Zwei Teilnehmende (TN 6 & TN21)wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität
+              ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.
+            </p>
           </div>
         </div>
         <div className='flex flex-row justify-center'>
           <WerteVergleich />
         </div>
         <p className='text-lg mt-4 mb-10'>
-          Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab.
-
-          Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
-
-          Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
+          Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein
+          durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab. Auch im Vergleich mit dem theoretisch optimalen Wert des
+          OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem
+          Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie. Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des
+          optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
 
-         <TimeChart data={timeDifference} />
+        <TimeChart data={timeDifference} />
 
-         <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
+        <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
         <DecisionTable />
       </section>
-
-
 
       {/* Back button */}
       <div className='flex justify-center'>

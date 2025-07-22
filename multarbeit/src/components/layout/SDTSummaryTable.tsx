@@ -21,15 +21,16 @@ type SDTSummaryTableProps = {
 
 export default function SDTSummaryTable({ participantData }: SDTSummaryTableProps) {
   const participantEntries = Object.entries(participantData);
-  // const numParticipants = participantEntries.length;
+  // Map from filtered index to original tN number
+  const filteredEntriesWithOriginalIdx = participantEntries
+    .map(([participantId, trials], idx) => ({ participantId, trials, originalIdx: idx }))
+    .filter(({ trials }) => {
+      const results = computeSDTfromTrialsButton(trials);
+      const dPrimeHuman = parseFloat(results.dPrimes.human);
+      return dPrimeHuman >= 1;
+    });
 
-  const filteredEntries = participantEntries.filter(([, trials]) => {
-    const results = computeSDTfromTrialsButton(trials);
-    const dPrimeHuman = parseFloat(results.dPrimes.human);
-    return dPrimeHuman >= 1;
-  });
-
-  const numIncluded = filteredEntries.length;
+  const numIncluded = filteredEntriesWithOriginalIdx.length;
 
   const totals = {
     hits: 0,
@@ -44,7 +45,7 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
     dPrimeTeamSimple: 0,
   };
 
-  const rows = filteredEntries.map(([participantId, trials], idx) => {
+  const rows = filteredEntriesWithOriginalIdx.map(({ participantId, trials, originalIdx }, idx) => {
     const results = computeSDTfromTrialsButton(trials);
     const { counts, rates, dPrimes } = results;
 
@@ -70,7 +71,7 @@ export default function SDTSummaryTable({ participantData }: SDTSummaryTableProp
 
     return (
       <motion.tr key={participantId} style={rowStyle} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }}>
-        <td style={{ textAlign: 'right', paddingRight: '10px' }}>{idx + 1}</td>
+        <td style={{ textAlign: 'right', paddingRight: '10px' }}>{`${originalIdx + 1}`}</td>
         <td>{counts.hits}</td>
         <td>{counts.misses}</td>
         <td>{counts.falseAlarms}</td>
