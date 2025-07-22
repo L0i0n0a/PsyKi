@@ -673,6 +673,10 @@ const DesignDecisionsPage4: React.FC = () => {
           Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.
         </p>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <FeedbackHintCard title='Entscheidungsreihenfolge' color='indigo'>
+           Vielleicht hätte man erst die Entscheidung der KI zeigen können. Dann den Mensch entscheiden lassen. Und dann die Entscheidungshilfe zum Schluss anzeigen.
+            <p className='font-bold'>→ Idee: Nudging hin zur KI und potntiell zur optimalen Strategie</p>
+          </FeedbackHintCard>
           <FeedbackHintCard title='Workflow' color='teal'>
             Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
             <p className='font-bold'>→ Idee: Bessere Vertrauenskalibirierung in Entscheidungshilfe</p>
