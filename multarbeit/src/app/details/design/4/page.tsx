@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button/Button';
-import Image from 'next/image';
+// import Image from 'next/image';
 import FeedbackHintCard from '@/components/layout/FeedbackHintCard';
 // import FeedbackSlider from '@/components/ui/Slider/FeedbackSlider';
 import FinalScreensFlow from '@/components/layout/FinalScreensFlow';
@@ -20,7 +20,7 @@ import // analyzeParticipant,
 // compareSliderWithButtonDetailed,
 // computeSDTfromTrials,
 // computeSDTfromTrialsButton,
- //evaluateAccuracyWithSliderAndButton,
+//evaluateAccuracyWithSliderAndButton,
 // calculateMedianTeamSimple,
 // summarizeAIGuessSliderSideMatch,
 // calculateMeanTeamSimple,
@@ -29,10 +29,11 @@ import // analyzeParticipant,
 import // calculateOverallMean,
 // calculateMedianTeamSensitivity,
 '@/utils/analyzeParticipant';
-import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
+// import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
 import WerteVergleich from '@/components/layout/ResultComparison';
+import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
@@ -54,8 +55,8 @@ const DesignDecisionsPage4: React.FC = () => {
   // const timeDifference = calculateTimeDifferences(participantData);
   // const comparisonResult = compareSliderWithButton(participantData);
   // const comparisonResult2 = compareSliderWithButtonDetailed(participantData);
-  // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-   const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
+  //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
+  // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
@@ -66,7 +67,7 @@ const DesignDecisionsPage4: React.FC = () => {
         <h1 className='text-4xl font-bold m-4 text-center'>Finalisierung & Ergebnisse</h1>
       </div>
 
-     {/*  <section className='sectionBorder'>
+      {/*  <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
         <p className='text-lg mt-4'>
           Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
@@ -139,7 +140,7 @@ const DesignDecisionsPage4: React.FC = () => {
         ))}
       </section> */}
 
-    {/*   <section className="sectionBorder">
+      {/*   <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
         <ul className="list-disc list-inside space-y-3">
           {Object.entries(accuracyResults2).map(([participant, result]) => (
@@ -386,45 +387,303 @@ const DesignDecisionsPage4: React.FC = () => {
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Erklärmodelle</h2>
-        <p className='text-lg mt-4'>
-          Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
-          <strong>&quot;Tendenzwert&quot;</strong>, <strong>&quot;Entscheidungspunkt&quot;</strong> oder <strong>&quot;Assistenzpunkt&quot;</strong> ersetzt. Durch die klare farbliche Orientierung
-          (z. B. blau/orange) und dynamische Anzeige (z. B. Text-Feedback: &quot;unsicher&quot; bis &quot;sehr sicher&quot;) wird ein kontinuierliches, aber verständliches Feedback ermöglicht. Ränder
-          und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
+        <p className='text-lg mt-4 mb-6'>
+          Der Prototyp implementiert mehrere aufeinander aufbauende Erklärmodelle, um Transparenz und Verständnis für die KI-Unterstützung zu schaffen. Diese basieren ausschließlich auf den
+          Informationen, die Nutzer*innen tatsächlich während der Nutzung präsentiert werden.
         </p>
+        <div className='space-y-6'>
+          <div className='rounded border-l-4 p-6 shadow-md transition-colors duration-300 bg-teal-50 hover:bg-teal-100 border-teal-300'>
+            <h3 className='text-xl font-semibold mb-4 flex items-center '>
+              <div className='bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>1</div>
+              Grundlegende Aufgabenerklärung (Onboarding)
+            </h3>
+            <div className='grid md:grid-cols-2 gap-4 '>
+              <div>
+                <h4 className='font-semibold mb-2'>Aufgabenbeschreibung:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Bildklassifikation:</strong> &quot;Entscheiden Sie, ob mehr orange oder mehr blaue Punkte enthalten sind&quot;
+                  </li>
+                  <li>
+                    • <strong>Testphase:</strong> 20 Bilder zum Vertrautmachen
+                  </li>
+                  <li>
+                    • <strong>Genauigkeitsermittlung:</strong> &quot;Wie gut Sie Muster erkennen können&quot;
+                  </li>
+                  <li>
+                    • <strong>Handlungsfreiheit:</strong> &quot;Entscheiden Sie so, wie Sie es für richtig halten&quot;
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Schieberegler-Erklärung:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Farbkodierung:</strong> Orange ↔ Neutral ↔ Blau
+                  </li>
+                  <li>
+                    • <strong>Sprachliche Labels:</strong> &quot;sicher orange&quot;, &quot;eher orange&quot;, &quot;unsicher&quot;, &quot;eher blau&quot;, &quot;sicher blau&quot;
+                  </li>
+                  <li>
+                    • <strong>Kontinuierliche Skala</strong> statt binärer Entscheidungen
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-blue-50 hover:bg-blue-100 border-blue-300'>
+            <h3 className='text-xl font-semibold mb-4 flex items-center '>
+              <div className='bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>2</div>
+              Interaktives Instruktions-Carousel (6 Schritte)
+            </h3>
+            <div className='grid md:grid-cols-3 gap-4 '>
+              <div>
+                <h4 className='font-semibold mb-2'>Schritte 1-2: System-Einführung</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Aufgabenwiederholung:</strong> Gleiches Prinzip wie Testphase
+                  </li>
+                  <li>
+                    • <strong>Automatisiertes System:</strong> &quot;analysiert dieselben Bilder wie Sie&quot;
+                  </li>
+                  <li>
+                    • <strong>Trainingsgrundlage:</strong> &quot;darauf trainiert, Farben im Bild zu erkennen&quot;
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Schritte 3-4: Kombination</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Gewichtung:</strong> &quot;berücksichtigt, wie zuverlässig beide sind&quot;
+                  </li>
+                  <li>
+                    • <strong>Gemeinsame Empfehlung:</strong> Kombination beider Einschätzungen
+                  </li>
+                  <li>
+                    • <strong>Anteilige Gewichtung:</strong> &quot;je zuverlässiger, desto stärker gewichtet&quot;
+                  </li>
+                  <li>
+                    • <strong>Visuelle Marker:</strong> &quot;M&quot; für Mensch, &quot;KI&quot; für System
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Schritte 5-6: Nutzer*innen-Autonomie</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>KI-Genauigkeit:</strong> &quot;93% durchschnittliche Genauigkeit&quot;
+                  </li>
+                  <li>
+                    • <strong>Eigene Gewichtung:</strong> &quot;auf Basis Ihrer Testphase berechnet&quot;
+                  </li>
+                  <li>
+                    • <strong>Entscheidungsfreiheit:</strong> &quot;frei entscheiden, ob und wie stark nutzen&quot;
+                  </li>
+                  <li>
+                    • <strong>Transparenz-Ziel:</strong> &quot;fundierte Entscheidung ableiten können&quot;
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-green-50 hover:bg-green-100 border-green-300'>
+            <h3 className='text-xl font-semibold mb-4 flex items-center '>
+              <div className='bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>3</div>
+              Visuelles Erklärmodell (Hauptphase)
+            </h3>
+            <div className='grid md:grid-cols-2 gap-4 '>
+              <div>
+                <h4 className='font-semibold mb-2'>AccuracyComparison Visualisierung:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Farbkodierte Skala:</strong> Orange ↔ Neutral ↔ Blau
+                  </li>
+                  <li>
+                    • <strong>Positionsmarker:</strong> &quot;Mensch&quot;, &quot;KI&quot;, &quot;Ergebnis&quot;
+                  </li>
+                  <li>
+                    • <strong>Dynamische Kurven:</strong> Visualisierung der Gewichtung
+                  </li>
+                  <li>
+                    • <strong>Echtzeit-Feedback:</strong> Sofortige visuelle Rückmeldung
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>KI-Empfehlung Interface:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Klare Kommunikation:</strong> &quot;Die KI empfiehlt: [Orange/Blau]&quot;
+                  </li>
+                  <li>
+                    • <strong>Begrifflichkeit:</strong> &quot;Kombinierte Empfehlung&quot; (statt Z-Score)
+                  </li>
+                  <li>
+                    • <strong>Finale Buttons:</strong> Eindeutige Orange/Blau Entscheidung
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className='bg-[#ffffff83] p-4 rounded mt-4'>
+              <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(0)} />
+            </div>
+          </div>
+          <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-yellow-50 hover:bg-yellow-100 border-yellow-300'>
+            <h3 className='text-xl font-semibold mb-4 flex items-center'>
+              <div className='bg-yellow-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>4</div>
+              Kontinuierliches Feedback-Modell
+            </h3>
+            <div className='grid md:grid-cols-3 gap-4'>
+              <div>
+                <h4 className='font-semibold mb-2'>Testphase-Feedback:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Regelmäßig alle 5 Trials:</strong> &quot;Ihre durchschnittliche Genauigkeit beträgt: X%&quot;
+                  </li>
+                  <li>
+                    • <strong>Trial-Zählung:</strong> &quot;Bisher lagen Sie in X von Y Fällen richtig&quot;
+                  </li>
+                  <li>
+                    • <strong>Motivational:</strong> Aufbau der individuellen Baseline
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Hauptphase-Feedback:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Vergleichsgenauigkeit:</strong> &quot;KI lag in X% der Fälle richtig&quot;
+                  </li>
+                  <li>
+                    • <strong>Eigene Performance:</strong> &quot;Ihre Genauigkeit liegt bei X%&quot;
+                  </li>
+                  <li>
+                    • <strong>KI-Limits:</strong> &quot;Auch die KI kann Fehler machen&quot;
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Abschluss-Feedback:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Phasenvergleich:</strong> Testphase X% vs. Hauptphase Y%
+                  </li>
+                  <li>
+                    • <strong>Team-Konzept:</strong> &quot;Sie waren mit der KI ein gutes Team!&quot;
+                  </li>
+                  <li>
+                    • <strong>Verbesserung:</strong> &quot;X% genauer mit ihrer Hilfe&quot;
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-violet-50 hover:bg-violet-100 border-violet-300'>
+            <h3 className='text-xl font-semibold mb-4 flex items-center'>
+              <div className='bg-violet-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>5</div>
+              Sprachliches Erklärmodell
+            </h3>
+            <div className='grid md:grid-cols-2 gap-4'>
+              <div>
+                <h4 className='font-semibold mb-2'>Vereinfachte Terminologie:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>&quot;Kombinierte Empfehlung&quot;</strong> statt mathematischer Begriffe
+                  </li>
+                  <li>
+                    • <strong>&quot;Entscheidungshilfe&quot;</strong> statt &quot;AI System&quot;
+                  </li>
+                  <li>
+                    • <strong>&quot;Automatisiertes System&quot;</strong> als neutrale Beschreibung
+                  </li>
+                  <li>
+                    • <strong>&quot;Gewichtet nach Zuverlässigkeit&quot;</strong> statt komplexer Formeln
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className='font-semibold mb-2'>Nutzerzentrierte Beschreibungen:</h4>
+                <ul className='text-sm space-y-1 ml-4'>
+                  <li>
+                    • <strong>Sicherheitslabels:</strong> &quot;sicher&quot;, &quot;eher&quot;, &quot;unsicher&quot;
+                  </li>
+                  <li>
+                    • <strong>Richtungsangaben:</strong> &quot;orange&quot; ↔ &quot;blau&quot;
+                  </li>
+                  <li>
+                    • <strong>Prozentangaben:</strong> Klare Genauigkeitswerte
+                  </li>
+                  <li>
+                    • <strong>Handlungsaufforderungen:</strong> &quot;Sie können frei entscheiden&quot;
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='mt-6 bg-blue-50 p-4 rounded'>
+          <h4 className='font-semibold mb-2'>Zentrale Prinzipien der implementierten Erklärmodelle:</h4>
+          <ul className='text-sm space-y-1'>
+            <li>
+              • <strong>Schrittweise Einführung:</strong> Von Aufgabenverständnis zu KI-Kombination
+            </li>
+            <li>
+              • <strong>Alltagssprache:</strong> Vermeidung technischer Fachbegriffe
+            </li>
+            <li>
+              • <strong>Visuelle Unterstützung:</strong> Farbkodierung und interaktive Skalen
+            </li>
+            <li>
+              • <strong>Kontinuierliches Feedback:</strong> Regelmäßige, verständliche Rückmeldungen
+            </li>
+            <li>
+              • <strong>Nutzer*innen-Autonomie:</strong> Betonung der finalen Entscheidungsautonomie
+            </li>
+            <li>
+              • <strong>Transparenz über Grenzen:</strong> &quot;Auch die KI kann Fehler machen&quot;
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Reflexion</h2>
-        <p className='text-lg m-4'>In diesem Abschnitt werden einige Ideen und Reflexionen zur Studie genannt. Einige beschreiben unsere Überlegungen im anfänglichen Prozess und einige Ideen erschlossen sich nach der Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.</p>
+        <p className='text-lg m-4'>
+          In diesem Abschnitt werden einige Ideen und Reflexionen zur Studie genannt. Einige beschreiben unsere Überlegungen im anfänglichen Prozess und einige Ideen erschlossen sich nach der
+          Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.
+        </p>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <FeedbackHintCard title='Workflow' color='teal'>
-           Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
+            Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
             <p className='font-bold'>→ Idee: Bessere Vertrauenskalibirierung in Entscheidungshilfe</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Nudging' color='yellow'>
-           Eventuell stärkeres Nudging einbauen, hin zur Entscheidungshilfe. Vielleicht mit zusätzlicher Nachfrage, warum man sich gegen die Hilfe entschieden hat.
+            Eventuell stärkeres Nudging einbauen, hin zur Entscheidungshilfe. Vielleicht mit zusätzlicher Nachfrage, warum man sich gegen die Hilfe entschieden hat.
             <p className='font-bold'>→ Idee: Befolgung der Strategie eher erzwingen, Optimalzustand erzeugen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Hinweise' color='violet'>
-            Hinweise zwischendurch vielfältiger gestalten. Z.B. Du hast dich … mal gegen Entscheidungshilfe entschieden und hast eine Genauigkeit von …%. Die Entscheidungshilfe lag bisher in … Fällen richtig. Versuche sie mehr mit einzubeziehen.
+            Hinweise zwischendurch vielfältiger gestalten. Z.B. Du hast dich … mal gegen Entscheidungshilfe entschieden und hast eine Genauigkeit von …%. Die Entscheidungshilfe lag bisher in … Fällen
+            richtig. Versuche sie mehr mit einzubeziehen.
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe verdeutlichen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Vortest' color='green'>
-           Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu untersuchen.
+            Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu
+            untersuchen.
             <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe untersuchen</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Entscheidungshilfe' color='pink'>
-           Entwicklung einer individuell passenden Darstellung zur eigenen Strategie, die Nutzende unterstützt. Hierbei wurden alle wichtigen Aspekte, wie Mensch, KI und OW-Modell einbezogen.
+            Entwicklung einer individuell passenden Darstellung zur eigenen Strategie, die Nutzende unterstützt. Hierbei wurden alle wichtigen Aspekte, wie Mensch, KI und OW-Modell einbezogen.
             <p className='font-bold'>→ Learning: Darstellungsformen neu denken</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Unser Learning' color='blue'>
-           Innerhalb des Prozesses der Studienerstellung haben wir als Gruppe wertvolle Informationen lernen koennen. Über Planung, Abbilden einer vorhandenen Studie, Entwicklung konkreter Strategien und Anpassung der Anwendung an konkrete Userflows sowie Datenauswertng und Vergleich.
-          <p className='font-bold'>→ Learning: Wissen erweitert</p>
+            Innerhalb des Prozesses der Studienerstellung haben wir als Gruppe wertvolle Informationen lernen koennen. Über Planung, Abbilden einer vorhandenen Studie, Entwicklung konkreter Strategien
+            und Anpassung der Anwendung an konkrete Userflows sowie Datenauswertng und Vergleich.
+            <p className='font-bold'>→ Learning: Wissen erweitert</p>
           </FeedbackHintCard>
           <FeedbackHintCard title='Projektentwicklung' color='orange'>
-           Wir haben als Gruppe ein komplettes Softwareprojekt konzipiert, realisiert und in Einsatz gebracht.
-          <p className='font-bold'>→ Learning: Projekt umgesetzt</p>
+            Wir haben als Gruppe ein komplettes Softwareprojekt konzipiert, realisiert und in Einsatz gebracht.
+            <p className='font-bold'>→ Learning: Projekt umgesetzt</p>
           </FeedbackHintCard>
         </div>
       </section>
@@ -435,11 +694,11 @@ const DesignDecisionsPage4: React.FC = () => {
           <WerteVergleich />
         </div>
         <p className='text-lg mt-4'>
-          Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab.
-
-Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
-
-Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
+          Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein
+          durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab. Auch im Vergleich mit dem theoretisch optimalen Wert des
+          OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem
+          Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie. Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des
+          optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
       </section>
 
