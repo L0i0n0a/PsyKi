@@ -12,7 +12,7 @@
 6. Der Ordner mit den Inhalten sollte in der Hierachie sichtbar sein.
 7. In den Ordner multarbeit navigieren im Terminal
 8. npm install im Terminal eingeben
-9. Dann npm run dev im terminal eingeben, das startet die Anwendung
+9. Dann npm run dev im Terminal eingeben, das startet die Anwendung
 
 ## Git Practice
 

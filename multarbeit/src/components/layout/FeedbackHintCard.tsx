@@ -44,6 +44,20 @@ const colorMap: Record<string, ColorScheme> = {
     title: 'text-orange-800',
     text: 'text-orange-900',
   },
+  pink: {
+    bg: 'bg-pink-50',
+    hoverBg: 'hover:bg-pink-100',
+    border: 'border-pink-300',
+    title: 'text-pink-800',
+    text: 'text-pink-900',
+  },
+  teal: {
+    bg: 'bg-teal-50',
+    hoverBg: 'hover:bg-teal-100',
+    border: 'border-teal-300',
+    title: 'text-teal-800',
+    text: 'text-teal-900',
+  },
 };
 
 type FeedbackHintCardProps = {

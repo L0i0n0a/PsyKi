@@ -20,7 +20,7 @@ import // analyzeParticipant,
 // compareSliderWithButtonDetailed,
 // computeSDTfromTrials,
 // computeSDTfromTrialsButton,
-// evaluateAccuracyWithSliderAndButton,
+ //evaluateAccuracyWithSliderAndButton,
 // calculateMedianTeamSimple,
 // summarizeAIGuessSliderSideMatch,
 // calculateMeanTeamSimple,
@@ -29,6 +29,7 @@ import // analyzeParticipant,
 import // calculateOverallMean,
 // calculateMedianTeamSensitivity,
 '@/utils/analyzeParticipant';
+import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
 
@@ -53,7 +54,7 @@ const DesignDecisionsPage4: React.FC = () => {
   // const comparisonResult = compareSliderWithButton(participantData);
   // const comparisonResult2 = compareSliderWithButtonDetailed(participantData);
   // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-  // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
+   const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
@@ -138,7 +139,7 @@ const DesignDecisionsPage4: React.FC = () => {
         ))}
       </section> */}
 
-      {/* <section className="sectionBorder">
+      <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
         <ul className="list-disc list-inside space-y-3">
           {Object.entries(accuracyResults2).map(([participant, result]) => (
@@ -160,7 +161,7 @@ const DesignDecisionsPage4: React.FC = () => {
             </li>
           ))}
         </ul>
-      </section> */}
+      </section>
 
       {/*
 <section className="sectionBorder">
@@ -282,22 +283,35 @@ const DesignDecisionsPage4: React.FC = () => {
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Reflexion</h2>
-        <div className='grid grid-rows-3 md:grid-rows-2 gap-4'>
-          <FeedbackHintCard title=' ' color='orange'>
-            Mensch und KI nehmen das Bild parallel wahr – visuell bzw. algorithmisch. Nutzer:innen geben ihre Einschätzung direkt mittels Schieberegler ein. Gleichzeitig analysiert die KI das Bild und
-            liefert eine eigene Einschätzung. Im Onboarding wird erklärt, welche Bildmerkmale die KI nutzt und wie zuverlässig sie dabei ist.
-            <p className='font-bold'>→ Ziel: Erklärbarkeit des Systems schaffen.</p>
+        <p className='text-lg m-4'>In diesem Abschnitt werden einige Ideen und Reflexionen zur Studie genannt. Einige beschreiben unsere Überlegungen im anfänglichen Prozess und einige Ideen erschlossen sich nach der Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.</p>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <FeedbackHintCard title='Workflow' color='teal'>
+           Man hätte mehr direktes Feedback einbauen können besonders in den ersten Trials
+            <p className='font-bold'>→ Idee: Bessere Vertrauenskalibirierung in Entscheidungshilfe</p>
           </FeedbackHintCard>
-          <FeedbackHintCard title=' ' color='yellow'>
-            Beide Einschätzungen werden an einem Ziel- oder Referenzwert gespiegelt. Die Nutzer:innen erfahren, was das Ziel der Entscheidungshilfe ist und wie die KI zu ihrem Vorschlag kommt.
-            Zusätzlich werden Genauigkeit und Sicherheit der KI sowie Sensitivität und Sicherheit des Menschen pro Trial dargestellt.
-            <p className='font-bold'>→ Ziel: Aufbau eines mentalen Modells zur Verlässlichkeit beider Quellen und Verständnis gegenüber verschiedenen Einschätzungen.</p>
+          <FeedbackHintCard title='Nudging' color='yellow'>
+           Eventuell stärkeres Nudging einbauen, hin zur Entscheidungshilfe. Vielleicht mit zusätzlicher Nachfrage, warum man sich gegen die Hilfe entschieden hat.
+            <p className='font-bold'>→ Idee: Befolgung der Strategie eher erzwingen, Optimalzustand erzeugen</p>
           </FeedbackHintCard>
-          <FeedbackHintCard title=' ' color='violet'>
-            Basierend auf beiden Einschätzungen wird eine kombinierte Empfehlung visualisiert (mittels gewichteter Kombination). Die finale Entscheidung liegt jedoch bei den Nutzer:innen. Die
-            Visualisierung des kombinierten Entscheidungspunkt (kumulierte Empfehlung) wird klar auf der Skala als Ergebnis der OW-Rechnung angegeben, das hilft den Workload möglichst gering halten.
-            Feedback zu ihrer Entscheidung unterstützen die Nutzer:innen eine realistische Vertrauenskalibrierung zu erfahren und stärkt zudem die Motivation.
-            <p className='font-bold'>→ Ziel: Transparente Unterstützung statt Vorgabe – Overtrust und Undertrust vermeiden.</p>
+          <FeedbackHintCard title='Hinweise' color='violet'>
+            Hinweise zwischendurch vielfältiger gestalten. Z.B. Du hast dich … mal gegen Entscheidungshilfe entschieden und hast eine Genauigkeit von …%. Die Entscheidungshilfe lag bisher in … Fällen richtig. Versuche sie mehr mit einzubeziehen.
+            <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe verdeutlichen</p>
+          </FeedbackHintCard>
+          <FeedbackHintCard title='Vortest' color='green'>
+           Vor der eigentlichen Studie wären UX-UI-Tests und ein Test zur Entscheidungshilfe sinnvoll gewesen, um den Nutzen zu verstehen und die Hilfe innerhalb der eigentlichen Entscheidung zu untersuchen.
+            <p className='font-bold'>→ Idee: Nutzen der Entscheidungshilfe untersuchen</p>
+          </FeedbackHintCard>
+          <FeedbackHintCard title='Entscheidungshilfe' color='pink'>
+           Entwicklung einer individuell passenden Darstellung zur eigenen Strategie, die Nutzende unterstützt. Hierbei wurden alle wichtigen Aspekte, wie Mensch, KI und OW-Modell einbezogen.
+            <p className='font-bold'>→ Learning: Darstellungsformen neu denken</p>
+          </FeedbackHintCard>
+          <FeedbackHintCard title='Unser Learning' color='blue'>
+           Innerhalb des Prozesses der Studienerstellung haben wir als Gruppe wertvolle Informationen lernen koennen. Über Planung, Abbilden einer vorhandenen Studie, Entwicklung konkreter Strategien und Anpassung der Anwendung an konkrete Userflows sowie Datenauswertng und Vergleich.
+          <p className='font-bold'>→ Learning: Wissen erweitert</p>
+          </FeedbackHintCard>
+          <FeedbackHintCard title='Projektentwicklung' color='orange'>
+           Wir haben als Gruppe ein komplettes Softwareprojekt konzipiert, realisiert und in Einsatz gebracht.
+          <p className='font-bold'>→ Learning: Projekt umgesetzt</p>
           </FeedbackHintCard>
         </div>
       </section>
