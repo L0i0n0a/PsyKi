@@ -513,31 +513,66 @@ function computeDPrimeTeamSimple(hitRate: number, faRate: number): number {
   return jStat.normal.inv(adjustedHR, 0, 1) - jStat.normal.inv(adjustedFAR, 0, 1);
 }
 
-// reference values finden aus paper
-export function calculateTimeDifferences(data: { [key: string]: Trial[] }): { [key: string]: number | null } {
-  const differences: { [key: string]: number | null } = {};
+export function calculateTimeDifferences(data: { [key: string]: Trial[] }): {
+  [key: string]: {
+    totalTime: number | null;
+    timeLearning: number | null;
+  };
+} {
+  const result: {
+    [key: string]: {
+      totalTime: number | null;
+      timeLearning: number | null;
+    };
+  } = {};
 
   for (const participant in data) {
-    const records = data[participant];
+    const records = data[participant]
+      .filter((r) => r.timestamp) // ensure timestamps are valid
+      .sort((a, b) => a.index - b.index);
 
-    // Find records at index 0 and 199
-    const recordAt0 = records.find((record) => record.index === 0);
-    const recordAt199 = records.find((record) => record.index === 199);
+    // --- Total Time ---
+    const recordAt0 = records.find((r) => r.index === 0);
+    const recordAt199 = records.find((r) => r.index === 199);
+    let totalTime: number | null = null;
 
-    if (recordAt0 && recordAt199 && recordAt0.timestamp && recordAt199.timestamp) {
+    if (recordAt0 && recordAt199) {
       const time0 = new Date(recordAt0.timestamp).getTime();
       const time199 = new Date(recordAt199.timestamp).getTime();
-
-      // Calculate difference in milliseconds
-      differences[participant] = time199 - time0;
-    } else {
-      // If either record is missing, assign null
-      differences[participant] = null;
+      totalTime = time199 - time0;
     }
+
+    // --- Time Learning (avg interval diff) ---
+    const getAvgInterval = (trials: Trial[]): number | null => {
+      if (trials.length < 2) return null;
+
+      let totalDiff = 0;
+      for (let i = 1; i < trials.length; i++) {
+        const t1 = new Date(trials[i - 1].timestamp).getTime();
+        const t2 = new Date(trials[i].timestamp).getTime();
+        totalDiff += t2 - t1;
+      }
+      return totalDiff / (trials.length - 1);
+    };
+
+    const first10 = records.slice(0, 10);
+    const last10 = records.slice(-10);
+
+    const avgFirst = getAvgInterval(first10);
+    const avgLast = getAvgInterval(last10);
+
+    const timeLearning =
+      avgFirst !== null && avgLast !== null ? avgLast - avgFirst : null;
+
+    result[participant] = {
+      totalTime,
+      timeLearning,
+    };
   }
 
-  return differences;
+  return result;
 }
+
 
 export function calculateOverallMean<K extends keyof Trial>(data: { [x: string]: Trial[] }, parameter: K) {
   const allValues: number[] = [];

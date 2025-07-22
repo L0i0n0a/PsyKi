@@ -44,11 +44,13 @@ import // calculateOverallMean,
 // import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
   // calculateMedianTeamSensitivity,
   '@/utils/analyzeParticipant';
+import { calculateTimeDifferences } from '@/utils/analyzeParticipant';
 import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
 import WerteVergleich from '@/components/layout/ResultComparison';
 import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
+import TimeChart from '@/components/layout/TimeChart';
 
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
@@ -67,13 +69,13 @@ const DesignDecisionsPage4: React.FC = () => {
   // const meanTeamReal = calculateMeanTeamSimple(allResults).toFixed(2);
   // const medianTeamReal = calculateMedianTeamSimple(allResults).toFixed(2);
   // const medianTeam = calculateOverallMedian(participantData, "dPrimeTeam");
-  // const timeDifference = calculateTimeDifferences(participantData);
+  const timeDifference = calculateTimeDifferences(participantData);
   // const comparisonResult = compareSliderWithButton(participantData);
   // const comparisonResult2 = compareSliderWithButtonDetailed(participantData);
   //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
   // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-  const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
+ // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
@@ -198,21 +200,13 @@ const DesignDecisionsPage4: React.FC = () => {
  */}
 
       {/* Zeitdifferenz */}
-      {/* <section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">
-          Zeitdifferenzen zwischen Index 0 und 199
-        </h2>
-        <ul className="list-disc list-inside mt-2">
-          {Object.entries(timeDifference).map(([_, diff], index) => (
-            <li key={index}>
-              <strong>{`tN${index + 1}`}</strong>:{" "}
-              {diff !== null
-                ? `${(diff / (1000 * 60)).toFixed(2)} Minuten`
-                : "Keine Daten vorhanden"}
-            </li>
-          ))}
-        </ul>
-      </section> */}
+      <section className="sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm">
+  <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+    Zeitdifferenzen & Lernverhalten der Teilnehmenden
+  </h2>
+
+</section>
+
 
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
@@ -716,7 +710,7 @@ const DesignDecisionsPage4: React.FC = () => {
 
         <div>
           <div className='flex flex-col justify-between'>
-            <h1 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
+            <h2 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h2>
 
             <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
             <p className='text-lg m-4'>
@@ -800,28 +794,21 @@ const DesignDecisionsPage4: React.FC = () => {
         <div className='flex flex-row justify-center'>
           <WerteVergleich />
         </div>
-        <p className='text-lg mt-4'>
+        <p className='text-lg mt-4 mb-10'>
           Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab.
 
           Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
 
           Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
-      </section>
 
+         <TimeChart data={timeDifference} />
 
-
-      <section
-        className='sectionBorder'
-        style={{
-          padding: '1rem',
-          borderRadius: '8px',
-          margin: '1rem auto',
-          fontFamily: 'Arial, sans-serif',
-        }}>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Kontingenztabelle der Entscheidungen</h2>
+         <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
         <DecisionTable />
       </section>
+
+
 
       {/* Back button */}
       <div className='flex justify-center'>
