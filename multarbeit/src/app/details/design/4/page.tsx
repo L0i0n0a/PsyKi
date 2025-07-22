@@ -583,6 +583,17 @@ const DesignDecisionsPage4: React.FC = () => {
           Im Diagramm ist erkennbar das alle Teilnehmenden mit der Zeit schneller geworden sind, was auf ein Lernverhalten hindeutet. Zumindest die Interaktionen wurden erlernt und konnten schneller als zu Beginn durchgeführt werden
         </p>
 
+        <h2 className='text-xl font-bold text-left mt-12'>Zusammenfassung</h2>
+        <div>
+          <ul className='text-lg list-disc pl-6'>
+            <li>Die Teilnehmenden zeigten insgesamt eine mittlere bis sehr gute Sensitivität, die der ursprünglichen Studie ähneln oder diese leicht übertreffen.</li>
+            <li>Die Orientierung an der KI war stark, aber nicht kritiklos – was auf eine adaptive Nutzung der automatisierten Hilfe hindeutet.</li>
+            <li>Entscheidungsänderungen waren seltener, aber oft korrekt – ein Hinweis auf selektive Aufmerksamkeit und gezieltes Eingreifen.</li>
+            <li>Die Reaktionszeiten deuten auf Lernfortschritte, nicht auf Ermüdung – ein positiver Indikator für Usability und Verständlichkeit des Systems.</li>
+          </ul>
+
+          <p className='text-lg mt-4 mb-10'> Die Ergebnisse zeigen, dass Menschen in der Lage sind, sinnvolle, reflektierte Entscheidungen in Zusammenarbeit mit KI-Systemen zu treffen. Die Kombination aus hoher Sensitivität, lernendem Verhalten und selektiver Nutzung von Empfehlungen legt nahe, dass solche Systeme ein wertvolles Werkzeug zur Entscheidungsunterstützung darstellen können – solange sie richtig gestaltet und eingesetzt werden. Hier koennen noch viele weitere Studien zu Teilaspekten, wie Usability, Entscheidungshilfen und Entscheidungsverhalten durchgeführt werden um die Ergebnisse zu validieren.</p>
+        </div>
 
       </section>
 
