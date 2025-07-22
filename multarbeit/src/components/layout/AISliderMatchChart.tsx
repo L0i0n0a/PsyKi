@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function AISliderMatchChart({ data }: Props) {
-  const chartData = Object.entries(data).map(([_, stats], index) => ({
+  const chartData = Object.entries(data).map(([, stats], index) => ({
     participant: `tN${index + 1}`,
     matches: stats.matches,
     mismatches: stats.mismatches,
