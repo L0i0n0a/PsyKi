@@ -536,7 +536,7 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
             <div className='bg-[#ffffff83] p-4 rounded mt-4'>
-              <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(0)} />
+              <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(68)} />
             </div>
           </div>
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-yellow-50 hover:bg-yellow-100 border-yellow-300'>
