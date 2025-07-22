@@ -32,6 +32,7 @@ import // calculateOverallMean,
 import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
+import WerteVergleich from '@/components/layout/ResultComparison';
 
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
@@ -430,15 +431,8 @@ const DesignDecisionsPage4: React.FC = () => {
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ergebnisse und Datenbewertung</h2>
-        <div className='flex flex-row'>
-          <div>
-            <Image src={'/Figure_1.png'} width={500} height={500} alt={''}></Image>
-            <p className='imageSource'></p>
-          </div>
-          <div>
-            <Image src={'/Figure_2.png'} width={500} height={500} alt={''}></Image>
-            <p className='imageSource'></p>
-          </div>
+        <div className='flex flex-row justify-center'>
+          <WerteVergleich />
         </div>
         <p className='text-lg mt-4'>
           Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
