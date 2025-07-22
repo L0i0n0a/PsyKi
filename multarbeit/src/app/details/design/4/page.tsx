@@ -786,9 +786,10 @@ const DesignDecisionsPage4: React.FC = () => {
                 </tr>
               </tbody>
             </table>
+            <h1 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
 
             <SDTSummaryTable participantData={participantData} />
-            <p className='text-lg m-4'>TODO: erklarung der tabelle</p>
+            <p className='text-lg m-4'>Zwei Teilnehmende wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.</p>
           </div>
         </div>
         <div className='flex flex-row justify-center'>
