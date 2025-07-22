@@ -13,23 +13,23 @@ import FinalScreensFlow from '@/components/layout/FinalScreensFlow';
 // import jStat from "jstat";
 import participantData from '@/store/participants.json';
 import // analyzeParticipant,
+  // calculateOverallMedian,
+  // calculateTimeDifferences,
+  // compareAIGuessWithSlider,
+  // compareSliderWithButton,
+  // compareSliderWithButtonDetailed,
+  // computeSDTfromTrials,
+  // computeSDTfromTrialsButton,
+  //evaluateAccuracyWithSliderAndButton,
+  // calculateMedianTeamSimple,
+  // summarizeAIGuessSliderSideMatch,
+  // calculateMeanTeamSimple,
+  '@/utils/analyzeParticipant';
 // calculateOverallMedian,
 // calculateTimeDifferences,
 // compareAIGuessWithSlider,
 // compareSliderWithButton,
-// compareSliderWithButtonDetailed,
-// computeSDTfromTrials,
-// computeSDTfromTrialsButton,
-//evaluateAccuracyWithSliderAndButton,
-// calculateMedianTeamSimple,
-// summarizeAIGuessSliderSideMatch,
-// calculateMeanTeamSimple,
-'@/utils/analyzeParticipant';
-// calculateOverallMedian,
-// calculateTimeDifferences,
-// compareAIGuessWithSlider,
-// compareSliderWithButton,
-// compareSliderWithButtonDetailed,
+//  compareSliderWithButtonDetailed,
 // computeSDTfromTrials,
 // computeSDTfromTrialsButton,
 //evaluateAccuracyWithSliderAndButton,
@@ -39,12 +39,12 @@ import // analyzeParticipant,
 // '@/utils/analyzeParticipant';
 // import ParticipantsResults from "@/components/layout/ParticipantsResults";
 import // calculateOverallMean,
-// calculateMedianTeamSensitivity,
-'@/utils/analyzeParticipant';
+  // calculateMedianTeamSensitivity,
+  '@/utils/analyzeParticipant';
 // import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 // calculateMedianTeamSensitivity,
 // '@/utils/analyzeParticipant';
-import { calculateTimeDifferences } from '@/utils/analyzeParticipant';
+import { calculateTimeDifferences, summarizeAIGuessSliderSideMatch } from '@/utils/analyzeParticipant';
 // import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
@@ -52,6 +52,7 @@ import SDTBoxplot from '@/components/layout/SDTBoxplot';
 import WerteVergleich from '@/components/layout/ResultComparison';
 import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 import TimeChart from '@/components/layout/TimeChart';
+import AISliderMatchChart from '@/components/layout/AISliderMatchChart';
 
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
@@ -77,8 +78,8 @@ const DesignDecisionsPage4: React.FC = () => {
   // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
   // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
   // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
-  // const aiVsSliderResults = compareAIGuessWithSlider(participantData);
-  // const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
+  //const aiVsSliderResults = compareAIGuessWithSlider(participantData);
+  const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
@@ -113,23 +114,33 @@ const DesignDecisionsPage4: React.FC = () => {
         <AllParticipantsChart />
       </div> */}
 
-      {/* <section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">
-          Übereinstimmung: Menschliche Einschätzung vs. KI
-        </h2>
-        <ul className="list-disc list-inside mt-4 space-y-2">
-          {Object.entries(aiSliderMatchSummary).map(
-            ([participant, stats], index) => (
-              <li key={participant}>
-                <strong>tN{index + 1}:</strong>{" "}
-                {stats.totalComparisons > 0
-                  ? `${stats.matches}x Match (${stats.matchPercentage}%) / ${stats.mismatches}x Unterschied`
-                  : "Keine Daten"}
-              </li>
-            )
-          )}
-        </ul>
-      </section> */}
+      {/*        <section className="sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm">
+  <h2 className="text-2xl font-semibold text-gray-800">
+    Übereinstimmung: Menschliche Einschätzung vs. KI
+  </h2>
+  <ul className="mt-4 space-y-3">
+    {Object.entries(aiSliderMatchSummary).map(([participant, stats], index) => (
+      <li
+        key={participant}
+        className="bg-white p-3 rounded-md border border-gray-200 shadow-sm"
+      >
+        <p className="font-medium text-gray-700">{`tN${index + 1}`}</p>
+        {stats.totalComparisons > 0 ? (
+          <p className="text-sm text-gray-600">
+            <span className="text-green-700 font-semibold">{stats.matches}x Match</span>{" "}
+            ({stats.matchPercentage}%)
+            <span className="text-red-600 font-semibold ml-2">
+              {stats.mismatches}x Unterschied
+            </span>
+          </p>
+        ) : (
+          <p className="text-sm text-gray-500">Keine Daten verfügbar</p>
+        )}
+      </li>
+    ))}
+  </ul>
+</section> */}
+
 
       {/*
 <section className="sectionBorder">
@@ -815,13 +826,29 @@ const DesignDecisionsPage4: React.FC = () => {
           optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
 
+        <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
+        <DecisionTable />
+        <p className='text-lg mt-4 mb-10'>Die Kontingenztabelle zeigt, wie sich die Teilnehmenden im Verlauf des Experiments entschieden haben. Insbesondere, ob sie ihre ursprüngliche Entscheidung geändert haben oder dabei geblieben sind, und ob dies im Nachhinein korrekt oder falsch war. Das Ergebnis lässt darauf schließen, dass die Teilnehmenden in der Mehrheit konsistent und korrekt gehandelt haben, und dass Änderungen größtenteils zu einer Verbesserung führten.</p>
+
+        <AISliderMatchChart data={aiSliderMatchSummary} />
+        <p className='text-lg mt-4 mb-10 mt-10'>Das Balkendiagramm veranschaulicht die Anzahl der Übereinstimmungen und Unterschiede zwischen den Entscheidungen der Teilnehmenden und den Vorhersagen der KI pro Person.
+
+          Die Mehrheit der Teilnehmenden zeigt eine hohe Übereinstimmung mit der KI, meist um die 150 Treffer von 200 möglichen.
+
+          Es gibt jedoch individuelle Schwankungen, insbesondere bei tN6 und tN21, wo die Anzahl der Unterschiede höher ausfällt, hier war auch die Sensitivität der Teilnehmenden deutlich geringer.
+
+          Diese Unterschiede könnten auf abweichende Entscheidungsstrategien, Unsicherheit oder bewusste Abweichung vom KI-Vorschlag hindeuten.
+
+          Insgesamt unterstreicht die Visualisierung eine starke Orientierung am KI-Vorschlag, wobei einige Teilnehmende dennoch eigene Bewertungen bevorzugten.
+
+        </p>
+
         <TimeChart data={timeDifference} />
         <p className='text-lg mt-14 mb-10'>Die Analyse der Zeitabstände zwischen aufeinanderfolgenden Versuchen zeigt Unterschiede im Lernverhalten der Teilnehmenden. Eine negative Lerndifferenz weist darauf hin, dass sich die durchschnittliche Reaktionszeit in den späteren Durchgängen verringert hat – ein Indikator für eine Verbesserung der Entscheidungs- oder Wahrnehmungsprozesse im Verlauf des Experiments. Positive Werte deuten hingegen auf eine Verlangsamung hin, was beispielsweise durch Ermüdung oder Ablenkung erklärbar sein könnte. Teilnehmende mit kaum veränderter Zeit zeigen ein konstantes Antwortverhalten ohne nennenswerte Lern- oder Ermüdungseffekte.
           Im Diagramm ist erkennbar das alle Teilnehmenden mit der Zeit schneller geworden sind, was auf ein Lernverhalten hindeutet. Zumindest die Interaktionen wurden erlernt und konnten schneller als zu Beginn durchgeführt werden
         </p>
 
-        <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
-        <DecisionTable />
+
       </section>
 
       {/* Back button */}

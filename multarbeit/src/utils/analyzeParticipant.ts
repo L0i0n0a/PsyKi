@@ -304,7 +304,10 @@ export function summarizeAIGuessSliderSideMatch(data: { [key: string]: Trial[] }
   } = {};
 
   for (const participant in data) {
-    const records = data[participant];
+    const records = data[participant].filter(
+      (trial) => trial.color !== 0
+    );
+
     let matches = 0;
     let totalComparisons = 0;
 
