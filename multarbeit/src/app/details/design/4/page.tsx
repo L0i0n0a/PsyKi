@@ -704,6 +704,12 @@ const DesignDecisionsPage4: React.FC = () => {
           Originalpaper.
         </p>
 
+
+        <div>
+          <h2 className='text-lg font-bold mb-2'>Demografie der Teilnehmenden</h2>
+          <p className='text-lg ml-4 mb-10'>waiting for data</p>
+        </div>
+
         <div>
           <div className='flex flex-col justify-between'>
             <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
