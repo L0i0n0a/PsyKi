@@ -435,10 +435,11 @@ const DesignDecisionsPage4: React.FC = () => {
           <WerteVergleich />
         </div>
         <p className='text-lg mt-4'>
-          Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
-          <strong>&quot;Tendenzwert&quot;</strong>, <strong>&quot;Entscheidungspunkt&quot;</strong> oder <strong>&quot;Assistenzpunkt&quot;</strong> ersetzt. Durch die klare farbliche Orientierung
-          (z. B. blau/orange) und dynamische Anzeige (z. B. Text-Feedback: &quot;unsicher&quot; bis &quot;sehr sicher&quot;) wird ein kontinuierliches, aber verständliches Feedback ermöglicht. Ränder
-          und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
+          Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein durchschnittlicher Sensitivitätswert (d′) von 2.80 gemessen, während unsere eigene Studie einen sehr ähnlichen Wert von 2.94 ergab.
+
+Auch im Vergleich mit dem theoretisch optimalen Wert des OW-Modells zeigt sich ein vergleichbares Muster: Während im Paper ein OW-Wert von 3.80 erreicht wurde, lag dieser in unserer Studie bei 3.74. Die Abweichung (Differenz zwischen gemessenem Wert und OW) betrug somit 1.00 im Paper und 0.80 in unserer Studie.
+
+Diese geringen Unterschiede deuten darauf hin, dass die Teilnehmer:innen beider Studien in ähnlichem Maße unterhalb des optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
       </section>
 

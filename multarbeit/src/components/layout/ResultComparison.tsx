@@ -15,11 +15,13 @@ const data = [
     name: 'Paper',
     Gemessen: 2.8,
     OW: 3.8,
+    Differenz: 3.8 - 2.8,
   },
   {
     name: 'Unsere Studie',
     Gemessen: 2.94,
     OW: 3.74,
+    Differenz: 3.74 - 2.94,
   },
 ];
 
@@ -48,6 +50,14 @@ export default function WerteVergleich() {
               <LabelList dataKey="OW" position="top" fill="#f59e0b" formatter={(v) => `OW: ${v}`} />
             </Bar>
             
+            {/* Differenz as label above */}
+            <Bar dataKey="Differenz" fill="transparent">
+              <LabelList
+                dataKey="Differenz"
+                fill="#ef4444"
+                formatter={(v) => `Δ: ${(v as number).toFixed(2)}`}
+              />
+            </Bar>
             
           </BarChart>
         </ResponsiveContainer>
