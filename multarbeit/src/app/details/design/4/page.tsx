@@ -48,6 +48,7 @@ import { calculateTimeDifferences } from '@/utils/analyzeParticipant';
 import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
+import SDTBoxplot from '@/components/layout/SDTBoxplot';
 import WerteVergleich from '@/components/layout/ResultComparison';
 import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 import TimeChart from '@/components/layout/TimeChart';
@@ -710,10 +711,9 @@ const DesignDecisionsPage4: React.FC = () => {
 
         <div>
           <div className='flex flex-col justify-between'>
-            <h2 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h2>
 
             <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
-            <p className='text-lg m-4'>
+            <p className='text-lg ml-4'>
               In diesem Experiment gilt <strong>Orange als Basis (Nicht-Signal)</strong>, während <strong>Blau als Signal</strong> definiert ist.
             </p>
             <table
@@ -732,32 +732,7 @@ const DesignDecisionsPage4: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
-                  <td
-                    style={{
-                      border: '1px solid #ccc',
-                      padding: '0.5rem',
-                      color: 'green',
-                    }}>
-                    Correct Rejection ✅
-                  </td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
-                </tr>
-                <tr>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
-                  <td
-                    style={{
-                      border: '1px solid #ccc',
-                      padding: '0.5rem',
-                      color: 'orange',
-                    }}>
-                    False Alarm ⚠️
-                  </td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
-                </tr>
+                {/* Hit */}
                 <tr>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
@@ -771,6 +746,7 @@ const DesignDecisionsPage4: React.FC = () => {
                   </td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal korrekt erkannt.</td>
                 </tr>
+                {/* Miss */}
                 <tr>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Blau (≥ 50)</td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
@@ -784,12 +760,45 @@ const DesignDecisionsPage4: React.FC = () => {
                   </td>
                   <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Signal wurde nicht erkannt.</td>
                 </tr>
+                {/* False Alarm */}
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>&gt; 0 (Blau)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'orange',
+                    }}>
+                    False Alarm ⚠️
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Fälschlicherweise Signal erkannt.</td>
+                </tr>
+                {/* Correct Rejection */}
+                <tr>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Orange (&lt; 50)</td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>≤ 0 (Orange)</td>
+                  <td
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      color: 'green',
+                    }}>
+                    Correct Rejection ✅
+                  </td>
+                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Richtig erkannt, dass kein Signal vorliegt.</td>
+                </tr>
               </tbody>
             </table>
-            <h1 className='text-xl font-bold text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
+            <h1 className='text-xl font-bold mb-4 mt-4 text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
 
             <SDTSummaryTable participantData={participantData} />
-            <p className='text-lg m-4'>Zwei Teilnehmende wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.</p>
+            <div className="mt-8">
+              {/* Boxplot visualization of SDT metrics */}
+              <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>Boxplots</h2>
+              <SDTBoxplot participantData={participantData} />
+            </div>
+            <p className='text-lg mt-4 mb-4'>Zwei Teilnehmende (TN 6 & TN21)wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.</p>
           </div>
         </div>
         <div className='flex flex-row justify-center'>
