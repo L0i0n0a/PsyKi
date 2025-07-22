@@ -65,7 +65,7 @@ const DesignDecisionsPage4: React.FC = () => {
         <h1 className='text-4xl font-bold m-4 text-center'>Finalisierung & Ergebnisse</h1>
       </div>
 
-      <section className='sectionBorder'>
+     {/*  <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
         <p className='text-lg mt-4'>
           Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
@@ -73,7 +73,7 @@ const DesignDecisionsPage4: React.FC = () => {
           (z. B. blau/orange) und dynamische Anzeige (z. B. Text-Feedback: &quot;unsicher&quot; bis &quot;sehr sicher&quot;) wird ein kontinuierliches, aber verständliches Feedback ermöglicht. Ränder
           und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
         </p>
-      </section>
+      </section> */}
 
       {/* <section
         style={{
@@ -138,7 +138,7 @@ const DesignDecisionsPage4: React.FC = () => {
         ))}
       </section> */}
 
-      <section className="sectionBorder">
+    {/*   <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
         <ul className="list-disc list-inside space-y-3">
           {Object.entries(accuracyResults2).map(([participant, result]) => (
@@ -160,7 +160,7 @@ const DesignDecisionsPage4: React.FC = () => {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
 
       {/*
 <section className="sectionBorder">
