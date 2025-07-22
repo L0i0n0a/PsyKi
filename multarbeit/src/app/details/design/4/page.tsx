@@ -3,49 +3,10 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button/Button';
-// import Image from 'next/image';
 import FeedbackHintCard from '@/components/layout/FeedbackHintCard';
-// import FeedbackSlider from '@/components/ui/Slider/FeedbackSlider';
 import FinalScreensFlow from '@/components/layout/FinalScreensFlow';
-// import ResultsTable from "@/components/layout/ResultsTable";
-// import AnimatedDataChart from "@/components/layout/AnimatedDataChart";
-// import AllParticipantsChart from "@/components/layout/AllParticipantsChart";
-// import jStat from "jstat";
 import participantData from '@/store/participants.json';
-import // analyzeParticipant,
-  // calculateOverallMedian,
-  // calculateTimeDifferences,
-  // compareAIGuessWithSlider,
-  // compareSliderWithButton,
-  // compareSliderWithButtonDetailed,
-  // computeSDTfromTrials,
-  // computeSDTfromTrialsButton,
-  //evaluateAccuracyWithSliderAndButton,
-  // calculateMedianTeamSimple,
-  // summarizeAIGuessSliderSideMatch,
-  // calculateMeanTeamSimple,
-  '@/utils/analyzeParticipant';
-// calculateOverallMedian,
-// calculateTimeDifferences,
-// compareAIGuessWithSlider,
-// compareSliderWithButton,
-//  compareSliderWithButtonDetailed,
-// computeSDTfromTrials,
-// computeSDTfromTrialsButton,
-//evaluateAccuracyWithSliderAndButton,
-// calculateMedianTeamSimple,
-// summarizeAIGuessSliderSideMatch,
-// calculateMeanTeamSimple,
-// '@/utils/analyzeParticipant';
-// import ParticipantsResults from "@/components/layout/ParticipantsResults";
-import // calculateOverallMean,
-  // calculateMedianTeamSensitivity,
-  '@/utils/analyzeParticipant';
-// import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
-// calculateMedianTeamSensitivity,
-// '@/utils/analyzeParticipant';
 import { calculateTimeDifferences, summarizeAIGuessSliderSideMatch } from '@/utils/analyzeParticipant';
-// import { evaluateAccuracyWithSliderAndButton } from '@/utils/analyzeParticipant';
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
 import SDTBoxplot from '@/components/layout/SDTBoxplot';
@@ -57,28 +18,7 @@ import AISliderMatchChart from '@/components/layout/AISliderMatchChart';
 const DesignDecisionsPage4: React.FC = () => {
   const router = useRouter();
 
-  //const allResults = participantData.map((p) => computeSDTfromTrials(p.trials));
-  // const allResults = Object.entries(participantData).map(
-  //   ([participantId, trials]) => computeSDTfromTrialsButton(trials)
-  // );
-
-  // const participantKey = Object.keys(participantData)[0]; // or specify directly
-  // const participantDataObj = participantData[participantKey];
-
-  // const meanHuman = calculateMittelwertHumanSensitivity(rawData);
-  //const medianHuman = calculateMedianHumanSensitivity(rawData);
-  // const meanTeam = calculateOverallMean(participantData, "dPrimeTeam");
-  // const meanTeamReal = calculateMeanTeamSimple(allResults).toFixed(2);
-  // const medianTeamReal = calculateMedianTeamSimple(allResults).toFixed(2);
-  // const medianTeam = calculateOverallMedian(participantData, "dPrimeTeam");
   const timeDifference = calculateTimeDifferences(participantData);
-  // const comparisonResult = compareSliderWithButton(participantData);
-  // const comparisonResult2 = compareSliderWithButtonDetailed(participantData);
-  //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-  // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
-  // //const accuracyResults = evaluateParticipantAccuracyByColor(participantData);
-  // const accuracyResults2 = evaluateAccuracyWithSliderAndButton(participantData);
-  //const aiVsSliderResults = compareAIGuessWithSlider(participantData);
   const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
   return (
@@ -87,203 +27,6 @@ const DesignDecisionsPage4: React.FC = () => {
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Finalisierung & Ergebnisse</h1>
       </div>
-
-      {/*  <section className='sectionBorder'>
-      {/*  <section className='sectionBorder'>
-        <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
-        <p className='text-lg mt-4'>
-          Die Skala zur Entscheidungserfassung wurde so gestaltet, dass sie keine exakten Prozentzahlen oder mathematischen Begriffe wie Z-Wert erfordert. Stattdessen wird sie durch Begriffe wie{' '}
-          <strong>&quot;Tendenzwert&quot;</strong>, <strong>&quot;Entscheidungspunkt&quot;</strong> oder <strong>&quot;Assistenzpunkt&quot;</strong> ersetzt. Durch die klare farbliche Orientierung
-          (z. B. blau/orange) und dynamische Anzeige (z. B. Text-Feedback: &quot;unsicher&quot; bis &quot;sehr sicher&quot;) wird ein kontinuierliches, aber verständliches Feedback ermöglicht. Ränder
-          und harte Schwellenwerte wurden bewusst vermieden, um Nutzer*innen nicht unter Druck zu setzen.
-        </p>
-      </section> */}
-
-      {/* <section
-        style={{
-          padding: '1rem',
-          backgroundColor: '#f9f9f9',
-          borderRadius: '8px',
-          maxWidth: '600px',
-          margin: '1rem auto',
-          fontFamily: 'Arial, sans-serif',
-        }}></section> */}
-
-      {/* <div className="sectionBorder flex flex-col"  >
-        <AnimatedDataChart />
-        <AllParticipantsChart />
-      </div> */}
-
-      {/*        <section className="sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm">
-  <h2 className="text-2xl font-semibold text-gray-800">
-    Übereinstimmung: Menschliche Einschätzung vs. KI
-  </h2>
-  <ul className="mt-4 space-y-3">
-    {Object.entries(aiSliderMatchSummary).map(([participant, stats], index) => (
-      <li
-        key={participant}
-        className="bg-white p-3 rounded-md border border-gray-200 shadow-sm"
-      >
-        <p className="font-medium text-gray-700">{`tN${index + 1}`}</p>
-        {stats.totalComparisons > 0 ? (
-          <p className="text-sm text-gray-600">
-            <span className="text-green-700 font-semibold">{stats.matches}x Match</span>{" "}
-            ({stats.matchPercentage}%)
-            <span className="text-red-600 font-semibold ml-2">
-              {stats.mismatches}x Unterschied
-            </span>
-          </p>
-        ) : (
-          <p className="text-sm text-gray-500">Keine Daten verfügbar</p>
-        )}
-      </li>
-    ))}
-  </ul>
-</section> */}
-
-
-      {/*
-<section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">Vergleich: KI-Schätzung vs. Eigene Sliderwerte</h2>
-        {Object.entries(aiVsSliderResults).map(([participant, data]) => (
-          <div key={participant} className="mb-6">
-            <h3 className="text-xl font-semibold">{participant}</h3>
-            <table className="w-full table-auto border border-gray-300">
-              <thead>
-                <tr>
-                  <th className="border px-2 py-1">Trial Index</th>
-                  <th className="border px-2 py-1">Slider Value</th>
-                  <th className="border px-2 py-1">AI Guess Value</th>
-                  <th className="border px-2 py-1">Difference</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.comparisons.map(({ index, sliderValue, aiGuessValue, difference }) => (
-                  <tr key={index}>
-                    <td className="border px-2 py-1 text-center">{index}</td>
-                    <td className="border px-2 py-1 text-center">{sliderValue.toFixed(2)}</td>
-                    <td className="border px-2 py-1 text-center">{aiGuessValue.toFixed(2)}</td>
-                    <td className="border px-2 py-1 text-center">{difference.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-      </section> */}
-
-      {/*   <section className="sectionBorder">
-      {/*   <section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">Genauigkeit pro Teilnehmer</h2>
-        <ul className="list-disc list-inside space-y-3">
-          {Object.entries(accuracyResults2).map(([participant, result]) => (
-            <li key={participant}>
-              <strong>{participant}</strong>
-              <br />
-              🎯 <u>Mit KI:</u> {result.buttonComparison.correct} ✅ /{" "}
-              {result.buttonComparison.incorrect} ❌ (
-              {result.buttonComparison.accuracyPercentage}% richtig)
-              <br />
-              🟦 <u>Ohne KI in Mainphase:</u>{" "}
-              {result.sliderWhenButtonExists.correct} ✅ /{" "}
-              {result.sliderWhenButtonExists.incorrect} ❌ (
-              {result.sliderWhenButtonExists.accuracyPercentage}% richtig)
-              <br />
-              🟡 <u>Testphase:</u> {result.sliderOnlyTrials.correct} ✅ /{" "}
-              {result.sliderOnlyTrials.incorrect} ❌ (
-              {result.sliderOnlyTrials.accuracyPercentage}% richtig)
-            </li>
-          ))}
-        </ul>
-      </section> */}
-
-      {/*
-<section className="sectionBorder">
-  <h2 className="text-2xl font-semibold">Richtige vs. Falsche Entscheidungen (Farbe vs. Button)</h2>
-  <ul className="list-disc list-inside mt-2 space-y-1">
-    {Object.entries(accuracyResults).map(([participant, result]) => (
-      <li key={participant}>
-        <strong>{participant}</strong>: {result.correct} ✅ richtig, {result.incorrect} ❌ falsch (
-        {result.accuracyPercentage}% Genauigkeit)
-      </li>
-    ))}
-  </ul>
-</section>
- */}
-
-      {/* <section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">
-          Erklärung: Vergleich Mensch vs. Button
-        </h2>
-        <p className="text-lg mt-2">
-          In dieser Auswertung wird geprüft, wie gut die eigene Einschätzung
-          (über den <strong>Schieberegler</strong>) mit der Entscheidung nach
-          Hilfe (über den <strong>Button</strong>) übereinstimmt.
-        </p>
-        <p className="text-lg mt-4">
-          Dabei gilt:
-          <ul className="list-disc list-inside mt-2 text-base">
-            <li>
-              <strong>Slider-Wert &gt; 0</strong> bedeutet: erwarteter Button
-              ist <strong>blau</strong>
-            </li>
-            <li>
-              <strong>Slider-Wert &lt; 0</strong> bedeutet: erwarteter Button
-              ist <strong>orange</strong>
-            </li>
-            <li>
-              Wenn der gedrückte Button mit dem erwarteten übereinstimmt, zählt
-              es als <strong>Übereinstimmung (Match)</strong>
-            </li>
-          </ul>
-        </p>
-        <p className="text-lg mt-4">
-          Die berechneten Werte zeigen an, wie häufig diese Übereinstimmungen
-          auftreten – sowohl insgesamt als auch pro Teilnehmer:in.
-        </p>
-      </section> */}
-
-      {/* <section className="sectionBorder">
-        <h2 className="text-2xl font-semibold">Umentschieden?</h2>
-        <p className="text-lg mt-2">
-          <strong>Gesamt:</strong>
-          <br />
-          Vergleiche: {comparisonResult2.overall.totalComparisons}
-          <br />
-          Übereinstimmungen: {comparisonResult2.overall.matches}
-          <br />
-          Abweichungen: {comparisonResult2.overall.mismatches}
-          <br />
-          Übereinstimmungsrate: {comparisonResult2.overall.matchPercentage}%
-        </p>
-
-        <h3 className="text-xl font-semibold mt-6">Pro Teilnehmer</h3>
-        <ul className="list-disc list-inside mt-2">
-          {Object.entries(comparisonResult2.perParticipant).map(
-            ([participantId, stats]) => (
-              <li key={participantId}>
-                <strong>{participantId}</strong>: {stats.matchPercentage}%
-                Übereinstimmung ({stats.matches}/{stats.comparisons})
-              </li>
-            )
-          )}
-        </ul>
-      </section> */}
-      {/*
-      <div>Mittelwert: {meanTeam}</div>
-      <div>Median: {medianTeam}</div>
-      <div>MittelwertReak: {meanTeamReal}</div>
-      <div>MedianReal: {medianTeamReal}</div> */}
-
-      {/*  <h1>All Participants Results</h1>
-      {Object.entries(participantData).map(
-        ([participantKey, participantData]) => (
-          <div key={participantKey} style={{ marginBottom: 40 }}>
-            <h2>{participantKey}</h2>
-            <ResultsTable data={participantData} />
-          </div>
-        )
-      )} */}
 
       <FinalScreensFlow />
 
@@ -833,15 +576,7 @@ const DesignDecisionsPage4: React.FC = () => {
         <AISliderMatchChart data={aiSliderMatchSummary} />
         <p className='text-lg mt-4 mb-10 mt-10'>Das Balkendiagramm veranschaulicht die Anzahl der Übereinstimmungen und Unterschiede zwischen den Entscheidungen der Teilnehmenden und den Vorhersagen der KI pro Person.
 
-          Die Mehrheit der Teilnehmenden zeigt eine hohe Übereinstimmung mit der KI, meist um die 150 Treffer von 200 möglichen.
-
-          Es gibt jedoch individuelle Schwankungen, insbesondere bei tN6 und tN21, wo die Anzahl der Unterschiede höher ausfällt, hier war auch die Sensitivität der Teilnehmenden deutlich geringer.
-
-          Diese Unterschiede könnten auf abweichende Entscheidungsstrategien, Unsicherheit oder bewusste Abweichung vom KI-Vorschlag hindeuten.
-
-          Insgesamt unterstreicht die Visualisierung eine starke Orientierung am KI-Vorschlag, wobei einige Teilnehmende dennoch eigene Bewertungen bevorzugten.
-
-        </p>
+          Die Mehrheit der Teilnehmenden zeigt eine hohe Übereinstimmung mit der KI, meist um die 150 Treffer von 200 möglichen. Es gibt jedoch individuelle Schwankungen, insbesondere bei tN6 und tN21, wo die Anzahl der Unterschiede höher ausfällt, hier war auch die Sensitivität der Teilnehmenden deutlich geringer. Diese Unterschiede könnten auf abweichende Entscheidungsstrategien, Unsicherheit oder bewusste Abweichung vom KI-Vorschlag hindeuten. Insgesamt unterstreicht die Visualisierung eine starke Orientierung am KI-Vorschlag, wobei einige Teilnehmende dennoch eigene Bewertungen bevorzugten. </p>
 
         <TimeChart data={timeDifference} />
         <p className='text-lg mt-14 mb-10'>Die Analyse der Zeitabstände zwischen aufeinanderfolgenden Versuchen zeigt Unterschiede im Lernverhalten der Teilnehmenden. Eine negative Lerndifferenz weist darauf hin, dass sich die durchschnittliche Reaktionszeit in den späteren Durchgängen verringert hat – ein Indikator für eine Verbesserung der Entscheidungs- oder Wahrnehmungsprozesse im Verlauf des Experiments. Positive Werte deuten hingegen auf eine Verlangsamung hin, was beispielsweise durch Ermüdung oder Ablenkung erklärbar sein könnte. Teilnehmende mit kaum veränderter Zeit zeigen ein konstantes Antwortverhalten ohne nennenswerte Lern- oder Ermüdungseffekte.
