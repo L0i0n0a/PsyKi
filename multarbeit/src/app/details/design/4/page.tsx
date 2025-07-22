@@ -89,7 +89,6 @@ const DesignDecisionsPage4: React.FC = () => {
         <AllParticipantsChart />
       </div> */}
 
-      
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Übereinstimmung: Menschliche Einschätzung vs. KI
@@ -224,7 +223,6 @@ const DesignDecisionsPage4: React.FC = () => {
           auftreten – sowohl insgesamt als auch pro Teilnehmer:in.
         </p>
       </section> */}
-      
 
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">Umentschieden?</h2>
@@ -269,6 +267,120 @@ const DesignDecisionsPage4: React.FC = () => {
       )} */}
 
       <FinalScreensFlow />
+
+      <section className='sectionBorder'>
+        <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
+        <p className='text-lg mt-4 mb-6'>
+          Der Prototyp führt Nutzer*innen durch einen strukturierten Ablauf, der vom Onboarding bis zur finalen Entscheidungsunterstützung mit KI reicht. Der folgende Nutzendenweg zeigt alle Schritte
+          des Prototyps:
+        </p>
+        <div className='bg-gray-50 p-6 rounded-lg'>
+          <h3 className='text-xl font-semibold mb-4 text-center'>Nutzendenweg durch den Prototyp</h3>
+          <div className='flex flex-col space-y-4'>
+            <div className='flex items-center'>
+              <div className='bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>1</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-500'>
+                <h4 className='font-semibold'>Registrierung & Einverständnis</h4>
+                <p className='text-sm text-gray-600'>
+                  Route: <code>/prototype</code>
+                </p>
+                <p className='text-sm'>Eingabe Teilnahme-Code, Altersbestätigung, Einverständniserklärung</p>
+              </div>
+            </div>
+            <div className='flex justify-center'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+                <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+              </svg>
+            </div>
+            <div className='flex items-center'>
+              <div className='bg-orange-300 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>2</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-300'>
+                <h4 className='font-semibold'>Willkommen & Grundlagen</h4>
+                <p className='text-sm text-gray-600'>
+                  Route: <code>/prototype/onboarding</code>
+                </p>
+                <p className='text-sm'>Begrüßung, Einführung in die Aufgabe, Erklärung der Bildklassifikation</p>
+              </div>
+            </div>
+            <div className='flex justify-center'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+                <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+              </svg>
+            </div>
+            <div className='flex items-center'>
+              <div className='bg-orange-100 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>3</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-100'>
+                <h4 className='font-semibold'>Testphase - Eigenständige Entscheidungen</h4>
+                <p className='text-sm text-gray-600'>
+                  Route: <code>/prototype/testphase</code>
+                </p>
+                <p className='text-sm'>20 Bilder klassifizieren nur mit Schieberegler, Feedback nach jedem 5. Trial, Aufbau der Baseline</p>
+              </div>
+            </div>
+            <div className='flex justify-center'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+                <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+              </svg>
+            </div>
+            <div className='flex items-center'>
+              <div className='bg-blue-100 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>4</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-100'>
+                <h4 className='font-semibold'>Instruktionen für KI-Unterstützung</h4>
+                <p className='text-sm text-gray-600'>Interaktives Carousel (6 Schritte)</p>
+                <p className='text-sm'>Erklärung der KI-Hilfe, Optimal Weighing Konzept, Entscheidungsvisualisierung</p>
+              </div>
+            </div>
+            <div className='flex justify-center'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+                <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+              </svg>
+            </div>
+            <div className='flex items-center'>
+              <div className='bg-blue-300 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>5</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-300'>
+                <h4 className='font-semibold'>Hauptphase - Entscheidungen mit KI-Unterstützung</h4>
+                <p className='text-sm text-gray-600'>
+                  Route: <code>/prototype/mainphase</code>
+                </p>
+                <p className='text-sm'>200 Bilder: Erst eigene Einschätzung (Slider), dann KI-Empfehlung sehen, finale Entscheidung (Button), Feedback alle 5 Trials</p>
+              </div>
+            </div>
+            <div className='flex justify-center'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+                <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+              </svg>
+            </div>
+            <div className='flex items-center'>
+              <div className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>6</div>
+              <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-500'>
+                <h4 className='font-semibold'>Abschluss & Ergebnisse</h4>
+                <p className='text-sm text-gray-600'>Completion Screen in Hauptphase</p>
+                <p className='text-sm'>Anzeige der finalen Genauigkeit, Vergleich Test- vs. Hauptphase, Dankesnachricht</p>
+              </div>
+            </div>
+          </div>
+          <div className='mt-6 bg-blue-50 p-4 rounded'>
+            <h4 className='font-semibold mb-2'>Zentrale Designmerkmale:</h4>
+            <ul className='text-sm space-y-1'>
+              <li>
+                • <strong>Progressiver Aufbau:</strong> Von eigenständigen zu unterstützten Entscheidungen
+              </li>
+              <li>
+                • <strong>Transparenz:</strong> Klare Erklärung der KI-Funktionsweise vor dem Einsatz
+              </li>
+              <li>
+                • <strong>Vergleichbarkeit:</strong> Test- und Hauptphase ermöglichen Wirksamkeitsmessung
+              </li>
+              <li>
+                • <strong>Kontinuierliches Feedback:</strong> Regelmäßige Genauigkeitsrückmeldungen
+              </li>
+              <li>
+                • <strong>Benutzerzentrierung:</strong> Finale Entscheidung bleibt immer beim Menschen
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Erklärmodelle</h2>
