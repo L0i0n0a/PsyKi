@@ -25,7 +25,7 @@ export default function TimeChart({ data }: Props) {
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 40 }}>
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='participant'>
-            <Label value='Teilnehmende' offset={-30} position='insideBottom' />
+            <Label value='Teilnehmende' offset={-20} position='insideBottom' />
           </XAxis>
           <YAxis
             yAxisId='left'

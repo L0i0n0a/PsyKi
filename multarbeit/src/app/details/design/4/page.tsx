@@ -200,11 +200,6 @@ const DesignDecisionsPage4: React.FC = () => {
 </section>
  */}
 
-      {/* Zeitdifferenz */}
-      <section className='sectionBorder p-4 rounded-xl bg-gray-50 shadow-sm'>
-        <h2 className='text-2xl font-semibold mb-4 text-gray-800'>Zeitdifferenzen & Lernverhalten der Teilnehmenden</h2>
-      </section>
-
       {/* <section className="sectionBorder">
         <h2 className="text-2xl font-semibold">
           Erklärung: Vergleich Mensch vs. Button
@@ -798,7 +793,7 @@ const DesignDecisionsPage4: React.FC = () => {
               <SDTBoxplot participantData={participantData} />
             </div>
             <p className='text-lg mt-4 mb-4'>
-              Zwei Teilnehmende (TN 6 & TN21)wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität
+              Zwei Teilnehmende (TN 6 & TN21) wurden von den Analysen ausgeschlossen, da ihre d′-Werte auf eine unzureichende Sensitivität im Erkennen des Signals hinwiesen. Diese geringe Sensitivität
               ließ darauf schließen, dass keine systematische Unterscheidung zwischen Signal und Rauschen erfolgte, sodass eine valide Interpretation der Daten nicht gewährleistet war.
             </p>
           </div>
@@ -815,6 +810,9 @@ const DesignDecisionsPage4: React.FC = () => {
         </p>
 
         <TimeChart data={timeDifference} />
+        <p className='text-lg mt-14 mb-10'>Die Analyse der Zeitabstände zwischen aufeinanderfolgenden Versuchen zeigt Unterschiede im Lernverhalten der Teilnehmenden. Eine negative Lerndifferenz weist darauf hin, dass sich die durchschnittliche Reaktionszeit in den späteren Durchgängen verringert hat – ein Indikator für eine Verbesserung der Entscheidungs- oder Wahrnehmungsprozesse im Verlauf des Experiments. Positive Werte deuten hingegen auf eine Verlangsamung hin, was beispielsweise durch Ermüdung oder Ablenkung erklärbar sein könnte. Teilnehmende mit kaum veränderter Zeit zeigen ein konstantes Antwortverhalten ohne nennenswerte Lern- oder Ermüdungseffekte.
+          Im Diagramm ist erkennbar das alle Teilnehmenden mit der Zeit schneller geworden sind, was auf ein Lernverhalten hindeutet. Zumindest die Interaktionen wurden erlernt und konnten schneller als zu Beginn durchgeführt werden
+        </p>
 
         <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
         <DecisionTable />
