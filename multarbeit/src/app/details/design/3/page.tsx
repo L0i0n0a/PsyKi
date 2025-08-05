@@ -12,12 +12,12 @@ const DesignDecisionsPage3: React.FC = () => {
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
-      {/* Header */}
+      {/* Page Header */}
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Wissenschaftskommunikation & Feedback</h1>
       </div>
 
-      {/* Review of the OW-Model */}
+      {/* Optimal Weighting Model Review Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Rückblick OW-Modell</h2>
         <h2 className='text-2xl mb-4'>Wie funktioniert das Modell?</h2>
@@ -26,6 +26,7 @@ const DesignDecisionsPage3: React.FC = () => {
             Es beschreibt, wie ein Mensch oder ein System die Hinweise eines menschlichen Entscheiders und eines automatisierten Hilfsmittels optimal kombiniert, um die bestmögliche Entscheidung zu
             treffen.
           </p>
+          {/* Visual explanation of OW model with diagrams */}
           <div className='flex flex-row justify-between items-center'>
             <div>
               <Image src='/ow-1.png' alt='' width={500} height={300} />
@@ -39,10 +40,11 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Process in the application */}
+      {/* Application Process Documentation */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ablauf in der Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie durchlaufen Nutzende die Anwendung?</h2>
+        {/* Phase 1: Introduction */}
         <div className='mb-6'>
           <h4 className='text-lg font-semibold mt-4'>1. Einführung</h4>
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
@@ -100,12 +102,13 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Design of the application */}
+      {/* Application Design Principles Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Gestaltung der Anwendung</h2>
         <h2 className='text-2xl mb-4'>Wie ist die Anwendung gestaltet, um die Strategie zu fördern?</h2>
         <div>
           <p className='mt-6 text-lg'>Zentrale Anforderungen:</p>
+          {/* Core design requirements to support OW strategy implementation */}
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
             <li>
               <strong>Schlicht:</strong> Farbliche Gestaltung minimal gehalten, um Biases vorzubeugen
@@ -123,17 +126,19 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Integrated Information Processing Model */}
+      {/* Theoretical Foundation: IIP Model Implementation */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Integrated Information Processing Modell</h2>
         <h2 className='text-2xl mb-4'>Welche theoretische Grundlage beinhaltet die Anwendung, um die Strategie verständlich zu machen?</h2>
         <div>
+          {/* IIP model diagram visualization */}
           <Image className='imageCenter' src='/iip-model.png' alt='IIP-Modell' width={500} height={400} />
           <p className='imageSourcetext text-center'>Schrills, 2025</p>
           <p className='text-xl p-4'>
             Das Integrated Information Processing (IIP) Modell beschreibt, wie Mensch und KI sinnvoll zusammenwirken können, indem es drei zentrale Schnittstellen identifiziert, die wir systematisch
             berücksichtigen:
           </p>
+          {/* Three core IIP model components implemented as interactive cards */}
           <div className='grid grid-rows-3 md:grid-rows-2 gap-4'>
             <FeedbackHintCard title='1. Input Function:' color='orange'>
               Mensch und KI nehmen das Bild parallel wahr – visuell bzw. algorithmisch. Nutzer:innen geben ihre Einschätzung direkt mittels Schieberegler ein. Gleichzeitig analysiert die KI das Bild
@@ -208,11 +213,12 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Decision support */}
+      {/* Decision Support Visualization Design */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Entscheidungshilfe</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende bei Entscheidungen innerhalb der Anwendung unterstützt werden?</h3>
         <div>
+          {/* Visual progression of decision support design */}
           <div className='flex items-center'>
             <Image className='imageCenter' src='/z-score.png' alt='Entscheidungshilfe Visualisierung' width={300} height={300} />
             <span className='text-6xl'> &#8594;</span>
@@ -234,7 +240,7 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Explanatory texts */}
+      {/* User Guidance and OW Strategy Motivation */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Erklärungstexte</h2>
         <h3 className='text-xl mb-4'>Wie können Nutzende dazu animiert werden, die OW-Strategie zu verfolgen?</h3>
@@ -248,6 +254,7 @@ const DesignDecisionsPage3: React.FC = () => {
           <p className='mt-6 text-lg'>
             <strong>Zentrale Fragen, die beantwortet werden:</strong>
           </p>
+          {/* Key questions addressed by the system explanations */}
           <ul className='list-disc list-inside ml-6 text-lg space-y-1'>
             <li>Welche Informationen verarbeitet die Entscheidungshilfe?</li>
             <li>Was ist das Ziel? (→ bestmögliche Entscheidung)</li>
@@ -260,7 +267,7 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Feedback */}
+      {/* Comprehensive Feedback Strategy and Performance Communication */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Feedback</h2>
         <h2 className='text-2xl mb-4'>Wie können Nutzende ihre Entscheidungen einordnen und die bestmögliche Wahl treffen?</h2>
@@ -273,6 +280,7 @@ const DesignDecisionsPage3: React.FC = () => {
             Nutzung der Entscheidungshilfe stärken und zugleich das Bewusstsein für die eigene Entscheidungsqualität schärfen, um so insgesamt fundiertere und sicherere Entscheidungen zu ermöglichen.
           </p>
           <h3 className='text-xl font-semibold mb-4'>Feedback-Beispiele</h3>
+          {/* Example feedback cards demonstrating different types of performance feedback */}
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <FeedbackHintCard title='Letzte 10 Entscheidungen' color='green'>
               Du hast der Entscheidungshilfe in <strong>7</strong> Fällen vertraut – <strong>6</strong> davon waren korrekt.
@@ -296,11 +304,12 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
-      {/* Feedback Mentimeter */}
+      {/* Empirical Feedback Results from Prototype Evaluation */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Feedback</h2>
         <p className='text-2xl mb-4'>Hier befinden sich die Mentimenter-Ergebnisse aus der Vorstellung des Prototypen innerhalb des Moduls.</p>
         <h3 className='text-xl font-semibold mt-10 mb-4'>Subjektives Feedback zur Gestaltung von dem Kurs (N = 10)</h3>
+        {/* Quantitative feedback results from prototype evaluation */}
         <div className='space-y-4 mb-8'>
           <h4 className='text-lg'>Wie bewerten Sie die generelle Gestaltung?</h4>
           <FeedbackSlider title='Verständlich' value={3.8} />
@@ -308,6 +317,7 @@ const DesignDecisionsPage3: React.FC = () => {
           <FeedbackSlider title='Workload reduzierend' value={4.2} />
         </div>
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
+        {/* Qualitative feedback on general design - critical comments from participants */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'>
           {[
             'Entscheidungskriterium Z ist sehr "on the nose".',
@@ -323,6 +333,7 @@ const DesignDecisionsPage3: React.FC = () => {
             </div>
           ))}
         </div>
+        {/* Decision scale evaluation results */}
         <div className='space-y-4 mb-8'>
           <h4 className='text-lg'>Wie bewerten Sie die Entscheidungsskala?</h4>
           <FeedbackSlider title='Verständlich' value={3.4} />
@@ -330,6 +341,7 @@ const DesignDecisionsPage3: React.FC = () => {
           <FeedbackSlider title='Workload reduzierend' value={3.8} />
         </div>
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
+        {/* Qualitative feedback on decision scale - specific usability concerns */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'>
           {['Slider Sensitivität beachten- könnte zu Frustration führen, wenn ein Nutzer genau 70 Prozent angeben will, aber immer daneben liegt beim Verschieben des Sliders.'].map((text, index) => (
             <div key={index} className='bg-gray-100 p-4 rounded-lg shadow-sm text-gray-800'>
@@ -337,6 +349,7 @@ const DesignDecisionsPage3: React.FC = () => {
             </div>
           ))}
         </div>
+        {/* Decision support visualization evaluation results */}
         <div className='space-y-4 mb-8'>
           <h4 className='text-lg'>Wie bewerten Sie die Visualisierung der Entscheidungshilfe?</h4>
           <FeedbackSlider title='Verständlich' value={3.6} />
@@ -344,6 +357,7 @@ const DesignDecisionsPage3: React.FC = () => {
           <FeedbackSlider title='Workload reduzierend' value={3.1} />
         </div>
         <h4 className='text-lg mb-4'>Was kann kritisiert/verbessert werden?</h4>
+        {/* Specific feedback on decision support visualization - usability and clarity improvements */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           {[
             'visualisierung etwas ungenau. Könnte auch Mensch vs Ki symbolisieren und nicht blau vs rot. Eine bessere Beschriftung würde das beheben! Sonst eine sehr schöne Idee',
@@ -357,6 +371,7 @@ const DesignDecisionsPage3: React.FC = () => {
         </div>
       </section>
 
+      {/* Navigation Back Button - returns user to design decisions overview */}
       {/* Back button */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />

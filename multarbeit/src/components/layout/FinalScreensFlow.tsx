@@ -4,7 +4,36 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const screens = [
+/* ========================================
+   TYPE DEFINITIONS
+   ======================================== */
+
+/**
+ * Interface for screen data structure
+ *
+ * Defines the structure for each screen in the research application timeline,
+ * containing all necessary information for display and accessibility.
+ */
+interface ScreenData {
+  /** Screen title for identification and navigation */
+  title: string;
+  /** Detailed explanation of the screen's purpose and functionality */
+  text: string;
+  /** Path to the screenshot image for visual reference */
+  image: string;
+}
+
+/* ========================================
+   DATA DEFINITIONS
+   ======================================== */
+
+/**
+ * Complete sequence of screens in the PsyKi research application
+ *
+ * Represents the full participant journey from consent to debriefing,
+ * documenting each critical phase of the Optimal Weighting study.
+ */
+const screens: ScreenData[] = [
   {
     title: '1. Einwilligung & Code',
     text: 'Am Anfang geben die Teilnehmenden ihren Code ein und bestätigen die Informationen zur Teilnahme.',
@@ -62,47 +91,76 @@ const screens = [
   },
 ];
 
+/* ========================================
+   COMPONENT IMPLEMENTATION
+   ======================================== */
+
+/**
+ * FinalScreensFlow Component
+ *
+ * Interactive timeline component that visualizes the complete user journey
+ * through the PsyKi research application. Displays each screen with detailed
+ * explanations and animations to demonstrate the participant experience.
+ *
+ * This component serves as documentation and demonstration tool for researchers
+ * and stakeholders to understand the complete flow of the Optimal Weighting study,
+ * from initial consent through the final debriefing phase.
+ *
+ * */
 const FinalScreensFlow: React.FC = () => {
-
   return (
-    <section className='relative py-16 px-4 md:px-10 overflow-hidden sectionBorder'>
-      {/* Timeline vertical line */}
-      <div className='absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-300 via-violet-300 to-blue-300 z-0'></div>
+    <section className='relative py-16 px-4 md:px-10 overflow-hidden sectionBorder' role='main' aria-labelledby='timeline-title'>
+      {/* ========================================
+          TIMELINE VISUAL ELEMENTS
+          ======================================== */}
 
-      {/* Multiple Blobs for decoration */}
-      {/* Stronger, more visible background blobs */}
-      <div className='absolute -top-48 -left-48 w-[400px] h-[400px] bg-pink-400 opacity-60 rounded-full blur-[120px] -z-10'></div>
-      <div className='absolute top-[20%] -right-52 w-[380px] h-[380px] bg-violet-400 opacity-50 rounded-full blur-[100px] -z-10'></div>
-      <div className='absolute top-1/2 left-[-100px] w-[300px] h-[300px] bg-blue-400 opacity-40 rounded-full blur-[100px] -z-10'></div>
-      <div className='absolute bottom-0 right-0 w-[420px] h-[420px] bg-cyan-400 opacity-60 rounded-full blur-[130px] -z-10'></div>
-      <div className='absolute bottom-[30%] left-[25%] w-[350px] h-[350px] bg-orange-400 opacity-50 rounded-full blur-[100px] -z-10'></div>
+      {/* Central timeline progression line */}
+      <div className='absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-300 via-violet-300 to-blue-300 z-0' aria-hidden='true' />
 
-      <h2 className='text-2xl  font-semibold mb-16 text-center relative z-10'>
+      {/* ========================================
+          DECORATIVE BACKGROUND BLOBS
+          ======================================== */}
+      {/* Strategic placement for visual depth without distraction */}
+      <div className='absolute -top-48 -left-48 w-[400px] h-[400px] bg-pink-400 opacity-60 rounded-full blur-[120px] -z-10' aria-hidden='true' />
+      <div className='absolute top-[20%] -right-52 w-[380px] h-[380px] bg-violet-400 opacity-50 rounded-full blur-[100px] -z-10' aria-hidden='true' />
+      <div className='absolute top-1/2 left-[-100px] w-[300px] h-[300px] bg-blue-400 opacity-40 rounded-full blur-[100px] -z-10' aria-hidden='true' />
+      <div className='absolute bottom-0 right-0 w-[420px] h-[420px] bg-cyan-400 opacity-60 rounded-full blur-[130px] -z-10' aria-hidden='true' />
+      <div className='absolute bottom-[30%] left-[25%] w-[350px] h-[350px] bg-orange-400 opacity-50 rounded-full blur-[100px] -z-10' aria-hidden='true' />
+
+      {/* ========================================
+          SECTION HEADER
+          ======================================== */}
+      <h2 id='timeline-title' className='text-2xl font-semibold mb-16 text-center relative z-10'>
         <span className='bg-white'>Finale UI-Screens – Erläuterung</span>
       </h2>
 
+      {/* ========================================
+          TIMELINE CONTENT
+          ======================================== */}
       <div className='relative z-10 space-y-24'>
         {screens.map((screen, index) => {
+          // Alternate layout direction for visual balance
           const isReversed = index % 2 === 1;
 
           return (
             <motion.div
               key={index}
               className={`relative flex flex-col md:flex-row ${isReversed ? 'md:flex-row-reverse' : ''} items-center gap-6`}
+              // Animation configuration for smooth entrance
               initial={{ opacity: 0, x: isReversed ? 100 : -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}>
               {/* Gradient dot */}
               <div
-                className='absolute left-1/2 transform  -translate-x-1/2 w-5 h-5 bg-white rounded-full z-20 border-[3px] border-transparent animate-pulse'
+                className='absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-white rounded-full z-20 border-[3px] border-transparent animate-pulse'
                 style={{
                   borderImage: 'linear-gradient(to bottom, #f97316, #a78bfa, #3b82f6) 1',
                   borderImageSlice: 1,
                 }}
               />
 
-              {/* Image with localized blob */}
+              {/* Screen preview image with animation */}
               <div className='relative md:w-1/2'>
                 <div className='absolute -top-10 -left-10 w-60 h-60 bg-purple-200 opacity-25 blur-2xl rounded-full -z-10'></div>
                 <motion.div initial={{ scale: 0.95 }} whileInView={{ scale: 1 }} transition={{ duration: 0.5 }}>
@@ -110,7 +168,7 @@ const FinalScreensFlow: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* Text */}
+              {/* Screen description with enhanced typography */}
               <div className='text-lg md:w-1/2'>
                 <h3 className='text-xl font-semibold mb-2'>{screen.title}</h3>
                 <p>{screen.text}</p>

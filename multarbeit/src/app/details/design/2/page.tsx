@@ -8,12 +8,20 @@ import BiColor from '@/components/canvas/BiColor';
 
 const DesignDecisionsPage2: React.FC = () => {
   const router = useRouter();
+
+  // State for interactive instruction demonstration navigation
   const [step, setStep] = useState(0);
+  // State for decision support design demonstration navigation
   const [stepD, setStepD] = useState(0);
 
-  // --- Instruction Steps ---
+  /**
+   * Interactive instruction steps for prototype demonstration
+   * These represent the actual instruction flow participants will experience
+   * during the research study, from welcome through main phase preparation
+   */
   const instructionSteps = [
     {
+      // Step 1: Initial welcome and task explanation for test phase
       title: 'Herzlich Willkommen zu unserer Studie!',
       content: (
         <>
@@ -31,6 +39,7 @@ const DesignDecisionsPage2: React.FC = () => {
       ),
     },
     {
+      // Step 2: Main phase introduction with AI assistance explanation
       title: 'Instruktion vor der Hauptphase (mit Entscheidungsassistenz)',
       content: (
         <>
@@ -59,6 +68,7 @@ const DesignDecisionsPage2: React.FC = () => {
       ),
     },
     {
+      // Step 3: Brief reminder about Z-criterion before each main block
       title: 'Kurzer Erinnerungshinweis auf Z vor jedem Hauptblock',
       content: (
         <>
@@ -68,6 +78,7 @@ const DesignDecisionsPage2: React.FC = () => {
       ),
     },
     {
+      // Step 4: Block-wise feedback explanation and attention intervention
       title: 'Feedback (Blockweise)',
       content: (
         <>
@@ -89,9 +100,14 @@ const DesignDecisionsPage2: React.FC = () => {
     },
   ];
 
-  // --- Decision Help Steps ---
+  /**
+   * Decision support design steps for prototype interface mockups
+   * These demonstrate the visual design concepts for the Z-criterion
+   * implementation and decision combination visualization
+   */
   const decisionHelpSteps = [
     {
+      // Design concept 1: Z-criterion scale visualization for input and output
       title: 'Z-Kriterium als Skala anzeigen',
       content: (
         <>
@@ -106,6 +122,7 @@ const DesignDecisionsPage2: React.FC = () => {
       ),
     },
     {
+      // Design concept 2: Visual representation of decision combination weighting
       title: 'Entscheidungskombination visualisieren',
       content: (
         <>
@@ -125,6 +142,7 @@ const DesignDecisionsPage2: React.FC = () => {
       ),
     },
     {
+      // Design concept 3: Optional tooltip with mathematical explanation
       title: 'Optionaler Tooltip oder Klickfeld',
       content: (
         <>
@@ -138,7 +156,7 @@ const DesignDecisionsPage2: React.FC = () => {
     },
   ];
 
-  // --- Step Navigation ---
+  // Navigation state helpers for interactive demonstrations
   const isLastStep = step === instructionSteps.length - 1;
   const isFirstStep = step === 0;
   const isLastStepD = stepD === decisionHelpSteps.length - 1;
@@ -146,17 +164,18 @@ const DesignDecisionsPage2: React.FC = () => {
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
-      {/* Header */}
+      {/* Page Header */}
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Prototyp-Entwurf & Userflows</h1>
       </div>
 
-      {/* Target audience */}
+      {/* Target Audience Requirements Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Zielgruppe</h2>
         <h2 className='text-2xl mb-4'>Welche Zielgruppe soll die Anwendung testen und evaluieren?</h2>
         <div>
           <p className='mt-6 text-lg'>Zentrale Anforderungen:</p>
+          {/* List of participant requirements for the research study */}
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
             <li>
               <strong>Sprache:</strong> Gute Deutschkenntnisse oder Englisch-Kenntnisse (Verständnis der Anweisungen & Feedbacktexte)
@@ -204,19 +223,22 @@ const DesignDecisionsPage2: React.FC = () => {
             </ul>
           </div>
           <div>
+            {/* User flow diagram visualization */}
             <Image src='/user-flows.svg' height={400} width={400} alt='' />
             <p className='imageSourceText text-center'>Inkscape</p>
           </div>
         </div>
       </section>
 
-      {/* Textual explanations for the prototype */}
+      {/* Interactive Prototype Instructions Demonstration */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold mb-4'>Textuelle Erklärungen für den Prototypen</h2>
+        {/* Interactive walkthrough of actual instruction text participants will see */}
         <div className='h-auto bg-gradient-to-br from-blue-50 to-orange-100 flex items-center justify-center px-6'>
           <div className='w-full max-w-2xl m-8 bg-white shadow-lg rounded-xl p-8 text-gray-800'>
             <h1 className='text-2xl font-bold mb-4 text-center'>{instructionSteps[step].title}</h1>
             {instructionSteps[step].content}
+            {/* Navigation controls for stepping through instructions */}
             <div className='flex justify-between mt-6'>
               <button
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
@@ -228,6 +250,7 @@ const DesignDecisionsPage2: React.FC = () => {
                 {isLastStep ? 'Fertig' : 'Weiter'}
               </button>
             </div>
+            {/* Progress indicator */}
             <div className='mt-4 text-center text-sm text-gray-500'>
               Schritt {step + 1} von {instructionSteps.length}
             </div>
@@ -235,11 +258,12 @@ const DesignDecisionsPage2: React.FC = () => {
         </div>
       </section>
 
-      {/* Preliminary considerations for the prototype */}
+      {/* Prototype Planning and Scope Considerations */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Vorüberlegungen zum Prototyp</h2>
         <h2 className='text-2xl mb-4'>Welchen Umfang soll der Prototyp haben?</h2>
         <div className='flex lg:flex-row gap-6'>
+          {/* Trial count considerations */}
           <div className='w-3/6'>
             <p className='mt-6 text-lg'>Anzahl der Tests</p>
             <ul className='ml-6 list-disc list-inside mt-2 mb-6 space-y-1'>
@@ -249,6 +273,7 @@ const DesignDecisionsPage2: React.FC = () => {
               <li className='textColourGreen font-bold'>Hauptphase: 50 Bilder</li>
             </ul>
           </div>
+          {/* Instruction complexity considerations */}
           <div className='w-3/6'>
             <p className='mt-6 text-lg'>Anzahl der Erklärungen</p>
             <ul className='ml-6 list-disc list-inside mt-2 mb-6 space-y-1'>
@@ -261,9 +286,10 @@ const DesignDecisionsPage2: React.FC = () => {
         </div>
         <h2 className='text-2xl mb-4'>Welche Komponenten sollen enthalten sein?</h2>
         <div className='flex lg:flex-row gap-6 mt-6'>
-          {/* Left box */}
+          {/* UI Components Planning */}
           <div className='flex-1 p-6 rounded-xl shadow-md bgLightGreen'>
             <h2 className='text-lg font-bold text-blue-700 mb-4 textColourGreen'>UI-Komponenten</h2>
+            {/* List of planned interface components */}
             <ul className='list-disc list-inside space-y-1'>
               <li>Header Text mit Anweisung</li>
               <li>Bildanzeige</li>
@@ -274,6 +300,7 @@ const DesignDecisionsPage2: React.FC = () => {
               <li>Fortschrittsbalken</li>
               <li>
                 Feedback-Komponente:
+                {/* Feedback component implementation options */}
                 <ul className='list-disc list-inside ml-4 space-y-1 mt-1'>
                   <li>als neue Seite alle 10 Bilder im Haupt-Test</li>
                   <li>als Pop-up oder Box auf gleicher Seite im Pre-Test</li>
@@ -285,6 +312,7 @@ const DesignDecisionsPage2: React.FC = () => {
               <li>Info- oder Hilfe-Button (zeigt State + Erklärung)</li>
             </ul>
             <h2 className='text-lg font-bold text-blue-700 mt-6 mb-2 textColourGreen'>Interaktions-Logik</h2>
+            {/* User interaction behavior specifications */}
             <ul className='list-disc list-inside space-y-1'>
               <li>
                 <code>Senden</code>-Button bei Slider-Entscheidung
@@ -294,9 +322,10 @@ const DesignDecisionsPage2: React.FC = () => {
               </li>
             </ul>
           </div>
-          {/* Right box */}
+          {/* State Management Planning */}
           <div className='flex-1 bgLightGreen p-6 rounded-xl shadow-md'>
             <h2 className='text-lg font-bold textColourGreen mb-4'>State Management</h2>
+            {/* Application state requirements */}
             <ul className='list-disc list-inside space-y-1'>
               <li>Aktuelle Phase (Pre-Test, Haupttest)</li>
               <li>Was wurde angeklickt</li>
@@ -311,6 +340,7 @@ const DesignDecisionsPage2: React.FC = () => {
               </li>
             </ul>
             <h2 className='text-lg font-bold textColourGreen mt-6 mb-2'>Entscheidungs-Speicher (Planung)</h2>
+            {/* Data structure for storing trial decisions */}
             <ul className='list-disc list-inside space-y-1'>
               <li>Bild</li>
               <li>Entscheidung der KI</li>
@@ -322,6 +352,7 @@ const DesignDecisionsPage2: React.FC = () => {
         <h2 className='text-2xl mt-6'>Wie bekommen Nutzende Feedback?</h2>
         <div>
           <p className='mt-2 text-lg textColourGreen'>Feedback nach jedem Block (z.B. 10 Bilder)</p>
+          {/* Feedback timing and strategy considerations */}
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
             <li>
               <strong>Ideen:</strong> Nach jedem Trial, <strong>nach jedem Block</strong>, nur am Ende
@@ -340,6 +371,7 @@ const DesignDecisionsPage2: React.FC = () => {
         <h2 className='text-2xl mt-6'>Wie lassen wir die Reflexion einfließen?</h2>
         <div>
           <p className='mt-2 text-lg textColourGreen'>Ergebnisse</p>
+          {/* Performance comparison metrics for participant feedback */}
           <ul className='ml-6 list-disc list-inside mt-2 space-y-1'>
             <li>Wie gut hat der Nutzende im Hauptteil abgeschnitten?</li>
             <li>Wie gut hat der Nutzende im Vergleich zur Testphase abgeschnitten?</li>
@@ -400,7 +432,7 @@ const DesignDecisionsPage2: React.FC = () => {
             <p className='mb-2'>Ist anfangs festgelegt und für jedes Bild gilt:</p>
             <code className='bg-white/10 px-2 py-1 rounded-md'>Trefferrate = 0.93 → Falschalarmrate = 1 – 0.93 = 0.07</code>
           </section>
-          {/* Decision criterion */}
+          {/* Decision Criterion Formula Implementation */}
           <section className='p-6 bg-[#004346] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-4'>Entscheidungskriterium</h2>
             <p className='mb-2'>Gewichtung zwischen menschlicher und künstlicher Einschätzung:</p>
@@ -409,7 +441,7 @@ const DesignDecisionsPage2: React.FC = () => {
             </div>
             <p className='mt-2 italic text-sm'>→ Liefert Tendenz: Orange oder Blau für jeden Durchgang</p>
           </section>
-          {/* Overall sensitivity */}
+          {/* Combined Sensitivity Calculation */}
           <section className='p-6 bg-[#172a3a] rounded-xl shadow-md text-white'>
             <h2 className='text-xl font-bold mb-4'>Gesamtsensitivität (aus Mensch und KI)</h2>
             <p className='mb-2'>Am Ende der Hauptphase berechnet:</p>
@@ -420,7 +452,7 @@ const DesignDecisionsPage2: React.FC = () => {
         </div>
       </section>
 
-      {/* Back button */}
+      {/* Navigation Back Button */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />
       </div>

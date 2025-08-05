@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button/Button';
 
 const DesignDecisionsPage: React.FC = () => {
+  /** Navigation router for returning to main application */
   const router = useRouter();
 
   return (
@@ -55,16 +56,18 @@ const DesignDecisionsPage: React.FC = () => {
             </ul>
           </div>
           <div>
+            {/* Target Group Illustration */}
             <Image src='/target-group.png' height={400} width={400} alt='Zielgruppe' />
             <p className='imageSourceText text-right'>ChatGPT</p>
           </div>
         </div>
       </section>
 
-      {/* Strategic considerations */}
+      {/* Strategic Considerations Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Strategische Überlegungen</h2>
         <h2 className='text-2xl mb-4'>Welche Überlegungen wurden zu Beginn gemacht?</h2>
+        {/* Strategic Design Principles */}
         <ul className='list-disc list-inside space-y-1'>
           <li>Ziel: Wenig False Alarms, aber trotzdem möglichst viele Hits → Balance zwischen Sensitivität und Spezifität</li>
           <li>Direktes Feedback (richtig/falsch) im Vor-Test</li>
@@ -74,10 +77,12 @@ const DesignDecisionsPage: React.FC = () => {
         </ul>
       </section>
 
-      {/* User guidance and process */}
+      {/* User Experience and Process Flow Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Nutzerführung & Ablauf (UX)</h2>
         <h2 className='text-2xl'>Wie ist der Ablauf innerhalb der Anwendung geplant?</h2>
+
+        {/* Phase 1: Baseline Calibration */}
         <div className='mt-4'>
           <h3 className='text-xl font-medium'>1. Vorbereitungsphase (Baseline-Test)</h3>
           <p className='p-4 textColourGreen'>
@@ -85,12 +90,15 @@ const DesignDecisionsPage: React.FC = () => {
             mehr blau in dem Bild zu sehen ist. Anschließend gibt es Feedback zu der Bewertung und im Hintergrund wird die Sensitivität berechnet.
           </p>
           <h4 className='ml-2 font-bold'>Ablauf</h4>
+          {/* Baseline Test Process Steps */}
           <ul className='ml-6 list-decimal list-inside space-y-1 mt-2'>
             <li>Bild wird angezeigt</li>
             <li>Entscheidung treffen und Sicherheit angeben</li>
             <li>Rückmeldung zur Einschätzung (richtig/falsch)</li>
           </ul>
         </div>
+
+        {/* Phase 2: Main Testing with AI Collaboration */}
         <div className='mt-4'>
           <h3 className='text-xl font-medium'>2. Haupt-Testphase</h3>
           <p className='p-4 textColourGreen'>
@@ -99,6 +107,7 @@ const DesignDecisionsPage: React.FC = () => {
             Vorschlag angenommen wird oder nicht. Dieser Vorgang wird insgesamt 50 mal wiederholt.
           </p>
           <h4 className='ml-2 font-bold'>Ablauf</h4>
+          {/* Main Test Process Steps */}
           <ul className='ml-6 list-decimal list-inside space-y-1 mt-2'>
             <li>Bild wird angezeigt</li>
             <li>Pro Bild: Entscheidung treffen und Sicherheit angeben</li>
@@ -106,6 +115,7 @@ const DesignDecisionsPage: React.FC = () => {
             <li>Begründeter Vorschlag aus der Kombination Mensch und KI mit Zuverlässigkeitsinformation</li>
             <li>Mensch entscheidet, ob Vorschlag angenommen wird</li>
           </ul>
+          {/* Methodological Justification */}
           <p className='m-4'>
             Die zugrundeliegende Annahme statistischer Unabhängigkeit wird im Ablauf durch eine zeitlich getrennte Abfrage der menschlichen Einschätzung vor dem KI-Vorschlag gestützt. Dadurch lässt
             sich eine Beeinflussung der menschlichen Evidenzverarbeitung minimieren und die Gültigkeit des OW-Ansatzes wahren.
@@ -113,16 +123,17 @@ const DesignDecisionsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Scribbles and mock-up ideas */}
+      {/* Visual Design and Mockup Section */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Scribbles und MockUp-Ideen</h2>
         <h2 className='text-2xl mb-4'>Wie werden Nutzende durch die Anwendung geführt?</h2>
         <div className='flex gap-8 items-start'>
-          {/* First element */}
+          {/* Human Assessment Interface Design */}
           <div className='flex flex-col items-start w-2/4'>
             <Image height={200} width={400} src='/scribble-1.png' alt='Scribble 1' className='h-[200px] w-auto' />
             <div className='mt-4'>
               <h3 className='font-bold'>Menschliche Einschätzung:</h3>
+              {/* Human Decision Interface Features */}
               <ul className='ml-6 list-disc list-inside space-y-1 mt-2'>
                 <li>menschliche Entscheidung vor KI-Anzeige → vermeidet Bias</li>
                 <li>Mindestbetrachtungszeit für genaue Bildanalyse</li>
@@ -130,11 +141,13 @@ const DesignDecisionsPage: React.FC = () => {
               </ul>
             </div>
           </div>
-          {/* Second element */}
+
+          {/* Final Decision Interface Design */}
           <div className='flex flex-col items-start w-2/4'>
             <Image height={200} width={400} src='/scribble-2.png' alt='Scribble 2' className='h-[200px] w-auto' />
             <div className='mt-4'>
               <h3 className='font-bold'>Finale Entscheidung:</h3>
+              {/* Final Decision Interface Features */}
               <ul className='ml-6 list-disc list-inside space-y-1 mt-2'>
                 <li>Parallele Darstellung von Mensch und KI-Entscheidung zur direkten Vergleichbarkeit</li>
                 <li>KI-Vorschlag mit Sicherheit visuell hervorgehoben</li>
@@ -145,7 +158,7 @@ const DesignDecisionsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Back button */}
+      {/* Navigation Back Button */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />
       </div>

@@ -10,35 +10,49 @@ import { calculateTimeDifferences, summarizeAIGuessSliderSideMatch } from '@/uti
 import DecisionTable from '@/components/layout/DecisionChart';
 import SDTSummaryTable from '@/components/layout/SDTSummaryTable';
 import SDTBoxplot from '@/components/layout/SDTBoxplot';
-import WerteVergleich from '@/components/layout/ResultComparison';
+import ResultComparison from '@/components/layout/ResultComparison';
 import AccuracyComparison from '@/components/ui/AccuracyComponent/AccuracyComparison';
 import TimeChart from '@/components/layout/TimeChart';
 import AISliderMatchChart from '@/components/layout/AISliderMatchChart';
 
 const DesignDecisionsPage4: React.FC = () => {
+  /* ========================================
+     NAVIGATION AND DATA PROCESSING
+     ======================================== */
+
   const router = useRouter();
 
+  // Calculate learning patterns and AI agreement metrics for analysis
   const timeDifference = calculateTimeDifferences(participantData);
   const aiSliderMatchSummary = summarizeAIGuessSliderSideMatch(participantData);
 
   return (
     <div className='max-w-6xl mx-auto p-6 space-y-8'>
-      {/* Header */}
+      {/* ========================================
+          PAGE HEADER
+          ======================================== */}
       <div className='header border10'>
         <h1 className='text-4xl font-bold m-4 text-center'>Finalisierung & Ergebnisse</h1>
       </div>
 
+      {/* Interactive Timeline Component */}
       <FinalScreensFlow />
 
+      {/* ========================================
+          USER FLOW DOCUMENTATION SECTION
+          ======================================== */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Nutzendenwege</h2>
         <p className='text-lg mt-4 mb-6'>
           Der Prototyp führt Nutzer*innen durch einen strukturierten Ablauf, der vom Onboarding bis zur finalen Entscheidungsunterstützung mit KI reicht. Der folgende Nutzendenweg zeigt alle Schritte
           des Prototyps:
         </p>
+
+        {/* User Journey Visualization */}
         <div className='bg-gray-50 p-6 rounded-lg'>
           <h3 className='text-xl font-semibold mb-4 text-center'>Nutzendenweg durch den Prototyp</h3>
           <div className='flex flex-col space-y-4'>
+            {/* Step 1: Registration & Consent */}
             <div className='flex items-center'>
               <div className='bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>1</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-500'>
@@ -49,11 +63,15 @@ const DesignDecisionsPage4: React.FC = () => {
                 <p className='text-sm'>Eingabe Teilnahme-Code, Altersbestätigung, Einverständniserklärung</p>
               </div>
             </div>
+
+            {/* Navigation Arrow */}
             <div className='flex justify-center'>
-              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' aria-hidden='true'>
                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
               </svg>
             </div>
+
+            {/* Step 2: Welcome & Basics */}
             <div className='flex items-center'>
               <div className='bg-orange-300 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>2</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-300'>
@@ -64,11 +82,15 @@ const DesignDecisionsPage4: React.FC = () => {
                 <p className='text-sm'>Begrüßung, Einführung in die Aufgabe, Erklärung der Bildklassifikation</p>
               </div>
             </div>
+
+            {/* Navigation Arrow */}
             <div className='flex justify-center'>
-              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' aria-hidden='true'>
                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
               </svg>
             </div>
+
+            {/* Step 3: Test Phase */}
             <div className='flex items-center'>
               <div className='bg-orange-100 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>3</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-orange-100'>
@@ -79,11 +101,15 @@ const DesignDecisionsPage4: React.FC = () => {
                 <p className='text-sm'>20 Bilder klassifizieren nur mit Schieberegler, Feedback nach jedem 5. Trial, Aufbau der Baseline</p>
               </div>
             </div>
+
+            {/* Navigation Arrow */}
             <div className='flex justify-center'>
-              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' aria-hidden='true'>
                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
               </svg>
             </div>
+
+            {/* Step 4: AI Instructions */}
             <div className='flex items-center'>
               <div className='bg-blue-100 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>4</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-100'>
@@ -92,11 +118,15 @@ const DesignDecisionsPage4: React.FC = () => {
                 <p className='text-sm'>Erklärung der KI-Hilfe, Optimal Weighing Konzept, Entscheidungsvisualisierung</p>
               </div>
             </div>
+
+            {/* Navigation Arrow */}
             <div className='flex justify-center'>
-              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' aria-hidden='true'>
                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
               </svg>
             </div>
+
+            {/* Step 5: Main Phase */}
             <div className='flex items-center'>
               <div className='bg-blue-300 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>5</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-300'>
@@ -107,11 +137,15 @@ const DesignDecisionsPage4: React.FC = () => {
                 <p className='text-sm'>200 Bilder: Erst eigene Einschätzung (Slider), dann KI-Empfehlung sehen, finale Entscheidung (Button), Feedback alle 5 Trials</p>
               </div>
             </div>
+
+            {/* Navigation Arrow */}
             <div className='flex justify-center'>
-              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+              <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' aria-hidden='true'>
                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
               </svg>
             </div>
+
+            {/* Step 6: Completion */}
             <div className='flex items-center'>
               <div className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4'>6</div>
               <div className='flex-1 bg-white p-4 rounded border-l-4 border-blue-500'>
@@ -121,6 +155,8 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Design Features Summary */}
           <div className='mt-6 bg-blue-50 p-4 rounded'>
             <h4 className='font-semibold mb-2'>Zentrale Designmerkmale:</h4>
             <ul className='text-sm space-y-1'>
@@ -144,6 +180,9 @@ const DesignDecisionsPage4: React.FC = () => {
         </div>
       </section>
 
+      {/* ========================================
+          EXPLANATION MODELS SECTION
+          ======================================== */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Erklärmodelle</h2>
         <p className='text-lg mt-4 mb-6'>
@@ -151,6 +190,7 @@ const DesignDecisionsPage4: React.FC = () => {
           Informationen, die Nutzer*innen tatsächlich während der Nutzung präsentiert werden.
         </p>
         <div className='space-y-6'>
+          {/* Explanation Model 1: Basic Task Introduction - Foundation layer for user understanding */}
           <div className='rounded border-l-4 p-6 shadow-md transition-colors duration-300 bg-teal-50 hover:bg-teal-100 border-teal-300'>
             <h3 className='text-xl font-semibold mb-4 flex items-center '>
               <div className='bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>1</div>
@@ -190,6 +230,8 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Explanation Model 2: Interactive Carousel - Comprehensive AI system introduction and transparency */}
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-blue-50 hover:bg-blue-100 border-blue-300'>
             <h3 className='text-xl font-semibold mb-4 flex items-center '>
               <div className='bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>2</div>
@@ -246,6 +288,7 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
           </div>
+          {/* Explanation Model 3: Visual Decision Support - Real-time interactive feedback visualization */}
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-green-50 hover:bg-green-100 border-green-300'>
             <h3 className='text-xl font-semibold mb-4 flex items-center '>
               <div className='bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>3</div>
@@ -288,6 +331,7 @@ const DesignDecisionsPage4: React.FC = () => {
               <AccuracyComparison humanPercent={1} aiPercent={-1} locale={'de'} decision={-0.3} aiAccuracy={93} humanAccuracy={Number(68)} />
             </div>
           </div>
+          {/* Explanation Model 4: Continuous Feedback System - Performance tracking and learning support */}
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-yellow-50 hover:bg-yellow-100 border-yellow-300'>
             <h3 className='text-xl font-semibold mb-4 flex items-center'>
               <div className='bg-yellow-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>4</div>
@@ -338,6 +382,7 @@ const DesignDecisionsPage4: React.FC = () => {
               </div>
             </div>
           </div>
+          {/* Explanation Model 5: Linguistic Accessibility - Simplified terminology for broad user comprehension */}
           <div className='border-l-4 rounded p-6 shadow-md transition-colors duration-300 bg-violet-50 hover:bg-violet-100 border-violet-300'>
             <h3 className='text-xl font-semibold mb-4 flex items-center'>
               <div className='bg-violet-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3'>5</div>
@@ -381,6 +426,7 @@ const DesignDecisionsPage4: React.FC = () => {
             </div>
           </div>
         </div>
+        {/* Summary of explanation model design principles and implementation strategy */}
         <div className='mt-6 bg-blue-50 p-4 rounded'>
           <h4 className='font-semibold mb-2'>Zentrale Prinzipien der implementierten Erklärmodelle:</h4>
           <ul className='text-sm space-y-1'>
@@ -406,12 +452,14 @@ const DesignDecisionsPage4: React.FC = () => {
         </div>
       </section>
 
+      {/* Team Reflection Section - Lessons learned and future improvements identified during study development */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Reflexion</h2>
         <p className='text-lg m-4'>
           In diesem Abschnitt werden einige Ideen und Reflexionen zur Studie genannt. Einige beschreiben unsere Überlegungen im anfänglichen Prozess und einige Ideen erschlossen sich nach der
           Durchführung der Studie, auf Basis weiterer Diskussionen und Überlegungen.
         </p>
+        {/* Grid layout of reflection cards covering various aspects of study design and potential improvements */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <FeedbackHintCard title='Entscheidungsreihenfolge' color='indigo'>
             Vielleicht hätte man erst die Entscheidung der KI zeigen können. Dann den Mensch entscheiden lassen. Und dann die Entscheidungshilfe zum Schluss anzeigen.
@@ -451,6 +499,9 @@ const DesignDecisionsPage4: React.FC = () => {
         </div>
       </section>
 
+      {/* ========================================
+          COMPREHENSIVE RESULTS AND STATISTICAL ANALYSIS SECTION
+          ======================================== */}
       <section className='sectionBorder'>
         <h2 className='text-2xl font-semibold'>Ergebnisse und Datenbewertung</h2>
         <p className='text-lg m-4'>
@@ -458,12 +509,13 @@ const DesignDecisionsPage4: React.FC = () => {
           Originalpaper.
         </p>
 
-
+        {/* Demographics Analysis Section - Participant characteristics and sample composition */}
         <div>
           <h2 className='text-lg font-bold mb-2'>Demografie der Teilnehmenden</h2>
           <p className='text-lg ml-4 mb-10'>waiting for data</p>
         </div>
 
+        {/* Signal Detection Theory Comprehensive Analysis - Core statistical methodology for performance evaluation */}
         <div>
           <div className='flex flex-col justify-between'>
             <h2 className='text-lg font-bold mb-2'>Erklärung zur Signalentdeckungstheorie (SDT) - Orange als Basis</h2>
@@ -546,9 +598,10 @@ const DesignDecisionsPage4: React.FC = () => {
             </table>
             <h1 className='text-xl font-bold mb-4 mt-4 text-left'>Signal Detection Zusammenfassung der Teilnehmenden</h1>
 
+            {/* Comprehensive SDT summary table with participant performance metrics */}
             <SDTSummaryTable participantData={participantData} />
             <div className='mt-8'>
-              {/* Boxplot visualization of SDT metrics */}
+              {/* Statistical distribution visualization using boxplots for SDT metrics analysis */}
               <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>Boxplots</h2>
               <SDTBoxplot participantData={participantData} />
             </div>
@@ -558,8 +611,9 @@ const DesignDecisionsPage4: React.FC = () => {
             </p>
           </div>
         </div>
+        {/* Comparative analysis visualization against original research paper benchmarks */}
         <div className='flex flex-row justify-center'>
-          <WerteVergleich />
+          <ResultComparison />
         </div>
         <p className='text-lg mt-4 mb-10'>
           Betrachtet man die Mittelwerte der Sensitivitätswerte über alle Teilnehmenden, ergibt sich eine Ähnlichkeit zwischen beiden Studien. In der Originalstudie (Paper) wurde ein
@@ -569,20 +623,36 @@ const DesignDecisionsPage4: React.FC = () => {
           optimalen Sensitivitätsniveaus agierten – ein Hinweis auf konsistente Muster in der menschlichen Nutzung automatisierter Entscheidungshilfen.
         </p>
 
+        {/* Decision Pattern Analysis - Contingency table showing human decision-making patterns with AI support */}
         <h2 className='text-xl font-bold text-left mt-12 mb-8'>Kontingenztabelle der Entscheidungen</h2>
         <DecisionTable />
-        <p className='text-lg mt-4 mb-10'>Die Kontingenztabelle zeigt, wie sich die Teilnehmenden im Verlauf des Experiments entschieden haben. Insbesondere, ob sie ihre ursprüngliche Entscheidung geändert haben oder dabei geblieben sind, und ob dies im Nachhinein korrekt oder falsch war. Das Ergebnis lässt darauf schließen, dass die Teilnehmenden in der Mehrheit konsistent und korrekt gehandelt haben, und dass Änderungen größtenteils zu einer Verbesserung führten.</p>
-
-        <AISliderMatchChart data={aiSliderMatchSummary} />
-        <p className='text-lg mt-4 mb-10 mt-10'>Das Balkendiagramm veranschaulicht die Anzahl der Übereinstimmungen und Unterschiede zwischen den Entscheidungen der Teilnehmenden und den Vorhersagen der KI pro Person.
-
-          Die Mehrheit der Teilnehmenden zeigt eine hohe Übereinstimmung mit der KI, meist um die 150 Treffer von 200 möglichen. Es gibt jedoch individuelle Schwankungen, insbesondere bei tN6 und tN21, wo die Anzahl der Unterschiede höher ausfällt, hier war auch die Sensitivität der Teilnehmenden deutlich geringer. Diese Unterschiede könnten auf abweichende Entscheidungsstrategien, Unsicherheit oder bewusste Abweichung vom KI-Vorschlag hindeuten. Insgesamt unterstreicht die Visualisierung eine starke Orientierung am KI-Vorschlag, wobei einige Teilnehmende dennoch eigene Bewertungen bevorzugten. </p>
-
-        <TimeChart data={timeDifference} />
-        <p className='text-lg mt-14 mb-10'>Die Analyse der Zeitabstände zwischen aufeinanderfolgenden Versuchen zeigt Unterschiede im Lernverhalten der Teilnehmenden. Eine negative Lerndifferenz weist darauf hin, dass sich die durchschnittliche Reaktionszeit in den späteren Durchgängen verringert hat – ein Indikator für eine Verbesserung der Entscheidungs- oder Wahrnehmungsprozesse im Verlauf des Experiments. Positive Werte deuten hingegen auf eine Verlangsamung hin, was beispielsweise durch Ermüdung oder Ablenkung erklärbar sein könnte. Teilnehmende mit kaum veränderter Zeit zeigen ein konstantes Antwortverhalten ohne nennenswerte Lern- oder Ermüdungseffekte.
-          Im Diagramm ist erkennbar das alle Teilnehmenden mit der Zeit schneller geworden sind, was auf ein Lernverhalten hindeutet. Zumindest die Interaktionen wurden erlernt und konnten schneller als zu Beginn durchgeführt werden
+        <p className='text-lg mt-4 mb-10'>
+          Die Kontingenztabelle zeigt, wie sich die Teilnehmenden im Verlauf des Experiments entschieden haben. Insbesondere, ob sie ihre ursprüngliche Entscheidung geändert haben oder dabei geblieben
+          sind, und ob dies im Nachhinein korrekt oder falsch war. Das Ergebnis lässt darauf schließen, dass die Teilnehmenden in der Mehrheit konsistent und korrekt gehandelt haben, und dass
+          Änderungen größtenteils zu einer Verbesserung führten.
         </p>
 
+        {/* AI-Human Agreement Analysis - Visualization of decision alignment patterns across participants */}
+        <AISliderMatchChart data={aiSliderMatchSummary} />
+        <p className='text-lg mt-10 mb-10'>
+          Das Balkendiagramm veranschaulicht die Anzahl der Übereinstimmungen und Unterschiede zwischen den Entscheidungen der Teilnehmenden und den Vorhersagen der KI pro Person. Die Mehrheit der
+          Teilnehmenden zeigt eine hohe Übereinstimmung mit der KI, meist um die 150 Treffer von 200 möglichen. Es gibt jedoch individuelle Schwankungen, insbesondere bei tN6 und tN21, wo die Anzahl
+          der Unterschiede höher ausfällt, hier war auch die Sensitivität der Teilnehmenden deutlich geringer. Diese Unterschiede könnten auf abweichende Entscheidungsstrategien, Unsicherheit oder
+          bewusste Abweichung vom KI-Vorschlag hindeuten. Insgesamt unterstreicht die Visualisierung eine starke Orientierung am KI-Vorschlag, wobei einige Teilnehmende dennoch eigene Bewertungen
+          bevorzugten.
+        </p>
+
+        {/* Learning Curve Analysis - Time-based performance evolution and adaptation patterns */}
+        <TimeChart data={timeDifference} />
+        <p className='text-lg mt-14 mb-10'>
+          Die Analyse der Zeitabstände zwischen aufeinanderfolgenden Versuchen zeigt Unterschiede im Lernverhalten der Teilnehmenden. Eine negative Lerndifferenz weist darauf hin, dass sich die
+          durchschnittliche Reaktionszeit in den späteren Durchgängen verringert hat – ein Indikator für eine Verbesserung der Entscheidungs- oder Wahrnehmungsprozesse im Verlauf des Experiments.
+          Positive Werte deuten hingegen auf eine Verlangsamung hin, was beispielsweise durch Ermüdung oder Ablenkung erklärbar sein könnte. Teilnehmende mit kaum veränderter Zeit zeigen ein
+          konstantes Antwortverhalten ohne nennenswerte Lern- oder Ermüdungseffekte. Im Diagramm ist erkennbar das alle Teilnehmenden mit der Zeit schneller geworden sind, was auf ein Lernverhalten
+          hindeutet. Zumindest die Interaktionen wurden erlernt und konnten schneller als zu Beginn durchgeführt werden
+        </p>
+
+        {/* Study Conclusions and Research Validation Summary */}
         <h2 className='text-xl font-bold text-left mt-12'>Zusammenfassung</h2>
         <div>
           <ul className='text-lg list-disc pl-6'>
@@ -592,12 +662,18 @@ const DesignDecisionsPage4: React.FC = () => {
             <li>Die Reaktionszeiten deuten auf Lernfortschritte, nicht auf Ermüdung – ein positiver Indikator für Usability und Verständlichkeit des Systems.</li>
           </ul>
 
-          <p className='text-lg mt-4 mb-10'> Die Ergebnisse zeigen, dass Menschen in der Lage sind, sinnvolle, reflektierte Entscheidungen in Zusammenarbeit mit KI-Systemen zu treffen. Die Kombination aus hoher Sensitivität, lernendem Verhalten und selektiver Nutzung von Empfehlungen legt nahe, dass solche Systeme ein wertvolles Werkzeug zur Entscheidungsunterstützung darstellen können – solange sie richtig gestaltet und eingesetzt werden. Hier koennen noch viele weitere Studien zu Teilaspekten, wie Usability, Entscheidungshilfen und Entscheidungsverhalten durchgeführt werden um die Ergebnisse zu validieren.</p>
+          <p className='text-lg mt-4 mb-10'>
+            Die Ergebnisse zeigen, dass Menschen in der Lage sind, sinnvolle, reflektierte Entscheidungen in Zusammenarbeit mit KI-Systemen zu treffen. Die Kombination aus hoher Sensitivität,
+            lernendem Verhalten und selektiver Nutzung von Empfehlungen legt nahe, dass solche Systeme ein wertvolles Werkzeug zur Entscheidungsunterstützung darstellen können – solange sie richtig
+            gestaltet und eingesetzt werden. Hier koennen noch viele weitere Studien zu Teilaspekten, wie Usability, Entscheidungshilfen und Entscheidungsverhalten durchgeführt werden um die
+            Ergebnisse zu validieren.
+          </p>
         </div>
-
       </section>
 
-      {/* Back button */}
+      {/* ========================================
+          NAVIGATION AND USER INTERFACE SECTION
+          ======================================== */}
       <div className='flex justify-center'>
         <Button text='Zurück' onClick={() => router.push('/')} />
       </div>

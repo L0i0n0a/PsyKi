@@ -1,20 +1,14 @@
+/**
+ * Participant Analysis Utilities for PsyKi Research Application
+ *
+ * Signal Detection Theory analysis and statistical functions for processing
+ * participant decision-making data in the Optimal Weighting study.
+ */
+
 import jStat from 'jstat';
 
 /**
- * Compute SDT metrics for a participant's set of trials
- * @param {Array} trials - Array of trial objects
- * @returns {Object} - SDT metrics and per-trial results
- *
- *
- * Also inhaltlich würde Sinn machen:
-
-- Mittelwert/Median Sensitivität des/der Menschen (Gegenüberstellen mit KI - 93%)
-- Mittelwert/Median Team-Sensitivität vs. Paper (ist das der Referenzwert, den ihr schon eingefügt habt mit 3.8?)
-- Vergleich eigene Antworten Mensch (Schieberegler) vs. Antworten nach Hilfe (Button)
-- Häufigkeit der Nutzung der Entscheidungshilfe (also die Antwort gewählt die vorgeschlagen wurde)
-- Häufigkeit Umentscheiden nach Entscheidungshilfe
-- Häufigkeit Übereinstimmung mit KI
-
+ * Interface representing a single trial in the experiment
  */
 interface Trial {
   index: number;
@@ -25,23 +19,10 @@ interface Trial {
   aiGuessValue?: number;
 }
 
-// interface ParticipantSummary {
-//   dPrimeHuman: number;
-//   dPrimeTeam: number;
-//   // ... add other fields if needed
-// }
-
-// type AllParticipantsData = {
-//   [filename: string]: Trial[];
-// };
-
-// function calculateMedianHumanSensitivity() {
-//   //alle werte und mittelsten suchen
-// }
-
-// function calculateMittelwertHumanSensitivity() {
-//   //alle werte durch anzahl
-// }
+/**
+ * Compare slider values with button decisions across all participants
+ * Analyzes consistency between initial slider response and final button decision
+ */
 export function compareSliderWithButtonDetailed(data: { [key: string]: Trial[] }) {
   let totalComparisons = 0;
   let matches = 0;
@@ -63,6 +44,7 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: Trial[] }
     let participantMatches = 0;
     let participantComparisons = 0;
 
+    // Process trials with both slider and button data
     records
       .filter((record: Trial) => typeof record.sliderValue === 'number' && (record.buttonPressed === 'blue' || record.buttonPressed === 'orange'))
       .forEach((record: Trial) => {
@@ -106,6 +88,10 @@ export function compareSliderWithButtonDetailed(data: { [key: string]: Trial[] }
   };
 }
 
+/**
+ * Evaluate accuracy using different response methods (slider vs button)
+ * Compares accuracy between slider-only decisions and button decisions with AI assistance
+ */
 export function evaluateAccuracyWithSliderAndButton(data: { [key: string]: Trial[] }) {
   const perParticipantResults: {
     [participant: string]: {
@@ -304,9 +290,7 @@ export function summarizeAIGuessSliderSideMatch(data: { [key: string]: Trial[] }
   } = {};
 
   for (const participant in data) {
-    const records = data[participant].filter(
-      (trial) => trial.color !== 0
-    );
+    const records = data[participant].filter((trial) => trial.color !== 0);
 
     let matches = 0;
     let totalComparisons = 0;
@@ -564,8 +548,7 @@ export function calculateTimeDifferences(data: { [key: string]: Trial[] }): {
     const avgFirst = getAvgInterval(first10);
     const avgLast = getAvgInterval(last10);
 
-    const timeLearning =
-      avgFirst !== null && avgLast !== null ? avgLast - avgFirst : null;
+    const timeLearning = avgFirst !== null && avgLast !== null ? avgLast - avgFirst : null;
 
     result[participant] = {
       totalTime,
@@ -575,7 +558,6 @@ export function calculateTimeDifferences(data: { [key: string]: Trial[] }): {
 
   return result;
 }
-
 
 export function calculateOverallMean<K extends keyof Trial>(data: { [x: string]: Trial[] }, parameter: K) {
   const allValues: number[] = [];
@@ -631,12 +613,17 @@ export function calculateMedianTeamSensitivity(data: AllParticipantsData): numbe
   return jStat.median(values);
 }
 
+/**
+ * Main analysis function for computing Signal Detection Theory metrics
+ * Calculates d-prime, accuracy, hit rates, and optimal weighting parameters
+ */
 export function analyzeParticipant(trials: Trial[]) {
-  // Filter out trials where color is 0
+  // Filter out trials where color is 0 (invalid/neutral trials)
   trials = trials.filter((trial: Trial) => trial.color !== 0);
 
-  const epsilon = 1e-5;
+  const epsilon = 1e-5; // Small value to prevent division by zero
 
+  // SDT classification counters
   let hits = 0;
   let misses = 0;
   let falseAlarms = 0;
@@ -644,9 +631,9 @@ export function analyzeParticipant(trials: Trial[]) {
 
   const results = [];
 
-  // Classify each trial
+  // Classify each trial using Signal Detection Theory
   for (const trial of trials) {
-    const isSignal = trial.color >= 50; // blue
+    const isSignal = trial.color >= 50; // blue = signal
     const isResponseBlue = trial.buttonPressed === 'blue';
 
     if (isSignal && isResponseBlue) hits++;
@@ -654,7 +641,7 @@ export function analyzeParticipant(trials: Trial[]) {
     else if (!isSignal && isResponseBlue) falseAlarms++;
     else if (!isSignal && !isResponseBlue) correctRejections++;
 
-    // Store classification for each trial
+    // Store classification for detailed analysis
     results.push({
       ...trial,
       isSignal,
@@ -666,24 +653,29 @@ export function analyzeParticipant(trials: Trial[]) {
   const total = trials.length;
   const accuracy = ((hits + correctRejections) / total) * 100;
 
-  const hitRate = hits / (hits + misses || 1); // prevent divide-by-zero
+  // Calculate SDT rates with protection against division by zero
+  const hitRate = hits / (hits + misses || 1);
   const faRate = falseAlarms / (falseAlarms + correctRejections || 1);
 
+  // Bound rates to prevent extreme z-scores
   const boundedHR = Math.min(Math.max(hitRate, epsilon), 1 - epsilon);
   const boundedFAR = Math.min(Math.max(faRate, epsilon), 1 - epsilon);
 
+  // Convert to z-scores for d-prime calculation
   const zHR = jStat.normal.inv(boundedHR, 0, 1);
   const zFAR = jStat.normal.inv(boundedFAR, 0, 1);
 
   const dPrimeHuman = zHR - zFAR;
 
-  // AI assumed static values (could vary if dynamic model available)
+  // AI performance metrics (static values for consistency)
   const dPrimeAid = calculateDPrime(0.93, 0.07);
 
+  // Calculate optimal weighting parameters
   const totalDP = dPrimeHuman + dPrimeAid;
   const aHuman = dPrimeHuman / totalDP;
   const aAid = dPrimeAid / totalDP;
 
+  // Calculate per-trial optimal weighting scores
   const perTrialWithZ = results.map((trial) => {
     const XHuman = trial.sliderValue;
     const XAid = trial.aiGuessValue;
@@ -697,6 +689,7 @@ export function analyzeParticipant(trials: Trial[]) {
     };
   });
 
+  // Team d-prime using Pythagorean combination
   const dPrimeTeam = Math.sqrt(Math.pow(dPrimeHuman, 2) + Math.pow(dPrimeAid, 2));
 
   return {
@@ -719,6 +712,10 @@ export function analyzeParticipant(trials: Trial[]) {
   };
 }
 
+/**
+ * Calculate d-prime from hit rate and false alarm rate
+ * Uses z-score transformation with boundary protection
+ */
 function calculateDPrime(hr: number, far: number) {
   const epsilon = 1e-5;
   const boundedHR = Math.min(Math.max(hr, epsilon), 1 - epsilon);
@@ -728,19 +725,14 @@ function calculateDPrime(hr: number, far: number) {
   return zHR - zFAR;
 }
 
-// function average(nums: number[]): number {
-//   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
-// }
-
-// function average(nums: number[]): number {
-//   return nums.reduce((sum, val) => sum + val, 0) / nums.length;
-// }
-
-// Filter out participants with dPrimeHuman < 1 in functions that process all participants
 type AllParticipantsData = {
   [filename: string]: Trial[];
 };
 
+/**
+ * Filter participants based on minimum d-prime threshold
+ * Removes participants with d-prime < 1 (poor discriminability)
+ */
 export function filterParticipantsByDPrimeHuman(data: AllParticipantsData): AllParticipantsData {
   const filtered: AllParticipantsData = {};
   for (const participant in data) {

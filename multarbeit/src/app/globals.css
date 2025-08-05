@@ -1,20 +1,36 @@
 @import 'tailwindcss';
 
-/* --- CSS Variables --- */
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+
+/* --- Primary Color Palette --- */
 :root {
+  /* Base theme colors */
   --background: #ffffff;
   --foreground: #171717;
 
+  /* Research application color scheme */
   --color-carolina-blue: #74b3ce;
   --color-blue-munsell: #508991;
   --color-prussian-blue: #172a3a;
   --color-midnight-green: #004346;
   --color-mint: #09bc8a;
+
+  /* Interactive element colors */
   --color-blue: #0000ff;
   --color-orange: #ff8000;
 }
 
-/* --- Theme Variables --- */
+/* --- Tailwind Theme Integration --- */
+/**
+ * Tailwind CSS theme variable integration
+ *
+ * Note: The @theme directive is a newer Tailwind CSS feature.
+ * If this causes compilation errors, it may need to be replaced
+ * with standard CSS custom properties or updated based on
+ * the current Tailwind CSS version being used.
+ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -22,7 +38,14 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* --- Base Styles --- */
+/* ========================================
+   BASE ELEMENT STYLES
+   ======================================== */
+
+/**
+ * Global body styles
+ * Sets the foundation for the entire application layout and typography
+ */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -30,32 +53,65 @@ body {
   height: 100%;
 }
 
+/**
+ * Default button styling
+ * Applies consistent brand colors and spacing to all buttons
+ */
 button {
   background-color: var(--color-blue-munsell);
   margin-top: 1rem;
 }
 
+/* ========================================
+   LAYOUT & COMPONENT UTILITIES
+   ======================================== */
+
+/**
+ * Header component styling
+ * Used for page headers and section titles throughout the application
+ */
 .header {
   background-color: var(--color-blue-munsell);
   color: white;
   padding: 1rem;
 }
 
+/**
+ * Section border utility
+ * Creates consistent bordered sections with rounded corners
+ * Used for content grouping and visual separation
+ */
 .sectionBorder {
   border: 2px solid var(--color-blue-munsell);
   border-radius: 10px;
   padding: 1rem;
 }
 
+/**
+ * Flex-based section layout
+ * Utility for creating flexible section layouts
+ */
 .sectionBased {
   display: flex;
 }
 
+/* ========================================
+   TEXT & TYPOGRAPHY UTILITIES
+   ======================================== */
+
+/**
+ * Small text for image source attribution
+ * Used for crediting images and providing source information
+ */
 .imageSourceText {
   font-size: small;
   padding: 0.25rem;
 }
 
+/**
+ * Text color utilities using brand colors
+ * Consistent color application across different text elements
+ */
 .textColourGreen {
   color: var(--color-midnight-green);
 }
@@ -64,52 +120,103 @@ button {
   color: var(--color-blue-munsell);
 }
 
+/* ========================================
+   BACKGROUND & VISUAL UTILITIES
+   ======================================== */
+
+/**
+ * Background color utilities
+ * Consistent background color application using brand palette
+ */
 .munsellColourBG {
   background-color: var(--color-blue-munsell);
 }
 
+/**
+ * Light green background with transparency
+ * Used for subtle highlighting and section differentiation
+ */
 .bgLightGreen {
-  background-color: #508a914d;
+  background-color: #508a914d; /* 30% opacity blue-munsell */
 }
 
+/**
+ * Light green text color
+ * Complementary text color for light green backgrounds
+ */
 .bgTextLightGreen {
   color: #508b91;
 }
 
+/**
+ * Border radius utility
+ * Consistent rounded corner styling
+ */
 .border10 {
   border-radius: 10px;
 }
 
+/**
+ * Image centering utility
+ * Centers images within their containers
+ */
 .imageCenter {
   margin: auto;
 }
 
-/* --- Slider Styles --- */
+/* ========================================
+   INTERACTIVE ELEMENT STYLES
+   ======================================== */
+
+/**
+ * Color slider component styling
+ *
+ * Custom slider used in the research interface for participant responses.
+ * Features a gradient background from blue to orange representing the
+ * spectrum of confidence or decision values in the Optimal Weighting model.
+ *
+ * The gradient visually represents the transition between different
+ * decision states or confidence levels in the research study.
+ */
 .color-slider {
   height: 20px;
-  border-radius: 9999px;
+  border-radius: 9999px; /* Fully rounded ends */
   background: linear-gradient(to right, var(--color-blue), var(--color-orange));
 }
 
-/* WebKit: Chrome, Safari */
+/**
+ * WebKit slider thumb styling (Chrome, Safari, Edge)
+ *
+ * Customizes the draggable thumb element of the slider with:
+ * - White background for visibility against gradient
+ * - Gray border for definition
+ * - Circular shape matching the slider track
+ * - Pointer cursor for better UX
+ */
 .color-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Remove default styling */
   appearance: none;
   width: 28px;
   height: 28px;
-  border-radius: 9999px;
+  border-radius: 9999px; /* Perfect circle */
   background-color: white;
   border: 2px solid #b9b9b9;
   cursor: pointer;
-  margin-top: 0;
+  margin-top: 0; /* Align with track */
 }
 
-/* Firefox */
+/**
+ * Firefox slider thumb styling
+ *
+ * Firefox-specific styling for the slider thumb to maintain
+ * consistent appearance across browsers. Uses slightly different
+ * border color for Firefox's rendering engine.
+ */
 .color-slider::-moz-range-thumb {
   width: 28px;
   height: 28px;
-  border-radius: 9999px;
+  border-radius: 9999px; /* Perfect circle */
   background-color: white;
-  border: 2px solid #333;
+  border: 2px solid #333; /* Darker border for Firefox */
   cursor: pointer;
 }

@@ -6,18 +6,36 @@ import SectionLeft from '@/components/layout/SectionLeft';
 import SectionRight from '@/components/layout/SectionRight';
 import SectionMiddle from '@/components/layout/SectionMiddle';
 
+/**
+ * Home Page Component
+ *
+ * Renders the main landing page with comprehensive overview of the Optimal Weighting
+ * research project. The page uses alternating section layouts (left, right, middle)
+ * to create visual interest and guide users through the research narrative.
+ *
+ * @returns {JSX.Element} The complete home page with navigation sections
+ */
 export default function Home() {
+  // Initialize Next.js router for programmatic navigation
   const router = useRouter();
 
   return (
     <div>
-      {/* Header */}
+      {/* ========================================
+          APPLICATION HEADER
+          ======================================== */}
       <div className='header'>
         <h1 className='text-4xl font-bold m-4 text-center'>Multimediale Ausarbeitung</h1>
         <h2 className='text-3xl m-4 text-center'>Strategie: Optimale Gewichtung</h2>
       </div>
 
-      {/* Theory section */}
+      {/* ========================================
+          THEORETICAL FOUNDATION SECTION
+          ======================================== */}
+      {/*
+        Theory section introducing the Optimal Weighting model
+        Uses academic reference from Human Factors journal
+      */}
       <SectionRight
         imageSource='Benchmarking Aided Decision Making in a Signal Detection Task
 Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
@@ -32,13 +50,28 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Presentation One */}
-      <SectionMiddle imageSource='' onClick={() => router.push('/details/strategy/')} imageUrl='/vortragStrategie.png' title='Erster Vortrag: Metakognitive Strategie' description={<>
-            Hier kann in Kurzfassung nachgelesen werden, was die Optimal Weighting Strategie (OW) ist und wie sie funktioniert.
-          </>} />
-      
+      {/* ========================================
+          RESEARCH PRESENTATIONS
+          ======================================== */}
+      {/*
+        First presentation section covering metacognitive strategy
+        Central layout for presentation materials
+      */}
+      <SectionMiddle
+        imageSource=''
+        onClick={() => router.push('/details/strategy/')}
+        imageUrl='/vortragStrategie.png'
+        title='Erster Vortrag: Metakognitive Strategie'
+        description={<>Hier kann in Kurzfassung nachgelesen werden, was die Optimal Weighting Strategie (OW) ist und wie sie funktioniert.</>}
+      />
 
-      {/* Design decisions section */}
+      {/* ========================================
+          DESIGN PROCESS DOCUMENTATION
+          ======================================== */}
+      {/*
+        Initial design decisions section
+        Explains target audience and application context
+      */}
       <SectionLeft
         imageSource='Med Badr Chemmaoui (Unsplash)'
         onClick={() => router.push('/details/design/1')}
@@ -55,11 +88,23 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Scribbles carousel */}
+      {/* ========================================
+          DESIGN SCRIBBLES SHOWCASE
+          ======================================== */}
+      {/*
+        Interactive carousel displaying initial design concepts
+        Shows the evolution from human-only to human-AI comparison
+      */}
       <h2 className='text-3xl font-bold m-4 text-center'>Erste Scribbles</h2>
       <Carousel images={['/scribble-1.png', '/scribble-2.png']} imageDescriptions={['Scribble 1: Menschliche Einschätzung', 'Scribble 2: Vergleich Mensch und KI']} />
 
-      {/* Prototype design section */}
+      {/* ========================================
+          PROTOTYPE DEVELOPMENT
+          ======================================== */}
+      {/*
+        Prototype design and user flow documentation
+        Explains the user journey and interaction design
+      */}
       <SectionRight
         imageSource='Anima - Nick Meyer'
         onClick={() => router.push('/details/design/2')}
@@ -74,12 +119,27 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
-      {/* Presentation Two */}
-      <SectionMiddle imageSource='' onClick={() => router.push('/details/prototypShow/')} imageUrl='/vortragPrototype.png' title='Zweiter Vortrag: Designidee' description={<>
-            Hier kann in Kurzform nachgeschaut werden, wie die Optimal Weighting Strategie innerhalb des Prototypens angewendet wurde und welche theoretischen Konzepte einbezogen wurden.
-          </>} />
+      {/*
+        Second presentation section covering design concepts
+        Central layout for presentation materials
+      */}
+      <SectionMiddle
+        imageSource=''
+        onClick={() => router.push('/details/prototypShow/')}
+        imageUrl='/vortragPrototype.png'
+        title='Zweiter Vortrag: Designidee'
+        description={
+          <>Hier kann in Kurzform nachgeschaut werden, wie die Optimal Weighting Strategie innerhalb des Prototypens angewendet wurde und welche theoretischen Konzepte einbezogen wurden.</>
+        }
+      />
 
-      {/* Prototype section */}
+      {/* ========================================
+          INTERACTIVE PROTOTYPE
+          ======================================== */}
+      {/*
+        Live prototype demonstration section
+        Allows users to experience the Optimal Weighting strategy
+      */}
       <SectionLeft
         imageSource='Kateryna Mayka von Eleken'
         onClick={() => router.push('/prototype')}
@@ -88,7 +148,13 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         description={<>Hier kann der aktuelle Prototyp angeschaut und ausprobiert werden.</>}
       />
 
-      {/* Science communication section */}
+      {/* ========================================
+          RESEARCH COMMUNICATION & EVALUATION
+          ======================================== */}
+      {/*
+        Science communication section
+        Explains terminology, trust-building, and user communication strategies
+      */}
       <SectionRight
         imageSource='CONEDU/Schnepfleitner, auf erwachsenenbildung.at'
         onClick={() => router.push('/details/design/3')}
@@ -102,6 +168,10 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         }
       />
 
+      {/*
+        Final results and evaluation section
+        Showcases study results and final prototype version
+      */}
       <SectionLeft
         imageSource='by Storyset'
         onClick={() => router.push('/details/design/4')}
@@ -109,7 +179,6 @@ Megan L. Bartlett and Jason S. McCarley, Human Factors 2017 59:6, 881-900'
         title='Finalisierung & Ergebnisbewertung'
         description={<>In diesem Abschnitt wird die finale Version des Prototypen aufgezeigt. Zudem werden die in der Studie gesammelten Ergebnis aufgezeigt und diskutiert.</>}
       />
-
     </div>
   );
 }

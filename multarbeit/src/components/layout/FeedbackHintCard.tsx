@@ -1,13 +1,35 @@
 import React from 'react';
 
-type ColorScheme = {
-  bg: string;
-  hoverBg: string;
-  border: string;
-  title: string;
-  text: string;
-};
+/* ========================================
+   TYPE DEFINITIONS
+   ======================================== */
 
+/**
+ * Interface defining the color scheme structure for hint cards
+ *
+ * Contains all Tailwind CSS classes needed to create a cohesive
+ * visual theme for each color variant of the hint card.
+ */
+interface ColorScheme {
+  /** Background color class for the card */
+  bg: string;
+  /** Hover background color class for interactive states */
+  hoverBg: string;
+  /** Border color class for card outline */
+  border: string;
+  /** Title text color class for headings */
+  title: string;
+  /** Body text color class for content */
+  text: string;
+}
+
+/* ========================================
+   COLOR SCHEME DEFINITIONS
+   ======================================== */
+
+/**
+ *  Color mapping for different types of research guidance
+ */
 const colorMap: Record<string, ColorScheme> = {
   green: {
     bg: 'bg-green-50',
@@ -65,7 +87,7 @@ const colorMap: Record<string, ColorScheme> = {
     title: 'text-indigo-800',
     text: 'text-indigo-900',
   },
-   amber: {
+  amber: {
     bg: 'bg-amber-50',
     hoverBg: 'hover:bg-amber-100',
     border: 'border-amber-300',
@@ -74,19 +96,56 @@ const colorMap: Record<string, ColorScheme> = {
   },
 };
 
-type FeedbackHintCardProps = {
+/**
+ * Props interface for the FeedbackHintCard component
+ *
+ * Defines the properties needed to render a themed hint card
+ * with appropriate content and styling.
+ */
+interface FeedbackHintCardProps {
+  /** Title text displayed in the card header */
   title: string;
+  /** Content to be rendered inside the card body */
   children: React.ReactNode;
+  /** Color scheme identifier (must match colorMap keys) */
   color: string;
-};
+}
 
+/* ========================================
+   COMPONENT IMPLEMENTATION
+   ======================================== */
+
+/**
+ * FeedbackHintCard Component
+ *
+ * Renders a themed hint card with customizable color schemes for different
+ * types of research guidance and feedback. Provides consistent styling
+ * and semantic color coding for participant interface elements.
+ *
+ * The component automatically falls back to the green color scheme if an
+ * invalid color is provided, ensuring consistent appearance and preventing
+ * rendering errors in the research application.
+ *
+ *
+ * @param {FeedbackHintCardProps} props - Component properties
+ * @returns {React.FC} Rendered hint card with themed styling
+ */
 const FeedbackHintCard: React.FC<FeedbackHintCardProps> = ({ title, children, color }) => {
-  const c = colorMap[color] || colorMap['green'];
+  // Select color scheme with fallback to green for invalid colors
+  const selectedColorScheme = colorMap[color] || colorMap['green'];
 
   return (
-    <div className={`border rounded-xl p-6 shadow-md transition-colors duration-300 ${c.bg} ${c.hoverBg} ${c.border}`}>
-      <h3 className={`text-lg font-semibold mb-2 ${c.title}`}>{title}</h3>
-      <div className={`text-base leading-relaxed ${c.text}`}>{children}</div>
+    <div
+      className={`border rounded-xl p-6 shadow-md transition-colors duration-300 ${selectedColorScheme.bg} ${selectedColorScheme.hoverBg} ${selectedColorScheme.border}`}
+      role='complementary'
+      aria-labelledby='hint-card-title'>
+      {/* Card title with themed styling */}
+      <h3 id='hint-card-title' className={`text-lg font-semibold mb-2 ${selectedColorScheme.title}`}>
+        {title}
+      </h3>
+
+      {/* Card content with enhanced readability */}
+      <div className={`text-base leading-relaxed ${selectedColorScheme.text}`}>{children}</div>
     </div>
   );
 };
